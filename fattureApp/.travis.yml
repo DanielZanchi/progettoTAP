@@ -16,3 +16,4 @@ script:
   slack:
     on_success: never
     on_failure: never
+  email: false
