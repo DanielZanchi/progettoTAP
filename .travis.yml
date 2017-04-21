@@ -1,5 +1,5 @@
 language:
-  - java
+   java
 jdk:
   - oraclejdk8
 services:
@@ -11,7 +11,7 @@ install:
  - docker pull mongo
 script:
  - mvn -f com.unifi.fattureApp/pom.xml clean verify
- 
+
  notifications:
   slack:
     on_success: never
