@@ -5,3 +5,6 @@ install: true
 
 script:
 - mvn -f fattureApp/pom.xml clean verify
+
+notifications:
+	email: false
