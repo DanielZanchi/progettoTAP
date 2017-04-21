@@ -5,7 +5,7 @@ directories:
 - $HOME/.m2
 
 #skip installation step
-install: true
+install: mvn install
 
 script:
 - mvn -f com.unifi.fattureApp/pom.xml clean verify
