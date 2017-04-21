@@ -8,7 +8,7 @@ directories:
 install: true
 
 script:
-- mvn -f fattureApp/pom.xml clean verify
+- mvn -f com.unifi.fattureApp/pom.xml clean verify
 
 
 notifications:
