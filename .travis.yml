@@ -4,4 +4,4 @@ language: java
 install: true
 
 script:
-- mvn -f com.unifi.fattureApp/pom.xml clean verify
+- mvn -f fattureApp/pom.xml clean verify
