@@ -6,6 +6,6 @@ package com.unifi.fattureApp.fattureApp;
  */
 public class App {
 	public static void main(String[] args) {
-		System.out.println("Helloooo World!!!!!");
+		System.out.println("Funziona?");
 	}
 }
