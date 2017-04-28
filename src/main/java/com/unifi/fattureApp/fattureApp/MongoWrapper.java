@@ -26,6 +26,11 @@ public class MongoWrapper implements Database{
 		return StreamSupport.stream(iterable.spliterator(),false).collect(Collectors.toList());
 	}
 
+	public Patients findPatientId(String id) {
+		// TODO Auto-generated method stub
+		return patients.findOne("{id:#}",id).as(Patients.class);
+	}
+
 	
 
 }

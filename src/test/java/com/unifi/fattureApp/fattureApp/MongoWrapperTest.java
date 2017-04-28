@@ -40,6 +40,18 @@ public class MongoWrapperTest {
 		assertEquals(1,myMongoWrapper.getAllPatients().size());
 	}
 	
+	@Test 
+	public void testWrongId(){
+		addPatientsToDB("1", "uno");
+		assertNull(myMongoWrapper.findPatientId("2"));
+	}
+	
+	@Test
+	public void testRightId(){
+		addPatientsToDB("1","uno");
+		assertNotNull(myMongoWrapper.findPatientId("1"));
+	}
+	
 
 	private void addPatientsToDB(String id, String name){
 		BasicDBObject data=new BasicDBObject();
