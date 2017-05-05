@@ -1,5 +1,6 @@
 package com.unifi.fattureApp.mongoWrapper;
 
+import java.net.UnknownHostException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -16,22 +17,38 @@ public class MongoWrapper implements Database{
 
 	private MongoCollection patients;
 
-	public MongoWrapper(MongoClient myMongoClient) {
-		// TODO Auto-generated constructor stub
-		DB db=myMongoClient.getDB("medicalOffice");
-		Jongo myJongo=new Jongo(db);
-		patients=myJongo.getCollection("patients");
+	public MongoWrapper(MongoClient mc) throws UnknownHostException {
+		DB db = mc.getDB("school");
+
+		Jongo jongo = new Jongo(db);
+		patients = jongo.getCollection("student");
 	}
 
-	public List<Patient> getAllPatients() {
-		Iterable<Patient> iterable=patients.find().as(Patient.class);
-		return StreamSupport.stream(iterable.spliterator(),false).collect(Collectors.toList());
+	
+	
+	@Override
+	public List<Patient> getAllPatientsList() {
+		Iterable<Patient> iterable = patients.find().as(Patient.class);
+		return StreamSupport.
+			stream(iterable.spliterator(), false).
+			collect(Collectors.toList());
 	}
 
-	public Patient findPatientId(String id) {
-		// TODO Auto-generated method stub
-		return patients.findOne("{id:#}",id).as(Patient.class);
+	
+	
+	@Override
+	public Patient findPatientById(String id) {
+		return patients.findOne("{id: #}", id).as(Patient.class);
 	}
+	
+	
+	
+
+	@Override
+	public void save(Patient student) {
+		patients.save(student);
+	}
+
 
 	
 

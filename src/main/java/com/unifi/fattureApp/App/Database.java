@@ -1,5 +1,12 @@
 package com.unifi.fattureApp.App;
 
-public interface Database {
+import java.util.List;
 
+public interface Database {
+	public List<Patient> getAllPatientsList();
+
+	public Patient findPatientById(String id);
+
+	public void save(Patient patient);
 }
+
