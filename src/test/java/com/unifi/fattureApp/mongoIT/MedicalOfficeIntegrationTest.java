@@ -8,7 +8,7 @@ import org.junit.Test;
 import com.github.fakemongo.Fongo;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
-import com.unifi.fattureApp.fattureApp.Database;
+import com.unifi.fattureApp.App.Database;
 
 public class MedicalOfficeIntegrationTest {
 	

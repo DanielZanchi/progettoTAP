@@ -1,4 +1,4 @@
-package com.unifi.fattureApp.fattureApp;
+package com.unifi.fattureApp.App;
 
 import java.util.List;
 import java.util.stream.Collectors;

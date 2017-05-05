@@ -10,7 +10,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
-import com.unifi.fattureApp.fattureApp.MongoWrapper;
+import com.unifi.fattureApp.App.MongoWrapper;
 
 public class MongoWrapperTest { 
 	
