@@ -1,4 +1,4 @@
-package com.unifi.fattureApp.App;
+package com.unifi.fattureApp.mongoWrapper;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,6 +9,8 @@ import org.jongo.MongoCollection;
 
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
+import com.unifi.fattureApp.App.Database;
+import com.unifi.fattureApp.App.Patient;
 
 public class MongoWrapper implements Database{
 
