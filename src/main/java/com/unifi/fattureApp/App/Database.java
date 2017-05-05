@@ -9,4 +9,3 @@ public interface Database {
 
 	public void save(Patient patient);
 }
-

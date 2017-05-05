@@ -23,8 +23,6 @@ public class MongoWrapper implements Database{
 		Jongo jongo = new Jongo(db);
 		patients = jongo.getCollection("student");
 	}
-
-	
 	
 	@Override
 	public List<Patient> getAllPatientsList() {
@@ -45,8 +43,8 @@ public class MongoWrapper implements Database{
 	
 
 	@Override
-	public void save(Patient student) {
-		patients.save(student);
+	public void save(Patient patient) {
+		patients.save(patient);
 	}
 
 

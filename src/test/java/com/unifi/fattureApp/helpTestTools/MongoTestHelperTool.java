@@ -11,20 +11,20 @@ public class MongoTestHelperTool {
 	private DBCollection patients;
 
 	public MongoTestHelperTool (MongoClient mongoClient) {
-		// make sure to drop the students table for testing
+		// make sure to drop the patients table for testing
 		DB db = mongoClient.getDB("");
-		db.getCollection("student").drop();
-		patients = db.getCollection("student");
+		db.getCollection("patient").drop();
+		patients = db.getCollection("patient");
 	}
 
-	public void addStudent(String id, String name) {
+	public void addPatient(String id, String name) {
 		BasicDBObject document = new BasicDBObject();
 		document.put("id", id);
 		document.put("name", name);
 		patients.insert(document);
 	}
 
-	public boolean containsStudent(String id, String name) {
+	public boolean containsPatient(String id, String name) {
 		BasicDBObject query = new BasicDBObject();
 		query.put("id", id);
 		query.put("name", name);

@@ -36,31 +36,30 @@ public class MedicalOfficeIntegrationTest {
 	}
 
 	@Test
-	public void testGetAllStudentsWhenThereAreNoStudents() {
-		List<Patient> allStudents = medicalController.getAllPatients();
-		assertEquals(0, allStudents.size());
+	public void testGetAllPatientsWhenThereAreNoPatients() {
+		List<Patient> allPatients = medicalController.getAllPatients();
+		assertEquals(0, allPatients.size());
 	}
 
 	@Test
-	public void testGetAllStudentsWhenThereIsOneStudent() {
-		mongoTestHelper.addStudent("1", "test");
-		List<Patient> allStudents = medicalController.getAllPatients();
-		assertEquals(1, allStudents.size());	
+	public void testGetAllPatientsWhenThereIsOnePatient() {
+		mongoTestHelper.addPatient("1", "test");
+		List<Patient> allPatients = medicalController.getAllPatients();
+		assertEquals(1, allPatients.size());	
 	}
 
 	@Test
-	public void testGetStudentByIdWhenStudentIsNotThere() {
-		mongoTestHelper.addStudent("1", "test");
+	public void testGetPatientByIdWhenPatientIsNotThere() {
+		mongoTestHelper.addPatient("1", "test");
 		Patient patient = medicalController.getPatientId("2");
 		assertNull(patient);
 	}
 
 	@Test
-	public void testGetStudentByIdWhenStudentIsThere() {
-		mongoTestHelper.addStudent("1", "test");
+	public void testGetPatientByIdWhenPatientIsThere() {
+		mongoTestHelper.addPatient("1", "test");
 		Patient patient = medicalController.getPatientId("1");
 		assertNotNull(patient);
 		assertEquals("test", patient.getName());
 	}
-
 }
