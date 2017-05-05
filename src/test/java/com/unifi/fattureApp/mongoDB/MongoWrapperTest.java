@@ -1,4 +1,4 @@
-package com.unifi.fattureApp.fattureApp;
+package com.unifi.fattureApp.mongoDB;
 
 import static org.junit.Assert.*;
 
@@ -10,15 +10,15 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
+import com.unifi.fattureApp.fattureApp.MongoWrapper;
 
-public class MongoWrapperTest {
+public class MongoWrapperTest { 
 	
 	MongoWrapper myMongoWrapper; 
 	DBCollection myPatients;
 	
 	@Before
 	public void init(){
-		
 		Fongo fongo=new Fongo("mongo server 1");
 		MongoClient myMongoClient=fongo.getMongo();
 		

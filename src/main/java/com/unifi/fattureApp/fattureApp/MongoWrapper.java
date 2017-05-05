@@ -21,14 +21,14 @@ public class MongoWrapper implements Database{
 		patients=myJongo.getCollection("patients");
 	}
 
-	public List<Patients> getAllPatients() {
-		Iterable<Patients> iterable=patients.find().as(Patients.class);
+	public List<Patient> getAllPatients() {
+		Iterable<Patient> iterable=patients.find().as(Patient.class);
 		return StreamSupport.stream(iterable.spliterator(),false).collect(Collectors.toList());
 	}
 
-	public Patients findPatientId(String id) {
+	public Patient findPatientId(String id) {
 		// TODO Auto-generated method stub
-		return patients.findOne("{id:#}",id).as(Patients.class);
+		return patients.findOne("{id:#}",id).as(Patient.class);
 	}
 
 	

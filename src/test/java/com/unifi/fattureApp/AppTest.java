@@ -1,4 +1,4 @@
-package com.unifi.fattureApp.fattureApp;
+package com.unifi.fattureApp;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
