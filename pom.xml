@@ -14,6 +14,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
+
+
 	<build>
 		<plugins>
 			<plugin>
@@ -38,6 +40,33 @@
 								</ports>
 							</run>
 						</image>
+						<image>
+							<name>school-app</name>
+							<build>
+								<dockerFileDir>${project.basedir}/docker</dockerFileDir>
+								<args>
+									<fatjar>${project.artifactId}-${project.version}-all.jar</fatjar>
+								</args>
+								<assembly>
+									<inline>
+										<files>
+											<file>
+												<source>${project.build.directory}/${project.artifactId}-${project.version}-all.jar</source>
+											</file>
+										</files>
+									</inline>
+								</assembly>
+							</build>
+							<run>
+								<links>
+									<link>mongo:mongo-host</link>
+								</links>
+								<wait>
+									<time>10000</time>
+									<log>fattureApp terminates</log>
+								</wait>
+							</run>
+						</image>
 					</images>
 					<showLogs>true</showLogs>
 				</configuration>
@@ -47,6 +76,13 @@
 						<phase>pre-integration-test</phase>
 						<goals>
 							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>docker:build</id>
+						<phase>package</phase>
+						<goals>
+							<goal>build</goal>
 						</goals>
 					</execution>
 					<execution>
