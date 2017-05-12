@@ -12,7 +12,7 @@ public class MongoTestHelperTool {
 
 	public MongoTestHelperTool (MongoClient mongoClient) {
 		// make sure to drop the patients table for testing
-		DB db = mongoClient.getDB("");
+		DB db = mongoClient.getDB("medialOffice");
 		db.getCollection("patient").drop();
 		patients = db.getCollection("patient");
 	}

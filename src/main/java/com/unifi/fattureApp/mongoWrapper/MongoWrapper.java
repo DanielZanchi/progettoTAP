@@ -18,10 +18,10 @@ public class MongoWrapper implements Database{
 	private MongoCollection patients;
 
 	public MongoWrapper(MongoClient mc) throws UnknownHostException {
-		DB db = mc.getDB("school");
+		DB db = mc.getDB("medialOffice");
 
 		Jongo jongo = new Jongo(db);
-		patients = jongo.getCollection("student");
+		patients = jongo.getCollection("patient");
 	}
 	
 	@Override
