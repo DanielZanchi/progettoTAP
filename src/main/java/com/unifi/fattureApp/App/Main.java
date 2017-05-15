@@ -1,6 +1,5 @@
 package com.unifi.fattureApp.App;
 
-
 import java.net.UnknownHostException;
 import java.util.List;
 
@@ -13,8 +12,6 @@ import com.mongodb.MongoClient;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
 public class Main {
-
-	
 	private static MainPageUI myWindow;
 	
 	public static void main(String[] args) throws UnknownHostException {
@@ -40,8 +37,6 @@ public class Main {
 			);
 		System.out.println("Fatture-app terminates.");
 		
-		
 		myWindow = new MainPageUI();
 	}
 }
-

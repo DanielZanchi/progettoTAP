@@ -2,7 +2,6 @@ package com.unifi.fattureApp.App;
 
 import java.util.List;
 
-
 public class MedicalOfficeController {
 		private Database database;
 

@@ -7,12 +7,11 @@ import com.mongodb.MongoClient;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
 public class MongoTestHelperTool {
-
 	private DBCollection patients;
 
 	public MongoTestHelperTool (MongoClient mongoClient) {
 		// make sure to drop the patients table for testing
-		DB db = mongoClient.getDB("medialOffice");
+		DB db = mongoClient.getDB("medicalOffice");
 		db.getCollection("patient").drop();
 		patients = db.getCollection("patient");
 	}
@@ -30,5 +29,4 @@ public class MongoTestHelperTool {
 		query.put("name", name);
 		return patients.find(query).hasNext();
 	}
-	
 }

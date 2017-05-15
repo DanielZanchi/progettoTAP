@@ -7,7 +7,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 
 public class MainPageUI extends Application {
-
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
@@ -18,6 +17,5 @@ public class MainPageUI extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
-	}
-	
+	}	
 }

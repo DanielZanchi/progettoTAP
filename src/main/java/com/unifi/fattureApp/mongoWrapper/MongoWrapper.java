@@ -14,11 +14,10 @@ import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.Patient;
 
 public class MongoWrapper implements Database{
-
 	private MongoCollection patients;
 
 	public MongoWrapper(MongoClient mc) throws UnknownHostException {
-		DB db = mc.getDB("medialOffice");
+		DB db = mc.getDB("medicalOffice");
 
 		Jongo jongo = new Jongo(db);
 		patients = jongo.getCollection("patient");
@@ -31,23 +30,14 @@ public class MongoWrapper implements Database{
 			stream(iterable.spliterator(), false).
 			collect(Collectors.toList());
 	}
-
-	
 	
 	@Override
 	public Patient findPatientById(String id) {
 		return patients.findOne("{id: #}", id).as(Patient.class);
 	}
-	
-	
-	
 
 	@Override
 	public void save(Patient patient) {
 		patients.save(patient);
 	}
-
-
-	
-
 }
