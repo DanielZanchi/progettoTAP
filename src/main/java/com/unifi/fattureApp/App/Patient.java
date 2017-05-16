@@ -18,7 +18,6 @@ public class Patient {
 			this.setFiscalCode(fiscalCode);
 			this.setCityResidence(cityResidence);
 			this.setBirthDate(birthDate);
-			
 		}
 
 		public String getId() {
