@@ -6,13 +6,12 @@ import java.util.List;
 import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.MedicalOfficeController;
 import com.unifi.fattureApp.App.Patient;
-import com.unifi.fattureApp.UI.MainPageUI;
+//import com.unifi.fattureApp.UI.MainPageUI;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 import com.mongodb.MongoClient;
-import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
 public class Main {
-	private static MainPageUI myWindow;
+//	private static MainPageUI myWindow;
 	
 	public static void main(String[] args) throws UnknownHostException {
 		String mongoHost = "127.0.0.1";
@@ -37,6 +36,6 @@ public class Main {
 			);
 		System.out.println("Fatture-app terminates.");
 		
-		myWindow = new MainPageUI();
+//		myWindow = new MainPageUI();
 	}
 }
