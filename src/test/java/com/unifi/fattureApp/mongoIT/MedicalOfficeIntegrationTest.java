@@ -62,4 +62,69 @@ public class MedicalOfficeIntegrationTest {
 		assertNotNull(patient);
 		assertEquals("test", patient.getName());
 	}
+	
+	
+	@Test
+	public void testGetPatientByIdWithRightFiscalCode() {
+		mongoTestHelper.addPatient("1", "test","testFC","testCR","testBD");
+		Patient patient = medicalController.getPatientId("1");
+		assertNotNull(patient);
+		assertEquals("testFC", patient.getFiscalCode());
+	}
+	
+	@Test
+	public void testGetPatientByIdWithWrongFiscalCode() {
+		mongoTestHelper.addPatient("1", "test","testFC","testCR","testBD");
+		Patient patient = medicalController.getPatientId("1");
+		assertNotNull(patient);
+		assertNotEquals("wrongtestFC", patient.getFiscalCode());
+	}
+	
+	@Test
+	public void testGetPatientByIdWithRightCityResidence() {
+		mongoTestHelper.addPatient("1", "test","testFC","testCR","testBD");
+		Patient patient = medicalController.getPatientId("1");
+		assertNotNull(patient);
+		assertEquals("testCR", patient.getCityResidence());
+	}
+	
+	@Test
+	public void testGetPatientByIdWithWrongCityResidence() {
+		mongoTestHelper.addPatient("1", "test","testFC","testCR","testBD");
+		Patient patient = medicalController.getPatientId("1");
+		assertNotNull(patient);
+		assertNotEquals("wrongtestCR", patient.getCityResidence());
+	}
+	
+	
+/*
+	@Test
+	public void testGetPatientByIdWithRightBirthDay() {
+		mongoTestHelper.addPatient("1", "test","testFC","testCR","testBD");
+		Patient patient = medicalController.getPatientId("1");
+		assertNotNull(patient);
+		assertEquals("testBD", patient.getBirthDate());
+	}
+	*/
+	
+	
+	
+	@Test
+	public void testGetPatientByIdWithWrongBirthDay() {
+		mongoTestHelper.addPatient("1", "test","testFC","testCR","testBD");
+		Patient patient = medicalController.getPatientId("1");
+		assertNotNull(patient);
+		assertNotEquals("wrongtestBD", patient.getBirthDate());
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
