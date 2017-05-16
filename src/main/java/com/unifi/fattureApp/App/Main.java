@@ -19,8 +19,8 @@ public class Main {
 		
 		MedicalOfficeController myMedicalController = new MedicalOfficeController(database);
 
-		System.out.println("Adding a patient...");
-		myMedicalController.addPatient(new Patient("1", "Daniele Landi","landiFiscalCode","landiResidence","landiHappyDay"));
+		System.out.println("Adding a patient");
+		myMedicalController.addPatient(new Patient("1", "Daniele Land","landiFiscalCode","landiResidence","landiHappyDay"));
 		System.out.println("Adding a patient...");
 		myMedicalController.addPatient(new Patient("2", "Daniel Zanchi","zanchiFiscalCode","zanchiResidence","zanchiHappyDay"));
 

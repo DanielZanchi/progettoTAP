@@ -101,7 +101,7 @@
 										</links>
 										<wait>
 											<time>10000</time>
-											<log>fattureApp terminates</log>
+											<log>Fatture-app terminates.</log>
 										</wait>
 									</run>
 								</image>
@@ -206,7 +206,7 @@
 										<wait>
 											<!-- Wait for the output "School app terminates" for 10 seconds -->
 											<time>10000</time>
-											<log>FattureApp terminates</log>
+											<log>Fatture-app terminates.</log>
 										</wait>
 									</run>
 								</image>
