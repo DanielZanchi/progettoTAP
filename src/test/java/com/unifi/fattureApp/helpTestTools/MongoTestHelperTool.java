@@ -16,17 +16,24 @@ public class MongoTestHelperTool {
 		patients = db.getCollection("patient");
 	}
 
-	public void addPatient(String id, String name) {
+	public void addPatient(String id, String name,String fiscalCode,String cityResidence,String birthDay) {
 		BasicDBObject document = new BasicDBObject();
 		document.put("id", id);
 		document.put("name", name);
+		document.put("fiscalCode", fiscalCode);
+		document.put("cityResidence", cityResidence);
+		document.put("birthDay", birthDay);
+
 		patients.insert(document);
 	}
 
-	public boolean containsPatient(String id, String name) {
+	public boolean containsPatient(String id, String name,String fiscalCode,String cityResidence,String birthDay) {
 		BasicDBObject query = new BasicDBObject();
 		query.put("id", id);
 		query.put("name", name);
+		query.put("fiscalCode", fiscalCode);
+		query.put("cityResidence", cityResidence);
+		query.put("birthDay", birthDay);
 		return patients.find(query).hasNext();
 	}
 }
