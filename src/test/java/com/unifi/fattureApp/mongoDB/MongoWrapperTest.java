@@ -36,29 +36,29 @@ public abstract class MongoWrapperTest {
 
 	@Test
 	public void testGetAllPatientsNotEmpty() {
-		mongoTestHelper.addPatient("1", "first");
-		mongoTestHelper.addPatient("2", "second");
+		mongoTestHelper.addPatient("1", "first","firstFC","firstCR","firstBD");
+		mongoTestHelper.addPatient("2", "second","secondFC","secondCR","secondBD");
 	
 		assertEquals(2, mongoDatabase.getAllPatientsList().size());
 	}
 
 	@Test
 	public void testFindPatientByIdNotFound() {
-		mongoTestHelper.addPatient("1", "first");
+		mongoTestHelper.addPatient("1", "first","firstFC","firstCR","firstBD");
 	
 		assertNull(mongoDatabase.findPatientById("2"));
 	}
 
 	@Test
 	public void testPatientIsSaved() {
-		mongoDatabase.save(new Patient("1", "test"));
-		assertTrue(mongoTestHelper.containsPatient("1", "test"));
+		mongoDatabase.save(new Patient("1", "test","testFC","testCR","testBD"));
+		assertTrue(mongoTestHelper.containsPatient("1", "test","testFC","testCR","testBD"));
 	}
 
 	@Test
 	public void testFindPatientByIdFound() {
-		mongoTestHelper.addPatient("1", "first");
-		mongoTestHelper.addPatient("2", "second");
+		mongoTestHelper.addPatient("1", "first","firstFC","firstCR","firstBD");
+		mongoTestHelper.addPatient("2", "second","secondFC","secondCR","secondBD");
 	
 		Patient findPatientById = mongoDatabase.findPatientById("2");
 		assertNotNull(findPatientById);

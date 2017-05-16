@@ -43,21 +43,21 @@ public class MedicalOfficeIntegrationTest {
 
 	@Test
 	public void testGetAllPatientsWhenThereIsOnePatient() {
-		mongoTestHelper.addPatient("1", "test");
+		mongoTestHelper.addPatient("1", "test","testFC","testCR","testBD");
 		List<Patient> allPatients = medicalController.getAllPatients();
 		assertEquals(1, allPatients.size());	
 	}
 
 	@Test
 	public void testGetPatientByIdWhenPatientIsNotThere() {
-		mongoTestHelper.addPatient("1", "test");
+		mongoTestHelper.addPatient("1", "test","testFC","testCR","testBD");
 		Patient patient = medicalController.getPatientId("2");
 		assertNull(patient);
 	}
 
 	@Test
 	public void testGetPatientByIdWhenPatientIsThere() {
-		mongoTestHelper.addPatient("1", "test");
+		mongoTestHelper.addPatient("1", "test","testFC","testCR","testBD");
 		Patient patient = medicalController.getPatientId("1");
 		assertNotNull(patient);
 		assertEquals("test", patient.getName());
