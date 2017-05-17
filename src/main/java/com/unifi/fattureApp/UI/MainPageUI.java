@@ -16,6 +16,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.internal.cocoa.OS;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import swing2swt.layout.BoxLayout;
@@ -60,6 +61,7 @@ public class MainPageUI {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
+		System.out.println(System.getProperty("os.name"));
 		shell = new Shell();
 		shell.setMinimumSize(new Point(300, 200));
 		shell.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND_GRADIENT));
