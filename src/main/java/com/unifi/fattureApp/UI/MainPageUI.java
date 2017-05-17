@@ -2,27 +2,19 @@ package com.unifi.fattureApp.UI;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Button;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.FormAction;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.wb.swt.SWTResourceManager;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.internal.cocoa.OS;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.layout.RowLayout;
-import swing2swt.layout.BoxLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.layout.FormData;
-import org.eclipse.swt.widgets.ExpandBar;
 
 public class MainPageUI {
 
