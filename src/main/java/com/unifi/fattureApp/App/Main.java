@@ -15,8 +15,10 @@ public class Main {
 	public static void main(String[] args) throws UnknownHostException {
 		String mongoHost = "127.0.0.1";
 		MainPageUI window = new MainPageUI();
+		
 		if (args.length > 0)
 			mongoHost = args[0];
+		
 		Database database = new MongoWrapper(new MongoClient(mongoHost, 27017));
 		
 		MedicalOfficeController myMedicalController = new MedicalOfficeController(database);
