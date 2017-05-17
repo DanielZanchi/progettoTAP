@@ -17,8 +17,6 @@ public class MedicalOfficeController {
 			return database.findPatientById(id);
 		}
 		
-	
-
 		public boolean addPatient(Patient patient) {
 			if (getPatientId(patient.getId()) != null)
 				return false;

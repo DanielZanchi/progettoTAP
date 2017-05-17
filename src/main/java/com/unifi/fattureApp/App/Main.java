@@ -36,6 +36,5 @@ public class Main {
 			);
 		window.open();
 		System.out.println("Fatture-app terminates.");
-		
 	}
 }

@@ -7,7 +7,6 @@ public class Patient {
 		private String cityResidence;
 		private String birthDate;
 		
-
 		public Patient() {
 
 		}

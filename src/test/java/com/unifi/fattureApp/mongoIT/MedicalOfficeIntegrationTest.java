@@ -62,8 +62,7 @@ public class MedicalOfficeIntegrationTest {
 		assertNotNull(patient);
 		assertEquals("test", patient.getName());
 	}
-	
-	
+		
 	@Test
 	public void testGetPatientByIdWithRightFiscalCode() {
 		mongoTestHelper.addPatient("1", "test","testFC","testCR","testBD");
@@ -96,7 +95,6 @@ public class MedicalOfficeIntegrationTest {
 		assertNotEquals("wrongtestCR", patient.getCityResidence());
 	}
 	
-	
 /*
 	@Test
 	public void testGetPatientByIdWithRightBirthDay() {
@@ -107,8 +105,6 @@ public class MedicalOfficeIntegrationTest {
 	}
 	*/
 	
-	
-	
 	@Test
 	public void testGetPatientByIdWithWrongBirthDay() {
 		mongoTestHelper.addPatient("1", "test","testFC","testCR","testBD");
@@ -116,15 +112,4 @@ public class MedicalOfficeIntegrationTest {
 		assertNotNull(patient);
 		assertNotEquals("wrongtestBD", patient.getBirthDate());
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

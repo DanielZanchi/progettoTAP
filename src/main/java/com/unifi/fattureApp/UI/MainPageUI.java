@@ -20,8 +20,6 @@ public class MainPageUI {
 
 	protected Shell shell;
 
-	
-
 	/**
 	 * Open the window.
 	 */
@@ -84,8 +82,7 @@ public class MainPageUI {
 		formData.right = new FormAttachment(100);
 		formData.bottom = new FormAttachment(100);
 		bottomComposite.setLayoutData(formData);
-		
-		
+				
 		Composite customerComposite = new Composite(bottomComposite, SWT.NONE | SWT.NO_BACKGROUND);
 		customerComposite.setLayout(new GridLayout(1, false));
 		
@@ -93,8 +90,6 @@ public class MainPageUI {
 		customerLbl.setText("Customer:");
 		customerLbl.setLayoutData(new GridData(SWT.CENTER, SWT.FILL, true, true));
 		
-		
 		Composite descriptionComposite = new Composite(bottomComposite, SWT.NONE | SWT.NO_BACKGROUND);
-
 	}
 }
