@@ -94,6 +94,7 @@
 			<activation>
 				<os>
 					<family>unix</family>
+					<name>Linux</name>
 				</os>
 			</activation>
 			<dependencies>
