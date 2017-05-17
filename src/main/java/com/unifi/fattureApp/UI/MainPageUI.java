@@ -53,7 +53,6 @@ public class MainPageUI {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		System.out.println(System.getProperty("os.name"));
 		shell = new Shell();
 		shell.setMinimumSize(new Point(300, 200));
 		shell.setBackground(SWTResourceManager.getColor(SWT.COLOR_TITLE_BACKGROUND_GRADIENT));
