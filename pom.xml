@@ -63,6 +63,7 @@
 	</build>
 	<profiles>
 		<profile>
+		<id>macprofile</id>
 			<activation>
 				<os>
 					<family>mac</family>
@@ -77,6 +78,7 @@
 			</dependencies>
 		</profile>
 		<profile>
+		<id>windowsprofile</id>
 			<activation>
 				<os>
 					<family>windows</family>
@@ -91,6 +93,7 @@
 			</dependencies>
 		</profile>
 		<profile>
+		<id>linuxprofile</id>
 			<activation>
 				<os>
 					<family>unix</family>
