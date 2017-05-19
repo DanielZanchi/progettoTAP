@@ -11,6 +11,7 @@ import javafx.scene.paint.Color;
 
 import java.awt.Dimension;
 import java.awt.BorderLayout;
+import java.awt.Font;
 
 public class MainWindowUI {
 
@@ -25,6 +26,7 @@ public class MainWindowUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+
 					MainWindowUI window = new MainWindowUI();
 					window.fattureApp_Frame.setVisible(true);
 				} catch (Exception e) {
@@ -65,15 +67,23 @@ public class MainWindowUI {
 		myCompany_Panel.setBackground(new java.awt.Color(232, 230, 230));
 		myCompany_Panel.setLayout(null);
 		
+		JLabel myCompany_Label = new JLabel("My Company");
+		myCompany_Label.setFont(new Font("Lucida Grande", Font.BOLD, 14));
+		myCompany_Label.setBounds(insets, insets, 100, 16);
+		myCompany_Panel.add(myCompany_Label);
+		
+		JLabel myCompanyInfo_Label = new JLabel("info");
+		myCompanyInfo_Label.setBounds(insets + myCompany_Label.getWidth(), insets, 300, 16);
+		myCompany_Panel.add(myCompanyInfo_Label);
+		
 		JPanel invoice_Panel = new JPanel();
 		int invoicePanelY = (insets * 2) + myCompany_Panel.getHeight();
 		int invoicePanelWidth = outer_Panel.getWidth() - (insets * 2);
-		int invoicePanelHeight = outer_Panel.getHeight() - (myCompany_Panel.getHeight() + (insets * 6));
+//		int invoicePanelHeight = outer_Panel.getHeight() - (myCompany_Panel.getHeight() + (insets * 6)); // dobrebbe essere insets * 3
+		int invoicePanelHeight = outer_Panel.getHeight() - (invoicePanelY - insets);
 		invoice_Panel.setBounds(insets, invoicePanelY, invoicePanelWidth, invoicePanelHeight);
 		outer_Panel.add(invoice_Panel);
 		invoice_Panel.setBackground(new java.awt.Color(232, 230, 230));
 		invoice_Panel.setLayout(null);
-
-		
 	}
 }
