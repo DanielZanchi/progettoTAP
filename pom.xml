@@ -42,9 +42,13 @@
 			<artifactId>mongo-java-driver</artifactId>
 			<version>2.14.3</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>3.7.0</version>
+		</dependency>
 	</dependencies>
-	
+
 	<repositories>
 		<repository>
 			<id>maven-eclipse-repo</id>
@@ -73,7 +77,7 @@
 				</os>
 			</activation>
 			<dependencies>
-				
+
 			</dependencies>
 		</profile>
 		<profile>
