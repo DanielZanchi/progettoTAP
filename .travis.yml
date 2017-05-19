@@ -17,6 +17,6 @@ script:
 
 
 notifications:
-	email: false
-		on_success: never
-		on_failure: never
+ email: false
+ on_success: never
+ on_failure: never
