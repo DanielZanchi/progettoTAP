@@ -6,7 +6,7 @@ import java.util.List;
 import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.MedicalOfficeController;
 import com.unifi.fattureApp.App.Patient;
-import com.unifi.fattureApp.UI.MainPageUI;
+import com.unifi.fattureApp.UI.MainWindowUI;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 import com.mongodb.MongoClient;
 
@@ -14,7 +14,7 @@ public class Main {
 	
 	public static void main(String[] args) throws UnknownHostException {
 		String mongoHost = "127.0.0.1";
-		MainPageUI window = new MainPageUI();
+		MainWindowUI window = new MainWindowUI();
 		
 		if (args.length > 0)
 			mongoHost = args[0];
@@ -36,7 +36,8 @@ public class Main {
 				patient -> System.out.println
 					("Patient: " + patient.getId() + " - " + patient.getName())
 			);
-		window.open();
+		// Launch the UI
+		window.main(null);
 		System.out.println("Fatture-app terminates.");
 	}
 }
