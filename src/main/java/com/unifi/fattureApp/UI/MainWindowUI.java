@@ -3,9 +3,15 @@ package com.unifi.fattureApp.UI;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import org.hamcrest.SelfDescribing;
+
+import com.vividsolutions.jts.geom.Dimension;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 
 public class MainWindowUI {
 
@@ -36,8 +42,12 @@ public class MainWindowUI {
 
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setMinimumSize(new Dimension(100, 100));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JPanel panel = new JPanel();
+		frame.getContentPane().add(panel);
 	}
 
 }
