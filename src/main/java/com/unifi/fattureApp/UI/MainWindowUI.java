@@ -7,25 +7,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+import javafx.scene.paint.Color;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.Box;
+import java.awt.BorderLayout;
 
 public class MainWindowUI {
 
-	private JFrame frame;
-	private static final int DEFAULT_WINDOW_DIMENS = 500;
+	private JFrame fattureApp_Frame;
 
-	private int windowDefaultWidth=DEFAULT_WINDOW_DIMENS;
-	private int windowDefaultHeight=DEFAULT_WINDOW_DIMENS;
+	private Dimension windowDimension = new Dimension(450, 700);
 
 	/**
 	 * Launch the application.
@@ -35,7 +26,7 @@ public class MainWindowUI {
 			public void run() {
 				try {
 					MainWindowUI window = new MainWindowUI();
-					window.frame.setVisible(true);
+					window.fattureApp_Frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -51,44 +42,38 @@ public class MainWindowUI {
 	}
 
 	private void initialize() {
-		frame = new JFrame();
-		frame.setMinimumSize(new Dimension(DEFAULT_WINDOW_DIMENS,DEFAULT_WINDOW_DIMENS));
+		fattureApp_Frame = new JFrame();
+		fattureApp_Frame.setTitle("Fatture App");
+		fattureApp_Frame.setSize(windowDimension);
+		fattureApp_Frame.setResizable(false);
+		fattureApp_Frame.getContentPane().setForeground(java.awt.Color.LIGHT_GRAY);
+		fattureApp_Frame.getContentPane().setSize(windowDimension);
+		fattureApp_Frame.getContentPane().setLayout(null);
 		
-		frame.setBounds(100, 100, 648, 426);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{636, 0, 0};
-		gridBagLayout.rowHeights = new int[]{103, 266, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 0.0, Double.MIN_VALUE};
-		frame.getContentPane().setLayout(gridBagLayout);
+		JPanel outer_Panel = new JPanel();
+		outer_Panel.setBackground(new java.awt.Color(245, 245, 245));
+		outer_Panel.setBounds(0, 0, fattureApp_Frame.getContentPane().getWidth(), fattureApp_Frame.getContentPane().getHeight());
+		fattureApp_Frame.getContentPane().add(outer_Panel);
+		outer_Panel.setLayout(null);
 		
-		JPanel panel = new JPanel();
+		int insets = 8;
+		int topPanelHeight = 100;
 		
-		panel.setBackground(Color.PINK);
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 0;
-		gbc_panel.insets = new Insets(0, 0, 5, 0);
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		JLabel label=new JLabel("ciao");
-		panel.add(label);
-		frame.getContentPane().add(panel, gbc_panel);
+		JPanel myCompany_Panel = new JPanel();
+		myCompany_Panel.setBounds(insets, insets, outer_Panel.getWidth() - insets * 2, topPanelHeight);
+		outer_Panel.add(myCompany_Panel);
+		myCompany_Panel.setBackground(new java.awt.Color(232, 230, 230));
+		myCompany_Panel.setLayout(null);
 		
-		Box verticalBox = Box.createVerticalBox();
-		GridBagConstraints gbc_verticalBox = new GridBagConstraints();
-		gbc_verticalBox.anchor = GridBagConstraints.SOUTH;
-		gbc_verticalBox.gridheight = 3;
-		gbc_verticalBox.gridx = 0;
-		gbc_verticalBox.gridy = 1;
-		frame.getContentPane().add(verticalBox, gbc_verticalBox);
-		
-		JButton btnNewButton = new JButton("New button");
-		verticalBox.add(btnNewButton);
-		
-		
-		
-		
+		JPanel invoice_Panel = new JPanel();
+		int invoicePanelY = (insets * 2) + myCompany_Panel.getHeight();
+		int invoicePanelWidth = outer_Panel.getWidth() - (insets * 2);
+		int invoicePanelHeight = outer_Panel.getHeight() - (myCompany_Panel.getHeight() + (insets * 6));
+		invoice_Panel.setBounds(insets, invoicePanelY, invoicePanelWidth, invoicePanelHeight);
+		outer_Panel.add(invoice_Panel);
+		invoice_Panel.setBackground(new java.awt.Color(232, 230, 230));
+		invoice_Panel.setLayout(null);
+
 		
 	}
 }

@@ -17,4 +17,4 @@ script:
 
 
 notifications:
-email: false
+	email: false
