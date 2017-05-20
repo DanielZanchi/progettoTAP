@@ -15,6 +15,11 @@ install:
 script:
 - mvn -f pom.xml clean verify
 
+env:
+  - DISPLAY=:99.0
+before_install:
+  - sh -e /etc/init.d/xvfb start
+
 
 notifications:
  email: false
