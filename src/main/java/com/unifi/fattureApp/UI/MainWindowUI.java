@@ -1,18 +1,25 @@
 package com.unifi.fattureApp.UI;
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Frame;
 
+import javax.swing.JButton;
+//import java.awt.Frame;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-import java.awt.Dimension;
-import java.awt.Font;
-//import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainWindowUI {
 
 	private JFrame fattureApp_Frame;
+	private JLayeredPane outer_Panel;
+	private JPanel myCompany_Panel;
 
 	private Dimension windowDimension = new Dimension(450, 700);
 
@@ -43,57 +50,100 @@ public class MainWindowUI {
 
 	private void initialize() {
 		fattureApp_Frame = new JFrame();
-		fattureApp_Frame.setTitle("FattureApp");
+		fattureApp_Frame.setTitle("Fatture App");
 		fattureApp_Frame.setPreferredSize(windowDimension);
 		fattureApp_Frame.setResizable(false);
 		fattureApp_Frame.pack();
-		fattureApp_Frame.setForeground(java.awt.Color.LIGHT_GRAY);
-		fattureApp_Frame.setLayout(null);
+		fattureApp_Frame.setBackground(java.awt.Color.LIGHT_GRAY);
+		fattureApp_Frame.getContentPane().setLayout(null);
 		fattureApp_Frame.setLocationRelativeTo(null);
 		
 		
-		JPanel outer_Panel = new JPanel();
+		outer_Panel = new JLayeredPane();
 		outer_Panel.setBackground(new java.awt.Color(245, 245, 245));
 		outer_Panel.setBounds(0, 0, fattureApp_Frame.getContentPane().getWidth(), fattureApp_Frame.getContentPane().getHeight() );
-		outer_Panel.setPreferredSize(windowDimension);
-		fattureApp_Frame.add(outer_Panel);
+		fattureApp_Frame.getContentPane().add(outer_Panel);
 		outer_Panel.setLayout(null);
 
-		int insets = 8;
-		int topPanelHeight = 100;
+		int outerInsets = 8;
+		int topPanelHeight = 80;
 		
-		JPanel myCompany_Panel = new JPanel();
-		myCompany_Panel.setBounds(insets, insets, outer_Panel.getWidth() - insets * 2, topPanelHeight);
+		myCompany_Panel = new JPanel();
+		
+		myCompany_Panel.setBounds(outerInsets, outerInsets, outer_Panel.getWidth() - outerInsets * 2, topPanelHeight);
 		outer_Panel.add(myCompany_Panel);
 		myCompany_Panel.setBackground(new java.awt.Color(232, 230, 230));
 		myCompany_Panel.setLayout(null);
 		
-		JLabel myCompany_Label = new JLabel("My Company");
-		myCompany_Label.setFont(new Font("Lucida Grande", Font.BOLD, 14));
-		myCompany_Label.setBounds(insets, insets, 100, 16);
+		int innerInsets = 12;
+		String myCompanyName_String = "My Company";
+		JLabel myCompany_Label = new JLabel(myCompanyName_String);
+		myCompany_Label.setFont(new Font("Lucida Grande", Font.BOLD, 18));
+		double width = myCompany_Label.getPreferredSize().getWidth();
+		double height = myCompany_Label.getPreferredSize().getHeight();
+		myCompany_Label.setBounds(innerInsets, innerInsets, (int) width, (int) height);
 		myCompany_Panel.add(myCompany_Label);
 		
 		JLabel myCompanyInfo_Label = new JLabel("info");
-		myCompanyInfo_Label.setBounds(insets + myCompany_Label.getWidth(), insets, 300, 16);
+		width = myCompany_Label.getPreferredSize().getWidth();
+		height = myCompany_Label.getPreferredSize().getHeight();
+		myCompany_Label.setBounds(innerInsets, innerInsets, (int) width, (int) height);
+		myCompanyInfo_Label.setBounds(innerInsets, myCompany_Label.getY() +  innerInsets + myCompany_Label.getHeight(), (int)width, (int)height);
 		myCompany_Panel.add(myCompanyInfo_Label);
 		
+		//BUTTON TO ADD NEW COMPANY
+		JButton addMyCompany_Button = new JButton("Add");
+		int buttonHeight = 32;
+		int buttonWidth = (int)(addMyCompany_Button.getPreferredSize().getWidth());
+		addMyCompany_Button.setBounds(myCompany_Panel.getWidth() - innerInsets - buttonWidth, (myCompany_Panel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
+		myCompany_Panel.add(addMyCompany_Button);
+		outer_Panel.setLayer(addMyCompany_Button, 1);
+		addMyCompany_Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				showAddCompanyPanel();
+			}
+		});
+		
 		JPanel invoice_Panel = new JPanel();
-		int invoicePanelY = (insets * 2) + myCompany_Panel.getHeight();
-		int invoicePanelWidth = outer_Panel.getWidth() - (insets * 2);
-//		int invoicePanelHeight = outer_Panel.getHeight() - (myCompany_Panel.getHeight() + (insets * 6)); // dobrebbe essere insets * 3
-		int invoicePanelHeight = outer_Panel.getHeight() - (invoicePanelY + insets);
-		invoice_Panel.setBounds(insets, invoicePanelY, invoicePanelWidth, invoicePanelHeight);
+		int invoicePanelY = (outerInsets * 2) + myCompany_Panel.getHeight();
+		int invoicePanelWidth = outer_Panel.getWidth() - (outerInsets * 2);
+		int invoicePanelHeight = outer_Panel.getHeight() - (invoicePanelY + outerInsets);
+		invoice_Panel.setBounds(outerInsets, invoicePanelY, invoicePanelWidth, invoicePanelHeight);
 		outer_Panel.add(invoice_Panel);
 		invoice_Panel.setBackground(new java.awt.Color(232, 230, 230));
 		invoice_Panel.setLayout(null);
+	
+		
+		outer_Panel.setLayer(invoice_Panel, 1);
+		outer_Panel.setLayer(myCompany_Panel, 1);
 		
 		fattureApp_Frame.pack();
 	}
+	
+	private void showAddCompanyPanel() {
+		//SHOW PANEL TO ADD CUSTOMER
+		JPanel addCompany_Panel = new JPanel();
+		addCompany_Panel.setBackground(new java.awt.Color(220,220,220));
+		int insets = 18;
+		int width = outer_Panel.getWidth() - insets - insets;
+		int height = outer_Panel.getHeight() - insets - insets;
+		addCompany_Panel.setBounds(insets,insets,width,height);
+		outer_Panel.add(addCompany_Panel);
+		addCompany_Panel.setLayout(null);
+		outer_Panel.setLayer(addCompany_Panel, 2);
+		
+		//ADD COMPONENTS INSIDE PANEL
+		
+//		outer_Panel.remove(addCompany_Panel);
+	}
 
-//	public JFrame getFrame() {
-//		// TODO Auto-generated method stub
-//		return fattureApp_Frame;
-//	}
-	
-	
+	public JFrame getMainFrame() {
+		// TODO Auto-generated method stub
+		return fattureApp_Frame;
+	}
+
+	public JPanel getMyCompanyPanel() {
+		// TODO Auto-generated method stub
+		return myCompany_Panel;
+	}
 }
