@@ -21,7 +21,7 @@ public class MainWindowUI {
 	private JLayeredPane outer_Panel;
 	private JPanel myCompany_Panel;
 
-	private Dimension windowDimension = new Dimension(450, 700);
+	private Dimension windowDimension = new Dimension(500, 700);
 
 	/**
 	 * Launch the application.
@@ -60,6 +60,7 @@ public class MainWindowUI {
 		
 		
 		outer_Panel = new JLayeredPane();
+		outer_Panel.setName("OuterPanel");
 		outer_Panel.setBackground(new java.awt.Color(245, 245, 245));
 		outer_Panel.setBounds(0, 0, fattureApp_Frame.getContentPane().getWidth(), fattureApp_Frame.getContentPane().getHeight() );
 		fattureApp_Frame.getContentPane().add(outer_Panel);
@@ -94,6 +95,7 @@ public class MainWindowUI {
 		
 		//BUTTON TO ADD NEW COMPANY
 		JButton addMyCompany_Button = new JButton("Add");
+		addMyCompany_Button.setName("AddCompanyButton");
 		int buttonHeight = 32;
 		int buttonWidth = (int)(addMyCompany_Button.getPreferredSize().getWidth());
 		addMyCompany_Button.setBounds(myCompany_Panel.getWidth() - innerInsets - buttonWidth, (myCompany_Panel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
@@ -106,6 +108,7 @@ public class MainWindowUI {
 		});
 		
 		JPanel invoice_Panel = new JPanel();
+		invoice_Panel.setName("InvoicePanel");
 		int invoicePanelY = (outerInsets * 2) + myCompany_Panel.getHeight();
 		int invoicePanelWidth = outer_Panel.getWidth() - (outerInsets * 2);
 		int invoicePanelHeight = outer_Panel.getHeight() - (invoicePanelY + outerInsets);
@@ -124,6 +127,7 @@ public class MainWindowUI {
 	private void showAddCompanyPanel() {
 		//SHOW PANEL TO ADD CUSTOMER
 		JPanel addCompany_Panel = new JPanel();
+		addCompany_Panel.setName("AddCompanyPanel");
 		addCompany_Panel.setBackground(new java.awt.Color(220,220,220));
 		int insets = 18;
 		int width = outer_Panel.getWidth() - insets - insets;
@@ -143,8 +147,4 @@ public class MainWindowUI {
 		return fattureApp_Frame;
 	}
 
-	public JPanel getMyCompanyPanel() {
-		// TODO Auto-generated method stub
-		return myCompany_Panel;
-	}
 }
