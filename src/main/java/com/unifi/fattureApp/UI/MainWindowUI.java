@@ -69,6 +69,7 @@ public class MainWindowUI {
 		int topPanelHeight = 80;
 		
 		myCompany_Panel = new JPanel();
+		myCompany_Panel.setName("CompanyPanel");
 		
 		myCompany_Panel.setBounds(outerInsets, outerInsets, outer_Panel.getWidth() - outerInsets * 2, topPanelHeight);
 		outer_Panel.add(myCompany_Panel);

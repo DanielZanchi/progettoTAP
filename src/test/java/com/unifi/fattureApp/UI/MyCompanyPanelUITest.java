@@ -13,23 +13,23 @@ import org.junit.Test;
 
 public class MyCompanyPanelUITest {
 	
-private FrameFixture myCompany_Frame;
+private FrameFixture window;
 	
-//	@Before
-//	public void setUp() {
-//		MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
-//		myCompany_Frame = new FrameFixture(frame.getMyCompanyPanel());
-//		window.show();
-//	}
-//	
-//	@After
-//	public void tearDown() {
-//	  window.cleanUp();
-//	}
-//	
-//	@Test
-//	public void testAddCompanyButton() {
-//		
-//	}
+	@Before
+	public void setUp() {
+		MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
+		window = new FrameFixture(frame.getMainFrame());
+		window.show();
+	}
+	
+	@After
+	public void tearDown() {
+	  window.cleanUp();
+	}
+	
+	@Test
+	public void testAddCompanyButton() {
+		window.panel("CompanyPanel");
+	}
 	
 }
