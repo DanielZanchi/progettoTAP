@@ -28,6 +28,8 @@ public class MainWindowUI {
 				try {
 
 					MainWindowUI window = new MainWindowUI();
+					window.fattureApp_Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					window.fattureApp_Frame.pack();
 					window.fattureApp_Frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
