@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import java.awt.Dimension;
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.Frame;
 
 public class MainWindowUI {
 
@@ -88,4 +89,11 @@ public class MainWindowUI {
 		invoice_Panel.setBackground(new java.awt.Color(232, 230, 230));
 		invoice_Panel.setLayout(null);
 	}
+
+	public JFrame getFrame() {
+		// TODO Auto-generated method stub
+		return fattureApp_Frame;
+	}
+	
+	
 }
