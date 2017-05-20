@@ -19,6 +19,8 @@ public class MyCompanyPanelUITest {
 	private JPanelFixture myCompany_Panel;
 	private JPanelFixture addCompany_Panel;
 	private JButtonFixture addCompany_Button;
+	private JButtonFixture cancelAdd_Button;
+
 
 	@Before public void setUp() {
 		MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
@@ -48,6 +50,15 @@ public class MyCompanyPanelUITest {
 		addCompany_Button.click();
 		addCompany_Panel = window.panel("AddCompanyPanel");
 		addCompany_Panel.requireVisible();
+	}
+	
+	@Test
+	public void testCancelButtonAction() {
+		addCompany_Button.click();
+		addCompany_Panel = window.panel("AddCompanyPanel");
+		cancelAdd_Button = addCompany_Panel.button("CancelButton");
+		cancelAdd_Button.click();
+		addCompany_Panel.requireNotVisible();
 	}
 	
 }
