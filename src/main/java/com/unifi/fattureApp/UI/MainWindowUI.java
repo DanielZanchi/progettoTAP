@@ -4,9 +4,10 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Color;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
-//import java.awt.Frame;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -129,7 +130,8 @@ public class MainWindowUI {
 		JPanel addCompany_Panel = new JPanel();
 		addCompany_Panel.setName("AddCompanyPanel");
 		addCompany_Panel.setBackground(new java.awt.Color(220,220,220));
-		int insets = 18;
+		addCompany_Panel.setBorder(BorderFactory.createRaisedBevelBorder());
+		int insets = 22;
 		int width = outer_Panel.getWidth() - insets - insets;
 		int height = outer_Panel.getHeight() - insets - insets;
 		addCompany_Panel.setBounds(insets,insets,width,height);
@@ -138,8 +140,21 @@ public class MainWindowUI {
 		outer_Panel.setLayer(addCompany_Panel, 2);
 		
 		//ADD COMPONENTS INSIDE PANEL
+		JButton cancel_Button = new JButton();
+		cancel_Button.setName("CancelButton");
+		cancel_Button.setText("Cancel");
+		cancel_Button.setBorder(BorderFactory.createLineBorder(Color.))));
+		int buttonHeight = 32;
+		int buttonWidth = (int)(cancel_Button.getPreferredSize().getWidth());
+		cancel_Button.setBounds((addCompany_Panel.getWidth() / 2) - buttonWidth - 50, addCompany_Panel.getHeight() - 20 - addCompany_Panel.getY(), buttonWidth, buttonHeight);
+		addCompany_Panel.add(cancel_Button);
+		cancel_Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addCompany_Panel.setVisible(false);
+				outer_Panel.remove(addCompany_Panel);
+			}
+		});
 		
-//		outer_Panel.remove(addCompany_Panel);
 	}
 
 	public JFrame getMainFrame() {
