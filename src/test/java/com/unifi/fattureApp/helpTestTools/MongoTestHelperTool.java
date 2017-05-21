@@ -7,16 +7,16 @@ import com.mongodb.MongoClient;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
 public class MongoTestHelperTool {
-	private DBCollection patients;
+	private DBCollection clients;
 
 	public MongoTestHelperTool (MongoClient mongoClient) {
 		// make sure to drop the patients table for testing
 		DB db = mongoClient.getDB("medicalOffice");
-		db.getCollection("patient").drop();
-		patients = db.getCollection("patient");
+		db.getCollection("client").drop();
+		clients = db.getCollection("client");
 	}
 
-	public void addPatient(String id, String name,String fiscalCode,String cityResidence,String birthDay) {
+	public void addClient(String id, String name,String fiscalCode,String cityResidence,String birthDay) {
 		BasicDBObject document = new BasicDBObject();
 		document.put("id", id);
 		document.put("name", name);
@@ -24,16 +24,16 @@ public class MongoTestHelperTool {
 		document.put("cityResidence", cityResidence);
 		document.put("birthDay", birthDay);
 
-		patients.insert(document);
+		clients.insert(document);
 	}
 
-	public boolean containsPatient(String id, String name,String fiscalCode,String cityResidence,String birthDay) {
+	public boolean containsClient(String id, String name,String fiscalCode,String cityResidence,String birthDay) {
 		BasicDBObject query = new BasicDBObject();
 		query.put("id", id);
 		query.put("name", name);
 		query.put("fiscalCode", fiscalCode);
 		query.put("cityResidence", cityResidence);
 		query.put("birthDay", birthDay);
-		return patients.find(query).hasNext();
+		return clients.find(query).hasNext();
 	}
 }

@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.mongodb.MongoClient;
-import com.unifi.fattureApp.App.Patient;
+import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.helpTestTools.MongoTestHelperTool;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
@@ -31,38 +31,38 @@ public abstract class MongoWrapperTest {
 
 	@Test
 	public void testGetAllPatientsEmpty() {
-		assertTrue(mongoDatabase.getAllPatientsList().isEmpty());
+		assertTrue(mongoDatabase.getAllClientsList().isEmpty());
 	}
 
 	@Test
-	public void testGetAllPatientsNotEmpty() {
-		mongoTestHelper.addPatient("1", "first","firstFC","firstCR","firstBD");
-		mongoTestHelper.addPatient("2", "second","secondFC","secondCR","secondBD");
+	public void testGetAllClientsNotEmpty() {
+		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstBD");
+		mongoTestHelper.addClient("2", "second","secondFC","secondCR","secondBD");
 	
-		assertEquals(2, mongoDatabase.getAllPatientsList().size());
+		assertEquals(2, mongoDatabase.getAllClientsList().size());
 	}
 
 	@Test
 	public void testFindPatientByIdNotFound() {
-		mongoTestHelper.addPatient("1", "first","firstFC","firstCR","firstBD");
+		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstBD");
 	
-		assertNull(mongoDatabase.findPatientById("2"));
+		assertNull(mongoDatabase.findClientById("2"));
 	}
 
 	@Test
 	public void testPatientIsSaved() {
-		mongoDatabase.save(new Patient("1", "test","testFC","testCR","testBD"));
-		assertTrue(mongoTestHelper.containsPatient("1", "test","testFC","testCR","testBD"));
+		mongoDatabase.save(new Client("1", "test","testFC","testCR","testBD"));
+		assertTrue(mongoTestHelper.containsClient("1", "test","testFC","testCR","testBD"));
 	}
 
 	@Test
 	public void testFindPatientByIdFound() {
-		mongoTestHelper.addPatient("1", "first","firstFC","firstCR","firstBD");
-		mongoTestHelper.addPatient("2", "second","secondFC","secondCR","secondBD");
+		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstBD");
+		mongoTestHelper.addClient("2", "second","secondFC","secondCR","secondBD");
 	
-		Patient findPatientById = mongoDatabase.findPatientById("2");
-		assertNotNull(findPatientById);
-		assertEquals("2", findPatientById.getId());
-		assertEquals("second", findPatientById.getName());
+		Client findClientById = mongoDatabase.findClientById("2");
+		assertNotNull(findClientById);
+		assertEquals("2", findClientById.getId());
+		assertEquals("second", findClientById.getName());
 	}
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.MedicalOfficeController;
-import com.unifi.fattureApp.App.Patient;
+import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.UI.MainWindowUI;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 import com.mongodb.MongoClient;
@@ -24,12 +24,12 @@ public class Main {
 		MedicalOfficeController myMedicalController = new MedicalOfficeController(database);
 
 		System.out.println("Adding a patient");
-		myMedicalController.addPatient(new Patient("1", "Daniele Land","landiFiscalCode","landiResidence","landiHappyDay"));
+		myMedicalController.addPatient(new Client("1", "Daniele Land","landiFiscalCode","landiResidence","landiHappyDay"));
 		System.out.println("Adding a patient...");
-		myMedicalController.addPatient(new Patient("2", "Daniel Zanchi","zanchiFiscalCode","zanchiResidence","zanchiHappyDay"));
+		myMedicalController.addPatient(new Client("2", "Daniel Zanchi","zanchiFiscalCode","zanchiResidence","zanchiHappyDay"));
 
 		System.out.println("In the medical Office there are:");
-		List<Patient> patients = myMedicalController.getAllPatients();
+		List<Client> patients = myMedicalController.getAllClients();
 		patients.
 			stream().
 			forEach(

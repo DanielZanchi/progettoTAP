@@ -9,19 +9,19 @@ public class MedicalOfficeController {
 			this.database = database;
 		}
 
-		public List<Patient> getAllPatients() {
-			return database.getAllPatientsList();
+		public List<Client> getAllClients() {
+			return database.getAllClientsList();
 		}
 
-		public Patient getPatientId(String id) {
-			return database.findPatientById(id);
+		public Client getClientId(String id) {
+			return database.findClientById(id);
 		}
 		
-		public boolean addPatient(Patient patient) {
-			if (getPatientId(patient.getId()) != null)
+		public boolean addPatient(Client client) {
+			if (getClientId(client.getId()) != null)
 				return false;
 
-			database.save(patient);
+			database.save(client);
 			return true;
 		}
 }

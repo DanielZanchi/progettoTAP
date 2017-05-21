@@ -11,33 +11,33 @@ import org.jongo.MongoCollection;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import com.unifi.fattureApp.App.Database;
-import com.unifi.fattureApp.App.Patient;
+import com.unifi.fattureApp.App.Client;
 
 public class MongoWrapper implements Database{
-	private MongoCollection patients;
+	private MongoCollection clients;
 
 	public MongoWrapper(MongoClient mc) throws UnknownHostException {
 		DB db = mc.getDB("medicalOffice");
 
 		Jongo jongo = new Jongo(db);
-		patients = jongo.getCollection("patient");
+		clients = jongo.getCollection("client");
 	}
 	
 	@Override
-	public List<Patient> getAllPatientsList() {
-		Iterable<Patient> iterable = patients.find().as(Patient.class);
+	public List<Client> getAllClientsList() {
+		Iterable<Client> iterable = clients.find().as(Client.class);
 		return StreamSupport.
 			stream(iterable.spliterator(), false).
 			collect(Collectors.toList());
 	}
 	
 	@Override
-	public Patient findPatientById(String id) {
-		return patients.findOne("{id: #}", id).as(Patient.class);
+	public Client findClientById(String id) {
+		return clients.findOne("{id: #}", id).as(Client.class);
 	}
 
 	@Override
-	public void save(Patient patient) {
-		patients.save(patient);
+	public void save(Client client) {
+		clients.save(client);
 	}
 }

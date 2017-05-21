@@ -1,17 +1,17 @@
 package com.unifi.fattureApp.App;
 
-public class Patient {
+public class Client {
 		private String id;
 		private String name;
 		private String fiscalCode;
 		private String cityResidence;
 		private String birthDate;
 		
-		public Patient() {
+		public Client() {
 
 		}
 
-		public Patient(String id, String name,String fiscalCode,String cityResidence,String birthDate) {
+		public Client(String id, String name,String fiscalCode,String cityResidence,String birthDate) {
 			this.id = id;
 			this.name = name;
 			this.setFiscalCode(fiscalCode);

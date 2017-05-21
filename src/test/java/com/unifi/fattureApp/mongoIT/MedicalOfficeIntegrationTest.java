@@ -11,7 +11,7 @@ import com.github.fakemongo.Fongo;
 import com.mongodb.MongoClient;
 import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.MedicalOfficeController;
-import com.unifi.fattureApp.App.Patient;
+import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.helpTestTools.MongoTestHelperTool;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
@@ -36,80 +36,80 @@ public class MedicalOfficeIntegrationTest {
 	}
 
 	@Test
-	public void testGetAllPatientsWhenThereAreNoPatients() {
-		List<Patient> allPatients = medicalController.getAllPatients();
-		assertEquals(0, allPatients.size());
+	public void testGetAllClientsWhenThereAreNoClients() {
+		List<Client> allClients = medicalController.getAllClients();
+		assertEquals(0, allClients.size());
 	}
 
 	@Test
-	public void testGetAllPatientsWhenThereIsOnePatient() {
-		mongoTestHelper.addPatient("1", "test","testFC","testCR","testBD");
-		List<Patient> allPatients = medicalController.getAllPatients();
-		assertEquals(1, allPatients.size());	
+	public void testGetAllClientsWhenThereIsOneClient() {
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testBD");
+		List<Client> allClients = medicalController.getAllClients();
+		assertEquals(1, allClients.size());	
 	}
 
 	@Test
-	public void testGetPatientByIdWhenPatientIsNotThere() {
-		mongoTestHelper.addPatient("1", "test","testFC","testCR","testBD");
-		Patient patient = medicalController.getPatientId("2");
-		assertNull(patient);
+	public void testGetClientByIdWhenClientIsNotThere() {
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testBD");
+		Client client = medicalController.getClientId("2");
+		assertNull(client);
 	}
 
 	@Test
-	public void testGetPatientByIdWhenPatientIsThere() {
-		mongoTestHelper.addPatient("1", "test","testFC","testCR","testBD");
-		Patient patient = medicalController.getPatientId("1");
-		assertNotNull(patient);
-		assertEquals("test", patient.getName());
+	public void testGetClientByIdWhenClientIsThere() {
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testBD");
+		Client Client = medicalController.getClientId("1");
+		assertNotNull(Client);
+		assertEquals("test", Client.getName());
 	}
 		
 	@Test
-	public void testGetPatientByIdWithRightFiscalCode() {
-		mongoTestHelper.addPatient("1", "test","testFC","testCR","testBD");
-		Patient patient = medicalController.getPatientId("1");
-		assertNotNull(patient);
-		assertEquals("testFC", patient.getFiscalCode());
+	public void testGetClientByIdWithRightFiscalCode() {
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testBD");
+		Client Client = medicalController.getClientId("1");
+		assertNotNull(Client);
+		assertEquals("testFC", Client.getFiscalCode());
 	}
 	
 	@Test
-	public void testGetPatientByIdWithWrongFiscalCode() {
-		mongoTestHelper.addPatient("1", "test","testFC","testCR","testBD");
-		Patient patient = medicalController.getPatientId("1");
-		assertNotNull(patient);
-		assertNotEquals("wrongtestFC", patient.getFiscalCode());
+	public void testGetClientByIdWithWrongFiscalCode() {
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testBD");
+		Client Client = medicalController.getClientId("1");
+		assertNotNull(Client);
+		assertNotEquals("wrongtestFC", Client.getFiscalCode());
 	}
 	
 	@Test
-	public void testGetPatientByIdWithRightCityResidence() {
-		mongoTestHelper.addPatient("1", "test","testFC","testCR","testBD");
-		Patient patient = medicalController.getPatientId("1");
-		assertNotNull(patient);
-		assertEquals("testCR", patient.getCityResidence());
+	public void testGetClientByIdWithRightCityResidence() {
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testBD");
+		Client Client = medicalController.getClientId("1");
+		assertNotNull(Client);
+		assertEquals("testCR", Client.getCityResidence());
 	}
 	
 	@Test
-	public void testGetPatientByIdWithWrongCityResidence() {
-		mongoTestHelper.addPatient("1", "test","testFC","testCR","testBD");
-		Patient patient = medicalController.getPatientId("1");
-		assertNotNull(patient);
-		assertNotEquals("wrongtestCR", patient.getCityResidence());
+	public void testGetClientByIdWithWrongCityResidence() {
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testBD");
+		Client Client = medicalController.getClientId("1");
+		assertNotNull(Client);
+		assertNotEquals("wrongtestCR", Client.getCityResidence());
 	}
 	
 /*
 	@Test
-	public void testGetPatientByIdWithRightBirthDay() {
-		mongoTestHelper.addPatient("1", "test","testFC","testCR","testBD");
-		Patient patient = medicalController.getPatientId("1");
-		assertNotNull(patient);
-		assertEquals("testBD", patient.getBirthDate());
+	public void testGetClientByIdWithRightBirthDay() {
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testBD");
+		Client Client = medicalController.getClientId("1");
+		assertNotNull(Client);
+		assertEquals("testBD", Client.getBirthDate());
 	}
 	*/
 	
 	@Test
-	public void testGetPatientByIdWithWrongBirthDay() {
-		mongoTestHelper.addPatient("1", "test","testFC","testCR","testBD");
-		Patient patient = medicalController.getPatientId("1");
-		assertNotNull(patient);
-		assertNotEquals("wrongtestBD", patient.getBirthDate());
+	public void testGetClientByIdWithWrongBirthDay() {
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testBD");
+		Client Client = medicalController.getClientId("1");
+		assertNotNull(Client);
+		assertNotEquals("wrongtestBD", Client.getBirthDate());
 	}
 }

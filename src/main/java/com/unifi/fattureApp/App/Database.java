@@ -3,9 +3,9 @@ package com.unifi.fattureApp.App;
 import java.util.List;
 
 public interface Database {
-	public List<Patient> getAllPatientsList();
+	public List<Client> getAllClientsList();
 
-	public Patient findPatientById(String id);
+	public Client findClientById(String id);
 
-	public void save(Patient patient);
+	public void save(Client client);
 }
