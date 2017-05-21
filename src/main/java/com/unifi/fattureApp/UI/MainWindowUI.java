@@ -25,24 +25,14 @@ public class MainWindowUI {
 	private JLayeredPane outer_Panel;
 	private JPanel myCompany_Panel;
 
-	private int buttonPadding = 8;
+	//private int buttonPadding = 8;
 	private int buttonHeight = 30;
 	private int buttonWidth = 80;
 	
 	private Color outerColor = new java.awt.Color(232, 246, 250);
 	private Color layer1Color = new java.awt.Color(226, 244, 252);
-	private Color layer2Color = new java.awt.Color(216,245,255);
 
 	private Dimension windowDimension = new Dimension(500, 700);
-	private JTextField companyName_TF;
-	private JTextField compantVat_TF;
-	private JTextField companyAddress_TF;
-	private JTextField companyCity_TF;
-	private JTextField companyProvince_TF;
-	private JTextField companyZip_TF;
-	private JTextField companyCountry_TF;
-	private JTextField companyPhone_TF;
-	private JTextField companyEmail_TF;
 	private JPanel addCompany_Panel;
 
 	/**

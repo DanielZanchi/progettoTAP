@@ -24,14 +24,13 @@ public class CompanyPanel extends JPanel{
 	private JTextField companyPhone_TF;
 	private JTextField companyEmail_TF;
 	
-	private Color layer2Color = new java.awt.Color(216,245,255);
+	private Color layerColor = new java.awt.Color(216,245,255);
 
 	public CompanyPanel(JLayeredPane outer_Panel,int buttonWidth,int buttonHeight){
 	JPanel addCompany_Panel=this;
 	
-	
 	addCompany_Panel.setName("AddCompanyPanel");
-	addCompany_Panel.setBackground(layer2Color);
+	addCompany_Panel.setBackground(layerColor);
 	addCompany_Panel.setBorder(BorderFactory.createLineBorder(Color.white,3));
 	int insets = 22;
 	int width = outer_Panel.getWidth() - insets - insets;
@@ -164,8 +163,6 @@ public class CompanyPanel extends JPanel{
 	companyEmail_TF.setHorizontalAlignment(JTextField.CENTER);
 	companyEmail_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2), companyEmail_Label.getY() + companyEmail_Label.getHeight() + insets, width, 28);
 	addCompany_Panel.add(companyEmail_TF);		
-	
-	
 	
 	JButton cancel_Button = new JButton();
 	cancel_Button.setName("CancelButton");
