@@ -36,6 +36,30 @@ public class Main {
 				patient -> System.out.println
 					("Patient: " + patient.getId() + " - " + patient.getName())
 			);
+		
+		
+		
+		System.out.println("Adding a company");
+		myMedicalController.addCompany
+		(new Company("1", "Guerri & Co.", "guerrivatCode", "guerriaddress", "guerricity", "guerriprovince", "guerrizipCode",
+				"guerricountry", "guerriphone", "guerriemail"));
+
+		System.out.println("Adding a company...");
+		myMedicalController.addCompany
+		(new Company("2", "Guerri & Co2.", "vatCodeguerri2", "addressguerri2", "cityguerri2", "provinceguerri2", "zipCodeguerri2",
+				"countryguerri2", "phoneguerri2", "emailguerri2"));
+
+		
+		System.out.println("In the database there are:");
+		List<Company> companies = myMedicalController.getAllCompany();
+		companies.
+			stream().
+			forEach(
+				company -> System.out.println
+					("Company: " + company.getId() + " - " + company.getName())
+			);
+		
+		
 		// Launch the UI
 		window.main(null);
 		System.out.println("Fatture-app terminates.");

@@ -21,7 +21,26 @@ public class MedicalOfficeController {
 			if (getClientId(client.getId()) != null)
 				return false;
 
-			database.save(client);
+			database.saveClient(client);
 			return true;
 		}
+		
+		
+		public List<Company> getAllCompany() {
+			return database.getAllCompaniesList();
+		}
+
+		public Company getCompanyId(String id) {
+			return database.findCompanyById(id);
+		}
+		
+		public boolean addCompany(Company company) {
+			if (getCompanyId(company.getId()) != null)
+				return false;
+
+			database.saveCompany(company);
+			return true;
+		}
+		
+		
 }
