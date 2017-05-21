@@ -151,14 +151,22 @@ public class MainWindowUI {
 		outer_Panel.setLayer(addCompany_Panel, 2);
 
 		// ADD COMPONENTS INSIDE PANEL
-		int addPanelX = addCompany_Panel.getX();
 		int addPanelY = addCompany_Panel.getY();
 		insets = 8;
 		int insetsBtwField = 24;
+		
+		JLabel addCompanyTitle_Label = new JLabel("Company");
+		addCompanyTitle_Label.setFont(new Font("Lucida Grande", Font.BOLD, 20));
+		width = (int)addCompanyTitle_Label.getPreferredSize().getWidth();
+		height = (int)addCompanyTitle_Label.getPreferredSize().getHeight();
+		addCompanyTitle_Label.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) ,addPanelY , width, height);
+		addCompany_Panel.add(addCompanyTitle_Label);
+		
+		
 		JLabel companyName_Label = new JLabel("Company Name:");
 		width = (int)companyName_Label.getPreferredSize().getWidth();
 		height = (int)companyName_Label.getPreferredSize().getHeight();
-		companyName_Label.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) ,addPanelY + insets , width, height);
+		companyName_Label.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) ,addCompanyTitle_Label.getY() + addCompanyTitle_Label.getHeight() + insetsBtwField , width, height);
 		addCompany_Panel.add(companyName_Label);
 		
 		JTextField companyName_TF = new JTextField();
@@ -205,8 +213,54 @@ public class MainWindowUI {
 		companyProvince_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) + insetsMiddle, companyProvince_Label.getY() + companyProvince_Label.getHeight() + insets, width, 28);
 		addCompany_Panel.add(companyProvince_TF);
 		
+		JLabel companyZip_Label = new JLabel("ZIP Code:");
+		width = (int)companyZip_Label.getPreferredSize().getWidth();
+		height = (int)companyZip_Label.getPreferredSize().getHeight();
+		companyZip_Label.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) - insetsMiddle ,companyProvince_TF.getY() + companyProvince_TF.getHeight() + insetsBtwField , width, height);
+		addCompany_Panel.add(companyZip_Label);
+		
+		JTextField companyZip_TF = new JTextField();
+		width = 80;
+		companyZip_TF.setHorizontalAlignment(JTextField.CENTER);
+		companyZip_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) - insetsMiddle, companyZip_Label.getY() + companyZip_Label.getHeight() + insets, width, 28);
+		addCompany_Panel.add(companyZip_TF);
+		
+		JLabel companyCountry_Label = new JLabel("Country:");
+		width = (int)companyCountry_Label.getPreferredSize().getWidth();
+		height = (int)companyCountry_Label.getPreferredSize().getHeight();
+		companyCountry_Label.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) + insetsMiddle ,companyProvince_TF.getY() + companyProvince_TF.getHeight() + insetsBtwField , width, height);
+		addCompany_Panel.add(companyCountry_Label);
+		
+		JTextField companyCountry_TF = new JTextField();
+		width = 100;
+		companyCountry_TF.setHorizontalAlignment(JTextField.CENTER);
+		companyCountry_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) + insetsMiddle, companyCountry_Label.getY() + companyCountry_Label.getHeight() + insets, width, 28);
+		addCompany_Panel.add(companyCountry_TF);
 		
 		
+		JLabel companyPhone_Label = new JLabel("Phone:");
+		width = (int)companyPhone_Label.getPreferredSize().getWidth();
+		height = (int)companyPhone_Label.getPreferredSize().getHeight();
+		companyPhone_Label.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2),companyCountry_TF.getY() + companyCountry_TF.getHeight() + insetsBtwField , width, height);
+		addCompany_Panel.add(companyPhone_Label);
+		
+		JTextField companyPhone_TF = new JTextField();
+		width = 150;
+		companyPhone_TF.setHorizontalAlignment(JTextField.CENTER);
+		companyPhone_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2), companyPhone_Label.getY() + companyPhone_Label.getHeight() + insets, width, 28);
+		addCompany_Panel.add(companyPhone_TF);
+		
+		JLabel companyEmail_Label = new JLabel("Email:");
+		width = (int)companyEmail_Label.getPreferredSize().getWidth();
+		height = (int)companyEmail_Label.getPreferredSize().getHeight();
+		companyEmail_Label.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2),companyPhone_TF.getY() + companyPhone_TF.getHeight() + insetsBtwField , width, height);
+		addCompany_Panel.add(companyEmail_Label);
+		
+		JTextField companyEmail_TF = new JTextField();
+		width = 190;
+		companyEmail_TF.setHorizontalAlignment(JTextField.CENTER);
+		companyEmail_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2), companyEmail_Label.getY() + companyEmail_Label.getHeight() + insets, width, 28);
+		addCompany_Panel.add(companyEmail_TF);		
 		
 		
 		
