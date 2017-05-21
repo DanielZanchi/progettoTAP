@@ -20,6 +20,7 @@ public class MyCompanyPanelUITest {
 	private JPanelFixture addCompany_Panel;
 	private JButtonFixture addCompany_Button;
 	private JButtonFixture cancelAdd_Button;
+	private JButtonFixture saveAdd_Button;
 
 
 	@Before public void setUp() {
@@ -37,7 +38,7 @@ public class MyCompanyPanelUITest {
 
 	@Test
 	public void testCompanyPanelBackground() {
-		myCompany_Panel.background().requireEqualTo(new java.awt.Color(232,230,230));
+		myCompany_Panel.background().requireEqualTo(new java.awt.Color(226, 244, 252));
 	}
 	
 	@Test
@@ -53,11 +54,36 @@ public class MyCompanyPanelUITest {
 	}
 	
 	@Test
+	public void testCancelButtonText() {
+		addCompany_Button.click();
+		addCompany_Panel = window.panel("AddCompanyPanel");
+		cancelAdd_Button = addCompany_Panel.button("CancelButton");
+		cancelAdd_Button.requireText("Cancel");
+	}
+	
+	@Test
 	public void testCancelButtonAction() {
 		addCompany_Button.click();
 		addCompany_Panel = window.panel("AddCompanyPanel");
 		cancelAdd_Button = addCompany_Panel.button("CancelButton");
 		cancelAdd_Button.click();
+		addCompany_Panel.requireNotVisible();
+	}
+	
+	@Test
+	public void testSaveButtonText() {
+		addCompany_Button.click();
+		addCompany_Panel = window.panel("AddCompanyPanel");
+		saveAdd_Button = addCompany_Panel.button("SaveButton");
+		saveAdd_Button.requireText("Save");
+	}
+	
+	@Test
+	public void testSaveButtonAction() {
+		addCompany_Button.click();
+		addCompany_Panel = window.panel("AddCompanyPanel");
+		saveAdd_Button = addCompany_Panel.button("SaveButton");
+		saveAdd_Button.click();
 		addCompany_Panel.requireNotVisible();
 	}
 	
