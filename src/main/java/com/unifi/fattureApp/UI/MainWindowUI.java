@@ -43,6 +43,7 @@ public class MainWindowUI {
 	private JTextField companyCountry_TF;
 	private JTextField companyPhone_TF;
 	private JTextField companyEmail_TF;
+	private JPanel addCompany_Panel;
 
 	/**
 	 * Launch the application.
@@ -142,12 +143,13 @@ public class MainWindowUI {
 		outer_Panel.setLayer(invoice_Panel, 1);
 		outer_Panel.setLayer(myCompany_Panel, 1);
 		
+		createCompanyPanel();
+		
 		fattureApp_Frame.pack();
 	}
-
-	private void showAddCompanyPanel() {
-		// SHOW PANEL TO ADD CUSTOMER
-		JPanel addCompany_Panel = new JPanel();
+	
+	private void createCompanyPanel(){
+		addCompany_Panel = new JPanel();
 		addCompany_Panel.setName("AddCompanyPanel");
 		addCompany_Panel.setBackground(layer2Color);
 		addCompany_Panel.setBorder(BorderFactory.createLineBorder(Color.white,3));
@@ -295,7 +297,7 @@ public class MainWindowUI {
 		cancel_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addCompany_Panel.setVisible(false);
-				outer_Panel.remove(addCompany_Panel);
+				//outer_Panel.remove(addCompany_Panel);
 			}
 		});
 
@@ -311,9 +313,21 @@ public class MainWindowUI {
 				// save company
 				
 				addCompany_Panel.setVisible(false);
-				outer_Panel.remove(addCompany_Panel);
+				//outer_Panel.remove(addCompany_Panel);
 			}
 		});
+		
+		addCompany_Panel.setVisible(false);
+		
+		
+	}
+	
+	
+
+	private void showAddCompanyPanel() {
+		// SHOW PANEL TO ADD CUSTOMER
+		addCompany_Panel.setVisible(true);
+		
 
 	}
 
