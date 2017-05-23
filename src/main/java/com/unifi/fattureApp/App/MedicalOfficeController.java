@@ -43,4 +43,22 @@ public class MedicalOfficeController {
 		}
 		
 		
+
+		public List<Invoice> getAllInvoices() {
+			return database.getAllInvoicesList();
+		}
+
+		public Invoice getInvoiceId(String id) {
+			return database.findInvoiceById(id);
+		}
+		
+		public boolean addCompany(Invoice invoice) {
+			if (getInvoiceId(invoice.getId()) != null)
+				return false;
+
+			database.saveInvoice(invoice);
+			return true;
+		}
+		
+		
 }

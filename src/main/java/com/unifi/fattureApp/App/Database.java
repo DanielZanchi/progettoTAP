@@ -15,4 +15,12 @@ public interface Database {
 	public Company findCompanyById(String id);
 
 	public void saveCompany(Company company);
+	
+	
+	
+	public List<Invoice> getAllInvoicesList();
+
+	public Invoice findInvoiceById(String id);
+
+	public void saveInvoice(Invoice invoice);
 }

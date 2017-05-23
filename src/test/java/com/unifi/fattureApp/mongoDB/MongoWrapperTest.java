@@ -10,6 +10,7 @@ import org.junit.Test;
 import com.mongodb.MongoClient;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
+import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.helpTestTools.MongoTestHelperTool;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
@@ -104,8 +105,51 @@ public abstract class MongoWrapperTest {
 		Company findCompanyById = mongoDatabase.findCompanyById("2");
 		assertNotNull(findCompanyById);
 		assertEquals("2", findCompanyById.getId());
-		assertEquals("second", findCompanyById.getName());
+		assertEquals("nameC2", findCompanyById.getName());
 	}
+	
+	
+	
+	
+	
+	@Test
+	public void testGetAllInvoicesEmpty() {
+		assertTrue(mongoDatabase.getAllInvoicesList().isEmpty());
+	}
+
+	@Test
+	public void testGetAllInvoicesNotEmpty() {
+		mongoTestHelper.addInvoice("1", "nameI1", "100", "basic invoice type1");
+		mongoTestHelper.addInvoice("2", "nameI2", "200", "basic invoice type2");
+	
+		assertEquals(2, mongoDatabase.getAllInvoicesList().size());
+	}
+
+	@Test
+	public void testFindInvoiceByIdNotFound() {
+		mongoTestHelper.addInvoice("1", "nameI1", "100", "basic invoice type1");
+		assertNull(mongoDatabase.findInvoiceById("1"));
+	}
+
+	@Test
+	public void testInvoiceIsSaved() {
+		mongoDatabase.saveInvoice(new Invoice("1", "nameI1", "100", "basic invoice type1"));
+		assertTrue(mongoTestHelper.containsInvoice("1", "nameI1", "100", "basic invoice type1"));
+	}
+
+	@Test
+	public void testFindInvoiceByIdFound() {
+		mongoTestHelper.addInvoice("1", "nameI1", "100", "basic invoice type1");
+		mongoTestHelper.addInvoice("2", "nameI2", "200", "basic invoice type2");
+
+		Invoice findInvoiceById = mongoDatabase.findInvoiceById("2");
+		assertNotNull(findInvoiceById);
+		assertEquals("2", findInvoiceById.getId());
+		assertEquals("nameI2", findInvoiceById.getName());
+	}
+	
+	
+	
 	
 	
 	

@@ -11,12 +11,14 @@ import org.jongo.MongoCollection;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import com.unifi.fattureApp.App.Database;
+import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
 
 public class MongoWrapper implements Database{
 	private MongoCollection clients;
 	private MongoCollection companies;
+	private MongoCollection invoices;
 
 
 	public MongoWrapper(MongoClient mc) throws UnknownHostException {
@@ -25,6 +27,8 @@ public class MongoWrapper implements Database{
 		Jongo jongo = new Jongo(db);
 		clients = jongo.getCollection("client");
 		companies=jongo.getCollection("companies");
+		invoices=jongo.getCollection("invoices");
+
 	}
 	
 	@Override
@@ -62,6 +66,24 @@ public class MongoWrapper implements Database{
 	@Override
 	public void saveCompany(Company company) {
 		companies.save(company);
+	}
+
+	@Override
+	public List<Invoice> getAllInvoicesList() {
+		Iterable<Invoice> iterable = invoices.find().as(Invoice.class);
+		return StreamSupport.
+			stream(iterable.spliterator(), false).
+			collect(Collectors.toList());
+	}
+
+	@Override
+	public Invoice findInvoiceById(String id) {
+		return invoices.findOne("{id: #}", id).as(Invoice.class);
+	}
+
+	@Override
+	public void saveInvoice(Invoice invoice) {
+		invoices.save(invoice);
 	}
 	
 	

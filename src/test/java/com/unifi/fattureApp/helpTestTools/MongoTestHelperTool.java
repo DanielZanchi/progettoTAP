@@ -9,6 +9,7 @@ import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 public class MongoTestHelperTool {
 	private DBCollection clients;
 	private DBCollection companies;
+	private DBCollection invoices;
 
 
 	public MongoTestHelperTool (MongoClient mongoClient) {
@@ -16,8 +17,10 @@ public class MongoTestHelperTool {
 		DB db = mongoClient.getDB("medicalOffice");
 		db.getCollection("client").drop();
 		db.getCollection("companies").drop();
+		db.getCollection("invoices").drop();
 		clients = db.getCollection("client");
 		companies=db.getCollection("companies");
+		invoices=db.getCollection("invoices");
 	}
 
 	public void addClient(String id, String name,String fiscalCode,String cityResidence,String birthDay) {
@@ -74,6 +77,26 @@ public class MongoTestHelperTool {
 		query.put("email", email);
 		return companies.find(query).hasNext();
 	}
+	
+	
+	public void addInvoice(String id, String name,String price,String description) {
+		BasicDBObject document = new BasicDBObject();
+		document.put("id", id);
+		document.put("name", name);
+		document.put("price", price);
+		document.put("description", description);
+		invoices.insert(document);
+	}
+
+	public boolean containsInvoice(String id, String name,String price,String description) {
+		BasicDBObject query = new BasicDBObject();
+		query.put("id", id);
+		query.put("name", name);
+		query.put("price", price);
+		query.put("description", description);
+		return invoices.find(query).hasNext();
+	}
+	
 	
 	
 	

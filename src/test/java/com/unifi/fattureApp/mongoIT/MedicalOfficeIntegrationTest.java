@@ -10,6 +10,7 @@ import org.junit.Test;
 import com.github.fakemongo.Fongo;
 import com.mongodb.MongoClient;
 import com.unifi.fattureApp.App.Database;
+import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.App.MedicalOfficeController;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
@@ -259,6 +260,30 @@ public class MedicalOfficeIntegrationTest {
 		Company company = medicalController.getCompanyId("1");
 		assertNotNull(company);
 		assertNotEquals("wrongemail", company.getEmail());
+	}
+	
+	/////////invoice
+	
+	
+	@Test
+	public void testGetAllInvoicesWhenThereAreNoInvoices() {
+		List<Invoice> allInvoices = medicalController.getAllInvoices();
+		assertEquals(0, allInvoices.size());
+	}
+	
+	
+	@Test
+	public void testGetAllInvoicesWhenThereIsOneInvoice() {
+		mongoTestHelper.addInvoice("1", "nameI1", "100", "basic invoice type1");
+		List<Invoice> allInvoices = medicalController.getAllInvoices();
+		assertEquals(1, allInvoices.size());	
+	}
+
+	@Test
+	public void testGetInvoiceByIdWhenInvoiceIsNotThere() {
+		mongoTestHelper.addInvoice("2", "nameI1", "100", "basic invoice type1");
+		Invoice invoice = medicalController.getInvoiceId("1");
+		assertNull(invoice);
 	}
 	
 	
