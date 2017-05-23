@@ -18,6 +18,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JSpinner;
 
 public class MainWindowUI {
 
@@ -131,6 +133,50 @@ public class MainWindowUI {
 	
 		
 		outer_Panel.setLayer(invoice_Panel, 1);
+		
+		JPanel invoiceProvisionPanel = new JPanel();
+		invoiceProvisionPanel.setBackground(Color.RED);
+		invoiceProvisionPanel.setBounds(6, 152, 472, 103);
+		invoice_Panel.add(invoiceProvisionPanel);
+		invoiceProvisionPanel.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Invoice provision");
+		lblNewLabel_1.setBounds(6, 6, 207, 16);
+		invoiceProvisionPanel.add(lblNewLabel_1);
+		
+		JComboBox invoiceListcomboBox = new JComboBox();
+		invoiceListcomboBox.setBounds(6, 36, 333, 27);
+		invoiceProvisionPanel.add(invoiceListcomboBox);
+		
+		JButton addInvoiceProvision = new JButton("Add");
+		addInvoiceProvision.setBounds(341, 35, 54, 29);
+		invoiceProvisionPanel.add(addInvoiceProvision);
+		
+		JButton editInvoiceProvision = new JButton("Edit");
+		editInvoiceProvision.setBounds(407, 35, 59, 29);
+		invoiceProvisionPanel.add(editInvoiceProvision);
+		
+		JPanel clientPanel = new JPanel();
+		clientPanel.setBackground(Color.ORANGE);
+		clientPanel.setBounds(6, 30, 472, 92);
+		invoice_Panel.add(clientPanel);
+		clientPanel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Client");
+		lblNewLabel.setBounds(6, 6, 37, 16);
+		clientPanel.add(lblNewLabel);
+		
+		JComboBox clientListComboBox = new JComboBox();
+		clientListComboBox.setBounds(6, 35, 335, 27);
+		clientPanel.add(clientListComboBox);
+		
+		JButton addClient = new JButton("Add");
+		addClient.setBounds(336, 33, 61, 29);
+		clientPanel.add(addClient);
+		
+		JButton editClient = new JButton("Edit");
+		editClient.setBounds(398, 32, 68, 29);
+		clientPanel.add(editClient);
 		outer_Panel.setLayer(myCompany_Panel, 1);
 		
 		createCompanyPanel();
