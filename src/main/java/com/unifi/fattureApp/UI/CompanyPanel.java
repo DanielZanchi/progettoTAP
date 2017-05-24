@@ -194,5 +194,8 @@ public class CompanyPanel extends JPanel{
 		}
 	});
 	
+	
+	
+	
 }
 }

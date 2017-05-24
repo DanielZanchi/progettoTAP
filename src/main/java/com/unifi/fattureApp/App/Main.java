@@ -3,16 +3,24 @@ package com.unifi.fattureApp.App;
 import java.net.UnknownHostException;
 import java.util.List;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
+
 import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.MedicalOfficeController;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.UI.MainWindowUI;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
+
+
 import com.mongodb.MongoClient;
 
 public class Main {
 	
 	public static void main(String[] args) throws UnknownHostException {
+		Logger logger = Logger.getLogger(Main.class);
+		BasicConfigurator.configure();
+				
 		String mongoHost = "127.0.0.1";
 		MainWindowUI window = new MainWindowUI();
 		
@@ -22,8 +30,7 @@ public class Main {
 		Database database = new MongoWrapper(new MongoClient(mongoHost, 27017));
 		
 		MedicalOfficeController myMedicalController = new MedicalOfficeController(database);
-
-		System.out.println("Adding a patient");
+		System.out.println("Adding a patient...");
 		myMedicalController.addPatient(new Client("1", "Daniele Land","landiFiscalCode","landiResidence","landiHappyDay"));
 		System.out.println("Adding a patient...");
 		myMedicalController.addPatient(new Client("2", "Daniel Zanchi","zanchiFiscalCode","zanchiResidence","zanchiHappyDay"));
@@ -62,6 +69,7 @@ public class Main {
 		
 		// Launch the UI
 		window.main(null);
-		System.out.println("Fatture-app terminates.");
+//		System.out.println("Fatture-app terminates.");
+		logger.info("Fatture ssapp terminates.");
 	}
 }
