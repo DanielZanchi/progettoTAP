@@ -70,6 +70,6 @@ public class Main {
 		// Launch the UI
 		window.main(null);
 //		System.out.println("Fatture-app terminates.");
-		logger.info("Fatture ssapp terminates.");
+		logger.info("Fatture-app terminates.");
 	}
 }
