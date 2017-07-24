@@ -31,9 +31,9 @@ public class Main {
 		
 		MedicalOfficeController myMedicalController = new MedicalOfficeController(database);
 		System.out.println("Adding a patient...");
-		myMedicalController.addPatient(new Client("1", "Daniele Land","landiFiscalCode","landiResidence","landiHappyDay"));
+		myMedicalController.addPatient(new Client("1", "Daniele Land","landiFiscalCode","landiResidence"/*,"landiHappyDay"*/));
 		System.out.println("Adding a patient...");
-		myMedicalController.addPatient(new Client("2", "Daniel Zanchi","zanchiFiscalCode","zanchiResidence","zanchiHappyDay"));
+		myMedicalController.addPatient(new Client("2", "Daniel Zanchi","zanchiFiscalCode","zanchiResidence"/*,"zanchiHappyDay"*/));
 
 		System.out.println("In the medical Office there are:");
 		List<Client> patients = myMedicalController.getAllClients();

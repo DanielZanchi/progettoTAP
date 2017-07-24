@@ -5,18 +5,18 @@ public class Client {
 		private String name;
 		private String fiscalCode;
 		private String cityResidence;
-		private String birthDate;
+		//private String birthDate;
 		
 		public Client() {
 
 		}
 
-		public Client(String id, String name,String fiscalCode,String cityResidence,String birthDate) {
+		public Client(String id, String name,String fiscalCode,String cityResidence/*,String birthDate*/) {
 			this.id = id;
 			this.name = name;
 			this.setFiscalCode(fiscalCode);
 			this.setCityResidence(cityResidence);
-			this.setBirthDate(birthDate);
+			//this.setBirthDate(birthDate);
 		}
 
 		public String getId() {
@@ -51,6 +51,7 @@ public class Client {
 			this.cityResidence = cityResidence;
 		}
 
+		/*
 		public String getBirthDate() {
 			return birthDate;
 		}
@@ -58,4 +59,5 @@ public class Client {
 		public void setBirthDate(String birthDate) {
 			this.birthDate = birthDate;
 		}
+		*/
 }

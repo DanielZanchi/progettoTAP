@@ -37,28 +37,37 @@ public abstract class MongoWrapperTest {
 
 	@Test
 	public void testGetAllClientsNotEmpty() {
-		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstBD");
-		mongoTestHelper.addClient("2", "second","secondFC","secondCR","secondBD");
+		mongoTestHelper.addClient("1", "first","firstFC","firstCR"/*,"firstBD"*/);
+		mongoTestHelper.addClient("2", "second","secondFC","secondCR"/*,"secondBD"*/);
 	
 		assertEquals(2, mongoDatabase.getAllClientsList().size());
 	}
 
 	@Test
 	public void testFindPatientByIdNotFound() {
-		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstBD");
+		mongoTestHelper.addClient("1", "first","firstFC","firstCR"/*,"firstBD"*/);
 		assertNull(mongoDatabase.findClientById("2"));
 	}
 
 	@Test
 	public void testPatientIsSaved() {
-		mongoDatabase.saveClient(new Client("1", "test","testFC","testCR","testBD"));
-		assertTrue(mongoTestHelper.containsClient("1", "test","testFC","testCR","testBD"));
+		mongoDatabase.saveClient(new Client("1", "test","testFC","testCR"/*,"testBD"*/));
+		assertTrue(mongoTestHelper.containsClient("1", "test", "testFC", "testCR"/*, "testBD"*/));
+
+		//assertNotNull(mongoTestHelper.containsClient("1", "test","testFC","testCR","testBD"));
 	}
+	
+	@Test
+	public void testPatientIsNotSaved() {
+		mongoDatabase.saveClient(new Client("1", "test","testFC","testCR"/*,"testBD"*/));
+		assertFalse(mongoTestHelper.containsClient("2", "test2", "testFC2", "testCR2"/*, "testBD2"*/));
+	}
+	
 
 	@Test
 	public void testFindPatientByIdFound() {
-		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstBD");
-		mongoTestHelper.addClient("2", "second","secondFC","secondCR","secondBD");
+		mongoTestHelper.addClient("1", "first","firstFC","firstCR"/*,"firstBD"*/);
+		mongoTestHelper.addClient("2", "second","secondFC","secondCR"/*,"secondBD"*/);
 	
 		Client findClientById = mongoDatabase.findClientById("2");
 		assertNotNull(findClientById);
@@ -128,7 +137,7 @@ public abstract class MongoWrapperTest {
 	@Test
 	public void testFindInvoiceByIdNotFound() {
 		mongoTestHelper.addInvoice("1", "nameI1", "100", "basic invoice type1");
-		assertNull(mongoDatabase.findInvoiceById("1"));
+		assertNull(mongoDatabase.findInvoiceById("2"));
 	}
 
 	@Test
