@@ -3,7 +3,7 @@ package com.unifi.fattureApp.mongoDB;
 import com.github.fakemongo.Fongo;
 import com.mongodb.MongoClient;
 
-public class mongodbWrapperTestClient extends MongoWrapperTest {
+public class MongodbWrapperTests extends MongoWrapperTestAbstract {
 
 	@Override
 	public MongoClient createMongoClient() {
@@ -11,5 +11,8 @@ public class mongodbWrapperTestClient extends MongoWrapperTest {
 		MongoClient mongoClient = fongo.getMongo();
 		return mongoClient;
 	}
+	
+	
+	
 
 }

@@ -14,7 +14,7 @@ import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.helpTestTools.MongoTestHelperTool;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
-public abstract class MongoWrapperTest { 
+public abstract class MongoWrapperTestAbstract { 
 	private MongoWrapper mongoDatabase;
 
 	public abstract MongoClient createMongoClient() throws UnknownHostException;
