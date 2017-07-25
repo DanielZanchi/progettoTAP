@@ -14,7 +14,6 @@ install:
 
 script:
 - mvn -f pom.xml clean verify
-- mvn -f pom.xml verify -Pdocker-compose
 
 env:
   - DISPLAY=:99.0
