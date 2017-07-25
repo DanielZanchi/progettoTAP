@@ -36,6 +36,7 @@ public class MainWindowUI {
 
 	private Dimension windowDimension = new Dimension(500, 700);
 	private JPanel addCompany_Panel;
+	private JPanel addClient_Panel;
 
 	/**
 	 * Launch the application.
@@ -173,20 +174,30 @@ public class MainWindowUI {
 		JButton addClient = new JButton("Add");
 		addClient.setBounds(336, 33, 61, 29);
 		clientPanel.add(addClient);
+		addClient.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showAddClientPanel();
+			}
+		});
 		
 		JButton editClient = new JButton("Edit");
 		editClient.setBounds(398, 32, 68, 29);
 		clientPanel.add(editClient);
 		outer_Panel.setLayer(myCompany_Panel, 1);
 		
-		createCompanyPanel();
+		createAddRecordsPanels();
 		
 		fattureApp_Frame.pack();
 	}
 	
-	private void createCompanyPanel(){
+	private void createAddRecordsPanels(){
 		addCompany_Panel = new CompanyPanel(outer_Panel, buttonWidth, buttonHeight);
 		addCompany_Panel.setVisible(false);
+		
+		addClient_Panel=new ClientPanel(outer_Panel, buttonWidth, buttonHeight);
+		addClient_Panel.setVisible(false);
 	}
 	
 	
@@ -194,6 +205,11 @@ public class MainWindowUI {
 	private void showAddCompanyPanel() {
 		// SHOW PANEL TO ADD CUSTOMER
 		addCompany_Panel.setVisible(true);
+	}
+	
+	private void showAddClientPanel() {
+		// SHOW PANEL TO ADD CUSTOMER
+		addClient_Panel.setVisible(true);
 	}
 
 	public JFrame getMainFrame() {
