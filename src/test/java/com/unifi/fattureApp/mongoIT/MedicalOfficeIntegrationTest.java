@@ -38,7 +38,12 @@ public class MedicalOfficeIntegrationTest {
 	}
 	
 	
-	
+	private Client addTestClientToDB() {
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
+		Client Client = medicalController.getClientId("1");
+		assertNotNull(Client);
+		return Client;
+	}
 	
 
 	@Test
@@ -63,75 +68,60 @@ public class MedicalOfficeIntegrationTest {
 
 	@Test
 	public void testGetClientByIdWhenClientIsThere() {
-		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
-		Client Client = medicalController.getClientId("1");
-		assertNotNull(Client);
+		Client Client = addTestClientToDB();
 		assertEquals("test", Client.getName());
 	}
 		
 	@Test
 	public void testGetClientByIdWithRightFiscalCode() {
-		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
-		Client Client = medicalController.getClientId("1");
-		assertNotNull(Client);
+		Client Client = addTestClientToDB();
 		assertEquals("testFC", Client.getFiscalCode());
 	}
 	
 	@Test
 	public void testGetClientByIdWithWrongFiscalCode() {
-		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
-		Client Client = medicalController.getClientId("1");
-		assertNotNull(Client);
+		Client Client = addTestClientToDB();
 		assertNotEquals("wrongtestFC", Client.getFiscalCode());
 	}
 	
 	@Test
 	public void testGetClientByIdWithRightCityResidence() {
-		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
-		Client Client = medicalController.getClientId("1");
-		assertNotNull(Client);
+		Client Client = addTestClientToDB();
 		assertEquals("testCR", Client.getCityResidence());
 	}
 	
 	@Test
 	public void testGetClientByIdWithWrongCityResidence() {
-		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
-		Client Client = medicalController.getClientId("1");
-		assertNotNull(Client);
+		Client Client = addTestClientToDB();
 		assertNotEquals("wrongtestCR", Client.getCityResidence());
 	}
 	
 	@Test
 	public void testGetClientByIdWithRightPhone() {
-		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
-		Client Client = medicalController.getClientId("1");
-		assertNotNull(Client);
+		Client Client = addTestClientToDB();
 		assertEquals("testPhone", Client.getPhone());
 	}
 	
 	@Test
 	public void testGetClientByIdWithWrongPhone() {
-		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
-		Client Client = medicalController.getClientId("1");
-		assertNotNull(Client);
+		Client Client = addTestClientToDB();
 		assertNotEquals("wrongtestPhone", Client.getPhone());
 	}
 	
 	@Test
 	public void testGetClientByIdWithRightEmail() {
-		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
-		Client Client = medicalController.getClientId("1");
-		assertNotNull(Client);
+		Client Client = addTestClientToDB();
 		assertEquals("testEmail", Client.getEmail());
 	}
 	
 	@Test
 	public void testGetClientByIdWithWrongEmail() {
-		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
-		Client Client = medicalController.getClientId("1");
-		assertNotNull(Client);
+		Client Client = addTestClientToDB();
 		assertNotEquals("wrongtestEmail", Client.getEmail());
 	}
+
+
+
 	
 /*
 	@Test
@@ -154,7 +144,18 @@ public class MedicalOfficeIntegrationTest {
 	*/
 	
 	
-	//////////////////////////////company
+	//      company
+	
+	
+	
+	private Company addTestCompanyToDB() {
+		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
+		Company company = medicalController.getCompanyId("1");
+		assertNotNull(company);
+		return company;
+	}
+	
+	
 	
 	@Test
 	public void testGetAllCompaniesWhenThereAreNoCompanies() {
@@ -171,128 +172,98 @@ public class MedicalOfficeIntegrationTest {
 
 	@Test
 	public void testGetCompanyByIdWhenCompanyIsNotThere() {
-		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
-		Company company = medicalController.getCompanyId("1");
-		assertNotNull(company);
+		addTestCompanyToDB();
 	}
 
 	@Test
 	public void testGetCompanyByIdWhenCompanyIsThere() {
-		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
-		Company company = medicalController.getCompanyId("1");
-		assertNotNull(company);
+		Company company = addTestCompanyToDB();
 		assertEquals("nameC1", company.getName());
 	}
+
+
 		
 	@Test
 	public void testGetCompanyByIdWithRightVatCode() {
-		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
-		Company company = medicalController.getCompanyId("1");
-		assertNotNull(company);
+		Company company = addTestCompanyToDB();
 		assertEquals("vatCode1", company.getVatCode());
 	}
 	
 	@Test
 	public void testGetCompanyByIdWithWrongVatCode() {
-		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
-		Company company = medicalController.getCompanyId("1");
-		assertNotNull(company);
+		Company company = addTestCompanyToDB();
 		assertNotEquals("wrongvatCode", company.getVatCode());
 	}
 	
 	@Test
 	public void testGetCompanyByIdWithRightCity() {
-		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
-		Company company = medicalController.getCompanyId("1");
-		assertNotNull(company);
+		Company company = addTestCompanyToDB();
 		assertEquals("city1", company.getCity());
 	}
 	
 	@Test
 	public void testGetCompanyByIdWithWrongCity() {
-		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
-		Company company = medicalController.getCompanyId("1");
-		assertNotNull(company);
+		Company company = addTestCompanyToDB();
 		assertNotEquals("wrongcity", company.getCity());
 	}
 	
 	@Test
 	public void testGetCompanyByIdWithRightProvince() {
-		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
-		Company company = medicalController.getCompanyId("1");
-		assertNotNull(company);
+		Company company = addTestCompanyToDB();
 		assertEquals("province1", company.getProvince());
 	}
 	
 	@Test
 	public void testGetCompanyByIdWithWrongProvince() {
-		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
-		Company company = medicalController.getCompanyId("1");
-		assertNotNull(company);
+		Company company = addTestCompanyToDB();
 		assertNotEquals("wrongprovince", company.getProvince());
 	}
 	
 	@Test
 	public void testGetCompanyByIdWithRightZipCode() {
-		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
-		Company company = medicalController.getCompanyId("1");
-		assertNotNull(company);
+		Company company = addTestCompanyToDB();
 		assertEquals("zipCode1", company.getZipCode());
 	}
 	
 	@Test
 	public void testGetCompanyByIdWithWrongZipCode() {
-		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
-		Company company = medicalController.getCompanyId("1");
-		assertNotNull(company);
+		Company company = addTestCompanyToDB();
 		assertNotEquals("wrongzipCode", company.getZipCode());
 	}
 	
 	@Test
 	public void testGetCompanyByIdWithRightCountry() {
-		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
-		Company company = medicalController.getCompanyId("1");
-		assertNotNull(company);
+		Company company = addTestCompanyToDB();
 		assertEquals("country1", company.getCountry());
 	}
 	
 	@Test
 	public void testGetCompanyByIdWithWrongCountry() {
-		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
-		Company company = medicalController.getCompanyId("1");
-		assertNotNull(company);
+		Company company = addTestCompanyToDB();
 		assertNotEquals("wrongcountry", company.getCountry());
 	}
 	
 	@Test
 	public void testGetCompanyByIdWithRightPhone() {
-		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
-		Company company = medicalController.getCompanyId("1");
-		assertNotNull(company);
+		Company company = addTestCompanyToDB();
 		assertEquals("phone1", company.getPhone());
 	}
 	
 	@Test
 	public void testGetCompanyByIdWithWrongPhone() {
-		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
-		Company company = medicalController.getCompanyId("1");
-		assertNotNull(company);
+		Company company = addTestCompanyToDB();
 		assertNotEquals("wrongphone", company.getPhone());
 	}
 	
 	@Test
 	public void testGetCompanyByIdWithRightEmail() {
-		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
-		Company company = medicalController.getCompanyId("1");
-		assertNotNull(company);
+		Company company = addTestCompanyToDB();
 		assertEquals("email1", company.getEmail());
 	}
 	
 	@Test
 	public void testGetCompanyByIdWithWrongEmail() {
-		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
-		Company company = medicalController.getCompanyId("1");
-		assertNotNull(company);
+		Company company = addTestCompanyToDB();
 		assertNotEquals("wrongemail", company.getEmail());
 	}
 	
