@@ -101,6 +101,38 @@ public class MedicalOfficeIntegrationTest {
 		assertNotEquals("wrongtestCR", Client.getCityResidence());
 	}
 	
+	@Test
+	public void testGetClientByIdWithRightPhone() {
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
+		Client Client = medicalController.getClientId("1");
+		assertNotNull(Client);
+		assertEquals("testPhone", Client.getPhone());
+	}
+	
+	@Test
+	public void testGetClientByIdWithWrongPhone() {
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
+		Client Client = medicalController.getClientId("1");
+		assertNotNull(Client);
+		assertNotEquals("wrongtestPhone", Client.getPhone());
+	}
+	
+	@Test
+	public void testGetClientByIdWithRightEmail() {
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
+		Client Client = medicalController.getClientId("1");
+		assertNotNull(Client);
+		assertEquals("testEmail", Client.getEmail());
+	}
+	
+	@Test
+	public void testGetClientByIdWithWrongEmail() {
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
+		Client Client = medicalController.getClientId("1");
+		assertNotNull(Client);
+		assertNotEquals("wrongtestEmail", Client.getEmail());
+	}
+	
 /*
 	@Test
 	public void testGetClientByIdWithRightBirthDay() {
