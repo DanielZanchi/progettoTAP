@@ -6,16 +6,20 @@ public class Client {
 		private String fiscalCode;
 		private String cityResidence;
 		//private String birthDate;
+		private String phone;
+		private String email;
 		
 		public Client() {
 
 		}
 
-		public Client(String id, String name,String fiscalCode,String cityResidence/*,String birthDate*/) {
+		public Client(String id, String name,String fiscalCode,String cityResidence,String phone,String email/*,String birthDate*/) {
 			this.id = id;
 			this.name = name;
 			this.setFiscalCode(fiscalCode);
 			this.setCityResidence(cityResidence);
+			this.setPhone(phone);
+			this.setEmail(email);
 			//this.setBirthDate(birthDate);
 		}
 
@@ -49,6 +53,22 @@ public class Client {
 
 		public void setCityResidence(String cityResidence) {
 			this.cityResidence = cityResidence;
+		}
+
+		public String getEmail() {
+			return email;
+		}
+
+		public void setEmail(String email) {
+			this.email = email;
+		}
+
+		public String getPhone() {
+			return phone;
+		}
+
+		public void setPhone(String phone) {
+			this.phone = phone;
 		}
 
 		/*

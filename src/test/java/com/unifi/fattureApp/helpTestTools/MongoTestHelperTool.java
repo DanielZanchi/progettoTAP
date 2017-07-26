@@ -23,23 +23,27 @@ public class MongoTestHelperTool {
 		invoices=db.getCollection("invoices");
 	}
 
-	public void addClient(String id, String name,String fiscalCode,String cityResidence/*,String birthDay*/) {
+	public void addClient(String id, String name,String fiscalCode,String cityResidence,String phone,String email/*,String birthDay*/) {
 		BasicDBObject document = new BasicDBObject();
 		document.put("id", id);
 		document.put("name", name);
 		document.put("fiscalCode", fiscalCode);
 		document.put("cityResidence", cityResidence);
+		document.put("phone", phone);
+		document.put("email", email);
 		//document.put("birthDay", birthDay);
 
 		clients.insert(document);
 	}
 
-	public boolean containsClient(String id, String name,String fiscalCode,String cityResidence/*,String birthDay*/) {
+	public boolean containsClient(String id, String name,String fiscalCode,String cityResidence,String phone,String email/*,String birthDay*/) {
 		BasicDBObject query = new BasicDBObject();
 		query.put("id", id);
 		query.put("name", name);
 		query.put("fiscalCode", fiscalCode);
 		query.put("cityResidence", cityResidence);
+		query.put("phone", phone);
+		query.put("email", email);
 		//query.put("birthDay", birthDay);
 		
 		return clients.find(query).hasNext();

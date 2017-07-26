@@ -49,21 +49,21 @@ public class MedicalOfficeIntegrationTest {
 
 	@Test
 	public void testGetAllClientsWhenThereIsOneClient() {
-		mongoTestHelper.addClient("1", "test","testFC","testCR"/*,"testBD"*/);
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
 		List<Client> allClients = medicalController.getAllClients();
 		assertEquals(1, allClients.size());	
 	}
 
 	@Test
 	public void testGetClientByIdWhenClientIsNotThere() {
-		mongoTestHelper.addClient("1", "test","testFC","testCR"/*,"testBD"*/);
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
 		Client client = medicalController.getClientId("2");
 		assertNull(client);
 	}
 
 	@Test
 	public void testGetClientByIdWhenClientIsThere() {
-		mongoTestHelper.addClient("1", "test","testFC","testCR"/*,"testBD"*/);
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
 		Client Client = medicalController.getClientId("1");
 		assertNotNull(Client);
 		assertEquals("test", Client.getName());
@@ -71,7 +71,7 @@ public class MedicalOfficeIntegrationTest {
 		
 	@Test
 	public void testGetClientByIdWithRightFiscalCode() {
-		mongoTestHelper.addClient("1", "test","testFC","testCR"/*,"testBD"*/);
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
 		Client Client = medicalController.getClientId("1");
 		assertNotNull(Client);
 		assertEquals("testFC", Client.getFiscalCode());
@@ -79,7 +79,7 @@ public class MedicalOfficeIntegrationTest {
 	
 	@Test
 	public void testGetClientByIdWithWrongFiscalCode() {
-		mongoTestHelper.addClient("1", "test","testFC","testCR"/*,"testBD"*/);
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
 		Client Client = medicalController.getClientId("1");
 		assertNotNull(Client);
 		assertNotEquals("wrongtestFC", Client.getFiscalCode());
@@ -87,7 +87,7 @@ public class MedicalOfficeIntegrationTest {
 	
 	@Test
 	public void testGetClientByIdWithRightCityResidence() {
-		mongoTestHelper.addClient("1", "test","testFC","testCR"/*,"testBD"*/);
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
 		Client Client = medicalController.getClientId("1");
 		assertNotNull(Client);
 		assertEquals("testCR", Client.getCityResidence());
@@ -95,7 +95,7 @@ public class MedicalOfficeIntegrationTest {
 	
 	@Test
 	public void testGetClientByIdWithWrongCityResidence() {
-		mongoTestHelper.addClient("1", "test","testFC","testCR"/*,"testBD"*/);
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
 		Client Client = medicalController.getClientId("1");
 		assertNotNull(Client);
 		assertNotEquals("wrongtestCR", Client.getCityResidence());
