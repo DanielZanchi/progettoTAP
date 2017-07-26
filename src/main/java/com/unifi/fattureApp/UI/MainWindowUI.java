@@ -158,6 +158,7 @@ public class MainWindowUI {
 		invoiceProvisionPanel.add(editInvoiceProvision);
 		
 		JPanel clientPanel = new JPanel();
+		clientPanel.setName("ClientPanel");
 		clientPanel.setBackground(Color.ORANGE);
 		clientPanel.setBounds(6, 30, 472, 92);
 		invoice_Panel.add(clientPanel);
@@ -172,6 +173,7 @@ public class MainWindowUI {
 		clientPanel.add(clientListComboBox);
 		
 		JButton addClient = new JButton("Add");
+		addClient.setName("AddClientButton");
 		addClient.setBounds(336, 33, 61, 29);
 		clientPanel.add(addClient);
 		addClient.addActionListener(new ActionListener() {
