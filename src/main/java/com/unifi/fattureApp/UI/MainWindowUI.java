@@ -27,16 +27,17 @@ public class MainWindowUI {
 	private JLayeredPane outer_Panel;
 	private JPanel myCompany_Panel;
 
-	//private int buttonPadding = 8;
+	// private int buttonPadding = 8;
 	private int buttonHeight = 30;
 	private int buttonWidth = 80;
-	
+
 	private Color outerColor = new java.awt.Color(232, 246, 250);
 	private Color layer1Color = new java.awt.Color(226, 244, 252);
 
 	private Dimension windowDimension = new Dimension(500, 700);
 	private JPanel addCompany_Panel;
 	private JPanel addClient_Panel;
+	private JPanel addItem_Panel;
 
 	/**
 	 * Launch the application.
@@ -72,18 +73,18 @@ public class MainWindowUI {
 		fattureApp_Frame.setBackground(java.awt.Color.LIGHT_GRAY);
 		fattureApp_Frame.getContentPane().setLayout(null);
 		fattureApp_Frame.setLocationRelativeTo(null);
-		
-		
+
 		outer_Panel = new JLayeredPane();
 		outer_Panel.setName("OuterPanel");
 		outer_Panel.setBackground(outerColor);
-		outer_Panel.setBounds(0, 0, fattureApp_Frame.getContentPane().getWidth(), fattureApp_Frame.getContentPane().getHeight() );
+		outer_Panel.setBounds(0, 0, fattureApp_Frame.getContentPane().getWidth(),
+				fattureApp_Frame.getContentPane().getHeight());
 		fattureApp_Frame.getContentPane().add(outer_Panel);
 		outer_Panel.setLayout(null);
 
 		int outerInsets = 8;
 		int topPanelHeight = 80;
-		
+
 		myCompany_Panel = new JPanel();
 		myCompany_Panel.setName("CompanyPanel");
 		myCompany_Panel.setBorder(BorderFactory.createLineBorder(Color.white));
@@ -91,7 +92,8 @@ public class MainWindowUI {
 		outer_Panel.add(myCompany_Panel);
 		myCompany_Panel.setBackground(layer1Color);
 		myCompany_Panel.setLayout(null);
-		
+
+		// MY COMPANY panel
 		int innerInsets = 12;
 		String myCompanyName_String = "My Company";
 		JLabel myCompany_Label = new JLabel(myCompanyName_String);
@@ -100,19 +102,20 @@ public class MainWindowUI {
 		double height = myCompany_Label.getPreferredSize().getHeight();
 		myCompany_Label.setBounds(innerInsets, innerInsets, (int) width, (int) height);
 		myCompany_Panel.add(myCompany_Label);
-		
+
 		JLabel myCompanyInfo_Label = new JLabel("info");
 		width = myCompany_Label.getPreferredSize().getWidth();
 		height = myCompany_Label.getPreferredSize().getHeight();
 		myCompany_Label.setBounds(innerInsets, innerInsets, (int) width, (int) height);
-		myCompanyInfo_Label.setBounds(innerInsets, myCompany_Label.getY() +  innerInsets + myCompany_Label.getHeight(), (int)width, (int)height);
+		myCompanyInfo_Label.setBounds(innerInsets, myCompany_Label.getY() + innerInsets + myCompany_Label.getHeight(),
+				(int) width, (int) height);
 		myCompany_Panel.add(myCompanyInfo_Label);
-		
-		//BUTTON TO ADD NEW COMPANY
+
 		JButton addMyCompany_Button = new JButton("Add");
 		addMyCompany_Button.setName("AddCompanyButton");
 		addMyCompany_Button.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		addMyCompany_Button.setBounds(myCompany_Panel.getWidth() - innerInsets - buttonWidth, (myCompany_Panel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
+		addMyCompany_Button.setBounds(myCompany_Panel.getWidth() - innerInsets - buttonWidth,
+				(myCompany_Panel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
 		myCompany_Panel.add(addMyCompany_Button);
 		outer_Panel.setLayer(addMyCompany_Button, 1);
 		addMyCompany_Button.addActionListener(new ActionListener() {
@@ -120,7 +123,8 @@ public class MainWindowUI {
 				showAddCompanyPanel();
 			}
 		});
-		
+
+		// Invoice panel
 		JPanel invoice_Panel = new JPanel();
 		invoice_Panel.setName("InvoicePanel");
 		invoice_Panel.setBorder(BorderFactory.createLineBorder(Color.white));
@@ -131,87 +135,102 @@ public class MainWindowUI {
 		outer_Panel.add(invoice_Panel);
 		invoice_Panel.setBackground(layer1Color);
 		invoice_Panel.setLayout(null);
-	
-		
+
 		outer_Panel.setLayer(invoice_Panel, 1);
-		
-		JPanel invoiceProvisionPanel = new JPanel();
-		invoiceProvisionPanel.setBackground(Color.RED);
-		invoiceProvisionPanel.setBounds(6, 152, 472, 103);
-		invoice_Panel.add(invoiceProvisionPanel);
-		invoiceProvisionPanel.setLayout(null);
-		
-		JLabel lblNewLabel_1 = new JLabel("Invoice provision");
-		lblNewLabel_1.setBounds(6, 6, 207, 16);
-		invoiceProvisionPanel.add(lblNewLabel_1);
-		
-		JComboBox invoiceListcomboBox = new JComboBox();
-		invoiceListcomboBox.setBounds(6, 36, 333, 27);
-		invoiceProvisionPanel.add(invoiceListcomboBox);
-		
-		JButton addInvoiceProvision = new JButton("Add");
-		addInvoiceProvision.setBounds(341, 35, 54, 29);
-		invoiceProvisionPanel.add(addInvoiceProvision);
-		
-		JButton editInvoiceProvision = new JButton("Edit");
-		editInvoiceProvision.setBounds(407, 35, 59, 29);
-		invoiceProvisionPanel.add(editInvoiceProvision);
-		
+
+		// Client Panel
+
 		JPanel clientPanel = new JPanel();
 		clientPanel.setName("ClientPanel");
 		clientPanel.setBackground(Color.ORANGE);
 		clientPanel.setBounds(6, 30, 472, 92);
 		invoice_Panel.add(clientPanel);
 		clientPanel.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("Client");
 		lblNewLabel.setBounds(6, 6, 37, 16);
 		clientPanel.add(lblNewLabel);
-		
+
 		JComboBox clientListComboBox = new JComboBox();
 		clientListComboBox.setBounds(6, 35, 335, 27);
 		clientPanel.add(clientListComboBox);
-		
+
 		JButton addClient = new JButton("Add");
 		addClient.setName("AddClientButton");
 		addClient.setBounds(336, 33, 61, 29);
 		clientPanel.add(addClient);
 		addClient.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				showAddClientPanel();
 			}
 		});
-		
+
 		JButton editClient = new JButton("Edit");
 		editClient.setBounds(398, 32, 68, 29);
 		clientPanel.add(editClient);
 		outer_Panel.setLayer(myCompany_Panel, 1);
-		
+
+		// Description panel
+
+		JPanel invoiceProvisionPanel = new JPanel();
+		invoiceProvisionPanel.setName("InvoiceDescription");
+		invoiceProvisionPanel.setBackground(Color.RED);
+		invoiceProvisionPanel.setBounds(6, 152, 472, 103);
+		invoice_Panel.add(invoiceProvisionPanel);
+		invoiceProvisionPanel.setLayout(null);
+
+		JLabel lblNewLabel_1 = new JLabel("Invoice item");
+		lblNewLabel_1.setBounds(6, 6, 207, 16);
+		invoiceProvisionPanel.add(lblNewLabel_1);
+
+		JComboBox invoiceListcomboBox = new JComboBox();
+		invoiceListcomboBox.setBounds(6, 36, 333, 27);
+		invoiceProvisionPanel.add(invoiceListcomboBox);
+
+		JButton addInvoiceProvision = new JButton("Add");
+		addInvoiceProvision.setBounds(341, 35, 54, 29);
+		invoiceProvisionPanel.add(addInvoiceProvision);
+		addInvoiceProvision.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showAddItemPanel();
+			}
+		});
+
+		JButton editInvoiceProvision = new JButton("Edit");
+		editInvoiceProvision.setBounds(407, 35, 59, 29);
+		invoiceProvisionPanel.add(editInvoiceProvision);
+
 		createAddRecordsPanels();
-		
+
 		fattureApp_Frame.pack();
 	}
-	
-	private void createAddRecordsPanels(){
+
+	private void createAddRecordsPanels() {
 		addCompany_Panel = new CompanyPanel(outer_Panel, buttonWidth, buttonHeight);
 		addCompany_Panel.setVisible(false);
-		
-		addClient_Panel=new ClientPanel(outer_Panel, buttonWidth, buttonHeight);
+
+		addClient_Panel = new ClientPanel(outer_Panel, buttonWidth, buttonHeight);
 		addClient_Panel.setVisible(false);
+		
+		addItem_Panel = new ItemPanel(outer_Panel, buttonWidth, buttonHeight);
+		addItem_Panel.setVisible(false);
 	}
-	
-	
 
 	private void showAddCompanyPanel() {
 		// SHOW PANEL TO ADD CUSTOMER
 		addCompany_Panel.setVisible(true);
 	}
-	
+
 	private void showAddClientPanel() {
 		// SHOW PANEL TO ADD CUSTOMER
 		addClient_Panel.setVisible(true);
+	}
+
+	private void showAddItemPanel() {
+		addItem_Panel.setVisible(true);
 	}
 
 	public JFrame getMainFrame() {
