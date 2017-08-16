@@ -15,9 +15,12 @@ import javax.swing.JTextField;
 public class ClientPanel extends JPanel{
 	
 	private JTextField clientName_TF;
-	private JTextField clientSurname_TF;
-	private JTextField clientFiscalCode_TF;
+	private JTextField clientVat_TF;
+	private JTextField clientAddress_TF;
 	private JTextField clientCity_TF;
+	private JTextField clientProvince_TF;
+	private JTextField clientZip_TF;
+	private JTextField clientCountry_TF;
 	private JTextField clientPhone_TF;
 	private JTextField clientEmail_TF;
 	
@@ -62,53 +65,85 @@ public class ClientPanel extends JPanel{
 	clientName_TF.setBounds((addClient_Panel.getWidth() / 2) - (width / 2), clientName_Label.getY() + clientName_Label.getHeight() + insets, width, 28);
 	addClient_Panel.add(clientName_TF);
 	
-
+	JLabel clientVat_Label = new JLabel("VAT / Fiscal Number:");
+	width = (int)clientVat_Label.getPreferredSize().getWidth();
+	height = (int)clientVat_Label.getPreferredSize().getHeight();
+	clientVat_Label.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) ,clientName_TF.getY() + clientName_TF.getHeight() + insetsBtwField , width, height);
+	addClient_Panel.add(clientVat_Label);
 	
+	clientVat_TF = new JTextField();
+	width = 200;
+	clientVat_TF.setHorizontalAlignment(JTextField.CENTER);
+	clientVat_TF.setBounds((addClient_Panel.getWidth() / 2) - (width / 2), clientVat_Label.getY() + clientVat_Label.getHeight() + insets, width, 28);
+	addClient_Panel.add(clientVat_TF);
 	
+	JLabel clientAddress_Label = new JLabel("Address:");
+	width = (int)clientAddress_Label.getPreferredSize().getWidth();
+	height = (int)clientAddress_Label.getPreferredSize().getHeight();
+	clientAddress_Label.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) ,clientVat_TF.getY() + clientVat_TF.getHeight() + insetsBtwField , width, height);
+	addClient_Panel.add(clientAddress_Label);
 	
-	JLabel clientSurname_Label = new JLabel("Surname:");
-	width = (int)clientSurname_Label.getPreferredSize().getWidth();
-	height = (int)clientSurname_Label.getPreferredSize().getHeight();
-	clientSurname_Label.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) ,clientName_TF.getY() + clientName_TF.getHeight() + insetsBtwField , width, height);
-	addClient_Panel.add(clientSurname_Label);
-	
-	clientSurname_TF = new JTextField();
+	clientAddress_TF = new JTextField();
 	width = 300;
-	clientSurname_TF.setHorizontalAlignment(JTextField.CENTER);
-	clientSurname_TF.setBounds((addClient_Panel.getWidth() / 2) - (width / 2), clientSurname_Label.getY() + clientSurname_Label.getHeight() + insets, width, 28);
-	addClient_Panel.add(clientSurname_TF);
+	clientAddress_TF.setHorizontalAlignment(JTextField.CENTER);
+	clientAddress_TF.setBounds((addClient_Panel.getWidth() / 2) - (width / 2), clientAddress_Label.getY() + clientAddress_Label.getHeight() + insets, width, 28);
+	addClient_Panel.add(clientAddress_TF);
 	
 	int insetsMiddle = 80;
-	
-	JLabel clientFiscalCode_Label = new JLabel("Fiscal Code:");
-	width = (int)clientFiscalCode_Label.getPreferredSize().getWidth();
-	height = (int)clientFiscalCode_Label.getPreferredSize().getHeight();
-	clientFiscalCode_Label.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) - insetsMiddle ,clientSurname_TF.getY() + clientSurname_TF.getHeight() + insetsBtwField , width, height);
-	addClient_Panel.add(clientFiscalCode_Label);
-	
-	clientFiscalCode_TF = new JTextField();
-	width = 130;
-	clientFiscalCode_TF.setHorizontalAlignment(JTextField.CENTER);
-	clientFiscalCode_TF.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) - insetsMiddle, clientFiscalCode_Label.getY() + clientFiscalCode_Label.getHeight() + insets, width, 28);
-	addClient_Panel.add(clientFiscalCode_TF);
 	
 	JLabel clientCity_Label = new JLabel("City:");
 	width = (int)clientCity_Label.getPreferredSize().getWidth();
 	height = (int)clientCity_Label.getPreferredSize().getHeight();
-	clientCity_Label.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) + insetsMiddle ,clientSurname_TF.getY() + clientSurname_TF.getHeight() + insetsBtwField , width, height);
+	clientCity_Label.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) - insetsMiddle ,clientAddress_TF.getY() + clientAddress_TF.getHeight() + insetsBtwField , width, height);
 	addClient_Panel.add(clientCity_Label);
 	
 	clientCity_TF = new JTextField();
 	width = 130;
 	clientCity_TF.setHorizontalAlignment(JTextField.CENTER);
-	clientCity_TF.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) + insetsMiddle, clientCity_Label.getY() + clientCity_Label.getHeight() + insets, width, 28);
+	clientCity_TF.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) - insetsMiddle, clientCity_Label.getY() + clientCity_Label.getHeight() + insets, width, 28);
 	addClient_Panel.add(clientCity_TF);
+	
+	JLabel clientProvince_Label = new JLabel("Province:");
+	width = (int)clientProvince_Label.getPreferredSize().getWidth();
+	height = (int)clientProvince_Label.getPreferredSize().getHeight();
+	clientProvince_Label.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) + insetsMiddle ,clientAddress_TF.getY() + clientAddress_TF.getHeight() + insetsBtwField , width, height);
+	addClient_Panel.add(clientProvince_Label);
+	
+	clientProvince_TF = new JTextField();
+	width = 130;
+	clientProvince_TF.setHorizontalAlignment(JTextField.CENTER);
+	clientProvince_TF.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) + insetsMiddle, clientProvince_Label.getY() + clientProvince_Label.getHeight() + insets, width, 28);
+	addClient_Panel.add(clientProvince_TF);
+	
+	JLabel clientZip_Label = new JLabel("ZIP Code:");
+	width = (int)clientZip_Label.getPreferredSize().getWidth();
+	height = (int)clientZip_Label.getPreferredSize().getHeight();
+	clientZip_Label.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) - insetsMiddle ,clientProvince_TF.getY() + clientProvince_TF.getHeight() + insetsBtwField , width, height);
+	addClient_Panel.add(clientZip_Label);
+	
+	clientZip_TF = new JTextField();
+	width = 80;
+	clientZip_TF.setHorizontalAlignment(JTextField.CENTER);
+	clientZip_TF.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) - insetsMiddle, clientZip_Label.getY() + clientZip_Label.getHeight() + insets, width, 28);
+	addClient_Panel.add(clientZip_TF);
+	
+	JLabel clientCountry_Label = new JLabel("Country:");
+	width = (int)clientCountry_Label.getPreferredSize().getWidth();
+	height = (int)clientCountry_Label.getPreferredSize().getHeight();
+	clientCountry_Label.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) + insetsMiddle ,clientProvince_TF.getY() + clientProvince_TF.getHeight() + insetsBtwField , width, height);
+	addClient_Panel.add(clientCountry_Label);
+	
+	clientCountry_TF = new JTextField();
+	width = 100;
+	clientCountry_TF.setHorizontalAlignment(JTextField.CENTER);
+	clientCountry_TF.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) + insetsMiddle, clientCountry_Label.getY() + clientCountry_Label.getHeight() + insets, width, 28);
+	addClient_Panel.add(clientCountry_TF);
 	
 	
 	JLabel clientPhone_Label = new JLabel("Phone:");
 	width = (int)clientPhone_Label.getPreferredSize().getWidth();
 	height = (int)clientPhone_Label.getPreferredSize().getHeight();
-	clientPhone_Label.setBounds((addClient_Panel.getWidth() / 2) - (width / 2),clientCity_TF.getY() + clientCity_TF.getHeight() + insetsBtwField , width, height);
+	clientPhone_Label.setBounds((addClient_Panel.getWidth() / 2) - (width / 2),clientCountry_TF.getY() + clientCountry_TF.getHeight() + insetsBtwField , width, height);
 	addClient_Panel.add(clientPhone_Label);
 	
 	clientPhone_TF = new JTextField();
@@ -139,7 +174,7 @@ public class ClientPanel extends JPanel{
 	cancel_Button.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			addClient_Panel.setVisible(false);
-			//outer_Panel.remove(addCompany_Panel);
+			//outer_Panel.remove(addClient_Panel);
 		}
 	});
 
@@ -152,10 +187,10 @@ public class ClientPanel extends JPanel{
 	addClient_Panel.add(save_Button);
 	save_Button.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			// save client
+			// save company
 			
 			addClient_Panel.setVisible(false);
-			//outer_Panel.remove(addCompany_Panel);
+			//outer_Panel.remove(addClient_Panel);
 		}
 	});
 	

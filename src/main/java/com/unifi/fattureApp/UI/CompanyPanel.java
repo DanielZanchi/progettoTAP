@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 public class CompanyPanel extends JPanel{
 	
 	private JTextField companyName_TF;
-	private JTextField compantVat_TF;
+	private JTextField companyVat_TF;
 	private JTextField companyAddress_TF;
 	private JTextField companyCity_TF;
 	private JTextField companyProvince_TF;
@@ -71,16 +71,16 @@ public class CompanyPanel extends JPanel{
 	companyVat_Label.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) ,companyName_TF.getY() + companyName_TF.getHeight() + insetsBtwField , width, height);
 	addCompany_Panel.add(companyVat_Label);
 	
-	compantVat_TF = new JTextField();
+	companyVat_TF = new JTextField();
 	width = 200;
-	compantVat_TF.setHorizontalAlignment(JTextField.CENTER);
-	compantVat_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2), companyVat_Label.getY() + companyVat_Label.getHeight() + insets, width, 28);
-	addCompany_Panel.add(compantVat_TF);
+	companyVat_TF.setHorizontalAlignment(JTextField.CENTER);
+	companyVat_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2), companyVat_Label.getY() + companyVat_Label.getHeight() + insets, width, 28);
+	addCompany_Panel.add(companyVat_TF);
 	
 	JLabel companyAddress_Label = new JLabel("Address:");
 	width = (int)companyAddress_Label.getPreferredSize().getWidth();
 	height = (int)companyAddress_Label.getPreferredSize().getHeight();
-	companyAddress_Label.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) ,compantVat_TF.getY() + compantVat_TF.getHeight() + insetsBtwField , width, height);
+	companyAddress_Label.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) ,companyVat_TF.getY() + companyVat_TF.getHeight() + insetsBtwField , width, height);
 	addCompany_Panel.add(companyAddress_Label);
 	
 	companyAddress_TF = new JTextField();
