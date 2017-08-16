@@ -74,41 +74,7 @@
 			</plugin>
 		</plugins>
 	</build>
-	<profiles>
-		<profile>
-			<id>macprofile</id>
-			<activation>
-				<os>
-					<family>mac</family>
-				</os>
-			</activation>
-			<dependencies>
-
-			</dependencies>
-		</profile>
-		<profile>
-			<id>windowsprofile</id>
-			<activation>
-				<os>
-					<family>windows</family>
-				</os>
-			</activation>
-			<dependencies>
-
-			</dependencies>
-		</profile>
-		<profile>
-			<id>linuxprofile</id>
-			<activation>
-				<os>
-					<family>unix</family>
-					<name>Linux</name>
-				</os>
-			</activation>
-			<dependencies>
-
-			</dependencies>
-		</profile>
+	<profiles>	
 		<profile>
 			<id>standard</id>
 			<activation>
