@@ -16,7 +16,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class ItemPanel extends JPanel {
+public class ItemInvoicePanel extends JPanel {
 	
 	private JTextField itemDescription_TF;
 	private JFormattedTextField itemPrice_TF;
@@ -24,7 +24,7 @@ public class ItemPanel extends JPanel {
 
 	private Color layerColor = new java.awt.Color(216, 245, 255);
 
-	public ItemPanel(JLayeredPane outer_Panel, int buttonWidth, int buttonHeight) {
+	public ItemInvoicePanel(JLayeredPane outer_Panel, int buttonWidth, int buttonHeight) {
 		JPanel addItem_Panel = this;
 
 		addItem_Panel.setName("AddItemPanel");

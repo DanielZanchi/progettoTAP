@@ -223,7 +223,6 @@
 									</external>
 									<run>
 										<wait>
-											<!-- Wait for the output "School app terminates" for 10 seconds -->
 											<time>10000</time>
 											<log>Fatture-app terminates.</log>
 										</wait>

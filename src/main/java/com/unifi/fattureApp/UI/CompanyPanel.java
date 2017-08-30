@@ -12,7 +12,12 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.unifi.fattureApp.App.MongoUiComunication;
+
 public class CompanyPanel extends JPanel{
+	
+	private MongoUiComunication myMongoUiComunication;
+
 	
 	private JTextField companyName_TF;
 	private JTextField companyVat_TF;
@@ -26,8 +31,9 @@ public class CompanyPanel extends JPanel{
 	
 	private Color layerColor = new java.awt.Color(216,245,255);
 
-	public CompanyPanel(JLayeredPane outer_Panel,int buttonWidth,int buttonHeight){
+	public CompanyPanel(JLayeredPane outer_Panel,int buttonWidth,int buttonHeight,MongoUiComunication mongoUiCom){
 	JPanel addCompany_Panel=this;
+	myMongoUiComunication=mongoUiCom;
 	
 	addCompany_Panel.setName("AddCompanyPanel");
 	addCompany_Panel.setBackground(layerColor);
@@ -60,6 +66,7 @@ public class CompanyPanel extends JPanel{
 	addCompany_Panel.add(companyName_Label);
 	
 	companyName_TF = new JTextField();
+	companyName_TF.setName("companyNameTextField");
 	width = 300;
 	companyName_TF.setHorizontalAlignment(JTextField.CENTER);
 	companyName_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2), companyName_Label.getY() + companyName_Label.getHeight() + insets, width, 28);
@@ -72,6 +79,7 @@ public class CompanyPanel extends JPanel{
 	addCompany_Panel.add(companyVat_Label);
 	
 	companyVat_TF = new JTextField();
+	companyVat_TF.setName("companyVatTextField");
 	width = 200;
 	companyVat_TF.setHorizontalAlignment(JTextField.CENTER);
 	companyVat_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2), companyVat_Label.getY() + companyVat_Label.getHeight() + insets, width, 28);
@@ -84,6 +92,7 @@ public class CompanyPanel extends JPanel{
 	addCompany_Panel.add(companyAddress_Label);
 	
 	companyAddress_TF = new JTextField();
+	companyAddress_TF.setName("companyAddressTextField");
 	width = 300;
 	companyAddress_TF.setHorizontalAlignment(JTextField.CENTER);
 	companyAddress_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2), companyAddress_Label.getY() + companyAddress_Label.getHeight() + insets, width, 28);
@@ -98,6 +107,7 @@ public class CompanyPanel extends JPanel{
 	addCompany_Panel.add(companyCity_Label);
 	
 	companyCity_TF = new JTextField();
+	companyCity_TF.setName("companyCityTextField");
 	width = 130;
 	companyCity_TF.setHorizontalAlignment(JTextField.CENTER);
 	companyCity_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) - insetsMiddle, companyCity_Label.getY() + companyCity_Label.getHeight() + insets, width, 28);
@@ -110,6 +120,7 @@ public class CompanyPanel extends JPanel{
 	addCompany_Panel.add(companyProvince_Label);
 	
 	companyProvince_TF = new JTextField();
+	companyProvince_TF.setName("companyProvinceTextField");
 	width = 130;
 	companyProvince_TF.setHorizontalAlignment(JTextField.CENTER);
 	companyProvince_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) + insetsMiddle, companyProvince_Label.getY() + companyProvince_Label.getHeight() + insets, width, 28);
@@ -122,6 +133,7 @@ public class CompanyPanel extends JPanel{
 	addCompany_Panel.add(companyZip_Label);
 	
 	companyZip_TF = new JTextField();
+	companyZip_TF.setName("companyZipTextField");
 	width = 80;
 	companyZip_TF.setHorizontalAlignment(JTextField.CENTER);
 	companyZip_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) - insetsMiddle, companyZip_Label.getY() + companyZip_Label.getHeight() + insets, width, 28);
@@ -134,6 +146,7 @@ public class CompanyPanel extends JPanel{
 	addCompany_Panel.add(companyCountry_Label);
 	
 	companyCountry_TF = new JTextField();
+	companyCountry_TF.setName("companyCountryTextField");
 	width = 100;
 	companyCountry_TF.setHorizontalAlignment(JTextField.CENTER);
 	companyCountry_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) + insetsMiddle, companyCountry_Label.getY() + companyCountry_Label.getHeight() + insets, width, 28);
@@ -147,6 +160,7 @@ public class CompanyPanel extends JPanel{
 	addCompany_Panel.add(companyPhone_Label);
 	
 	companyPhone_TF = new JTextField();
+	companyPhone_TF.setName("companyPhoneTextField");
 	width = 150;
 	companyPhone_TF.setHorizontalAlignment(JTextField.CENTER);
 	companyPhone_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2), companyPhone_Label.getY() + companyPhone_Label.getHeight() + insets, width, 28);
@@ -159,6 +173,7 @@ public class CompanyPanel extends JPanel{
 	addCompany_Panel.add(companyEmail_Label);
 	
 	companyEmail_TF = new JTextField();
+	companyEmail_TF.setName("companyEmailTextField");
 	width = 190;
 	companyEmail_TF.setHorizontalAlignment(JTextField.CENTER);
 	companyEmail_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2), companyEmail_Label.getY() + companyEmail_Label.getHeight() + insets, width, 28);
@@ -187,9 +202,25 @@ public class CompanyPanel extends JPanel{
 	addCompany_Panel.add(save_Button);
 	save_Button.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			// save company
+			
+			boolean saved=myMongoUiComunication.addCompanyToDatabase(companyName_TF.getText(), 
+					companyVat_TF.getText(),
+			        companyAddress_TF.getText(), 
+					companyCity_TF.getText(),
+					companyProvince_TF.getText(),
+					companyZip_TF.getText(),
+					companyCountry_TF.getText(),
+					companyPhone_TF.getText(),
+					companyEmail_TF.getText());
+			
+			if(saved){
+			myMongoUiComunication.printAllCompanies();
+			}else{
+				System.err.println("Error: Company was not saved!!!");;
+			}
 			
 			addCompany_Panel.setVisible(false);
+			resetTextFields();
 			//outer_Panel.remove(addCompany_Panel);
 		}
 	});
@@ -198,4 +229,19 @@ public class CompanyPanel extends JPanel{
 	
 	
 }
+	
+	private void resetTextFields(){
+		companyName_TF.setText("");
+		 companyVat_TF.setText("");
+		 companyAddress_TF.setText("");
+		 companyCity_TF.setText("");
+		 companyProvince_TF.setText("");
+		 companyZip_TF.setText("");
+		 companyCountry_TF.setText("");
+		 companyPhone_TF.setText("");
+		 companyEmail_TF.setText("");
+	}
+
 }
+	
+	

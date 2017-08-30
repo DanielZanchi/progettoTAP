@@ -18,11 +18,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import com.unifi.fattureApp.App.MongoUiComunication;
+
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 
 public class MainWindowUI {
 
+	private MongoUiComunication mongoUiCom;
+	
 	private JFrame fattureApp_Frame;
 	private JLayeredPane outer_Panel;
 	private JPanel myCompany_Panel;
@@ -65,6 +70,9 @@ public class MainWindowUI {
 	}
 
 	private void initialize() {
+		
+		mongoUiCom=new MongoUiComunication();
+		
 		fattureApp_Frame = new JFrame();
 		fattureApp_Frame.setTitle("Fatture App");
 		fattureApp_Frame.setPreferredSize(windowDimension);
@@ -209,15 +217,16 @@ public class MainWindowUI {
 	}
 
 	private void createAddRecordsPanels() {
-		addCompany_Panel = new CompanyPanel(outer_Panel, buttonWidth, buttonHeight);
+		addCompany_Panel = new CompanyPanel(outer_Panel, buttonWidth, buttonHeight,mongoUiCom);
 		addCompany_Panel.setVisible(false);
 
-		addClient_Panel = new ClientPanel(outer_Panel, buttonWidth, buttonHeight);
+		addClient_Panel = new ClientPanel(outer_Panel, buttonWidth, buttonHeight,mongoUiCom);
 		addClient_Panel.setVisible(false);
 		
-		addItem_Panel = new ItemPanel(outer_Panel, buttonWidth, buttonHeight);
+		addItem_Panel = new ItemInvoicePanel(outer_Panel, buttonWidth, buttonHeight);
 		addItem_Panel.setVisible(false);
 	}
+	
 
 	private void showAddCompanyPanel() {
 		// SHOW PANEL TO ADD CUSTOMER

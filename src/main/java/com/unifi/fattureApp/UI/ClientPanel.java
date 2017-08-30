@@ -12,7 +12,11 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.unifi.fattureApp.App.MongoUiComunication;
+
 public class ClientPanel extends JPanel{
+	
+	private MongoUiComunication myMongoUiComunication;
 	
 	private JTextField clientName_TF;
 	private JTextField clientVat_TF;
@@ -26,8 +30,9 @@ public class ClientPanel extends JPanel{
 	
 	private Color layerColor = new java.awt.Color(216,245,255);
 
-	public ClientPanel(JLayeredPane outer_Panel,int buttonWidth,int buttonHeight){
+	public ClientPanel(JLayeredPane outer_Panel,int buttonWidth,int buttonHeight,MongoUiComunication mongoUiCom){
 	JPanel addClient_Panel=this;
+	myMongoUiComunication=mongoUiCom;
 	
 	addClient_Panel.setName("AddClientPanel");
 	addClient_Panel.setBackground(layerColor);
@@ -188,6 +193,12 @@ public class ClientPanel extends JPanel{
 	save_Button.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			// save company
+			/*
+			myMongoUiComunication.addClientToDatabase(clientName_TF.getText(),
+					clientVat_TF.getText(), 
+					, clientPhone_TF.getText(), clientEmail_TF.getText());
+			
+			*/
 			
 			addClient_Panel.setVisible(false);
 			//outer_Panel.remove(addClient_Panel);
