@@ -31,6 +31,8 @@ public class MongoWrapper implements Database{
 
 	}
 	
+	
+	
 	@Override
 	public List<Client> getAllClientsList() {
 		Iterable<Client> iterable = clients.find().as(Client.class);

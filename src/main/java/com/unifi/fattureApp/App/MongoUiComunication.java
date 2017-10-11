@@ -1,5 +1,6 @@
 package com.unifi.fattureApp.App;
 
+import java.net.UnknownHostException;
 import java.util.List;
 
 import com.mongodb.MongoClient;
@@ -7,11 +8,22 @@ import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
 public class MongoUiComunication {
 	Database database;
-	String mongoHost = "127.0.0.1";
+	String mongoHost = "localhost";
 	MedicalOfficeController myMedicalController;
 	
 	
-	public MongoUiComunication(){
+	public MongoUiComunication(String[] args){
+		if (args.length > 0)
+			mongoHost = args[0];
+		Database database = null;
+		try {
+			database = new MongoWrapper(new MongoClient(mongoHost));
+		} catch (UnknownHostException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		myMedicalController = new MedicalOfficeController(database);
+		
 		try{
 			database = new MongoWrapper(new MongoClient(mongoHost, 27017));
 		}catch(Exception e){

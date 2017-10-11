@@ -240,25 +240,21 @@ public class ClientPanel extends JPanel {
 			}
 		});
 
-		System.out.println("ciao" + textFields.size());
 		// check if all required field aren't empty. if so activate the save button.
 
 		Component[] components = addClient_Panel.getComponents();
 		for (Component component : components) {
 			if (component.getClass().equals(JTextField.class)) {
 				
-				System.out.println(((JTextField)component).getName());
 				if (!((JTextField)component).getName().equals("clientPhone_TF") && !((JTextField)component).getName().equals("clientEmail_TF")) {
 					textFields.add((JTextField) component);
 				}
 			}
 		}
 		
-		System.out.println(textFields.size());
 
 		for (JTextField tf : textFields) {
 
-			System.out.println(tf.getText());
 			tf.getDocument().addDocumentListener(new DocumentListener() {
 				@Override
 				public void insertUpdate(DocumentEvent e) {
