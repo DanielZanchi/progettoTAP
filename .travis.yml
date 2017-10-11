@@ -6,6 +6,7 @@ jdk:
   - oraclejdk8
 services:
   - docker
+  - mongodb
 cache:
   directories:
   - $HOME/.m2
