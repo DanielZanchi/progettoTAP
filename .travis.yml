@@ -15,10 +15,10 @@ script:
 - mvn -f pom.xml clean verify
 - mvn -f pom.xml verify -Pdocker-compose
 
-env:
-  - DISPLAY=:99.0
-before_install:
-  - sh -e /etc/init.d/xvfb start
+#env:
+#  - DISPLAY=:99.0
+#before_install:
+#  - sh -e /etc/init.d/xvfb start
   
   before_script:
   - "export DISPLAY=:99.0"
