@@ -12,17 +12,17 @@ public class MongoUiComunication {
 	MedicalOfficeController myMedicalController;
 	
 	
-	public MongoUiComunication(String[] args){
-		if (args.length > 0)
-			mongoHost = args[0];
-		Database database = null;
-		try {
-			database = new MongoWrapper(new MongoClient(mongoHost));
-		} catch (UnknownHostException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		myMedicalController = new MedicalOfficeController(database);
+	public MongoUiComunication(){
+//		if (args.length > 0)
+//			mongoHost = args[0];
+//		Database database = null;
+//		try {
+//			database = new MongoWrapper(new MongoClient(mongoHost));
+//		} catch (UnknownHostException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//		myMedicalController = new MedicalOfficeController(database);
 		
 		try{
 			database = new MongoWrapper(new MongoClient(mongoHost, 27017));

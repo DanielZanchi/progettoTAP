@@ -21,7 +21,7 @@ public class Main {
 	public static void main(String[] args) throws UnknownHostException {
 		Logger logger = Logger.getLogger(Main.class);
 		
-		MongoUiComunication myMongoUiComunication=new MongoUiComunication(args);
+		MongoUiComunication myMongoUiComunication=new MongoUiComunication();
 		
 		
 		//BasicConfigurator.configure();

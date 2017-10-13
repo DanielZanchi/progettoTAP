@@ -52,6 +52,7 @@ public class MainWindowUI {
 			public void run() {
 				try {
 
+					
 					MainWindowUI window = new MainWindowUI();
 					window.fattureApp_Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					window.fattureApp_Frame.setVisible(true);
