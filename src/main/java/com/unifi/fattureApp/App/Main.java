@@ -36,13 +36,17 @@ public class Main {
 		Database database = new MongoWrapper(new MongoClient(mongoHost, 27017));
 		*/
 		
-		//MedicalOfficeController myMedicalController = new MedicalOfficeController(database);
-		//System.out.println("Adding a patient...");
-		myMongoUiComunication.addClientToDatabase("Daniele Land","landiFiscalCode","landiResidence","landiPhone","landiEmail");
-		//myMedicalController.addClient(new Client("1", "Daniele Land","landiFiscalCode","landiResidence","landiPhone","landiEmail"/*,"landiHappyDay"*/));
-		//System.out.println("Adding a patient...");
-		//myMedicalController.addClient(new Client("2", "Daniel Zanchi","zanchiFiscalCode","zanchiResidence","zanchiPhone","zanchiEmail"/*,"zanchiHappyDay"*/));
-		myMongoUiComunication.addClientToDatabase("Daniel Zanchi","zanchiFiscalCode","zanchiResidence","zanchiPhone","zanchiEmail");
+		
+		
+		//myMongoUiComunication.addClientToDatabase("Daniele Land","landiFiscalCode","landiResidence","landiPhone","landiEmail");
+		
+		
+		
+		
+		
+		
+		
+		//myMongoUiComunication.addClientToDatabase("Daniel Zanchi","zanchiFiscalCode","zanchiResidence","zanchiPhone","zanchiEmail");
 		
 		
 		/*

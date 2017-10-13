@@ -5,7 +5,10 @@ public class Client {
 		private String name;
 		private String fiscalCode;
 		private String cityResidence;
-		//private String birthDate;
+		private String city;
+		private String province;
+		private String zip;
+		private String country;
 		private String phone;
 		private String email;
 		
@@ -13,14 +16,17 @@ public class Client {
 
 		}
 
-		public Client(String id, String name,String fiscalCode,String cityResidence,String phone,String email/*,String birthDate*/) {
+		public Client(String id, String name,String fiscalCode,String cityResidence,String city,String province,String zip,String country,String phone,String email) {
 			this.id = id;
 			this.name = name;
 			this.setFiscalCode(fiscalCode);
 			this.setCityResidence(cityResidence);
+			this.setCity(city);
+			this.setProvince(province);
+			this.setZip(zip);
+			this.setCountry(country);
 			this.setPhone(phone);
 			this.setEmail(email);
-			//this.setBirthDate(birthDate);
 		}
 
 		public String getId() {
@@ -69,6 +75,38 @@ public class Client {
 
 		public void setPhone(String phone) {
 			this.phone = phone;
+		}
+
+		public String getCity() {
+			return city;
+		}
+
+		public void setCity(String city) {
+			this.city = city;
+		}
+
+		public String getProvince() {
+			return province;
+		}
+
+		public void setProvince(String province) {
+			this.province = province;
+		}
+
+		public String getZip() {
+			return zip;
+		}
+
+		public void setZip(String zip) {
+			this.zip = zip;
+		}
+
+		public String getCountry() {
+			return country;
+		}
+
+		public void setCountry(String country) {
+			this.country = country;
 		}
 
 		/*

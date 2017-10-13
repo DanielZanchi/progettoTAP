@@ -39,7 +39,7 @@ public class MedicalOfficeIntegrationTest {
 	
 	
 	private Client addTestClientToDB() {
-		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testCity","testProvince","testZip","testCountry","testPhone","testEmail");
 		Client Client = medicalController.getClientId("1");
 		assertNotNull(Client);
 		return Client;
@@ -54,14 +54,14 @@ public class MedicalOfficeIntegrationTest {
 
 	@Test
 	public void testGetAllClientsWhenThereIsOneClient() {
-		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testCity","testProvince","testZip","testCountry","testPhone","testEmail");
 		List<Client> allClients = medicalController.getAllClients();
 		assertEquals(1, allClients.size());	
 	}
 
 	@Test
 	public void testGetClientByIdWhenClientIsNotThere() {
-		mongoTestHelper.addClient("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/);
+		mongoTestHelper.addClient("1", "test","testFC","testCR","testCity","testProvince","testZip","testCountry","testPhone","testEmail");
 		Client client = medicalController.getClientId("2");
 		assertNull(client);
 	}

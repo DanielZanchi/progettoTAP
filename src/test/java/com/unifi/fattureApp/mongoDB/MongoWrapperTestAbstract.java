@@ -37,37 +37,43 @@ public abstract class MongoWrapperTestAbstract {
 
 	@Test
 	public void testGetAllClientsNotEmpty() {
-		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstPhone","firstEmail"/*,"firstBD"*/);
-		mongoTestHelper.addClient("2", "second","secondFC","secondCR","secondPhone","secondEmail"/*,"secondBD"*/);
+		
+//		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstPhone","firstEmail"/*,"firstBD"*/);
+//		mongoTestHelper.addClient("2", "second","secondFC","secondCR","secondPhone","secondEmail"/*,"secondBD"*/);
+	
+		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstCity","firstProvince","firstZip","firstCountry","firstPhone","firstEmail"/*,"firstBD"*/);
+		mongoTestHelper.addClient("2", "second","secondFC","secondCR","secondCity","secondProvince","secondZip","secondCountry","secondPhone","secondEmail");
 	
 		assertEquals(2, mongoDatabase.getAllClientsList().size());
 	}
 
 	@Test
 	public void testFindPatientByIdNotFound() {
-		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstPhone","firstEmail"/*,"firstBD"*/);
+//		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstPhone","firstEmail"/*,"firstBD"*/);
+		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstCity","firstProvince","firstZip","firstCountry","firstPhone","firstEmail"/*,"firstBD"*/);
+
 		assertNull(mongoDatabase.findClientById("2"));
 	}
 
 	@Test
 	public void testPatientIsSaved() {
-		mongoDatabase.saveClient(new Client("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/));
-		assertTrue(mongoTestHelper.containsClient("1", "test", "testFC", "testCR","testPhone","testEmail"/*, "testBD"*/));
+		mongoDatabase.saveClient(new Client("1", "test","testFC","testCR","testCity","testProvince","testZip","testCountry","testPhone","testEmail"/*,"testBD"*/));
+		assertTrue(mongoTestHelper.containsClient("1", "test","testFC","testCR","testCity","testProvince","testZip","testCountry","testPhone","testEmail"/*, "testBD"*/));
 
 		//assertNotNull(mongoTestHelper.containsClient("1", "test","testFC","testCR","testBD"));
 	}
 	
 	@Test
 	public void testPatientIsNotSaved() {
-		mongoDatabase.saveClient(new Client("1", "test","testFC","testCR","testPhone","testEmail"/*,"testBD"*/));
-		assertFalse(mongoTestHelper.containsClient("2", "test2", "testFC2", "testCR2","testPhone2","testEmail2"/*, "testBD2"*/));
+		mongoDatabase.saveClient(new Client("1", "test","testFC","testCR","testCity","testProvince","testZip","testCountry","testPhone","testEmail"/*,"testBD"*/));
+		assertFalse(mongoTestHelper.containsClient("2", "test2","testFC2","testCR2","testCity2","testProvince2","testZip2","testCountry2","testPhone2","testEmail2"));
 	}
 	
 
 	@Test
 	public void testFindPatientByIdFound() {
-		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstPhone","firstEmail"/*,"firstBD"*/);
-		mongoTestHelper.addClient("2", "second","secondFC","secondCR","secondPhone","secondEmail"/*,"secondBD"*/);
+		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstCity","firstProvince","firstZip","firstCountry","firstPhone","firstEmail"/*,"firstBD"*/);
+		mongoTestHelper.addClient("2", "second","secondFC","secondCR","secondCity","secondProvince","secondZip","secondCountry","secondPhone","secondEmail");
 	
 		Client findClientById = mongoDatabase.findClientById("2");
 		assertNotNull(findClientById);

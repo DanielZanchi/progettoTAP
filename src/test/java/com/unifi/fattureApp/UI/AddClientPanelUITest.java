@@ -77,12 +77,16 @@ public class AddClientPanelUITest {
 	}
 	
 	@Test
-	public void testSaveButtonAction() {
+	public void testSaveButtonNoInputsAction() {
 		addClient_Button.click();
 		addClient_Panel = window.panel("AddClientPanel");
 		saveAdd_Button = addClient_Panel.button("SaveButton");
-		saveAdd_Button.click();
-		addClient_Panel.requireNotVisible();
+		saveAdd_Button.requireDisabled();
+//		addClient_Button.click();
+//		addClient_Panel = window.panel("AddClientPanel");
+//		saveAdd_Button = addClient_Panel.button("SaveButton");
+//		saveAdd_Button.click();
+//		addClient_Panel.requireNotVisible();
 	}
 	
 }

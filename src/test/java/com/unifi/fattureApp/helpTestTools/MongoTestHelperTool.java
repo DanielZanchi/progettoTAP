@@ -23,12 +23,16 @@ public class MongoTestHelperTool {
 		invoices=db.getCollection("invoices");
 	}
 
-	public void addClient(String id, String name,String fiscalCode,String cityResidence,String phone,String email/*,String birthDay*/) {
+	public void addClient(String id, String name,String fiscalCode,String cityResidence,String city,String province,String zip,String country,String phone,String email/*,String birthDay*/) {
 		BasicDBObject document = new BasicDBObject();
 		document.put("id", id);
 		document.put("name", name);
 		document.put("fiscalCode", fiscalCode);
 		document.put("cityResidence", cityResidence);
+		document.put("city", city);
+		document.put("province", province);
+		document.put("zip", zip);
+		document.put("country", cityResidence);
 		document.put("phone", phone);
 		document.put("email", email);
 		//document.put("birthDay", birthDay);
@@ -36,12 +40,16 @@ public class MongoTestHelperTool {
 		clients.insert(document);
 	}
 
-	public boolean containsClient(String id, String name,String fiscalCode,String cityResidence,String phone,String email/*,String birthDay*/) {
+	public boolean containsClient(String id, String name,String fiscalCode,String cityResidence,String city,String province,String zip,String country,String phone,String email/*,String birthDay*/) {
 		BasicDBObject query = new BasicDBObject();
 		query.put("id", id);
 		query.put("name", name);
 		query.put("fiscalCode", fiscalCode);
 		query.put("cityResidence", cityResidence);
+		query.put("city", city);
+		query.put("province", province);
+		query.put("zip", zip);
+		query.put("country", cityResidence);
 		query.put("phone", phone);
 		query.put("email", email);
 		//query.put("birthDay", birthDay);

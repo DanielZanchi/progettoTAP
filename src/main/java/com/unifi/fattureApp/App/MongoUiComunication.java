@@ -35,9 +35,9 @@ public class MongoUiComunication {
 	}
 	
 	
-	public boolean addClientToDatabase(String name, String fiscalCode, String residence, String phone, String email){
+	public boolean addClientToDatabase(String name, String fiscalCode, String residence,String city,String province,String zip,String country, String phone, String email){
 		String currentId=String.valueOf(this.getClientsCount()+1);
-		return myMedicalController.addClient(new Client(currentId,name,fiscalCode,residence,phone,email));
+		return myMedicalController.addClient(new Client(currentId,name,fiscalCode,residence,city,province,zip,country,phone,email));
 	}
 	
 	public boolean addCompanyToDatabase(String name, String vat, String address, String city, String province, String zip, String country, String phone, String email){
