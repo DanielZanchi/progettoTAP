@@ -5,9 +5,7 @@
  */
 package com.unifi.fattureApp.UI;
 
-import static org.junit.Assert.*;
 
-import javax.swing.JTextField;
 
 import org.assertj.swing.edt.GuiActionRunner;
 import org.assertj.swing.fixture.FrameFixture;
@@ -15,7 +13,6 @@ import org.assertj.swing.fixture.JButtonFixture;
 import org.assertj.swing.fixture.JPanelFixture;
 import org.assertj.swing.fixture.JTextComponentFixture;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -80,11 +77,11 @@ public class MyCompanyPanelUITest {
 		saveAdd_Button.requireText("Save");
 	}
 	
-	@Test
-	public void testSaveButtonAction() {
-		saveCompany();
-		addCompany_Panel.requireNotVisible();
-	}
+//	@Test
+//	public void testSaveButtonAction() {
+//		saveCompany();
+//		addCompany_Panel.requireNotVisible();
+//	}
 	
 	@Test 
 	public void testResetNameTextField(){
@@ -106,10 +103,7 @@ public class MyCompanyPanelUITest {
 		
 	}
 
-	private void showAddCompanyPanel() {
-		addCompany_Button.click();
-		addCompany_Panel = window.panel("AddCompanyPanel");
-	}
+	
 	
 	
 	@Test 
@@ -192,6 +186,11 @@ public class MyCompanyPanelUITest {
 		JTextComponentFixture companyEmail = addCompany_Panel.textBox("companyEmailTextField");
 		companyEmail.text().compareTo("");
 		
+	}
+	
+	private void showAddCompanyPanel() {
+		addCompany_Button.click();
+		addCompany_Panel = window.panel("AddCompanyPanel");
 	}
 
 	private void saveCompany() {
