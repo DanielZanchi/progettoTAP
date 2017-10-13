@@ -77,11 +77,11 @@ public class MyCompanyPanelUITest {
 		saveAdd_Button.requireText("Save");
 	}
 	
-//	@Test
-//	public void testSaveButtonAction() {
-//		saveCompany();
-//		addCompany_Panel.requireNotVisible();
-//	}
+	@Test
+	public void testSaveButtonAction() {
+		saveCompany();
+		addCompany_Panel.requireNotVisible();
+	}
 	
 	@Test 
 	public void testResetNameTextField(){
