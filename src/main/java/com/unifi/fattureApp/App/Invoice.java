@@ -1,16 +1,12 @@
 package com.unifi.fattureApp.App;
 
 public class Invoice {
-
-	
-	
 	private String id;
 	private String name;
 	private String price;
 	private String description;
 
 	public Invoice() {
-
 	}
 
 	public Invoice(String id, String name,String price,String description) {
@@ -18,7 +14,6 @@ public class Invoice {
 		this.setName(name);
 		this.setPrice(price);
 		this.setDescription(description);
-		
 	}
 
 	public String getId() {
@@ -52,7 +47,4 @@ public class Invoice {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
-	
 }

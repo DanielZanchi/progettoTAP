@@ -31,13 +31,12 @@ public abstract class MongoWrapperTestAbstract {
 	}
 
 	@Test
-	public void testGetAllPatientsEmpty() {
+	public void testGetAllClientsEmpty() {
 		assertTrue(mongoDatabase.getAllClientsList().isEmpty());
 	}
 
 	@Test
 	public void testGetAllClientsNotEmpty() {
-		
 //		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstPhone","firstEmail"/*,"firstBD"*/);
 //		mongoTestHelper.addClient("2", "second","secondFC","secondCR","secondPhone","secondEmail"/*,"secondBD"*/);
 	
@@ -48,7 +47,7 @@ public abstract class MongoWrapperTestAbstract {
 	}
 
 	@Test
-	public void testFindPatientByIdNotFound() {
+	public void testFindClientByIdNotFound() {
 //		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstPhone","firstEmail"/*,"firstBD"*/);
 		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstCity","firstProvince","firstZip","firstCountry","firstPhone","firstEmail"/*,"firstBD"*/);
 
@@ -56,7 +55,7 @@ public abstract class MongoWrapperTestAbstract {
 	}
 
 	@Test
-	public void testPatientIsSaved() {
+	public void testClientIsSaved() {
 		mongoDatabase.saveClient(new Client("1", "test","testFC","testCR","testCity","testProvince","testZip","testCountry","testPhone","testEmail"/*,"testBD"*/));
 		assertTrue(mongoTestHelper.containsClient("1", "test","testFC","testCR","testCity","testProvince","testZip","testCountry","testPhone","testEmail"/*, "testBD"*/));
 
@@ -64,14 +63,13 @@ public abstract class MongoWrapperTestAbstract {
 	}
 	
 	@Test
-	public void testPatientIsNotSaved() {
+	public void testClientIsNotSaved() {
 		mongoDatabase.saveClient(new Client("1", "test","testFC","testCR","testCity","testProvince","testZip","testCountry","testPhone","testEmail"/*,"testBD"*/));
 		assertFalse(mongoTestHelper.containsClient("2", "test2","testFC2","testCR2","testCity2","testProvince2","testZip2","testCountry2","testPhone2","testEmail2"));
 	}
-	
 
 	@Test
-	public void testFindPatientByIdFound() {
+	public void testFindClientByIdFound() {
 		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstCity","firstProvince","firstZip","firstCountry","firstPhone","firstEmail"/*,"firstBD"*/);
 		mongoTestHelper.addClient("2", "second","secondFC","secondCR","secondCity","secondProvince","secondZip","secondCountry","secondPhone","secondEmail");
 	
@@ -80,11 +78,6 @@ public abstract class MongoWrapperTestAbstract {
 		assertEquals("2", findClientById.getId());
 		assertEquals("second", findClientById.getName());
 	}
-	
-	
-	
-	
-	
 	
 	@Test
 	public void testGetAllCompaniesEmpty() {
@@ -96,7 +89,6 @@ public abstract class MongoWrapperTestAbstract {
 		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
 		mongoTestHelper.addCompany("2", "nameC2", "vatCode2", "address2", "city2", "province2", "zipCode2", "country2", "phone2", "email2");
 
-	
 		assertEquals(2, mongoDatabase.getAllCompaniesList().size());
 	}
 
@@ -121,11 +113,7 @@ public abstract class MongoWrapperTestAbstract {
 		assertNotNull(findCompanyById);
 		assertEquals("2", findCompanyById.getId());
 		assertEquals("nameC2", findCompanyById.getName());
-	}
-	
-	
-	
-	
+	}	
 	
 	@Test
 	public void testGetAllInvoicesEmpty() {
@@ -162,11 +150,4 @@ public abstract class MongoWrapperTestAbstract {
 		assertEquals("2", findInvoiceById.getId());
 		assertEquals("nameI2", findInvoiceById.getName());
 	}
-	
-	
-	
-	
-	
-	
-	
 }

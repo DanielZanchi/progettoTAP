@@ -16,11 +16,9 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class ItemInvoicePanel extends JPanel {
-	
+public class ItemInvoicePanel extends JPanel {	
 	private JTextField itemDescription_TF;
 	private JFormattedTextField itemPrice_TF;
-
 
 	private Color layerColor = new java.awt.Color(216, 245, 255);
 
@@ -78,9 +76,6 @@ public class ItemInvoicePanel extends JPanel {
 		itemPrice_TF.setHorizontalAlignment(JTextField.CENTER);
 		itemPrice_TF.setBounds((addItem_Panel.getWidth() / 2) - (width / 2), itemPrice_Label.getY() + itemPrice_Label.getHeight() + insets, width, 28);
 		addItem_Panel.add(itemPrice_TF);
-		
-		
-		
 		
 		JButton cancel_Button = new JButton();
 		cancel_Button.setName("CancelButton");

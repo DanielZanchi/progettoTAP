@@ -15,9 +15,7 @@ import javax.swing.JTextField;
 import com.unifi.fattureApp.App.MongoUiComunication;
 
 public class CompanyPanel extends JPanel{
-	
 	private MongoUiComunication myMongoUiComunication;
-
 	
 	private JTextField companyName_TF;
 	private JTextField companyVat_TF;
@@ -57,7 +55,6 @@ public class CompanyPanel extends JPanel{
 	height = (int)addCompanyTitle_Label.getPreferredSize().getHeight();
 	addCompanyTitle_Label.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) ,addPanelY - 10 , width, height);
 	addCompany_Panel.add(addCompanyTitle_Label);
-	
 	
 	JLabel companyName_Label = new JLabel("Company Name:");
 	width = (int)companyName_Label.getPreferredSize().getWidth();
@@ -152,7 +149,6 @@ public class CompanyPanel extends JPanel{
 	companyCountry_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) + insetsMiddle, companyCountry_Label.getY() + companyCountry_Label.getHeight() + insets, width, 28);
 	addCompany_Panel.add(companyCountry_TF);
 	
-	
 	JLabel companyPhone_Label = new JLabel("Phone:");
 	width = (int)companyPhone_Label.getPreferredSize().getWidth();
 	height = (int)companyPhone_Label.getPreferredSize().getHeight();
@@ -224,10 +220,6 @@ public class CompanyPanel extends JPanel{
 			//outer_Panel.remove(addCompany_Panel);
 		}
 	});
-	
-	
-	
-	
 }
 	
 	private void resetTextFields(){
@@ -241,7 +233,4 @@ public class CompanyPanel extends JPanel{
 		 companyPhone_TF.setText("");
 		 companyEmail_TF.setText("");
 	}
-
 }
-	
-	

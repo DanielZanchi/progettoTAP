@@ -1,4 +1,3 @@
-
 package com.unifi.fattureApp.UI;
 
 import org.assertj.swing.edt.GuiActionRunner;
@@ -10,14 +9,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class AddClientPanelUITest {
-
 	private FrameFixture window;
 	private JPanelFixture clientPanel;
 	private JPanelFixture addClient_Panel;
 	private JButtonFixture addClient_Button;
 	private JButtonFixture cancelAdd_Button;
 	private JButtonFixture saveAdd_Button;
-
 
 	@Before public void setUp() {
 		MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
@@ -88,5 +85,4 @@ public class AddClientPanelUITest {
 //		saveAdd_Button.click();
 //		addClient_Panel.requireNotVisible();
 	}
-	
 }

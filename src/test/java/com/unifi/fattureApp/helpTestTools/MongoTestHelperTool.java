@@ -11,10 +11,9 @@ public class MongoTestHelperTool {
 	private DBCollection companies;
 	private DBCollection invoices;
 
-
 	public MongoTestHelperTool (MongoClient mongoClient) {
-		// make sure to drop the patients table for testing
-		DB db = mongoClient.getDB("medicalOffice");
+		// make sure to drop the clients table for testing
+		DB db = mongoClient.getDB("company");
 		db.getCollection("client").drop();
 		db.getCollection("companies").drop();
 		db.getCollection("invoices").drop();
@@ -56,8 +55,7 @@ public class MongoTestHelperTool {
 		
 		return clients.find(query).hasNext();
 	}
-	
-	
+		
 	public void addCompany(String id, String name,String vatCode,
 			String address,String city,String province,String zipCode,String country,String phone,String email) {
 		BasicDBObject document = new BasicDBObject();
@@ -91,7 +89,6 @@ public class MongoTestHelperTool {
 		return companies.find(query).hasNext();
 	}
 	
-	
 	public void addInvoice(String id, String name,String price,String description) {
 		BasicDBObject document = new BasicDBObject();
 		document.put("id", id);
@@ -109,9 +106,4 @@ public class MongoTestHelperTool {
 		query.put("description", description);
 		return invoices.find(query).hasNext();
 	}
-	
-	
-	
-	
-	
 }

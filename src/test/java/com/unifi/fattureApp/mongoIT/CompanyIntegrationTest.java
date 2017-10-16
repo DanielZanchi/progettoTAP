@@ -11,14 +11,14 @@ import com.github.fakemongo.Fongo;
 import com.mongodb.MongoClient;
 import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.Invoice;
-import com.unifi.fattureApp.App.MedicalOfficeController;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
+import com.unifi.fattureApp.App.CompanyController;
 import com.unifi.fattureApp.helpTestTools.MongoTestHelperTool;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
-public class MedicalOfficeIntegrationTest {
-	private MedicalOfficeController medicalController;
+public class CompanyIntegrationTest {
+	private CompanyController companyController;
 
 	// helper for testing with Mongo
 	private MongoTestHelperTool mongoTestHelper;
@@ -34,35 +34,33 @@ public class MedicalOfficeIntegrationTest {
 		// we don't mock the database:
 		// we use a real instance of MongoDatabaseWrapper
 		Database database = new MongoWrapper(mongoClient);
-		medicalController = new MedicalOfficeController(database);
+		companyController = new CompanyController(database);
 	}
-	
 	
 	private Client addTestClientToDB() {
 		mongoTestHelper.addClient("1", "test","testFC","testCR","testCity","testProvince","testZip","testCountry","testPhone","testEmail");
-		Client Client = medicalController.getClientId("1");
+		Client Client = companyController.getClientId("1");
 		assertNotNull(Client);
 		return Client;
 	}
-	
 
 	@Test
 	public void testGetAllClientsWhenThereAreNoClients() {
-		List<Client> allClients = medicalController.getAllClients();
+		List<Client> allClients = companyController.getAllClients();
 		assertEquals(0, allClients.size());
 	}
 
 	@Test
 	public void testGetAllClientsWhenThereIsOneClient() {
 		mongoTestHelper.addClient("1", "test","testFC","testCR","testCity","testProvince","testZip","testCountry","testPhone","testEmail");
-		List<Client> allClients = medicalController.getAllClients();
+		List<Client> allClients = companyController.getAllClients();
 		assertEquals(1, allClients.size());	
 	}
 
 	@Test
 	public void testGetClientByIdWhenClientIsNotThere() {
 		mongoTestHelper.addClient("1", "test","testFC","testCR","testCity","testProvince","testZip","testCountry","testPhone","testEmail");
-		Client client = medicalController.getClientId("2");
+		Client client = companyController.getClientId("2");
 		assertNull(client);
 	}
 
@@ -119,15 +117,12 @@ public class MedicalOfficeIntegrationTest {
 		Client Client = addTestClientToDB();
 		assertNotEquals("wrongtestEmail", Client.getEmail());
 	}
-
-
-
 	
 /*
 	@Test
 	public void testGetClientByIdWithRightBirthDay() {
 		mongoTestHelper.addClient("1", "test","testFC","testCR","testBD");
-		Client Client = medicalController.getClientId("1");
+		Client Client = companyController.getClientId("1");
 		assertNotNull(Client);
 		assertEquals("testBD", Client.getBirthDate());
 	}
@@ -137,36 +132,31 @@ public class MedicalOfficeIntegrationTest {
 	@Test
 	public void testGetClientByIdWithWrongBirthDay() {
 		mongoTestHelper.addClient("1", "test","testFC","testCR","testBD");
-		Client Client = medicalController.getClientId("1");
+		Client Client = companyController.getClientId("1");
 		assertNotNull(Client);
 		assertNotEquals("wrongtestBD", Client.getBirthDate());
 	}
 	*/
-	
-	
+
 	//      company
-	
-	
 	
 	private Company addTestCompanyToDB() {
 		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
-		Company company = medicalController.getCompanyId("1");
+		Company company = companyController.getCompanyId("1");
 		assertNotNull(company);
 		return company;
 	}
 	
-	
-	
 	@Test
 	public void testGetAllCompaniesWhenThereAreNoCompanies() {
-		List<Company> allCompanies = medicalController.getAllCompany();
+		List<Company> allCompanies = companyController.getAllCompany();
 		assertEquals(0, allCompanies.size());
 	}
 
 	@Test
 	public void testGetAllCompaniesWhenThereIsOneCompany() {
 		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
-		List<Company> allCompanies = medicalController.getAllCompany();
+		List<Company> allCompanies = companyController.getAllCompany();
 		assertEquals(1, allCompanies.size());	
 	}
 
@@ -181,8 +171,6 @@ public class MedicalOfficeIntegrationTest {
 		assertEquals("nameC1", company.getName());
 	}
 
-
-		
 	@Test
 	public void testGetCompanyByIdWithRightVatCode() {
 		Company company = addTestCompanyToDB();
@@ -269,29 +257,23 @@ public class MedicalOfficeIntegrationTest {
 	
 	/////////invoice
 	
-	
 	@Test
 	public void testGetAllInvoicesWhenThereAreNoInvoices() {
-		List<Invoice> allInvoices = medicalController.getAllInvoices();
+		List<Invoice> allInvoices = companyController.getAllInvoices();
 		assertEquals(0, allInvoices.size());
 	}
-	
 	
 	@Test
 	public void testGetAllInvoicesWhenThereIsOneInvoice() {
 		mongoTestHelper.addInvoice("1", "nameI1", "100", "basic invoice type1");
-		List<Invoice> allInvoices = medicalController.getAllInvoices();
+		List<Invoice> allInvoices = companyController.getAllInvoices();
 		assertEquals(1, allInvoices.size());	
 	}
 
 	@Test
 	public void testGetInvoiceByIdWhenInvoiceIsNotThere() {
 		mongoTestHelper.addInvoice("2", "nameI1", "100", "basic invoice type1");
-		Invoice invoice = medicalController.getInvoiceId("1");
+		Invoice invoice = companyController.getInvoiceId("1");
 		assertNull(invoice);
 	}
-	
-	
-
-	
 }

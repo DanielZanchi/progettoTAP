@@ -19,7 +19,6 @@ import javax.swing.event.DocumentListener;
 import com.unifi.fattureApp.App.MongoUiComunication;
 
 public class ClientPanel extends JPanel {
-
 	private MongoUiComunication myMongoUiComunication;
 
 	private JTextField clientName_TF;
@@ -236,8 +235,6 @@ public class ClientPanel extends JPanel {
 				  
 				  addClient_Panel.setVisible(false); //outer_Panel.remove(addClient_Panel); }
 				  };
-				 
-			
 		});
 
 		// check if all required field aren't empty. if so activate the save button.
@@ -251,10 +248,8 @@ public class ClientPanel extends JPanel {
 				}
 			}
 		}
-		
-
+	
 		for (JTextField tf : textFields) {
-
 			tf.getDocument().addDocumentListener(new DocumentListener() {
 				@Override
 				public void insertUpdate(DocumentEvent e) {
@@ -264,7 +259,6 @@ public class ClientPanel extends JPanel {
 				@Override
 				public void removeUpdate(DocumentEvent e) {
 					changed();
-
 				}
 
 				@Override
@@ -282,11 +276,8 @@ public class ClientPanel extends JPanel {
 						}
 					}
 					save_Button.setEnabled(shouldActivate);
-
 				}
-
 			});
 		}
-
 	}
 }

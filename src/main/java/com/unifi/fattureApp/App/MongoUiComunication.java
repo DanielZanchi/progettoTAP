@@ -9,8 +9,7 @@ import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 public class MongoUiComunication {
 	Database database;
 	String mongoHost = "localhost";
-	MedicalOfficeController myMedicalController;
-	
+	CompanyController myCompanyController;
 	
 	public MongoUiComunication(){
 //		if (args.length > 0)
@@ -22,7 +21,7 @@ public class MongoUiComunication {
 //			// TODO Auto-generated catch block
 //			e1.printStackTrace();
 //		}
-//		myMedicalController = new MedicalOfficeController(database);
+//		myCompanyController = new CompanyController(database);
 		
 		try{
 			database = new MongoWrapper(new MongoClient(mongoHost, 27017));
@@ -31,54 +30,48 @@ public class MongoUiComunication {
 			e.printStackTrace();
 		}
 	
-		myMedicalController = new MedicalOfficeController(database);
+		myCompanyController = new CompanyController(database);
 	}
-	
 	
 	public boolean addClientToDatabase(String name, String fiscalCode, String residence,String city,String province,String zip,String country, String phone, String email){
 		String currentId=String.valueOf(this.getClientsCount()+1);
-		return myMedicalController.addClient(new Client(currentId,name,fiscalCode,residence,city,province,zip,country,phone,email));
+		return myCompanyController.addClient(new Client(currentId,name,fiscalCode,residence,city,province,zip,country,phone,email));
 	}
 	
 	public boolean addCompanyToDatabase(String name, String vat, String address, String city, String province, String zip, String country, String phone, String email){
 		String currentId=String.valueOf(this.getCompaniesCount()+1);
-		return myMedicalController.addCompany
+		return myCompanyController.addCompany
 		(new Company(currentId, name, vat, address, city, province, zip,
 				country, phone, email));
 	}
 	
 	public int getCompaniesCount(){
-		List<Company> companies = myMedicalController.getAllCompany();
+		List<Company> companies = myCompanyController.getAllCompany();
 		return companies.size();
 	}
 	
 	public int getClientsCount(){
-		List<Client> clients = myMedicalController.getAllClients();
+		List<Client> clients = myCompanyController.getAllClients();
 		return clients.size();
 	}
-	
-	
-	
-	
 	
 	//   Just console prints!!!
 	
 	public void printAllClients(){
 		System.out.println("In the database Clients:");
-		List<Client> patients = myMedicalController.getAllClients();
-		patients.
+		List<Client> clients = myCompanyController.getAllClients();
+		clients.
 			stream().
 			forEach(
-				patient -> System.out.println
-					("Patient Name : " + patient.getId() + " - " + patient.getName())
+				client -> System.out.println
+					("Client Name : " + client.getId() + " - " + client.getName())
 			);
 		System.out.println("--------/Clients---------");
 	}
 	
-	
 	public void printAllCompanies(){
 		System.out.println("In the database Companies:");
-		List<Company> companies = myMedicalController.getAllCompany();
+		List<Company> companies = myCompanyController.getAllCompany();
 		companies.
 			stream().
 			forEach(
@@ -86,10 +79,5 @@ public class MongoUiComunication {
 					("Company Name : " + company.getId() + " - " + company.getName())
 			);
 		System.out.println("--------/Companies---------");
-
 	}
-	
-	
-	
-	
 }

@@ -1,6 +1,4 @@
-
 package com.unifi.fattureApp.UI;
-
 
 import org.assertj.swing.edt.GuiActionRunner;
 import org.assertj.swing.fixture.FrameFixture;
@@ -10,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class MainWindowUITest {
-
 	private FrameFixture window;
 	
 	@Before
@@ -45,6 +42,4 @@ public class MainWindowUITest {
 	public void testWindowBckgColor() {
 		window.background().requireEqualTo(java.awt.Color.LIGHT_GRAY);
 	}
-
-
 }

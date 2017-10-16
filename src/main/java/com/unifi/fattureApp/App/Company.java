@@ -1,7 +1,6 @@
 package com.unifi.fattureApp.App;
 
 public class Company {
-	
 	private String id;
 	private String name;
 	private String vatCode;
@@ -14,7 +13,6 @@ public class Company {
 	private String email;
 	
 	public  Company() {
-
 	}
 
 	public Company(String id, String name,String vatCode,
@@ -110,6 +108,4 @@ public class Company {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
 }

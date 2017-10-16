@@ -13,7 +13,6 @@ public class Client {
 		private String email;
 		
 		public Client() {
-
 		}
 
 		public Client(String id, String name,String fiscalCode,String cityResidence,String city,String province,String zip,String country,String phone,String email) {

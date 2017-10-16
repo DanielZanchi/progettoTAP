@@ -2,10 +2,10 @@ package com.unifi.fattureApp.App;
 
 import java.util.List;
 
-public class MedicalOfficeController {
+public class CompanyController {
 		private Database database;
 
-		public MedicalOfficeController(Database database) {
+		public CompanyController(Database database) {
 			this.database = database;
 		}
 
@@ -25,7 +25,6 @@ public class MedicalOfficeController {
 			return true;
 		}
 		
-		
 		public List<Company> getAllCompany() {
 			return database.getAllCompaniesList();
 		}
@@ -42,8 +41,6 @@ public class MedicalOfficeController {
 			return true;
 		}
 		
-		
-
 		public List<Invoice> getAllInvoices() {
 			return database.getAllInvoicesList();
 		}
@@ -59,6 +56,4 @@ public class MedicalOfficeController {
 			database.saveInvoice(invoice);
 			return true;
 		}
-		
-		
 }

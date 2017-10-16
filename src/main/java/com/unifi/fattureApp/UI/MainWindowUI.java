@@ -25,7 +25,6 @@ import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 
 public class MainWindowUI {
-
 	private MongoUiComunication mongoUiCom;
 	
 	private JFrame fattureApp_Frame;
@@ -51,8 +50,6 @@ public class MainWindowUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-
-					
 					MainWindowUI window = new MainWindowUI();
 					window.fattureApp_Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					window.fattureApp_Frame.setVisible(true);
@@ -71,7 +68,6 @@ public class MainWindowUI {
 	}
 
 	private void initialize() {
-		
 		mongoUiCom=new MongoUiComunication();
 		
 		fattureApp_Frame = new JFrame();
@@ -228,7 +224,6 @@ public class MainWindowUI {
 		addItem_Panel.setVisible(false);
 	}
 	
-
 	private void showAddCompanyPanel() {
 		// SHOW PANEL TO ADD CUSTOMER
 		addCompany_Panel.setVisible(true);

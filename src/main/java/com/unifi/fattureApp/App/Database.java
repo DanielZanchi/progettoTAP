@@ -9,14 +9,11 @@ public interface Database {
 
 	public void saveClient(Client client);
 	
-	
 	public List<Company> getAllCompaniesList();
 
 	public Company findCompanyById(String id);
 
 	public void saveCompany(Company company);
-	
-	
 	
 	public List<Invoice> getAllInvoicesList();
 

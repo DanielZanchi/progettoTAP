@@ -20,18 +20,14 @@ public class MongoWrapper implements Database{
 	private MongoCollection companies;
 	private MongoCollection invoices;
 
-
 	public MongoWrapper(MongoClient mc) throws UnknownHostException {
-		DB db = mc.getDB("medicalOffice");
+		DB db = mc.getDB("company");
 
 		Jongo jongo = new Jongo(db);
 		clients = jongo.getCollection("client");
-		companies=jongo.getCollection("companies");
-		invoices=jongo.getCollection("invoices");
-
-	}
-	
-	
+		companies = jongo.getCollection("companies");
+		invoices = jongo.getCollection("invoices");
+	}	
 	
 	@Override
 	public List<Client> getAllClientsList() {
@@ -50,7 +46,6 @@ public class MongoWrapper implements Database{
 	public void saveClient(Client client) {
 		clients.save(client);
 	}
-	
 	
 	@Override
 	public List<Company> getAllCompaniesList() {
@@ -87,7 +82,4 @@ public class MongoWrapper implements Database{
 	public void saveInvoice(Invoice invoice) {
 		invoices.save(invoice);
 	}
-	
-	
-	
 }

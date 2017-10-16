@@ -5,8 +5,6 @@
  */
 package com.unifi.fattureApp.UI;
 
-
-
 import org.assertj.swing.edt.GuiActionRunner;
 import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.fixture.JButtonFixture;
@@ -17,14 +15,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class MyCompanyPanelUITest {
-
 	private FrameFixture window;
 	private JPanelFixture myCompany_Panel;
 	private JPanelFixture addCompany_Panel;
 	private JButtonFixture addCompany_Button;
 	private JButtonFixture cancelAdd_Button;
 	private JButtonFixture saveAdd_Button;
-
 
 	@Before public void setUp() {
 		MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
@@ -92,19 +88,14 @@ public class MyCompanyPanelUITest {
 		companyName.text().compareTo("");
 	}
 	
-	
 	@Test 
 	public void testResetVatTextField(){
 //		saveCompany();
 		showAddCompanyPanel();
 		
 		JTextComponentFixture companyVat = addCompany_Panel.textBox("companyVatTextField");
-		companyVat.text().isEmpty();
-		
+		companyVat.text().isEmpty();	
 	}
-
-	
-	
 	
 	@Test 
 	public void testResetAddressTextField(){
@@ -113,8 +104,7 @@ public class MyCompanyPanelUITest {
 		showAddCompanyPanel();
 		
 		JTextComponentFixture companyAddress = addCompany_Panel.textBox("companyAddressTextField");
-		companyAddress.text().isEmpty();
-		
+		companyAddress.text().isEmpty();	
 	}
 	
 	@Test 
@@ -125,8 +115,6 @@ public class MyCompanyPanelUITest {
 		
 		JTextComponentFixture companyCity = addCompany_Panel.textBox("companyCityTextField");
 		companyCity.text().isEmpty();
-		
-		
 	}
 	
 	@Test 
@@ -135,10 +123,8 @@ public class MyCompanyPanelUITest {
 		
 		showAddCompanyPanel();
 		
-		
 		JTextComponentFixture companyProvince = addCompany_Panel.textBox("companyProvinceTextField");
 		companyProvince.text().isEmpty();
-		
 	}
 	
 	@Test 
@@ -149,8 +135,6 @@ public class MyCompanyPanelUITest {
 	
 		JTextComponentFixture companyZip= addCompany_Panel.textBox("companyZipTextField");
 		companyZip.text().isEmpty();
-		
-	
 	}
 	
 	@Test 
@@ -159,11 +143,8 @@ public class MyCompanyPanelUITest {
 		
 		showAddCompanyPanel();
 		
-		
 		JTextComponentFixture companyCountry = addCompany_Panel.textBox("companyCountryTextField");
 		companyCountry.text().isEmpty();
-		
-		
 	}
 	
 	@Test 
@@ -174,7 +155,6 @@ public class MyCompanyPanelUITest {
 		
 		JTextComponentFixture companyPhone = addCompany_Panel.textBox("companyPhoneTextField");
 		companyPhone.text().compareTo("");
-		
 	}
 	
 	@Test 
@@ -185,7 +165,6 @@ public class MyCompanyPanelUITest {
 		
 		JTextComponentFixture companyEmail = addCompany_Panel.textBox("companyEmailTextField");
 		companyEmail.text().compareTo("");
-		
 	}
 	
 	private void showAddCompanyPanel() {
@@ -198,14 +177,4 @@ public class MyCompanyPanelUITest {
 		saveAdd_Button = addCompany_Panel.button("SaveButton");
 		saveAdd_Button.click();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
