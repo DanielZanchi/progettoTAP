@@ -33,6 +33,7 @@ public class ClientPanel extends JPanel {
 
 	private LinkedList<JTextField> textFields;
 
+
 	private Color layerColor = new java.awt.Color(216, 245, 255);
 
 	public ClientPanel(JLayeredPane outer_Panel, int buttonWidth, int buttonHeight, MongoUiComunication mongoUiCom) {
@@ -280,4 +281,13 @@ public class ClientPanel extends JPanel {
 			});
 		}
 	}
+	
+	
+	
+	/*
+	public LinkedList<JTextField> getTextFields() {
+		return textFields;
+	}
+	*/
+	
 }

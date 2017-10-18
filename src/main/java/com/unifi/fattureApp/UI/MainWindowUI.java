@@ -216,6 +216,7 @@ public class MainWindowUI {
 	private void createAddRecordsPanels() {
 		addCompany_Panel = new CompanyPanel(outer_Panel, buttonWidth, buttonHeight,mongoUiCom);
 		addCompany_Panel.setVisible(false);
+	
 
 		addClient_Panel = new ClientPanel(outer_Panel, buttonWidth, buttonHeight,mongoUiCom);
 		addClient_Panel.setVisible(false);

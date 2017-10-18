@@ -28,6 +28,7 @@ public class MyCompanyPanelUITest {
 		window.show();
 		myCompany_Panel = window.panel("CompanyPanel");
 		addCompany_Button = window.panel("CompanyPanel").button("AddCompanyButton");
+		
 	}
 
 	@After

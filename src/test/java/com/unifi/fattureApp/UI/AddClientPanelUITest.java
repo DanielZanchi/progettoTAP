@@ -67,22 +67,52 @@ public class AddClientPanelUITest {
 	
 	@Test
 	public void testSaveButtonText() {
-		addClient_Button.click();
-		addClient_Panel = window.panel("AddClientPanel");
-		saveAdd_Button = addClient_Panel.button("SaveButton");
+		getSaveButton();
 		saveAdd_Button.requireText("Save");
 	}
 	
 	@Test
 	public void testSaveButtonNoInputsAction() {
+		getSaveButton();
+		saveAdd_Button.requireDisabled();
+	}
+	
+	@Test
+	public void testSaveButtonWithInputsAction() {
+		getSaveButton();
+		setTextfieldsStrings("0","1","2","3","4","5","6","","");
+		saveAdd_Button.click();
+		addClient_Panel.requireNotVisible();
+	}
+
+	
+
+	private void getSaveButton() {
 		addClient_Button.click();
 		addClient_Panel = window.panel("AddClientPanel");
 		saveAdd_Button = addClient_Panel.button("SaveButton");
-		saveAdd_Button.requireDisabled();
-//		addClient_Button.click();
-//		addClient_Panel = window.panel("AddClientPanel");
-//		saveAdd_Button = addClient_Panel.button("SaveButton");
-//		saveAdd_Button.click();
-//		addClient_Panel.requireNotVisible();
 	}
+	
+	
+	
+	private void setTextfieldsStrings(String string1, String string2, String string3, String string4, String string5,
+			String string6, String string7, String string8, String string9) {
+		
+		addClient_Panel.textBox("clientName_TF").setText(string1);
+		addClient_Panel.textBox("clientVat_TF").setText(string2);
+		addClient_Panel.textBox("clientAddress_TF").setText(string3);
+		addClient_Panel.textBox("clientCity_TF").setText(string4);
+		addClient_Panel.textBox("clientProvince_TF").setText(string5);
+		addClient_Panel.textBox("clientZip_TF").setText(string6);
+		addClient_Panel.textBox("clientCountry_TF").setText(string7);
+		addClient_Panel.textBox("clientPhone_TF").setText(string8);
+		addClient_Panel.textBox("clientEmail_TF").setText(string9);
+		
+		
+	}
+	
+	
+	
+	
+	
 }
