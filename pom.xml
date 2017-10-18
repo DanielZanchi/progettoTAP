@@ -334,7 +334,7 @@
             <configuration>
               <images>
                 <image>
-                  <alias>app</alias>
+                  <alias>fatture-app</alias>
                   <external>
                     <type>compose</type>
                     <basedir>.</basedir>
