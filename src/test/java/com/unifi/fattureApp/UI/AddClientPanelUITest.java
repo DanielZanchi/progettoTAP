@@ -84,6 +84,13 @@ public class AddClientPanelUITest {
 		saveAdd_Button.click();
 		addClient_Panel.requireNotVisible();
 	}
+	
+	@Test
+	public void testSaveButtonWithWrongInputsAction() {
+		getSaveButton();
+		setTextfieldsStrings("0","1","2","3","4","5","","","");
+		saveAdd_Button.requireDisabled();
+	}
 
 	
 
