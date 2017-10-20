@@ -228,10 +228,13 @@ public class ClientPanel extends JPanel {
 		save_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// save company
+				
+				/*
 				  myMongoUiComunication.addClientToDatabase(clientName_TF.getText(),
 				  clientVat_TF.getText(),clientAddress_TF.getText(),clientCity_TF.getText(),clientProvince_TF.getText(),
 				  clientZip_TF.getText(),clientCity_TF.getText()
 				  , clientPhone_TF.getText(),clientEmail_TF.getText());
+				  */
 				  
 				  
 				  addClient_Panel.setVisible(false); //outer_Panel.remove(addClient_Panel); }

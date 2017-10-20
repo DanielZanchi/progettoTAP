@@ -36,69 +36,69 @@ public class AddClientPanelUITest {
 	}
 	*/
 	
-//	@Test
-//	public void testAddButtonText() {
-//		addClient_Button.requireText("Add");
-//	}
-//	
-//	@Test
-//	public void testAddButtonAction() {		
-//		addClient_Button.click();
-//		addClient_Panel = window.panel("AddClientPanel");
-//		addClient_Panel.requireVisible();
-//	}
-//	
-//	@Test
-//	public void testCancelButtonText() {
-//		addClient_Button.click();
-//		addClient_Panel = window.panel("AddClientPanel");
-//		cancelAdd_Button = addClient_Panel.button("CancelButton");
-//		cancelAdd_Button.requireText("Cancel");
-//	}
-//	
-//	@Test
-//	public void testCancelButtonAction() {
-//		addClient_Button.click();
-//		addClient_Panel = window.panel("AddClientPanel");
-//		cancelAdd_Button = addClient_Panel.button("CancelButton");
-//		cancelAdd_Button.click();
-//		addClient_Panel.requireNotVisible();
-//	}
-//	
-//	@Test
-//	public void testSaveButtonText() {
-//		getSaveButton();
-//		saveAdd_Button.requireText("Save");
-//	}
-//	
-//	@Test
-//	public void testSaveButtonNoInputsAction() {
-//		getSaveButton();
-//		saveAdd_Button.requireDisabled();
-//	}
-//	
-////	@Test
-////	public void testSaveButtonWithInputsAction() {
-////		getSaveButton();
-////		setTextfieldsStrings("0","1","2","3","4","5","6","","");
-////		saveAdd_Button.click();
-////		addClient_Panel.requireNotVisible();
-////	}
-//	
-//	@Test
-//	public void testSaveButtonWithWrongInputsAction() {
-//		getSaveButton();
-//		setTextfieldsStrings("0","1","2","3","4","5","","","");
-//		saveAdd_Button.requireDisabled();
-//	}
-//
-//	
-//
-//	private void getSaveButton() {
-//		addClient_Button.click();
-//		addClient_Panel = window.panel("AddClientPanel");
-//		saveAdd_Button = addClient_Panel.button("SaveButton");
-//	}
+	@Test
+	public void testAddButtonText() {
+		addClient_Button.requireText("Add");
+	}
+	
+	@Test
+	public void testAddButtonAction() {		
+		addClient_Button.click();
+		addClient_Panel = window.panel("AddClientPanel");
+		addClient_Panel.requireVisible();
+	}
+	
+	@Test
+	public void testCancelButtonText() {
+		addClient_Button.click();
+		addClient_Panel = window.panel("AddClientPanel");
+		cancelAdd_Button = addClient_Panel.button("CancelButton");
+		cancelAdd_Button.requireText("Cancel");
+	}
+	
+	@Test
+	public void testCancelButtonAction() {
+		addClient_Button.click();
+		addClient_Panel = window.panel("AddClientPanel");
+		cancelAdd_Button = addClient_Panel.button("CancelButton");
+		cancelAdd_Button.click();
+		addClient_Panel.requireNotVisible();
+	}
+	
+	@Test
+	public void testSaveButtonText() {
+		getSaveButton();
+		saveAdd_Button.requireText("Save");
+	}
+	
+	@Test
+	public void testSaveButtonNoInputsAction() {
+		getSaveButton();
+		saveAdd_Button.requireDisabled();
+	}
+	
+	@Test
+	public void testSaveButtonWithInputsAction() {
+		getSaveButton();
+		setTextfieldsStrings("0","1","2","3","4","5","6","","");
+		saveAdd_Button.click();
+		addClient_Panel.requireNotVisible();
+	}
+	
+	@Test
+	public void testSaveButtonWithWrongInputsAction() {
+		getSaveButton();
+		setTextfieldsStrings("0","1","2","3","4","5","","","");
+		saveAdd_Button.requireDisabled();
+	}
+
+	
+
+	private void getSaveButton() {
+		addClient_Button.click();
+		addClient_Panel = window.panel("AddClientPanel");
+		saveAdd_Button = addClient_Panel.button("SaveButton");
+	}
 	
 	
 	

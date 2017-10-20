@@ -36,137 +36,137 @@ public class MyCompanyPanelUITest {
 		window.cleanUp();
 	}
 
-//	@Test
-//	public void testCompanyPanelBackground() {
-//		myCompany_Panel.background().requireEqualTo(new java.awt.Color(226, 244, 252));
-//	}
-//	
-//	@Test
-//	public void testAddButtonText() {
-//		addCompany_Button.requireText("Add");
-//	}
-//	
-//	@Test
-//	public void testAddButtonAction() {		
-//		showAddCompanyPanel();
-//		addCompany_Panel.requireVisible();
-//	}
-//	
-//	@Test
-//	public void testCancelButtonText() {
-//		showAddCompanyPanel();
-//		cancelAdd_Button = addCompany_Panel.button("CancelButton");
-//		cancelAdd_Button.requireText("Cancel");
-//	}
-//	
-//	@Test
-//	public void testCancelButtonAction() {
-//		showAddCompanyPanel();
-//		cancelAdd_Button = addCompany_Panel.button("CancelButton");
-//		cancelAdd_Button.click();
-//		addCompany_Panel.requireNotVisible();
-//	}
-//	
-//	@Test
-//	public void testSaveButtonText() {
-//		showAddCompanyPanel();
-//		saveAdd_Button = addCompany_Panel.button("SaveButton");
-//		saveAdd_Button.requireText("Save");
-//	}
-//	
-//	@Test
-//	public void testSaveButtonAction() {
+	@Test
+	public void testCompanyPanelBackground() {
+		myCompany_Panel.background().requireEqualTo(new java.awt.Color(226, 244, 252));
+	}
+	
+	@Test
+	public void testAddButtonText() {
+		addCompany_Button.requireText("Add");
+	}
+	
+	@Test
+	public void testAddButtonAction() {		
+		showAddCompanyPanel();
+		addCompany_Panel.requireVisible();
+	}
+	
+	@Test
+	public void testCancelButtonText() {
+		showAddCompanyPanel();
+		cancelAdd_Button = addCompany_Panel.button("CancelButton");
+		cancelAdd_Button.requireText("Cancel");
+	}
+	
+	@Test
+	public void testCancelButtonAction() {
+		showAddCompanyPanel();
+		cancelAdd_Button = addCompany_Panel.button("CancelButton");
+		cancelAdd_Button.click();
+		addCompany_Panel.requireNotVisible();
+	}
+	
+	@Test
+	public void testSaveButtonText() {
+		showAddCompanyPanel();
+		saveAdd_Button = addCompany_Panel.button("SaveButton");
+		saveAdd_Button.requireText("Save");
+	}
+	
+	@Test
+	public void testSaveButtonAction() {
+		saveCompany();
+		addCompany_Panel.requireNotVisible();
+	}
+	
+	@Test 
+	public void testResetNameTextField(){
 //		saveCompany();
-//		addCompany_Panel.requireNotVisible();
-//	}
-//	
-//	@Test 
-//	public void testResetNameTextField(){
-////		saveCompany();
-//		
-//		showAddCompanyPanel();
-//		JTextComponentFixture companyName = addCompany_Panel.textBox("companyNameTextField");
-//		companyName.text().compareTo("");
-//	}
-//	
-//	@Test 
-//	public void testResetVatTextField(){
-////		saveCompany();
-//		showAddCompanyPanel();
-//		
-//		JTextComponentFixture companyVat = addCompany_Panel.textBox("companyVatTextField");
-//		companyVat.text().isEmpty();	
-//	}
-//	
-//	@Test 
-//	public void testResetAddressTextField(){
-//		//saveCompany();
-//		
-//		showAddCompanyPanel();
-//		
-//		JTextComponentFixture companyAddress = addCompany_Panel.textBox("companyAddressTextField");
-//		companyAddress.text().isEmpty();	
-//	}
-//	
-//	@Test 
-//	public void testResetCityTextField(){
-//		//saveCompany();
-//		
-//		showAddCompanyPanel();
-//		
-//		JTextComponentFixture companyCity = addCompany_Panel.textBox("companyCityTextField");
-//		companyCity.text().isEmpty();
-//	}
-//	
-//	@Test 
-//	public void testResetProvinceTextField(){
-//		//saveCompany();
-//		
-//		showAddCompanyPanel();
-//		
-//		JTextComponentFixture companyProvince = addCompany_Panel.textBox("companyProvinceTextField");
-//		companyProvince.text().isEmpty();
-//	}
-//	
-//	@Test 
-//	public void testResetZipTextField(){
-//		//saveCompany();
-//		
-//		showAddCompanyPanel();
-//	
-//		JTextComponentFixture companyZip= addCompany_Panel.textBox("companyZipTextField");
-//		companyZip.text().isEmpty();
-//	}
-//	
-//	@Test 
-//	public void testResetCountryTextField(){
-//		//saveCompany();
-//		
-//		showAddCompanyPanel();
-//		
-//		JTextComponentFixture companyCountry = addCompany_Panel.textBox("companyCountryTextField");
-//		companyCountry.text().isEmpty();
-//	}
-//	
-//	@Test 
-//	public void testResetPhoneTextField(){
-//		//saveCompany();
-//		
-//		showAddCompanyPanel();
-//		
-//		JTextComponentFixture companyPhone = addCompany_Panel.textBox("companyPhoneTextField");
-//		companyPhone.text().compareTo("");
-//	}
-//	
-//	@Test 
-//	public void testResetEmailTextField(){
+		
+		showAddCompanyPanel();
+		JTextComponentFixture companyName = addCompany_Panel.textBox("companyNameTextField");
+		companyName.text().compareTo("");
+	}
+	
+	@Test 
+	public void testResetVatTextField(){
 //		saveCompany();
-//		
-//		showAddCompanyPanel();
-//		
-//		JTextComponentFixture companyEmail = addCompany_Panel.textBox("companyEmailTextField");
-//		companyEmail.text().compareTo("");
-//	}
+		showAddCompanyPanel();
+		
+		JTextComponentFixture companyVat = addCompany_Panel.textBox("companyVatTextField");
+		companyVat.text().isEmpty();	
+	}
+	
+	@Test 
+	public void testResetAddressTextField(){
+		//saveCompany();
+		
+		showAddCompanyPanel();
+		
+		JTextComponentFixture companyAddress = addCompany_Panel.textBox("companyAddressTextField");
+		companyAddress.text().isEmpty();	
+	}
+	
+	@Test 
+	public void testResetCityTextField(){
+		//saveCompany();
+		
+		showAddCompanyPanel();
+		
+		JTextComponentFixture companyCity = addCompany_Panel.textBox("companyCityTextField");
+		companyCity.text().isEmpty();
+	}
+	
+	@Test 
+	public void testResetProvinceTextField(){
+		//saveCompany();
+		
+		showAddCompanyPanel();
+		
+		JTextComponentFixture companyProvince = addCompany_Panel.textBox("companyProvinceTextField");
+		companyProvince.text().isEmpty();
+	}
+	
+	@Test 
+	public void testResetZipTextField(){
+		//saveCompany();
+		
+		showAddCompanyPanel();
+	
+		JTextComponentFixture companyZip= addCompany_Panel.textBox("companyZipTextField");
+		companyZip.text().isEmpty();
+	}
+	
+	@Test 
+	public void testResetCountryTextField(){
+		//saveCompany();
+		
+		showAddCompanyPanel();
+		
+		JTextComponentFixture companyCountry = addCompany_Panel.textBox("companyCountryTextField");
+		companyCountry.text().isEmpty();
+	}
+	
+	@Test 
+	public void testResetPhoneTextField(){
+		//saveCompany();
+		
+		showAddCompanyPanel();
+		
+		JTextComponentFixture companyPhone = addCompany_Panel.textBox("companyPhoneTextField");
+		companyPhone.text().compareTo("");
+	}
+	
+	@Test 
+	public void testResetEmailTextField(){
+		saveCompany();
+		
+		showAddCompanyPanel();
+		
+		JTextComponentFixture companyEmail = addCompany_Panel.textBox("companyEmailTextField");
+		companyEmail.text().compareTo("");
+	}
 	
 	private void showAddCompanyPanel() {
 		addCompany_Button.click();

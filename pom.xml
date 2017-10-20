@@ -246,6 +246,7 @@
             <configuration>
               <images>
                 <image>
+               	<alias>${project.artifactId}</alias>
                   <name>mongo</name>
                   <run>
                     <ports>
@@ -334,7 +335,7 @@
             <configuration>
               <images>
                 <image>
-                  <alias>fatture-app</alias>
+                  <alias>${project.artifactId}</alias>
                   <external>
                     <type>compose</type>
                     <basedir>.</basedir>
