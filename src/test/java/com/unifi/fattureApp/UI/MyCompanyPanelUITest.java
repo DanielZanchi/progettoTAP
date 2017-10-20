@@ -77,7 +77,7 @@ public class MyCompanyPanelUITest {
 	@Test
 	public void testSaveButtonAction() {
 		saveCompany();
-		addCompany_Panel.requireNotVisible();
+		saveAdd_Button.requireDisabled();
 	}
 	
 	@Test 
