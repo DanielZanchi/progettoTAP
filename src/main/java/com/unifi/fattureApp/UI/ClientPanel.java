@@ -51,8 +51,9 @@ public class ClientPanel extends JPanel {
 		addClient_Panel.setLayout(null);
 		outer_Panel.setLayer(addClient_Panel, 2);
 
-		// ADD COMPONENTS INSIDE PANEL
 		textFields = new LinkedList<>();
+		
+		// ADD COMPONENTS INSIDE PANEL
 
 		int addPanelY = addClient_Panel.getY();
 		insets = 8;
