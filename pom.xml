@@ -255,6 +255,10 @@
                   </run>
                 </image>
                 <image>
+                <!-- 
+                
+                
+                 -->
                   <name>fatture-app</name>
                   <build>
                     <dockerFileDir>${project.basedir}/docker</dockerFileDir>
