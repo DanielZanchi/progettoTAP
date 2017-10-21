@@ -14,7 +14,8 @@ public class MainWindowUITest {
 	
 	@Before
 	public void setUp() {
-		MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
+		//MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
+		MainWindowUI frame=new MainWindowUI();
 		window = new FrameFixture(frame.getMainFrame());
 		window.show();
 	}

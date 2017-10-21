@@ -19,7 +19,8 @@ public class AddClientPanelUITest {
 	private JButtonFixture saveAdd_Button;
 
 	@Before public void setUp() {
-		MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
+		//MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
+		MainWindowUI frame=new MainWindowUI();
 		window = new FrameFixture(frame.getMainFrame());
 		window.show();
 		clientPanel = window.panel("ClientPanel");

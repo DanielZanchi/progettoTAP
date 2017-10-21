@@ -25,7 +25,8 @@ public class MyCompanyPanelUITest {
 	private JButtonFixture saveAdd_Button;
 
 	@Before public void setUp() {
-		MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
+		//MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
+		MainWindowUI frame=new MainWindowUI();
 		window = new FrameFixture(frame.getMainFrame());
 		window.show();
 		myCompany_Panel = window.panel("CompanyPanel");
