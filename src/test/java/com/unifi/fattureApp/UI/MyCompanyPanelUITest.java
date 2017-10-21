@@ -27,7 +27,7 @@ public class MyCompanyPanelUITest {
 	@Before public void setUp() {
 		MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
 		window = new FrameFixture(frame.getMainFrame());
-		//window.show();
+		window.show();
 		myCompany_Panel = window.panel("CompanyPanel");
 		addCompany_Button = window.panel("CompanyPanel").button("AddCompanyButton");
 		

@@ -21,7 +21,7 @@ public class AddClientPanelUITest {
 	@Before public void setUp() {
 		MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
 		window = new FrameFixture(frame.getMainFrame());
-		//window.show();
+		window.show();
 		clientPanel = window.panel("ClientPanel");
 		addClient_Button = window.panel("ClientPanel").button("AddClientButton");
 	}
