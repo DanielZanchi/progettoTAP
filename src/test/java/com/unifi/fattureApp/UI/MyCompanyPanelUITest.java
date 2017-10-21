@@ -14,6 +14,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.unifi.fattureApp.App.MongoUiComunication;
+
 public class MyCompanyPanelUITest {
 	private FrameFixture window;
 	private JPanelFixture myCompany_Panel;
@@ -25,7 +27,7 @@ public class MyCompanyPanelUITest {
 	@Before public void setUp() {
 		MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
 		window = new FrameFixture(frame.getMainFrame());
-		window.show();
+		//window.show();
 		myCompany_Panel = window.panel("CompanyPanel");
 		addCompany_Button = window.panel("CompanyPanel").button("AddCompanyButton");
 		

@@ -8,6 +8,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.unifi.fattureApp.App.MongoUiComunication;
+
 public class AddClientPanelUITest {
 	private FrameFixture window;
 	private JPanelFixture clientPanel;
@@ -19,7 +21,7 @@ public class AddClientPanelUITest {
 	@Before public void setUp() {
 		MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
 		window = new FrameFixture(frame.getMainFrame());
-		window.show();
+		//window.show();
 		clientPanel = window.panel("ClientPanel");
 		addClient_Button = window.panel("ClientPanel").button("AddClientButton");
 	}

@@ -7,6 +7,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.unifi.fattureApp.App.MongoUiComunication;
+
 public class MainWindowUITest {
 	private FrameFixture window;
 	
@@ -14,7 +16,7 @@ public class MainWindowUITest {
 	public void setUp() {
 		MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
 		window = new FrameFixture(frame.getMainFrame());
-		window.show();
+		//window.show();
 	}
 	
 	@After

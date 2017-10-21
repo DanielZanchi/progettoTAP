@@ -46,29 +46,37 @@ public class MainWindowUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainWindowUI window = new MainWindowUI();
-					window.fattureApp_Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					window.fattureApp_Frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					MainWindowUI window = new MainWindowUI();
+//					window.fattureApp_Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//					window.fattureApp_Frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
+	
 
 	/**
 	 * Create the application.
 	 */
+	public MainWindowUI(MongoUiComunication mongoUiComm) {
+		mongoUiCom=mongoUiComm;
+		initialize();
+	}
+	
 	public MainWindowUI() {
+		mongoUiCom=new MongoUiComunication();
 		initialize();
 	}
 
 	private void initialize() {
-		mongoUiCom=new MongoUiComunication();
+		//mongoUiCom=new MongoUiComunication();
 		
 		fattureApp_Frame = new JFrame();
 		fattureApp_Frame.setTitle("Fatture App");
@@ -78,6 +86,9 @@ public class MainWindowUI {
 		fattureApp_Frame.setBackground(java.awt.Color.LIGHT_GRAY);
 		fattureApp_Frame.getContentPane().setLayout(null);
 		fattureApp_Frame.setLocationRelativeTo(null);
+		
+		fattureApp_Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 
 		outer_Panel = new JLayeredPane();
 		outer_Panel.setName("OuterPanel");
@@ -211,6 +222,7 @@ public class MainWindowUI {
 		createAddRecordsPanels();
 
 		fattureApp_Frame.pack();
+		fattureApp_Frame.setVisible(true);
 	}
 
 	private void createAddRecordsPanels() {
