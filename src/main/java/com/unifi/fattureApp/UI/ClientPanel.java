@@ -239,12 +239,13 @@ public class ClientPanel extends JPanel {
 				  
 				  
 				  addClient_Panel.setVisible(false); //outer_Panel.remove(addClient_Panel); }
-				  };
+				  resetTextFields();
+			};
 		});
 
 		// check if all required field aren't empty. if so activate the save button.
 
-		Component[] components = addClient_Panel.getComponents();
+/*		Component[] components = addClient_Panel.getComponents();
 		for (Component component : components) {
 			if (component.getClass().equals(JTextField.class)) {
 				
@@ -293,5 +294,59 @@ public class ClientPanel extends JPanel {
 		return textFields;
 	}
 	*/
-	
+		
+		Component[] components = addClient_Panel.getComponents();
+		for (Component component : components) {
+			if (component.getClass().equals(JTextField.class)) {
+
+				if (!((JTextField) component).getName().equals("clientPhoneTextField")
+						&& !((JTextField) component).getName().equals("clientEmailTextField")) {
+					textFields.add((JTextField) component);
+				}
+			}
+		}
+
+		for (JTextField tf : textFields) {
+			tf.getDocument().addDocumentListener(new DocumentListener() {
+				@Override
+				public void insertUpdate(DocumentEvent e) {
+					changed();
+				}
+
+				@Override
+				public void removeUpdate(DocumentEvent e) {
+					changed();
+				}
+
+				@Override
+				public void changedUpdate(DocumentEvent e) {
+					changed();
+
+				}
+
+				public void changed() {
+					boolean shouldActivate = true;
+					for (JTextField tf : textFields) {
+						if (tf.getText().equals("")) {
+							shouldActivate = false;
+							break;
+						}
+					}
+					save_Button.setEnabled(shouldActivate);
+				}
+			});
+		}
+	}
+
+	private void resetTextFields() {
+		clientName_TF.setText("");
+		clientVat_TF.setText("");
+		clientAddress_TF.setText("");
+		clientCity_TF.setText("");
+		clientProvince_TF.setText("");
+		clientZip_TF.setText("");
+		clientCountry_TF.setText("");
+		clientPhone_TF.setText("");
+		clientEmail_TF.setText("");
+	}	
 }
