@@ -172,15 +172,17 @@ public class MongoUiComunication {
 	
 	
 	
-	private void updateCompanyReference() {
+	public void updateCompanyReference() {
 		if(companyInfo.getText().equals("info")) {
 			if(this.getCompaniesCount()>0){
 				companyInfo.setText(this.getSavedCompanies().get(0).getName());
 			}
-		}else {
+		}
+		
+		if(this.getCompaniesCount()>0) {
 			companyInfo.setText(this.getSavedCompanies().get(companyCounter).getName());
 		}
-		currentSelectedCompany=this.getSavedCompanies().get(companyCounter);
+		
 	}
 
 	public void updateClientsReferences() {

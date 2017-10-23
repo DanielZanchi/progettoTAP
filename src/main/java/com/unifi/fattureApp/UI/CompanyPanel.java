@@ -239,6 +239,7 @@ public class CompanyPanel extends JPanel {
 
 				addCompany_Panel.setVisible(false);
 				resetTextFields();
+				myMongoUiComunication.updateCompanyReference();
 				
 				// outer_Panel.remove(addCompany_Panel);
 			}
