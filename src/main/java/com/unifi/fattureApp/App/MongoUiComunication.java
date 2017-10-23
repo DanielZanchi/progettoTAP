@@ -11,6 +11,11 @@ public class MongoUiComunication {
 	String mongoHost = "localhost";
 	CompanyController myCompanyController;
 	
+	private Company currentSelectedCompany;
+	private Client currentSelectedClient;
+	private Invoice currentSelectedInvoice;
+	
+	
 	public MongoUiComunication(){
 //		if (args.length > 0)
 //			mongoHost = args[0];
@@ -56,11 +61,11 @@ public class MongoUiComunication {
 	}
 	
 	
-	public List<Company> getSavedCompanies(){
+	public List getSavedCompanies(){
 		return myCompanyController.getAllCompany();
 	}
 	
-	public List<Client> getSavedClients(){
+	public List getSavedClients(){
 		return myCompanyController.getAllClients();
 	}
 	
@@ -93,4 +98,35 @@ public class MongoUiComunication {
 			);
 		System.out.println("--------/Companies---------");
 	}
+
+	
+	
+	
+	public Company getCurrentSelectedCompany() {
+		return currentSelectedCompany;
+	}
+
+	public void setCurrentSelectedCompany(Company currentSelectedCompany) {
+		this.currentSelectedCompany = currentSelectedCompany;
+	}
+
+	public Invoice getCurrentSelectedInvoice() {
+		return currentSelectedInvoice;
+	}
+
+	public void setCurrentSelectedInvoice(Invoice currentSelectedInvoice) {
+		this.currentSelectedInvoice = currentSelectedInvoice;
+	}
+
+	public Client getCurrentSelectedClient() {
+		return currentSelectedClient;
+	}
+
+	public void setCurrentSelectedClient(Client currentSelectedClient) {
+		this.currentSelectedClient = currentSelectedClient;
+	}
+	
+	
+	
+	
 }
