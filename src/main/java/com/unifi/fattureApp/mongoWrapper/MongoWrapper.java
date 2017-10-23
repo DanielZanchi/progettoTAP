@@ -1,5 +1,6 @@
 package com.unifi.fattureApp.mongoWrapper;
 
+import java.net.UnknownHostException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -10,29 +11,75 @@ import org.jongo.MongoCollection;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import com.unifi.fattureApp.App.Database;
-import com.unifi.fattureApp.App.Patient;
+import com.unifi.fattureApp.App.Invoice;
+import com.unifi.fattureApp.App.Client;
+import com.unifi.fattureApp.App.Company;
 
 public class MongoWrapper implements Database{
+	private MongoCollection clients;
+	private MongoCollection companies;
+	private MongoCollection invoices;
 
-	private MongoCollection patients;
+	public MongoWrapper(MongoClient mc) throws UnknownHostException {
+		DB db = mc.getDB("company");
 
-	public MongoWrapper(MongoClient myMongoClient) {
-		// TODO Auto-generated constructor stub
-		DB db=myMongoClient.getDB("medicalOffice");
-		Jongo myJongo=new Jongo(db);
-		patients=myJongo.getCollection("patients");
-	}
-
-	public List<Patient> getAllPatients() {
-		Iterable<Patient> iterable=patients.find().as(Patient.class);
-		return StreamSupport.stream(iterable.spliterator(),false).collect(Collectors.toList());
-	}
-
-	public Patient findPatientId(String id) {
-		// TODO Auto-generated method stub
-		return patients.findOne("{id:#}",id).as(Patient.class);
-	}
-
+		Jongo jongo = new Jongo(db);
+		clients = jongo.getCollection("client");
+		companies = jongo.getCollection("companies");
+		invoices = jongo.getCollection("invoices");
+	}	
 	
+	@Override
+	public List<Client> getAllClientsList() {
+		Iterable<Client> iterable = clients.find().as(Client.class);
+		return StreamSupport.
+			stream(iterable.spliterator(), false).
+			collect(Collectors.toList());
+	}
+	
+	@Override
+	public Client findClientById(String id) {
+		return clients.findOne("{id: #}", id).as(Client.class);
+	}
 
+	@Override
+	public void saveClient(Client client) {
+		clients.save(client);
+	}
+	
+	@Override
+	public List<Company> getAllCompaniesList() {
+		Iterable<Company> iterable = companies.find().as(Company.class);
+		return StreamSupport.
+			stream(iterable.spliterator(), false).
+			collect(Collectors.toList());
+	}
+	
+	@Override
+	public Company findCompanyById(String id) {
+		return companies.findOne("{id: #}", id).as(Company.class);
+	}
+
+	@Override
+	public void saveCompany(Company company) {
+		companies.save(company);
+	}
+
+	@Override
+	public List<Invoice> getAllInvoicesList() {
+		Iterable<Invoice> iterable = invoices.find().as(Invoice.class);
+		return StreamSupport.
+			stream(iterable.spliterator(), false).
+			collect(Collectors.toList());
+	}
+
+	@Override
+	public Invoice findInvoiceById(String id) {
+		return invoices.findOne("{id: #}", id).as(Invoice.class);
+	}
+
+	@Override
+	public void saveInvoice(Invoice invoice) {
+		invoices.save(invoice);
+	}
 }
