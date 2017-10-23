@@ -21,6 +21,8 @@ import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.App.MongoUiComunication;
 
 public class MainWindowUI {
+	
+	//prova pull request...
 	private MongoUiComunication mongoUiCom;
 	
 	private JFrame fattureApp_Frame;
@@ -41,7 +43,9 @@ public class MainWindowUI {
 	
 	private Company currentSelectedCompany;
 	private Client currentSelectedClient;
-	private Invoice currentSelectedInvoice;	
+	private Invoice currentSelectedInvoice;
+	
+	private Client testClient;
 	
 	
 
