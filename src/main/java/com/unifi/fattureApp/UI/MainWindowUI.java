@@ -219,6 +219,8 @@ public class MainWindowUI {
 		JButton editInvoiceProvision = new JButton("Edit");
 		editInvoiceProvision.setBounds(407, 35, 59, 29);
 		invoiceProvisionPanel.add(editInvoiceProvision);
+		
+		JButton createInvoice_Button = new JButton("Create Invoice");
 
 		createAddRecordsPanels();
 
