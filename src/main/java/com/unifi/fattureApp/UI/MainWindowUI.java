@@ -8,6 +8,8 @@ import java.awt.Label;
 import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.Iterator;
 
 import javax.swing.BorderFactory;
@@ -17,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.undo.UndoableEditSupport;
 
 import org.mockito.internal.matchers.VarargCapturingMatcher;
 import org.testcontainers.shaded.io.netty.util.Constant;
@@ -151,6 +154,13 @@ public class MainWindowUI {
 		prevCompany_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// go to previous company
+				if(mongoUiCom.getCompanyCounter()-1<0) {
+					
+					//disabilitarlo?
+					
+				}else{
+					mongoUiCom.setCompanyCounter(mongoUiCom.getCompanyCounter()-1);
+				}
 			}
 		});
 
@@ -166,6 +176,13 @@ public class MainWindowUI {
 		nextCompany_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO go to next company
+				if(mongoUiCom.getCompanyCounter()+1>mongoUiCom.getCompaniesCount()-1) {
+					
+					//disabilitarlo?
+
+				}else {
+					mongoUiCom.setCompanyCounter(mongoUiCom.getCompanyCounter()+1);
+				}
 			}
 		});
 
@@ -199,6 +216,17 @@ public class MainWindowUI {
 		JComboBox clientListComboBox = new JComboBox();
 		clientListComboBox.setBounds(6, 35, 335, 27);
 		clientPanel.add(clientListComboBox);
+		clientListComboBox.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					mongoUiCom.setCurrentSelectedClient(mongoUiCom.getSavedClients().get(clientListComboBox.getSelectedIndex()));
+	            }
+				
+			}
+		});
 
 		JButton addClient = new JButton("Add");
 		addClient.setName("AddClientButton");
@@ -233,6 +261,16 @@ public class MainWindowUI {
 		JComboBox invoiceListcomboBox = new JComboBox();
 		invoiceListcomboBox.setBounds(6, 36, 333, 27);
 		invoiceProvisionPanel.add(invoiceListcomboBox);
+		invoiceListcomboBox.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					mongoUiCom.setCurrentSelectedInvoice(mongoUiCom.getSavedInvoices().get(invoiceListcomboBox.getSelectedIndex()));
+	            }
+			}
+		});
 
 		JButton addInvoiceProvision = new JButton("Add");
 		addInvoiceProvision.setBounds(341, 35, 54, 29);
@@ -262,21 +300,29 @@ public class MainWindowUI {
 		createInvoice_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// creare la fattura.
+				mongoUiCom.printSelected();
 			}
 		});
 
 		createAddRecordsPanels();
+		updateReferences(clientListComboBox,invoiceListcomboBox,myCompanyInfo_Label);
+		
+		
 
 		fattureApp_Frame.pack();
 		fattureApp_Frame.setVisible(true);
 	}
-
-	private void fillComboBox(JComboBox clientListComboBox, JComboBox companyListComboBox, JComboBox invoiceComboBox) {
-		for (int i = 0; i < mongoUiCom.getSavedCompanies().size(); i++) {
-			// companyListComboBox.add(new Label(mongoUiCom.getSavedCompanies().get(i);
-		}
-
+	
+	
+	
+	private void updateReferences(JComboBox clientListComboBox,JComboBox invoiceListcomboBox,JLabel companyInfo) {
+		mongoUiCom.setClientsList(clientListComboBox);
+		mongoUiCom.setInvoicesList(invoiceListcomboBox);
+		mongoUiCom.setCompanyInfo(companyInfo);
+		mongoUiCom.updateAllReferences();
 	}
+
+	
 
 	private void createAddRecordsPanels() {
 		addCompany_Panel = new CompanyPanel(outer_Panel, buttonWidth, buttonHeight, mongoUiCom);
@@ -285,7 +331,7 @@ public class MainWindowUI {
 		addClient_Panel = new ClientPanel(outer_Panel, buttonWidth, buttonHeight, mongoUiCom);
 		addClient_Panel.setVisible(false);
 
-		addItem_Panel = new ItemInvoicePanel(outer_Panel, buttonWidth, buttonHeight);
+		addItem_Panel = new ItemInvoicePanel(outer_Panel, buttonWidth, buttonHeight,mongoUiCom);
 		addItem_Panel.setVisible(false);
 	}
 

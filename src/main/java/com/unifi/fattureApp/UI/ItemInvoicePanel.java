@@ -20,17 +20,22 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import com.unifi.fattureApp.App.MongoUiComunication;
+
 public class ItemInvoicePanel extends JPanel {
 	private JTextField itemDescription_TF;
 	private JFormattedTextField itemPrice_TF;
 
 	private LinkedList<JTextField> textFields;
+	private MongoUiComunication mongoUiComunication ;
 
 	private Color layerColor = new java.awt.Color(216, 245, 255);
 
-	public ItemInvoicePanel(JLayeredPane outer_Panel, int buttonWidth, int buttonHeight) {
+	public ItemInvoicePanel(JLayeredPane outer_Panel, int buttonWidth, int buttonHeight,MongoUiComunication mongoUiCom) {
+		this.mongoUiComunication = mongoUiCom;
 		JPanel addItem_Panel = this;
-
+		
+		
 		addItem_Panel.setName("AddItemPanel");
 		addItem_Panel.setBackground(layerColor);
 		addItem_Panel.setBorder(BorderFactory.createLineBorder(Color.white, 3));
@@ -113,9 +118,13 @@ public class ItemInvoicePanel extends JPanel {
 		addItem_Panel.add(save_Button);
 		save_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// save company
-				System.out.println(itemPrice_TF.getText());
+				// save invoice
+				
+				mongoUiComunication.addInvoiceToDatabase("da cambiare :-) ", itemDescription_TF.getText(), itemPrice_TF.getText());
+				
+				
 				addItem_Panel.setVisible(false);
+				mongoUiComunication.updateInvoicesReferences();
 				// outer_Panel.remove(addClient_Panel);
 			}
 		});

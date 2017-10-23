@@ -49,7 +49,7 @@ public class CompanyController {
 			return database.findInvoiceById(id);
 		}
 		
-		public boolean addCompany(Invoice invoice) {
+		public boolean addInvoice(Invoice invoice) {
 			if (getInvoiceId(invoice.getId()) != null)
 				return false;
 
