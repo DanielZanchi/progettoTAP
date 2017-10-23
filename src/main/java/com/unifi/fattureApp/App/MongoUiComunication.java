@@ -1,6 +1,5 @@
 package com.unifi.fattureApp.App;
 
-import java.net.UnknownHostException;
 import java.util.List;
 
 import com.mongodb.MongoClient;

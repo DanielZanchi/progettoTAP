@@ -1,10 +1,7 @@
 package com.unifi.fattureApp.UI;
 
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Frame;
-import java.awt.Insets;
 import java.awt.Color;
 
 import javax.swing.BorderFactory;
@@ -16,13 +13,10 @@ import javax.swing.JPanel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import com.unifi.fattureApp.App.MongoUiComunication;
 
 import javax.swing.JComboBox;
-import javax.swing.JSpinner;
 
 public class MainWindowUI {
 	private MongoUiComunication mongoUiCom;
