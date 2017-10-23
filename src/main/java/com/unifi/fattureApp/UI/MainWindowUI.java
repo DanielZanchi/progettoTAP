@@ -15,6 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import org.mockito.internal.matchers.VarargCapturingMatcher;
+import org.testcontainers.shaded.io.netty.util.Constant;
+
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Invoice;
@@ -220,8 +223,17 @@ public class MainWindowUI {
 		editInvoiceProvision.setBounds(407, 35, 59, 29);
 		invoiceProvisionPanel.add(editInvoiceProvision);
 		
-		JButton createInvoice_Button = new JButton("Create Invoice");
-
+		JButton createInvoice_Button = new JButton("CREATE INVOICE");
+		createInvoice_Button.setFont(new Font("Arial", Font.PLAIN, 14));
+		createInvoice_Button.setEnabled(true);
+		createInvoice_Button.setBackground(Color.white);
+		createInvoice_Button.setOpaque(true);
+		createInvoice_Button.setName("createInvoice_Button");
+		createInvoice_Button.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		int h = 50;
+		int w = 180;
+		createInvoice_Button.setBounds(invoicePanelWidth / 2 - (w / 2), invoice_Panel.getHeight() - h - 8 , w, h);
+		invoice_Panel.add(createInvoice_Button);
 		createAddRecordsPanels();
 
 		fattureApp_Frame.pack();
