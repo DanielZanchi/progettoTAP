@@ -5,7 +5,6 @@
  */
 package com.unifi.fattureApp.UI;
 
-import org.assertj.swing.edt.GuiActionRunner;
 import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.fixture.JButtonFixture;
 import org.assertj.swing.fixture.JPanelFixture;
@@ -13,8 +12,6 @@ import org.assertj.swing.fixture.JTextComponentFixture;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.unifi.fattureApp.App.MongoUiComunication;
 
 public class MyCompanyPanelUITest {
 	private FrameFixture window;
@@ -84,8 +81,8 @@ public class MyCompanyPanelUITest {
 	}
 	
 	@Test 
-	public void testResetNameTextField(){
-//		saveCompany();
+	public void testSaveResetNameTextField(){
+		saveCompany();
 		
 		showAddCompanyPanel();
 		JTextComponentFixture companyName = addCompany_Panel.textBox("companyNameTextField");
@@ -93,8 +90,17 @@ public class MyCompanyPanelUITest {
 	}
 	
 	@Test 
-	public void testResetVatTextField(){
-//		saveCompany();
+	public void testCancelResetNameTextField(){
+		cancelCompany();
+		
+		showAddCompanyPanel();
+		JTextComponentFixture companyName = addCompany_Panel.textBox("companyNameTextField");
+		companyName.text().compareTo("");
+	}
+	
+	@Test 
+	public void testSaveResetVatTextField(){
+		saveCompany();
 		showAddCompanyPanel();
 		
 		JTextComponentFixture companyVat = addCompany_Panel.textBox("companyVatTextField");
@@ -102,8 +108,17 @@ public class MyCompanyPanelUITest {
 	}
 	
 	@Test 
-	public void testResetAddressTextField(){
-		//saveCompany();
+	public void testCancelResetVatTextField(){
+		cancelCompany();
+		showAddCompanyPanel();
+		
+		JTextComponentFixture companyVat = addCompany_Panel.textBox("companyVatTextField");
+		companyVat.text().isEmpty();	
+	}
+	
+	@Test 
+	public void testSaveResetAddressTextField(){
+		saveCompany();
 		
 		showAddCompanyPanel();
 		
@@ -112,8 +127,18 @@ public class MyCompanyPanelUITest {
 	}
 	
 	@Test 
-	public void testResetCityTextField(){
-		//saveCompany();
+	public void testCancelResetAddressTextField(){
+		cancelCompany();
+		
+		showAddCompanyPanel();
+		
+		JTextComponentFixture companyAddress = addCompany_Panel.textBox("companyAddressTextField");
+		companyAddress.text().isEmpty();	
+	}
+	
+	@Test 
+	public void testSaveResetCityTextField(){
+		saveCompany();
 		
 		showAddCompanyPanel();
 		
@@ -122,8 +147,18 @@ public class MyCompanyPanelUITest {
 	}
 	
 	@Test 
-	public void testResetProvinceTextField(){
-		//saveCompany();
+	public void testCancelResetCityTextField(){
+		cancelCompany();
+		
+		showAddCompanyPanel();
+		
+		JTextComponentFixture companyCity = addCompany_Panel.textBox("companyCityTextField");
+		companyCity.text().isEmpty();
+	}
+	
+	@Test 
+	public void testSaveResetProvinceTextField(){
+		saveCompany();
 		
 		showAddCompanyPanel();
 		
@@ -132,8 +167,18 @@ public class MyCompanyPanelUITest {
 	}
 	
 	@Test 
-	public void testResetZipTextField(){
-		//saveCompany();
+	public void testCancelResetProvinceTextField(){
+		cancelCompany();
+		
+		showAddCompanyPanel();
+		
+		JTextComponentFixture companyProvince = addCompany_Panel.textBox("companyProvinceTextField");
+		companyProvince.text().isEmpty();
+	}
+	
+	@Test 
+	public void testSaveResetZipTextField(){
+		saveCompany();
 		
 		showAddCompanyPanel();
 	
@@ -142,8 +187,18 @@ public class MyCompanyPanelUITest {
 	}
 	
 	@Test 
-	public void testResetCountryTextField(){
-		//saveCompany();
+	public void testCancelResetZipTextField(){
+		cancelCompany();
+		
+		showAddCompanyPanel();
+	
+		JTextComponentFixture companyZip= addCompany_Panel.textBox("companyZipTextField");
+		companyZip.text().isEmpty();
+	}
+	
+	@Test 
+	public void testSaveResetCountryTextField(){
+		saveCompany();
 		
 		showAddCompanyPanel();
 		
@@ -152,8 +207,18 @@ public class MyCompanyPanelUITest {
 	}
 	
 	@Test 
-	public void testResetPhoneTextField(){
-		//saveCompany();
+	public void testCancelResetCountryTextField(){
+		cancelCompany();
+		
+		showAddCompanyPanel();
+		
+		JTextComponentFixture companyCountry = addCompany_Panel.textBox("companyCountryTextField");
+		companyCountry.text().isEmpty();
+	}
+	
+	@Test 
+	public void testSaveResetPhoneTextField(){
+		saveCompany();
 		
 		showAddCompanyPanel();
 		
@@ -162,8 +227,28 @@ public class MyCompanyPanelUITest {
 	}
 	
 	@Test 
-	public void testResetEmailTextField(){
+	public void testCancelResetPhoneTextField(){
+		cancelCompany();
+		
+		showAddCompanyPanel();
+		
+		JTextComponentFixture companyPhone = addCompany_Panel.textBox("companyPhoneTextField");
+		companyPhone.text().compareTo("");
+	}
+	
+	@Test 
+	public void testSaveResetEmailTextField(){
 		saveCompany();
+		
+		showAddCompanyPanel();
+		
+		JTextComponentFixture companyEmail = addCompany_Panel.textBox("companyEmailTextField");
+		companyEmail.text().compareTo("");
+	}
+	
+	@Test 
+	public void testCancelResetEmailTextField(){
+		cancelCompany();
 		
 		showAddCompanyPanel();
 		
@@ -180,5 +265,11 @@ public class MyCompanyPanelUITest {
 		showAddCompanyPanel();
 		saveAdd_Button = addCompany_Panel.button("SaveButton");
 		saveAdd_Button.click();
+	}
+	
+	private void cancelCompany(){
+		showAddCompanyPanel();
+		cancelAdd_Button = addCompany_Panel.button("CancelButton");
+		cancelAdd_Button.click();
 	}
 }
