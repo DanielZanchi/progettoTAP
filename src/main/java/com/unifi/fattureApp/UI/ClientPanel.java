@@ -33,7 +33,6 @@ public class ClientPanel extends JPanel {
 
 	private LinkedList<JTextField> textFields;
 
-
 	private Color layerColor = new java.awt.Color(216, 245, 255);
 
 	public ClientPanel(JLayeredPane outer_Panel, int buttonWidth, int buttonHeight, MongoUiComunication mongoUiCom) {
@@ -52,7 +51,7 @@ public class ClientPanel extends JPanel {
 		outer_Panel.setLayer(addClient_Panel, 2);
 
 		textFields = new LinkedList<>();
-		
+
 		// ADD COMPONENTS INSIDE PANEL
 
 		int addPanelY = addClient_Panel.getY();
@@ -229,78 +228,25 @@ public class ClientPanel extends JPanel {
 		save_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// save company
-				
-				/*
-				  myMongoUiComunication.addClientToDatabase(clientName_TF.getText(),
-				  clientVat_TF.getText(),clientAddress_TF.getText(),clientCity_TF.getText(),clientProvince_TF.getText(),
-				  clientZip_TF.getText(),clientCity_TF.getText()
-				  , clientPhone_TF.getText(),clientEmail_TF.getText());
-				  */
-				  
-				  
-				  addClient_Panel.setVisible(false); //outer_Panel.remove(addClient_Panel); }
-				  resetTextFields();
+
+				myMongoUiComunication.addClientToDatabase(clientName_TF.getText(), clientVat_TF.getText(),
+						clientAddress_TF.getText(), clientCity_TF.getText(), clientProvince_TF.getText(),
+						clientZip_TF.getText(), clientCity_TF.getText(), clientPhone_TF.getText(),
+						clientEmail_TF.getText());
+
+				addClient_Panel.setVisible(false); // outer_Panel.remove(addClient_Panel); }
+				resetTextFields();
 			};
 		});
 
 		// check if all required field aren't empty. if so activate the save button.
 
-/*		Component[] components = addClient_Panel.getComponents();
-		for (Component component : components) {
-			if (component.getClass().equals(JTextField.class)) {
-				
-				if (!((JTextField)component).getName().equals("clientPhone_TF") && !((JTextField)component).getName().equals("clientEmail_TF")) {
-					textFields.add((JTextField) component);
-				}
-			}
-		}
-	
-		for (JTextField tf : textFields) {
-			tf.getDocument().addDocumentListener(new DocumentListener() {
-				@Override
-				public void insertUpdate(DocumentEvent e) {
-					changed();
-				}
-
-				@Override
-				public void removeUpdate(DocumentEvent e) {
-					changed();
-				}
-
-				@Override
-				public void changedUpdate(DocumentEvent e) {
-					changed();
-
-				}
-
-				public void changed() {
-					boolean shouldActivate = true;
-					for (JTextField tf : textFields) {
-						if (tf.getText().equals("")) {
-							shouldActivate = false;
-							break;
-						}
-					}
-					save_Button.setEnabled(shouldActivate);
-				}
-			});
-		}
-	}
-	
-	
-	
-	/*
-	public LinkedList<JTextField> getTextFields() {
-		return textFields;
-	}
-	*/
-		
 		Component[] components = addClient_Panel.getComponents();
 		for (Component component : components) {
 			if (component.getClass().equals(JTextField.class)) {
 
-				if (!((JTextField) component).getName().equals("clientPhoneTextField")
-						&& !((JTextField) component).getName().equals("clientEmailTextField")) {
+				if (!((JTextField) component).getName().equals("clientPhone_TF")
+						&& !((JTextField) component).getName().equals("clientEmail_TF")) {
 					textFields.add((JTextField) component);
 				}
 			}
@@ -348,5 +294,5 @@ public class ClientPanel extends JPanel {
 		clientCountry_TF.setText("");
 		clientPhone_TF.setText("");
 		clientEmail_TF.setText("");
-	}	
+	}
 }
