@@ -7,11 +7,8 @@ import com.unifi.fattureApp.UI.MainWindowUI;
 public class Main {
 	public static void main(String[] args) throws UnknownHostException {
 		
-		MongoUiComunication myMongoUiComunication = new MongoUiComunication();
-		
 		//Launch UI
-		new MainWindowUI(myMongoUiComunication);
-		
+		new MainWindowUI(new MongoUiComunication());
 		
 		System.out.println("Fatture-app terminates");
 		
