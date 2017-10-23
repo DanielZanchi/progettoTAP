@@ -1,23 +1,24 @@
 package com.unifi.fattureApp.UI;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import com.unifi.fattureApp.App.Client;
+import com.unifi.fattureApp.App.Company;
+import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.App.MongoUiComunication;
-
-import javax.swing.JComboBox;
 
 public class MainWindowUI {
 	private MongoUiComunication mongoUiCom;
@@ -37,6 +38,10 @@ public class MainWindowUI {
 	private JPanel addCompany_Panel;
 	private JPanel addClient_Panel;
 	private JPanel addItem_Panel;
+	
+	private Company currentSelectedCompany;
+	private Client currentSelectedClient;
+	private Invoice currentSelectedInvoice;	
 	
 	
 

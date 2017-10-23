@@ -1,5 +1,6 @@
 package com.unifi.fattureApp.App;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import com.mongodb.MongoClient;
@@ -52,6 +53,19 @@ public class MongoUiComunication {
 	public int getClientsCount(){
 		List<Client> clients = myCompanyController.getAllClients();
 		return clients.size();
+	}
+	
+	
+	public List<Company> getSavedCompanies(){
+		return myCompanyController.getAllCompany();
+	}
+	
+	public List<Client> getSavedClients(){
+		return myCompanyController.getAllClients();
+	}
+	
+	public List<Invoice> getSavedInvoices(){
+		return myCompanyController.getAllInvoices();
 	}
 	
 	//   Just console prints!!!
