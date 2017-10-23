@@ -234,6 +234,7 @@ public class ClientPanel extends JPanel {
 //						clientZip_TF.getText(), clientCity_TF.getText(), clientPhone_TF.getText(),
 //						clientEmail_TF.getText());
 
+				
 				addClient_Panel.setVisible(false); // outer_Panel.remove(addClient_Panel); }
 				resetTextFields();
 			};

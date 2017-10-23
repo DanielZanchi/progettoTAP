@@ -4,8 +4,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Label;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -41,11 +44,7 @@ public class MainWindowUI {
 	private JPanel addClient_Panel;
 	private JPanel addItem_Panel;
 	
-	private Company currentSelectedCompany;
-	private Client currentSelectedClient;
-	private Invoice currentSelectedInvoice;
 	
-	private Client testClient;
 	
 	
 
@@ -171,6 +170,8 @@ public class MainWindowUI {
 		JComboBox clientListComboBox = new JComboBox();
 		clientListComboBox.setBounds(6, 35, 335, 27);
 		clientPanel.add(clientListComboBox);
+		
+		
 
 		JButton addClient = new JButton("Add");
 		addClient.setName("AddClientButton");
@@ -205,6 +206,8 @@ public class MainWindowUI {
 		JComboBox invoiceListcomboBox = new JComboBox();
 		invoiceListcomboBox.setBounds(6, 36, 333, 27);
 		invoiceProvisionPanel.add(invoiceListcomboBox);
+		
+	
 
 		JButton addInvoiceProvision = new JButton("Add");
 		addInvoiceProvision.setBounds(341, 35, 54, 29);
@@ -227,6 +230,17 @@ public class MainWindowUI {
 		fattureApp_Frame.pack();
 		fattureApp_Frame.setVisible(true);
 	}
+
+	
+
+
+	private void fillComboBox(JComboBox clientListComboBox,JComboBox companyListComboBox,JComboBox invoiceComboBox) {
+		for(int i=0;i<mongoUiCom.getSavedCompanies().size();i++) {
+			//companyListComboBox.add(new Label(mongoUiCom.getSavedCompanies().get(i);
+		}
+		
+	}
+
 
 	private void createAddRecordsPanels() {
 		addCompany_Panel = new CompanyPanel(outer_Panel, buttonWidth, buttonHeight,mongoUiCom);
