@@ -226,17 +226,16 @@ public class CompanyPanel extends JPanel {
 		save_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				/*
-				 * boolean
-				 * saved=myMongoUiComunication.addCompanyToDatabase(companyName_TF.getText(),
-				 * companyVat_TF.getText(), companyAddress_TF.getText(),
-				 * companyCity_TF.getText(), companyProvince_TF.getText(),
-				 * companyZip_TF.getText(), companyCountry_TF.getText(),
-				 * companyPhone_TF.getText(), companyEmail_TF.getText());
-				 * 
-				 * if(saved){ myMongoUiComunication.printAllCompanies(); }else{
-				 * System.err.println("Error: Company was not saved!!!");; }
-				 */
+				
+				  boolean saved=myMongoUiComunication.addCompanyToDatabase(companyName_TF.getText(),
+				  companyVat_TF.getText(), companyAddress_TF.getText(),
+				  companyCity_TF.getText(), companyProvince_TF.getText(),
+				  companyZip_TF.getText(), companyCountry_TF.getText(),
+				  companyPhone_TF.getText(), companyEmail_TF.getText());
+				  
+				  if(saved){ myMongoUiComunication.printAllCompanies(); }else{
+				  System.err.println("Error: Company was not saved!!!");; }
+				 
 
 				addCompany_Panel.setVisible(false);
 				resetTextFields();

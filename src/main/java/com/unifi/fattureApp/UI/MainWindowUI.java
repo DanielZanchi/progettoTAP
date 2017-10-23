@@ -37,6 +37,8 @@ public class MainWindowUI {
 	private JPanel addCompany_Panel;
 	private JPanel addClient_Panel;
 	private JPanel addItem_Panel;
+	
+	
 
 	/**
 	 * Launch the application.
@@ -46,9 +48,7 @@ public class MainWindowUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainWindowUI window = new MainWindowUI();
-					window.fattureApp_Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					window.fattureApp_Frame.setVisible(true);
+					new MainWindowUI();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -57,9 +57,6 @@ public class MainWindowUI {
 	}
 	
 
-	/**
-	 * Create the application.
-	 */
 	public MainWindowUI(MongoUiComunication mongoUiComm) {
 		mongoUiCom=mongoUiComm;
 		initialize();

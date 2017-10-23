@@ -2,13 +2,15 @@ package com.unifi.fattureApp.App;
 
 import java.net.UnknownHostException;
 
+import com.unifi.fattureApp.UI.MainWindowUI;
+
 public class Main {
 	public static void main(String[] args) throws UnknownHostException {
 		
 		MongoUiComunication myMongoUiComunication = new MongoUiComunication();
 		
 		//Launch UI
-		//MainWindowUI window = new MainWindowUI(myMongoUiComunication);
+		new MainWindowUI(myMongoUiComunication);
 		
 		
 		System.out.println("Fatture-app terminates");

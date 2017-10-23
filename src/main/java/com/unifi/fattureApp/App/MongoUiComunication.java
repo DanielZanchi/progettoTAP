@@ -7,7 +7,7 @@ import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
 public class MongoUiComunication {
 	Database database;
-	String mongoHost = "27017";
+	String mongoHost = "localhost";
 	CompanyController myCompanyController;
 	
 	public MongoUiComunication(){
