@@ -238,6 +238,7 @@ public class MainWindowUI {
 		});
 
 		JButton editClient = new JButton("Edit");
+		editClient.setName("editClientButton");
 		editClient.setEnabled(false);
 		editClient.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		editClient.setBounds(clientPanel.getWidth() - buttonWidth,
@@ -299,6 +300,7 @@ public class MainWindowUI {
 
 
 		JButton editInvoiceProvision = new JButton("Edit");
+		editInvoiceProvision.setName("editInvoiceButton");
 		editInvoiceProvision.setEnabled(false);
 		editInvoiceProvision.setBounds(invoiceProvisionPanel.getWidth() - buttonWidth,
 				(invoiceProvisionPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);

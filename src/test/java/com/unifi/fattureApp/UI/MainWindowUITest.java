@@ -81,16 +81,17 @@ public class MainWindowUITest {
 	}
 	
 	
+	
+	
+	//Client panel
+	
 	@Test 
 	public void testEditButtonWithNoClientSelected() {
 		JComboBoxFixture clientComboBox=window.comboBox("clientsComboBox");
 		assertEquals(clientComboBox.selectedItem(),null);
-	}
-	
-	@Test 
-	public void testEditButtonWithNoInvoiceSelected() {
-		JComboBoxFixture invoiceComboBox=window.comboBox("invoicesComboBox");
-		assertEquals(invoiceComboBox.selectedItem(),null);
+		JButtonFixture editClientButton=window.button("editClientButton");
+		editClientButton.requireDisabled();
+		
 	}
 	
 	@Test
@@ -99,15 +100,27 @@ public class MainWindowUITest {
 		clientComboBox.requireItemCount(0);
 	}
 	
+	
+	//Invoice panel
+
+	@Test 
+	public void testEditButtonWithNoInvoiceSelected() {
+		JComboBoxFixture invoiceComboBox=window.comboBox("invoicesComboBox");
+		assertEquals(invoiceComboBox.selectedItem(),null);
+		JButtonFixture editInvoiceButton=window.button("editInvoiceButton");
+		editInvoiceButton.requireDisabled();
+	}
+	
+	
+	
 	@Test
 	public void testInvoicesComboBoxWithNoInvoices(){
 		JComboBoxFixture invoiceComboBox=window.comboBox("invoicesComboBox");
 		invoiceComboBox.requireItemCount(0);
 	}
-	
-	
-	//Client panel
 
+	
+	
 	
 	private void showAddCompanyPanel() {
 		addCompanyButton.click();
