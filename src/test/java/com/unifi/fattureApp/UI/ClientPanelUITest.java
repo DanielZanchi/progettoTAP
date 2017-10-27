@@ -7,13 +7,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AddClientPanelUITest {
+public class ClientPanelUITest {
 	private FrameFixture window;
-	private JPanelFixture clientPanel;
 	private JPanelFixture addClient_Panel;
-	private JButtonFixture addClient_Button;
 	private JButtonFixture cancelAdd_Button;
 	private JButtonFixture saveAdd_Button;
+	private JPanelFixture clientPanel;	
+	private JButtonFixture addClient_Button;
+
 
 	@Before public void setUp() {
 		//MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
@@ -21,7 +22,6 @@ public class AddClientPanelUITest {
 		window = new FrameFixture(frame.getMainFrame());
 		window.show();
 		clientPanel = window.panel("ClientPanel");
-		addClient_Button = window.panel("ClientPanel").button("AddClientButton");
 	}
 
 	@After
@@ -29,17 +29,7 @@ public class AddClientPanelUITest {
 		window.cleanUp();
 	}
 
-	/*
-	@Test
-	public void testCompanyPanelBackground() {
-		clientPanel.background().requireEqualTo(new java.awt.Color(226, 244, 252));
-	}
-	*/
-	
-	@Test
-	public void testAddButtonText() {
-		addClient_Button.requireText("Add");
-	}
+
 	
 	@Test
 	public void testAddButtonAction() {		
