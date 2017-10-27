@@ -10,10 +10,10 @@ import org.jongo.MongoCollection;
 
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
-import com.unifi.fattureApp.App.Database;
-import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
+import com.unifi.fattureApp.App.Database;
+import com.unifi.fattureApp.App.Invoice;
 
 public class MongoWrapper implements Database{
 	private MongoCollection clients;

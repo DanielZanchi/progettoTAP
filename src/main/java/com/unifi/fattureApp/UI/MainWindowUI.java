@@ -4,14 +4,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Insets;
-import java.awt.Label;
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.Iterator;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -20,15 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.undo.UndoableEditSupport;
 
-import org.mockito.internal.matchers.VarargCapturingMatcher;
-import org.testcontainers.shaded.io.netty.util.Constant;
-
-import com.unifi.fattureApp.App.Client;
-import com.unifi.fattureApp.App.Company;
-import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.App.MongoUiComunication;
 
 public class MainWindowUI {

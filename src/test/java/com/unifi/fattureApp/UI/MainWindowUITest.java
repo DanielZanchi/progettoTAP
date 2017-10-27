@@ -1,16 +1,11 @@
 package com.unifi.fattureApp.UI;
 
-import javax.swing.JButton;
-
-import org.assertj.swing.edt.GuiActionRunner;
 import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.fixture.JButtonFixture;
 import org.assertj.swing.fixture.JPanelFixture;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.unifi.fattureApp.App.MongoUiComunication;
 
 public class MainWindowUITest {
 	private FrameFixture window;

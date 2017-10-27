@@ -4,7 +4,6 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
-import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
 public class MongoTestHelperTool {
 	private DBCollection clients;

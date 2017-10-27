@@ -1,6 +1,9 @@
 package com.unifi.fattureApp.mongoIT;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.util.List;
 
@@ -9,11 +12,11 @@ import org.junit.Test;
 
 import com.github.fakemongo.Fongo;
 import com.mongodb.MongoClient;
-import com.unifi.fattureApp.App.Database;
-import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.CompanyController;
+import com.unifi.fattureApp.App.Database;
+import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.helpTestTools.MongoTestHelperTool;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 

@@ -1,9 +1,7 @@
 package com.unifi.fattureApp.App;
 
-import java.util.LinkedList;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
