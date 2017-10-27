@@ -103,6 +103,7 @@ public class MainWindowUI {
 		int innerInsets = 12;
 		String myCompanyName_String = "My Company";
 		JLabel myCompany_Label = new JLabel(myCompanyName_String);
+		myCompany_Label.setName("currentSelectedCompanyLabel");
 		myCompany_Label.setFont(new Font("Lucida Grande", Font.BOLD, 18));
 		double width = myCompany_Label.getPreferredSize().getWidth();
 		double height = myCompany_Label.getPreferredSize().getHeight();
@@ -119,6 +120,7 @@ public class MainWindowUI {
 
 		
 		JButton editMyCompany_Button = new JButton("Edit");
+		editMyCompany_Button.setEnabled(false);
 		editMyCompany_Button.setName("EditCompanyButton");
 		editMyCompany_Button.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		editMyCompany_Button.setBounds(myCompany_Panel.getWidth() - innerInsets - buttonWidth,
@@ -221,6 +223,7 @@ public class MainWindowUI {
 		clientPanel.add(clientLbl);
 
 		JComboBox clientListComboBox = new JComboBox();
+		clientListComboBox.setName("clientsComboBox");
 		clientListComboBox.setBounds(0, (clientPanel.getHeight() / 2) - 14, 306, 28);
 		clientPanel.add(clientListComboBox);
 		clientListComboBox.addItemListener(new ItemListener() {
@@ -235,6 +238,7 @@ public class MainWindowUI {
 		});
 
 		JButton editClient = new JButton("Edit");
+		editClient.setEnabled(false);
 		editClient.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		editClient.setBounds(clientPanel.getWidth() - buttonWidth,
 				(clientPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
@@ -279,6 +283,7 @@ public class MainWindowUI {
 		invoiceProvisionPanel.add(invoiceItemLbl);
 
 		JComboBox invoiceListcomboBox = new JComboBox();
+		invoiceListcomboBox.setName("invoicesComboBox");
 		invoiceListcomboBox.setBounds(0, (invoiceProvisionPanel.getHeight() / 2) - 14, 306, 28);
 		invoiceProvisionPanel.add(invoiceListcomboBox);
 		invoiceListcomboBox.addItemListener(new ItemListener() {
@@ -294,6 +299,7 @@ public class MainWindowUI {
 
 
 		JButton editInvoiceProvision = new JButton("Edit");
+		editInvoiceProvision.setEnabled(false);
 		editInvoiceProvision.setBounds(invoiceProvisionPanel.getWidth() - buttonWidth,
 				(invoiceProvisionPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
 		editInvoiceProvision.setBorder(BorderFactory.createLineBorder(Color.GRAY));
@@ -338,7 +344,7 @@ public class MainWindowUI {
 		});
 
 		createAddRecordsPanels();
-		updateReferences(clientListComboBox,invoiceListcomboBox,myCompanyInfo_Label);
+		updateReferences(clientListComboBox,invoiceListcomboBox,myCompany_Label);
 		
 		
 

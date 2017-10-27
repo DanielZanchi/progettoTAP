@@ -171,7 +171,7 @@ public class MongoUiComunication {
 	
 	
 	public void updateCompanyReference() {
-		if(companyInfo.getText().equals("info")) {
+		if(companyInfo.getText().equals("My Company")) {
 			if(this.getCompaniesCount()>0){
 				companyInfo.setText(this.getSavedCompanies().get(0).getName());
 			}

@@ -2,10 +2,13 @@ package com.unifi.fattureApp.UI;
 
 import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.fixture.JButtonFixture;
+import org.assertj.swing.fixture.JComboBoxFixture;
+import org.assertj.swing.fixture.JLabelFixture;
 import org.assertj.swing.fixture.JPanelFixture;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class MainWindowUITest {
 	private FrameFixture window;
@@ -70,11 +73,38 @@ public class MainWindowUITest {
 	}
 	
 	@Test
-	public void testEditButton() {
-		
+	public void testEditButtonWithNoCompanySelected() {
 		JButtonFixture editButton=window.button("EditCompanyButton");
-		
+		JLabelFixture currentCompanySelected=window.label("currentSelectedCompanyLabel");
+		assertEquals(currentCompanySelected.text(), "My Company");
+		editButton.requireDisabled();
 	}
+	
+	
+	@Test 
+	public void testEditButtonWithNoClientSelected() {
+		JComboBoxFixture clientComboBox=window.comboBox("clientsComboBox");
+		assertEquals(clientComboBox.selectedItem(),null);
+	}
+	
+	@Test 
+	public void testEditButtonWithNoInvoiceSelected() {
+		JComboBoxFixture invoiceComboBox=window.comboBox("invoicesComboBox");
+		assertEquals(invoiceComboBox.selectedItem(),null);
+	}
+	
+	@Test
+	public void testClientsComboBoxWithNoClients(){
+		JComboBoxFixture clientComboBox=window.comboBox("clientsComboBox");
+		clientComboBox.requireItemCount(0);
+	}
+	
+	@Test
+	public void testInvoicesComboBoxWithNoInvoices(){
+		JComboBoxFixture invoiceComboBox=window.comboBox("invoicesComboBox");
+		invoiceComboBox.requireItemCount(0);
+	}
+	
 	
 	//Client panel
 
