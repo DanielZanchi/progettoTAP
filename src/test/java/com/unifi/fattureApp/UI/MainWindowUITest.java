@@ -2,6 +2,7 @@ package com.unifi.fattureApp.UI;
 
 import org.assertj.swing.edt.GuiActionRunner;
 import org.assertj.swing.fixture.FrameFixture;
+import org.assertj.swing.fixture.JButtonFixture;
 import org.assertj.swing.fixture.JPanelFixture;
 import org.junit.After;
 import org.junit.Before;
@@ -45,4 +46,11 @@ public class MainWindowUITest {
 	public void testWindowBckgColor() {
 		window.background().requireEqualTo(java.awt.Color.LIGHT_GRAY);
 	}
+	
+	@Test
+	public void testEditButton() {
+		JButtonFixture editButton=window.button("EditCompanyButton");
+	}
+	
+	
 }

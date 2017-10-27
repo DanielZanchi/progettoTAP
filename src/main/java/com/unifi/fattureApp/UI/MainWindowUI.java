@@ -139,7 +139,7 @@ public class MainWindowUI {
 		outer_Panel.setLayer(editMyCompany_Button, 1);
 		editMyCompany_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				showAddCompanyPanel();
+				showGenericAddPanel(addCompany_Panel, false);
 			}
 		});
 
@@ -152,7 +152,7 @@ public class MainWindowUI {
 		outer_Panel.setLayer(addMyCompany_Button, 1);
 		addMyCompany_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				showAddCompanyPanel();
+				showGenericAddPanel(addCompany_Panel, true);
 			}
 		});
 		
@@ -250,8 +250,16 @@ public class MainWindowUI {
 		editClient.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		editClient.setBounds(clientPanel.getWidth() - buttonWidth,
 				(clientPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
+		editClient.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showGenericAddPanel(addClient_Panel, false);
+			}
+		});
 		clientPanel.add(editClient);
 		outer_Panel.setLayer(myCompany_Panel, 1);
+		
+		
 
 		JButton addClient = new JButton("Add");
 		addClient.setName("AddClientButton");
@@ -264,7 +272,7 @@ public class MainWindowUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				showAddClientPanel();
+				showGenericAddPanel(addClient_Panel, true);
 			}
 		});
 
@@ -297,24 +305,18 @@ public class MainWindowUI {
 		});
 
 
-		JButton addInvoiceProvision = new JButton("Add");
-		addInvoiceProvision.setBounds(editInvoiceProvision.getX() - innerInsets - buttonWidth,
-				(invoiceProvisionPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
-		addInvoiceProvision.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		invoiceProvisionPanel.add(addInvoiceProvision);
-		addInvoiceProvision.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				showAddItemPanel();
-			}
-		});
-
 		JButton editInvoiceProvision = new JButton("Edit");
 		editInvoiceProvision.setBounds(invoiceProvisionPanel.getWidth() - buttonWidth,
 				(invoiceProvisionPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
 		editInvoiceProvision.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		editInvoiceProvision.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showGenericAddPanel(addItem_Panel, false);
+			}
+		});
 		invoiceProvisionPanel.add(editInvoiceProvision);
-
+		
 		JButton addInvoiceProvision = new JButton("Add");
 		addInvoiceProvision.setBounds(editInvoiceProvision.getX() - innerInsets - buttonWidth,
 				(invoiceProvisionPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
@@ -323,9 +325,11 @@ public class MainWindowUI {
 		addInvoiceProvision.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				showAddItemPanel();
+				showGenericAddPanel(addItem_Panel, true);
 			}
 		});
+
+		
 
 		JButton createInvoice_Button = new JButton("CREATE INVOICE");
 		createInvoice_Button.setFont(new Font("Arial", Font.PLAIN, 14));
