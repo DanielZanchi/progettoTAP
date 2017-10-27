@@ -139,6 +139,19 @@ public class MainWindowUI {
 				showAddCompanyPanel();
 			}
 		});
+		
+		JButton editMyCompany_Button = new JButton("Edit");
+		editMyCompany_Button.setName("EditCompanyButton");
+		editMyCompany_Button.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		editMyCompany_Button.setBounds(myCompany_Panel.getWidth() - innerInsets - buttonWidth,
+				(myCompany_Panel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
+		myCompany_Panel.add(editMyCompany_Button);
+		outer_Panel.setLayer(editMyCompany_Button, 1);
+		editMyCompany_Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				showAddCompanyPanel();
+			}
+		});
 
 		// ▲, ▼
 

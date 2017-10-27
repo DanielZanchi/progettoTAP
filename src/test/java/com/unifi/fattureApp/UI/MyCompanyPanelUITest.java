@@ -256,6 +256,12 @@ public class MyCompanyPanelUITest {
 		companyEmail.text().compareTo("");
 	}
 	
+	
+	@Test
+	public void testEditButton() {
+		JButtonFixture editButton=window.button("EditCompanyButton");
+	}
+	
 	private void showAddCompanyPanel() {
 		addCompany_Button.click();
 		addCompany_Panel = window.panel("AddCompanyPanel");
