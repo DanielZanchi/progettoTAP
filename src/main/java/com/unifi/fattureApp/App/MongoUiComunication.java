@@ -121,6 +121,7 @@ public class MongoUiComunication {
 	
 	
 	public void printSelected() {
+		if(currentSelectedClient!=null && currentSelectedCompany!=null && currentSelectedInvoice!=null) {
 		System.out.println(" Selected: ");
 		System.out.println(" Company : "+currentSelectedCompany.getName());
 		System.out.println(currentSelectedCompany.getAddress());
@@ -131,7 +132,7 @@ public class MongoUiComunication {
 		System.out.println(" Invoice : "+currentSelectedInvoice.getName());
 		System.out.println(currentSelectedInvoice.getPrice());
 		System.out.println(" -------/Selected---------- ");
-
+		}
 	}
 
 	
