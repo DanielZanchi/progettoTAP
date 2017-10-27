@@ -16,9 +16,11 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import org.hamcrest.core.Is;
+
 import com.unifi.fattureApp.App.MongoUiComunication;
 
-public class CompanyPanel extends JPanel {
+public class CompanyPanel extends JPanel implements AddPanel{
 	private MongoUiComunication myMongoUiComunication;
 
 	private JTextField companyName_TF;
@@ -30,14 +32,20 @@ public class CompanyPanel extends JPanel {
 	private JTextField companyCountry_TF;
 	private JTextField companyPhone_TF;
 	private JTextField companyEmail_TF;
+	private CompanyPanel addCompany_Panel;
 
 	private LinkedList<JTextField> textFields;
 
 	private Color layerColor = new java.awt.Color(216, 245, 255);
 
+	private boolean isSaving;
+
 	public CompanyPanel(JLayeredPane outer_Panel, int buttonWidth, int buttonHeight, MongoUiComunication mongoUiCom) {
-		JPanel addCompany_Panel = this;
+		addCompany_Panel = this;
 		myMongoUiComunication = mongoUiCom;
+		
+		this.setVisible(false);
+
 
 		addCompany_Panel.setName("AddCompanyPanel");
 		addCompany_Panel.setBackground(layerColor);
@@ -225,7 +233,8 @@ public class CompanyPanel extends JPanel {
 		addCompany_Panel.add(save_Button);
 		save_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				
+				if(addCompany_Panel.isSaving()) {
 				boolean saved = myMongoUiComunication.addCompanyToDatabase(companyName_TF.getText(),
 						companyVat_TF.getText(), companyAddress_TF.getText(), companyCity_TF.getText(),
 						companyProvince_TF.getText(), companyZip_TF.getText(), companyCountry_TF.getText(),
@@ -235,6 +244,9 @@ public class CompanyPanel extends JPanel {
 					myMongoUiComunication.printAllCompanies();
 				} else {
 					System.err.println("Error: Company was not saved!!!");
+				}
+				}else {
+					
 				}
 
 				addCompany_Panel.setVisible(false);
@@ -289,6 +301,7 @@ public class CompanyPanel extends JPanel {
 			});
 		}
 	}
+	
 
 	private void resetTextFields() {
 		companyName_TF.setText("");
@@ -301,4 +314,24 @@ public class CompanyPanel extends JPanel {
 		companyPhone_TF.setText("");
 		companyEmail_TF.setText("");
 	}
+	
+
+
+	public boolean isSaving() {
+		return isSaving;
+	}
+
+
+	@Override
+	public void setAddingMode(boolean isSaving) {
+		// TODO Auto-generated method stub
+		this.isSaving=isSaving;
+		this.setVisible(true);
+	}
+
+	
+	
+	
+	
+	
 }

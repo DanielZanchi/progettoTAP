@@ -18,7 +18,7 @@ import javax.swing.event.DocumentListener;
 
 import com.unifi.fattureApp.App.MongoUiComunication;
 
-public class ClientPanel extends JPanel {
+public class ClientPanel extends JPanel implements AddPanel {
 	private MongoUiComunication myMongoUiComunication;
 
 	private JTextField clientName_TF;
@@ -35,9 +35,16 @@ public class ClientPanel extends JPanel {
 
 	private Color layerColor = new java.awt.Color(216, 245, 255);
 
+	private ClientPanel addClient_Panel;
+
+	private boolean isSaving;
+
 	public ClientPanel(JLayeredPane outer_Panel, int buttonWidth, int buttonHeight, MongoUiComunication mongoUiCom) {
-		JPanel addClient_Panel = this;
+		addClient_Panel = this;
 		myMongoUiComunication = mongoUiCom;
+		
+		this.setVisible(false);
+
 
 		addClient_Panel.setName("AddClientPanel");
 		addClient_Panel.setBackground(layerColor);
@@ -228,12 +235,15 @@ public class ClientPanel extends JPanel {
 		save_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// save company
-
+				if(addClient_Panel.isSaving()) {
 				myMongoUiComunication.addClientToDatabase(clientName_TF.getText(), clientVat_TF.getText(),
 						clientAddress_TF.getText(), clientCity_TF.getText(), clientProvince_TF.getText(),
 						clientZip_TF.getText(), clientCity_TF.getText(), clientPhone_TF.getText(),
 						clientEmail_TF.getText());
 
+				}else {
+					
+				}
 				
 				addClient_Panel.setVisible(false); // outer_Panel.remove(addClient_Panel); }
 				resetTextFields();
@@ -296,5 +306,17 @@ public class ClientPanel extends JPanel {
 		clientCountry_TF.setText("");
 		clientPhone_TF.setText("");
 		clientEmail_TF.setText("");
+	}
+	
+	public boolean isSaving() {
+		return isSaving;
+	}
+	
+
+	@Override
+	public void setAddingMode(boolean isSaving) {
+		// TODO Auto-generated method stub
+		this.isSaving=isSaving;
+		this.setVisible(true);
 	}
 }

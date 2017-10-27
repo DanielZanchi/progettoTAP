@@ -46,9 +46,9 @@ public class MainWindowUI {
 	private Color layer1Color = new java.awt.Color(226, 244, 252);
 
 	private Dimension windowDimension = new Dimension(500, 700);
-	private JPanel addCompany_Panel;
-	private JPanel addClient_Panel;
-	private JPanel addItem_Panel;
+	private AddPanel addCompany_Panel;
+	private AddPanel addClient_Panel;
+	private AddPanel addItem_Panel;
 
 	/**
 	 * Launch the application.
@@ -136,7 +136,8 @@ public class MainWindowUI {
 		outer_Panel.setLayer(addMyCompany_Button, 1);
 		addMyCompany_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				showAddCompanyPanel();
+				//showAddCompanyPanel();
+				showGenericAddPanel(addCompany_Panel,true);
 			}
 		});
 		
@@ -149,7 +150,8 @@ public class MainWindowUI {
 		outer_Panel.setLayer(editMyCompany_Button, 1);
 		editMyCompany_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				showAddCompanyPanel();
+				//showAddCompanyPanel();
+				showGenericAddPanel(addCompany_Panel,false);
 			}
 		});
 
@@ -249,7 +251,8 @@ public class MainWindowUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				showAddClientPanel();
+				//showAddClientPanel();
+				showGenericAddPanel(addClient_Panel,true);
 			}
 		});
 
@@ -291,7 +294,8 @@ public class MainWindowUI {
 		addInvoiceProvision.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				showAddItemPanel();
+				//showAddItemPanel();
+				showGenericAddPanel(addItem_Panel,true);
 			}
 		});
 
@@ -339,15 +343,18 @@ public class MainWindowUI {
 
 	private void createAddRecordsPanels() {
 		addCompany_Panel = new CompanyPanel(outer_Panel, buttonWidth, buttonHeight, mongoUiCom);
-		addCompany_Panel.setVisible(false);
 
 		addClient_Panel = new ClientPanel(outer_Panel, buttonWidth, buttonHeight, mongoUiCom);
-		addClient_Panel.setVisible(false);
 
 		addItem_Panel = new ItemInvoicePanel(outer_Panel, buttonWidth, buttonHeight,mongoUiCom);
-		addItem_Panel.setVisible(false);
 	}
-
+	
+	
+	private void showGenericAddPanel(AddPanel panelToShow,boolean isSaving) {
+		panelToShow.setAddingMode(isSaving);
+	}
+	
+/*
 	private void showAddCompanyPanel() {
 		// SHOW PANEL TO ADD CUSTOMER
 		addCompany_Panel.setVisible(true);
@@ -361,6 +368,7 @@ public class MainWindowUI {
 	private void showAddItemPanel() {
 		addItem_Panel.setVisible(true);
 	}
+	*/
 
 	public JFrame getMainFrame() {
 		// TODO Auto-generated method stub

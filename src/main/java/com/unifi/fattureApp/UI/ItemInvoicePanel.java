@@ -22,7 +22,7 @@ import javax.swing.event.DocumentListener;
 
 import com.unifi.fattureApp.App.MongoUiComunication;
 
-public class ItemInvoicePanel extends JPanel {
+public class ItemInvoicePanel extends JPanel implements AddPanel {
 	private JTextField itemDescription_TF;
 	private JFormattedTextField itemPrice_TF;
 
@@ -30,11 +30,13 @@ public class ItemInvoicePanel extends JPanel {
 	private MongoUiComunication mongoUiComunication ;
 
 	private Color layerColor = new java.awt.Color(216, 245, 255);
+	private ItemInvoicePanel addItem_Panel;
+	private boolean isSaving;
 
 	public ItemInvoicePanel(JLayeredPane outer_Panel, int buttonWidth, int buttonHeight,MongoUiComunication mongoUiCom) {
 		this.mongoUiComunication = mongoUiCom;
-		JPanel addItem_Panel = this;
-		
+		addItem_Panel = this;
+		this.setVisible(false);
 		
 		addItem_Panel.setName("AddItemPanel");
 		addItem_Panel.setBackground(layerColor);
@@ -119,9 +121,11 @@ public class ItemInvoicePanel extends JPanel {
 		save_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// save invoice
-				
-				mongoUiComunication.addInvoiceToDatabase("da cambiare :-) ", itemDescription_TF.getText(), itemPrice_TF.getText());
-				
+				if(addItem_Panel.isSaving()) {
+					mongoUiComunication.addInvoiceToDatabase("da cambiare :-) ", itemDescription_TF.getText(), itemPrice_TF.getText());
+				}else {
+					
+				}
 				
 				addItem_Panel.setVisible(false);
 				mongoUiComunication.updateInvoicesReferences();
@@ -168,6 +172,20 @@ public class ItemInvoicePanel extends JPanel {
 				}
 			});
 		}
+	}
+
+	
+
+	public boolean isSaving() {
+		return isSaving;
+	}
+
+
+	@Override
+	public void setAddingMode(boolean isSaving) {
+		// TODO Auto-generated method stub
+		this.isSaving=isSaving;
+		this.setVisible(true);
 	}
 
 }
