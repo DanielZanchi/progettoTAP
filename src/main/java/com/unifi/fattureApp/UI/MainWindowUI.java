@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Insets;
 import java.awt.Label;
 import java.awt.List;
 import java.awt.event.ActionEvent;
@@ -19,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.undo.UndoableEditSupport;
 
 import org.mockito.internal.matchers.VarargCapturingMatcher;
@@ -40,7 +42,7 @@ public class MainWindowUI {
 
 	// private int buttonPadding = 8;
 	private int buttonHeight = 30;
-	private int buttonWidth = 80;
+	private int buttonWidth = 64;
 
 	private Color outerColor = new java.awt.Color(232, 246, 250);
 	private Color layer1Color = new java.awt.Color(226, 244, 252);
@@ -154,8 +156,6 @@ public class MainWindowUI {
 		});
 		
 
-
-
 		JButton prevCompany_Button = new JButton("▲");
 		prevCompany_Button.setName("prevCompany_Button");
 		prevCompany_Button.setBorder(BorderFactory.createLineBorder(Color.GRAY));
@@ -199,6 +199,8 @@ public class MainWindowUI {
 				}
 			}
 		});
+		
+		
 
 		// Invoice panel
 		JPanel invoice_Panel = new JPanel();
@@ -218,20 +220,20 @@ public class MainWindowUI {
 
 		JPanel clientPanel = new JPanel();
 		clientPanel.setName("ClientPanel");
-		clientPanel.setBackground(Color.ORANGE);
-		clientPanel.setBounds(6, 30, 472, 92);
+		clientPanel.setBackground(layer1Color);
+		clientPanel.setBounds(innerInsets, innerInsets, invoicePanelWidth - (innerInsets * 2), 110);
 		invoice_Panel.add(clientPanel);
 		clientPanel.setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Client");
-		lblNewLabel.setBounds(6, 6, 37, 16);
-		clientPanel.add(lblNewLabel);
+		JLabel clientLbl = new JLabel("Client");
+		clientLbl.setBounds((clientPanel.getWidth() / 2) - 26, innerInsets, 52, 16);
+		clientLbl.setFont(new Font("Arial", Font.BOLD, 16));
+		clientPanel.add(clientLbl);
 
 		JComboBox clientListComboBox = new JComboBox();
-		clientListComboBox.setBounds(6, 35, 335, 27);
+		clientListComboBox.setBounds(0, (clientPanel.getHeight() / 2) - 14, 306, 28);
 		clientPanel.add(clientListComboBox);
 		clientListComboBox.addItemListener(new ItemListener() {
-			
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				// TODO Auto-generated method stub
@@ -241,10 +243,23 @@ public class MainWindowUI {
 				
 			}
 		});
+		
+		System.out.println(clientListComboBox.getHeight());
+		
+		
+		JButton editClient = new JButton("Edit");
+		editClient.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		editClient.setBounds(clientPanel.getWidth() - buttonWidth,
+				(clientPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
+		clientPanel.add(editClient);
+		outer_Panel.setLayer(myCompany_Panel, 1);
 
 		JButton addClient = new JButton("Add");
 		addClient.setName("AddClientButton");
-		addClient.setBounds(336, 33, 61, 29);
+		addClient.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		addClient.setBounds(editClient.getX() - innerInsets - buttonWidth,
+				(clientPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
+		outer_Panel.setLayer(myCompany_Panel, 1);
 		clientPanel.add(addClient);
 		addClient.addActionListener(new ActionListener() {
 
@@ -253,27 +268,31 @@ public class MainWindowUI {
 				showAddClientPanel();
 			}
 		});
-
-		JButton editClient = new JButton("Edit");
-		editClient.setBounds(398, 32, 68, 29);
-		clientPanel.add(editClient);
-		outer_Panel.setLayer(myCompany_Panel, 1);
+		
+		
+		JLabel whiteLine = new JLabel("");
+		whiteLine.setBorder(BorderFactory.createLineBorder(Color.white));
+		whiteLine.setBackground(Color.white);
+		whiteLine.setOpaque(true);
+		whiteLine.setBounds(0, clientPanel.getY() + clientPanel.getHeight() + 6, invoicePanelWidth, 2);
+		invoice_Panel.add(whiteLine);
 
 		// Description panel
 
 		JPanel invoiceProvisionPanel = new JPanel();
 		invoiceProvisionPanel.setName("InvoiceDescription");
-		invoiceProvisionPanel.setBackground(Color.RED);
-		invoiceProvisionPanel.setBounds(6, 152, 472, 103);
+		invoiceProvisionPanel.setBackground(layer1Color);
+		invoiceProvisionPanel.setBounds(innerInsets, clientPanel.getY() + clientPanel.getHeight() + innerInsets, invoicePanelWidth - (innerInsets * 2), 110);
 		invoice_Panel.add(invoiceProvisionPanel);
 		invoiceProvisionPanel.setLayout(null);
 
-		JLabel lblNewLabel_1 = new JLabel("Invoice item");
-		lblNewLabel_1.setBounds(6, 6, 207, 16);
-		invoiceProvisionPanel.add(lblNewLabel_1);
+		JLabel invoiceItemLbl = new JLabel("Invoice item");
+		invoiceItemLbl.setBounds((invoiceProvisionPanel.getWidth() / 2) - 54, innerInsets, 108, 16);
+		invoiceItemLbl.setFont(new Font("Arial", Font.BOLD, 16));
+		invoiceProvisionPanel.add(invoiceItemLbl);
 
 		JComboBox invoiceListcomboBox = new JComboBox();
-		invoiceListcomboBox.setBounds(6, 36, 333, 27);
+		invoiceListcomboBox.setBounds(0, (invoiceProvisionPanel.getHeight() / 2) - 14, 306, 28);
 		invoiceProvisionPanel.add(invoiceListcomboBox);
 		invoiceListcomboBox.addItemListener(new ItemListener() {
 			
@@ -285,9 +304,17 @@ public class MainWindowUI {
 	            }
 			}
 		});
+		
+		JButton editInvoiceProvision = new JButton("Edit");
+		editInvoiceProvision.setBounds(invoiceProvisionPanel.getWidth() - buttonWidth,
+				(invoiceProvisionPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
+		editInvoiceProvision.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		invoiceProvisionPanel.add(editInvoiceProvision);
 
 		JButton addInvoiceProvision = new JButton("Add");
-		addInvoiceProvision.setBounds(341, 35, 54, 29);
+		addInvoiceProvision.setBounds(editInvoiceProvision.getX() - innerInsets - buttonWidth,
+				(invoiceProvisionPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
+		addInvoiceProvision.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		invoiceProvisionPanel.add(addInvoiceProvision);
 		addInvoiceProvision.addActionListener(new ActionListener() {
 			@Override
@@ -295,10 +322,6 @@ public class MainWindowUI {
 				showAddItemPanel();
 			}
 		});
-
-		JButton editInvoiceProvision = new JButton("Edit");
-		editInvoiceProvision.setBounds(407, 35, 59, 29);
-		invoiceProvisionPanel.add(editInvoiceProvision);
 
 		JButton createInvoice_Button = new JButton("CREATE INVOICE");
 		createInvoice_Button.setFont(new Font("Arial", Font.PLAIN, 14));
