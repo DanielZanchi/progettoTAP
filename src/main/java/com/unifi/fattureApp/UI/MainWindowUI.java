@@ -126,19 +126,6 @@ public class MainWindowUI {
 		myCompanyInfo_Label.setBounds(innerInsets, myCompany_Label.getY() + innerInsets + myCompany_Label.getHeight(),
 				(int) width, (int) height);
 		myCompany_Panel.add(myCompanyInfo_Label);
-
-		JButton addMyCompany_Button = new JButton("Add");
-		addMyCompany_Button.setName("AddCompanyButton");
-		addMyCompany_Button.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		addMyCompany_Button.setBounds(myCompany_Panel.getWidth() - innerInsets - buttonWidth,
-				(myCompany_Panel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
-		myCompany_Panel.add(addMyCompany_Button);
-		outer_Panel.setLayer(addMyCompany_Button, 1);
-		addMyCompany_Button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				showAddCompanyPanel();
-			}
-		});
 		
 		JButton editMyCompany_Button = new JButton("Edit");
 		editMyCompany_Button.setName("EditCompanyButton");
@@ -153,7 +140,21 @@ public class MainWindowUI {
 			}
 		});
 
-		// ▲, ▼
+		JButton addMyCompany_Button = new JButton("Add");
+		addMyCompany_Button.setName("AddCompanyButton");
+		addMyCompany_Button.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		addMyCompany_Button.setBounds(editMyCompany_Button.getX() - innerInsets - buttonWidth,
+				(myCompany_Panel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
+		myCompany_Panel.add(addMyCompany_Button);
+		outer_Panel.setLayer(addMyCompany_Button, 1);
+		addMyCompany_Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				showAddCompanyPanel();
+			}
+		});
+		
+
+
 
 		JButton prevCompany_Button = new JButton("▲");
 		prevCompany_Button.setName("prevCompany_Button");
