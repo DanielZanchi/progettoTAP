@@ -79,6 +79,7 @@ public class MainWindowUI {
 		fattureApp_Frame.setLocationRelativeTo(null);
 
 		fattureApp_Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 
 		outer_Panel = new JLayeredPane();
 		outer_Panel.setName("OuterPanel");

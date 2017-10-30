@@ -12,7 +12,6 @@ public class ClientPanelUITest {
 	private JPanelFixture addClient_Panel;
 	private JButtonFixture cancelAdd_Button;
 	private JButtonFixture saveAdd_Button;
-	private JPanelFixture clientPanel;	
 	private JButtonFixture addClient_Button;
 
 
@@ -21,7 +20,7 @@ public class ClientPanelUITest {
 		MainWindowUI frame=new MainWindowUI();
 		window = new FrameFixture(frame.getMainFrame());
 		window.show();
-		clientPanel = window.panel("ClientPanel");
+		addClient_Button = window.panel("ClientPanel").button("AddClientButton");
 	}
 
 	@After
@@ -67,6 +66,7 @@ public class ClientPanelUITest {
 		saveAdd_Button.requireDisabled();
 	}
 	
+	/*
 	@Test
 	public void testSaveButtonWithInputsAction() {
 		getSaveButton();
@@ -74,6 +74,7 @@ public class ClientPanelUITest {
 		saveAdd_Button.click();
 		addClient_Panel.requireNotVisible();
 	}
+	*/
 	
 	@Test
 	public void testSaveButtonWithWrongInputsAction() {

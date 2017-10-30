@@ -2,6 +2,8 @@ package com.unifi.fattureApp.App;
 
 import java.net.UnknownHostException;
 
+import com.unifi.fattureApp.UI.MainWindowUI;
+
 
 public class Main {
 	public static void main(String[] args) throws UnknownHostException {
@@ -10,9 +12,12 @@ public class Main {
 //		new MainWindowUI(new MongoUiComunication());
 		MongoUiComunication mongoUiComunication=new MongoUiComunication();
 		
+		new MainWindowUI(mongoUiComunication);
+		
 		
 		
 		//		Fill db
+	/*
 		int companies=2;
 		int clients=4;
 		int invoices=6;
@@ -28,6 +33,7 @@ public class Main {
 			mongoUiComunication.addInvoiceToDatabase("Nome Fattura"+String.valueOf(i), String.valueOf(i*6), "descrizione fattura "+String.valueOf(i));
 			System.out.println("aggiunte "+i+" invoices ");
 		}
+		*/
 		//		endFill db
 		
 		
