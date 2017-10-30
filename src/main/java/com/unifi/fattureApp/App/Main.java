@@ -17,7 +17,7 @@ public class Main {
 		
 		
 		//		Fill db
-	/*
+	
 		int companies=2;
 		int clients=4;
 		int invoices=6;
@@ -33,7 +33,7 @@ public class Main {
 			mongoUiComunication.addInvoiceToDatabase("Nome Fattura"+String.valueOf(i), String.valueOf(i*6), "descrizione fattura "+String.valueOf(i));
 			System.out.println("aggiunte "+i+" invoices ");
 		}
-		*/
+		
 		//		endFill db
 		
 		

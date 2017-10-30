@@ -22,6 +22,7 @@ public class MongoUiComunication {
 	private JLabel companyInfo;
 	
 	private int companyCounter=0;
+	private int invoiceCounter=0;
 	
 
 	
@@ -122,16 +123,18 @@ public class MongoUiComunication {
 	
 	public void printSelected() {
 		if(currentSelectedClient!=null && currentSelectedCompany!=null && currentSelectedInvoice!=null) {
-		System.out.println(" Selected: ");
-		System.out.println(" Company : "+currentSelectedCompany.getName());
-		System.out.println(currentSelectedCompany.getAddress());
-		System.out.println("");
-		System.out.println(" Client : "+currentSelectedClient.getName());
-		System.out.println(currentSelectedClient.getCityResidence());
-		System.out.println("");
-		System.out.println(" Invoice : "+currentSelectedInvoice.getName());
-		System.out.println(currentSelectedInvoice.getPrice());
-		System.out.println(" -------/Selected---------- ");
+			invoiceCounter++;
+			System.out.println("Invoice Number: "+invoiceCounter);
+			System.out.println(" Selected: ");
+			System.out.println(" Company : "+currentSelectedCompany.getName());
+			System.out.println(currentSelectedCompany.getAddress());
+			System.out.println("");
+			System.out.println(" Client : "+currentSelectedClient.getName());
+			System.out.println(currentSelectedClient.getCityResidence());
+			System.out.println("");
+			System.out.println(" Invoice : "+currentSelectedInvoice.getName());
+			System.out.println(currentSelectedInvoice.getPrice());
+			System.out.println(" -------/Selected---------- ");
 		}
 	}
 

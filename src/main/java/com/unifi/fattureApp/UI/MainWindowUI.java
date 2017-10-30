@@ -44,6 +44,7 @@ public class MainWindowUI {
 	 * Launch the application.
 	 */
 
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -55,16 +56,19 @@ public class MainWindowUI {
 			}
 		});
 	}
+	
 
 	public MainWindowUI(MongoUiComunication mongoUiComm) {
 		mongoUiCom = mongoUiComm;
 		initialize();
 	}
 
+	
 	public MainWindowUI() {
 		mongoUiCom = new MongoUiComunication();
 		initialize();
 	}
+	
 
 	private void initialize() {
 		// mongoUiCom=new MongoUiComunication();
