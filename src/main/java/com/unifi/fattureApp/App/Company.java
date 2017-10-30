@@ -1,5 +1,8 @@
 package com.unifi.fattureApp.App;
 
+import java.awt.List;
+import java.util.LinkedList;
+
 public class Company {
 	private String id;
 	private String name;
@@ -108,4 +111,5 @@ public class Company {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 }
