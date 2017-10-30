@@ -25,6 +25,9 @@ public class MongoUiComunication {
 
 	private int companyCounter = 0;
 	private int invoiceCounter = 0;
+	
+	private JButton editCompanyButton;
+	private LinkedList<JButton> editButtons;
 
 	public MongoUiComunication() {
 		// if (args.length > 0)
@@ -46,6 +49,7 @@ public class MongoUiComunication {
 		}
 
 		myCompanyController = new CompanyController(database);
+		editButtons=new LinkedList<>();
 	}
 
 	public boolean addClientToDatabase(String name, String fiscalCode, String residence, String city, String province,
@@ -144,6 +148,7 @@ public class MongoUiComunication {
 
 	public void setCurrentSelectedCompany(Company currentSelectedCompany) {
 		this.currentSelectedCompany = currentSelectedCompany;
+		this.enableEditCompanyButton();
 	}
 
 	public Invoice getCurrentSelectedInvoice() {
@@ -170,7 +175,6 @@ public class MongoUiComunication {
 
 	public void updateCompanyReference() {
 		if (companyInfo.getText().equals("My Company")) {
-			System.out.println("my company entrato");
 			if (this.getSavedCompanies().size() > 0) {
 				companyInfo.setText(this.getSavedCompanies().get(0).getName());
 				this.setCurrentSelectedCompany(this.getSavedCompanies().get(0));
@@ -178,7 +182,6 @@ public class MongoUiComunication {
 			}
 		} else {
 			if (this.getSavedCompanies().size() > 0) {
-				System.out.println("entrato");
 				companyInfo.setText(this.getSavedCompanies().get(companyCounter).getName());
 				this.setCurrentSelectedCompany(this.getSavedCompanies().get(companyCounter));
 			}
@@ -221,4 +224,13 @@ public class MongoUiComunication {
 		this.updateCompanyReference();
 	}
 
+	
+	public void enableEditCompanyButton() {
+		editCompanyButton.setEnabled(true);
+	}
+
+	public void seteditCompanyButton(JButton editMyCompany_Button) {
+		editCompanyButton=editMyCompany_Button;
+	}
+	
 }
