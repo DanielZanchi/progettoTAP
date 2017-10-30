@@ -64,7 +64,6 @@ public class PDFCreator {
 			e.printStackTrace();
 		}
 		return cs;
-		
 	}
 	
 	private float pt2mm(float pt) {
