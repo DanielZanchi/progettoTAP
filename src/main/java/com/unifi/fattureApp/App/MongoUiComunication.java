@@ -130,6 +130,9 @@ public class MongoUiComunication {
 			System.out.println(" Invoice : " + currentSelectedInvoice.getName());
 			System.out.println(currentSelectedInvoice.getPrice());
 			System.out.println(" -------/Selected---------- ");
+			
+			new PDFCreator(currentSelectedCompany, currentSelectedClient, currentSelectedInvoice);
+
 		}
 	}
 
