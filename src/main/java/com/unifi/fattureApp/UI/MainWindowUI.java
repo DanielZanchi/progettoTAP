@@ -172,6 +172,7 @@ public class MainWindowUI {
 					
 				}else{
 					mongoUiCom.setCompanyCounter(mongoUiCom.getCompanyCounter()-1);
+					editMyCompany_Button.setEnabled(true);
 				}
 			}
 		});
@@ -194,6 +195,7 @@ public class MainWindowUI {
 
 				}else {
 					mongoUiCom.setCompanyCounter(mongoUiCom.getCompanyCounter()+1);
+					editMyCompany_Button.setEnabled(true);
 				}
 			}
 		});
@@ -225,22 +227,7 @@ public class MainWindowUI {
 		clientLbl.setBounds((clientPanel.getWidth() / 2) - 26, innerInsets, 52, 16);
 		clientLbl.setFont(new Font("Arial", Font.BOLD, 16));
 		clientPanel.add(clientLbl);
-
-		JComboBox clientListComboBox = new JComboBox();
-		clientListComboBox.setName("clientsComboBox");
-		clientListComboBox.setBounds(0, (clientPanel.getHeight() / 2) - 14, 338, 28);
-		clientPanel.add(clientListComboBox);
-		clientListComboBox.addItemListener(new ItemListener() {
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				// TODO Auto-generated method stub
-				if(e.getStateChange() == ItemEvent.SELECTED) {
-					mongoUiCom.setCurrentSelectedClient(mongoUiCom.getSavedClients().get(clientListComboBox.getSelectedIndex()));
-	            }
-				
-			}
-		});
-
+		
 		JButton editClient = new JButton("Edit");
 		editClient.setName("editClientButton");
 		editClient.setEnabled(false);
@@ -255,6 +242,23 @@ public class MainWindowUI {
 		});
 		clientPanel.add(editClient);
 		outer_Panel.setLayer(myCompany_Panel, 1);
+
+		JComboBox clientListComboBox = new JComboBox();
+		clientListComboBox.setName("clientsComboBox");
+		clientListComboBox.setBounds(0, (clientPanel.getHeight() / 2) - 14, 338, 28);
+		clientPanel.add(clientListComboBox);
+		clientListComboBox.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					editClient.setEnabled(true);
+					mongoUiCom.setCurrentSelectedClient(mongoUiCom.getSavedClients().get(clientListComboBox.getSelectedIndex()));
+	            }
+				
+			}
+		});
+
 		
 		
 
@@ -286,23 +290,8 @@ public class MainWindowUI {
 		invoiceItemLbl.setBounds((invoiceProvisionPanel.getWidth() / 2) - 54, innerInsets, 108, 16);
 		invoiceItemLbl.setFont(new Font("Arial", Font.BOLD, 16));
 		invoiceProvisionPanel.add(invoiceItemLbl);
-
-		JComboBox invoiceListcomboBox = new JComboBox();
-		invoiceListcomboBox.setName("invoicesComboBox");
-		invoiceListcomboBox.setBounds(0, (invoiceProvisionPanel.getHeight() / 2) - 14, 338, 28);
-		invoiceProvisionPanel.add(invoiceListcomboBox);
-		invoiceListcomboBox.addItemListener(new ItemListener() {
-			
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				// TODO Auto-generated method stub
-				if(e.getStateChange() == ItemEvent.SELECTED) {
-					mongoUiCom.setCurrentSelectedInvoice(mongoUiCom.getSavedInvoices().get(invoiceListcomboBox.getSelectedIndex()));
-	            }
-			}
-		});
-
-
+		
+		
 		JButton editInvoiceProvision = new JButton("Edit");
 		editInvoiceProvision.setName("editInvoiceButton");
 		editInvoiceProvision.setEnabled(false);
@@ -316,6 +305,25 @@ public class MainWindowUI {
 			}
 		});
 		invoiceProvisionPanel.add(editInvoiceProvision);
+
+		
+		JComboBox invoiceListcomboBox = new JComboBox();
+		invoiceListcomboBox.setName("invoicesComboBox");
+		invoiceListcomboBox.setBounds(0, (invoiceProvisionPanel.getHeight() / 2) - 14, 338, 28);
+		invoiceProvisionPanel.add(invoiceListcomboBox);
+		invoiceListcomboBox.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					mongoUiCom.setCurrentSelectedInvoice(mongoUiCom.getSavedInvoices().get(invoiceListcomboBox.getSelectedIndex()));
+					editInvoiceProvision.setEnabled(true);
+				}
+			}
+		});
+
+
 		
 		JButton addInvoiceProvision = new JButton("Add");
 		addInvoiceProvision.setBounds(editInvoiceProvision.getX() - innerInsets - buttonWidth,
@@ -352,7 +360,6 @@ public class MainWindowUI {
 		createAddRecordsPanels();
 		updateReferences(clientListComboBox,invoiceListcomboBox,myCompany_Label);
 		
-		
 
 		fattureApp_Frame.pack();
 		fattureApp_Frame.setVisible(true);
@@ -360,10 +367,13 @@ public class MainWindowUI {
 	
 	
 	
+	
+
 	private void updateReferences(JComboBox clientListComboBox,JComboBox invoiceListcomboBox,JLabel companyInfo) {
 		mongoUiCom.setClientsList(clientListComboBox);
 		mongoUiCom.setInvoicesList(invoiceListcomboBox);
 		mongoUiCom.setCompanyInfo(companyInfo);
+		
 		mongoUiCom.updateAllReferences();
 	}
 

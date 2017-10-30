@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.MongoUiComunication;
 
 public class CompanyPanel extends JPanel implements AddPanel{
@@ -240,6 +241,7 @@ public class CompanyPanel extends JPanel implements AddPanel{
 
 				if (saved) {
 					myMongoUiComunication.printAllCompanies();
+					myMongoUiComunication.setCurrentSelectedCompany(myMongoUiComunication.getSavedCompanies().get(myMongoUiComunication.getSavedCompanies().size()-1));
 				} else {
 					System.err.println("Error: Company was not saved!!!");
 				}
