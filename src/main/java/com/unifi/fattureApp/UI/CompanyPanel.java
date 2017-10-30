@@ -242,6 +242,7 @@ public class CompanyPanel extends JPanel implements AddPanel{
 				if (saved) {
 					myMongoUiComunication.printAllCompanies();
 					myMongoUiComunication.setCurrentSelectedCompany(myMongoUiComunication.getSavedCompanies().get(myMongoUiComunication.getSavedCompanies().size()-1));
+					myMongoUiComunication.enableEditCompanyButton();
 				} else {
 					System.err.println("Error: Company was not saved!!!");
 				}

@@ -136,6 +136,7 @@ public class MainWindowUI {
 				showGenericAddPanel(addCompany_Panel, false);
 			}
 		});
+		mongoUiCom.seteditCompanyButton(editMyCompany_Button);
 
 		JButton addMyCompany_Button = new JButton("Add");
 		addMyCompany_Button.setName("AddCompanyButton");
