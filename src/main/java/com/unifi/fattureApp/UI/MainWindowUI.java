@@ -30,7 +30,7 @@ public class MainWindowUI {
 
 	// private int buttonPadding = 8;
 	private int buttonHeight = 30;
-	private int buttonWidth = 64;
+	private int buttonWidth = 50;
 
 	private Color outerColor = new java.awt.Color(232, 246, 250);
 	private Color layer1Color = new java.awt.Color(226, 244, 252);
@@ -104,16 +104,15 @@ public class MainWindowUI {
 		String myCompanyName_String = "My Company";
 		JLabel myCompany_Label = new JLabel(myCompanyName_String);
 		myCompany_Label.setName("currentSelectedCompanyLabel");
-		myCompany_Label.setFont(new Font("Lucida Grande", Font.BOLD, 18));
-		double width = myCompany_Label.getPreferredSize().getWidth();
+		myCompany_Label.setFont(new Font("Lucida Grande", Font.BOLD, 16));
+		double width = 310;
 		double height = myCompany_Label.getPreferredSize().getHeight();
 		myCompany_Label.setBounds(innerInsets, innerInsets, (int) width, (int) height);
 		myCompany_Panel.add(myCompany_Label);
 
 		JLabel myCompanyInfo_Label = new JLabel("info");
-		width = myCompany_Label.getPreferredSize().getWidth();
+		width = 310;
 		height = myCompany_Label.getPreferredSize().getHeight();
-		myCompany_Label.setBounds(innerInsets, innerInsets, (int) width, (int) height);
 		myCompanyInfo_Label.setBounds(innerInsets, myCompany_Label.getY() + innerInsets + myCompany_Label.getHeight(),
 				(int) width, (int) height);
 		myCompany_Panel.add(myCompanyInfo_Label);
@@ -224,7 +223,7 @@ public class MainWindowUI {
 
 		JComboBox clientListComboBox = new JComboBox();
 		clientListComboBox.setName("clientsComboBox");
-		clientListComboBox.setBounds(0, (clientPanel.getHeight() / 2) - 14, 306, 28);
+		clientListComboBox.setBounds(0, (clientPanel.getHeight() / 2) - 14, 338, 28);
 		clientPanel.add(clientListComboBox);
 		clientListComboBox.addItemListener(new ItemListener() {
 			@Override
@@ -285,7 +284,7 @@ public class MainWindowUI {
 
 		JComboBox invoiceListcomboBox = new JComboBox();
 		invoiceListcomboBox.setName("invoicesComboBox");
-		invoiceListcomboBox.setBounds(0, (invoiceProvisionPanel.getHeight() / 2) - 14, 306, 28);
+		invoiceListcomboBox.setBounds(0, (invoiceProvisionPanel.getHeight() / 2) - 14, 338, 28);
 		invoiceProvisionPanel.add(invoiceListcomboBox);
 		invoiceListcomboBox.addItemListener(new ItemListener() {
 			
