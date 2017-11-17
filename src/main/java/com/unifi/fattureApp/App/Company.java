@@ -1,9 +1,10 @@
 package com.unifi.fattureApp.App;
 
 import java.awt.List;
+import java.io.Serializable;
 import java.util.LinkedList;
 
-public class Company {
+public class Company{
 	private String id;
 	private String name;
 	private String vatCode;

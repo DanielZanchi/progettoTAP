@@ -9,6 +9,8 @@ public class CompanyController {
 			this.database = database;
 		}
 
+		//Client
+		
 		public List<Client> getAllClients() {
 			return database.getAllClientsList();
 		}
@@ -24,6 +26,8 @@ public class CompanyController {
 			database.saveClient(client);
 			return true;
 		}
+		
+		//Company
 		
 		public List<Company> getAllCompany() {
 			return database.getAllCompaniesList();
@@ -41,6 +45,8 @@ public class CompanyController {
 			return true;
 		}
 		
+		//Invoice
+		
 		public List<Invoice> getAllInvoices() {
 			return database.getAllInvoicesList();
 		}
@@ -56,4 +62,24 @@ public class CompanyController {
 			database.saveInvoice(invoice);
 			return true;
 		}
+		
+		
+		//PrintedInvoice
+		
+		public List<PrintedInvoice> getAllPrintedInvoice() {
+			return database.getAllPrintedInvoiceList();
+		}
+
+		public PrintedInvoice getPrintedInvoiceId(String id) {
+			return database.findPrintedInvoiceById(id);
+		}
+		
+		public boolean addPrintedInvoice(PrintedInvoice printedInvoice) {
+			if (getPrintedInvoiceId(printedInvoice.getPrintedId()) != null)
+				return false;
+
+			database.savePrintedInvoice(printedInvoice);
+			return true;
+		}
+		
 }

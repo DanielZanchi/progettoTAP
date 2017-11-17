@@ -14,11 +14,13 @@ import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.Invoice;
+import com.unifi.fattureApp.App.PrintedInvoice;
 
 public class MongoWrapper implements Database{
 	private MongoCollection clients;
 	private MongoCollection companies;
 	private MongoCollection invoices;
+	private MongoCollection printedInvoices;
 
 	public MongoWrapper(MongoClient mc) throws UnknownHostException {
 		DB db = mc.getDB("company");
@@ -27,7 +29,10 @@ public class MongoWrapper implements Database{
 		clients = jongo.getCollection("client");
 		companies = jongo.getCollection("companies");
 		invoices = jongo.getCollection("invoices");
+		printedInvoices=jongo.getCollection("printedInvoices");
 	}	
+	
+	//Clients
 	
 	@Override
 	public List<Client> getAllClientsList() {
@@ -47,6 +52,10 @@ public class MongoWrapper implements Database{
 		clients.save(client);
 	}
 	
+	
+	//Company
+	
+	
 	@Override
 	public List<Company> getAllCompaniesList() {
 		Iterable<Company> iterable = companies.find().as(Company.class);
@@ -65,6 +74,8 @@ public class MongoWrapper implements Database{
 		companies.save(company);
 	}
 
+	//Invoice
+	
 	@Override
 	public List<Invoice> getAllInvoicesList() {
 		Iterable<Invoice> iterable = invoices.find().as(Invoice.class);
@@ -82,4 +93,29 @@ public class MongoWrapper implements Database{
 	public void saveInvoice(Invoice invoice) {
 		invoices.save(invoice);
 	}
+	
+	
+	
+	
+	//PrintedInvoice
+	
+	@Override
+	public List<PrintedInvoice> getAllPrintedInvoiceList() {
+		Iterable<PrintedInvoice> iterable = printedInvoices.find().as(PrintedInvoice.class);
+		return StreamSupport.
+			stream(iterable.spliterator(), false).
+			collect(Collectors.toList());
+	}
+
+	@Override
+	public PrintedInvoice findPrintedInvoiceById(String id) {
+		return printedInvoices.findOne("{id: #}", id).as(PrintedInvoice.class);
+	}
+
+	@Override
+	public void savePrintedInvoice(PrintedInvoice printedInvoice) {
+		printedInvoices.save(printedInvoice);
+	}
+	
+	
 }

@@ -24,6 +24,7 @@ import com.unifi.fattureApp.App.MongoUiComunication;
 
 public class ItemInvoicePanel extends JPanel implements AddPanel {
 	private JTextField itemDescription_TF;
+	private JTextField itemName_TF;
 	private JFormattedTextField itemPrice_TF;
 
 	private LinkedList<JTextField> textFields;
@@ -43,7 +44,7 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 		addItem_Panel.setBorder(BorderFactory.createLineBorder(Color.white, 3));
 		int insets = 22;
 		int width = outer_Panel.getWidth() - insets - insets;
-		int height = outer_Panel.getHeight() - (insets * 2) - 350;
+		int height = outer_Panel.getHeight() - (insets * 2) - 250;
 		addItem_Panel.setBounds(insets, insets, width, height);
 		outer_Panel.add(addItem_Panel);
 		addItem_Panel.setLayout(null);
@@ -62,32 +63,48 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 		height = (int) addItemTitle_Label.getPreferredSize().getHeight();
 		addItemTitle_Label.setBounds((addItem_Panel.getWidth() / 2) - (width / 2), addPanelY - 10, width, height);
 		addItem_Panel.add(addItemTitle_Label);
+		
+		JLabel itemName_Label = new JLabel("Item Name:");
+		width = (int) itemName_Label.getPreferredSize().getWidth();
+		height = (int) itemName_Label.getPreferredSize().getHeight();
+		itemName_Label.setBounds((addItem_Panel.getWidth() / 2) - (width / 2),
+				addItemTitle_Label.getY() + addItemTitle_Label.getHeight() + insetsBtwField, width, height);
+		addItem_Panel.add(itemName_Label);
+		itemName_TF = new JTextField();
+		width = 200;
+		itemName_TF.setHorizontalAlignment(JTextField.CENTER);
+		itemName_TF.setBounds((addItem_Panel.getWidth() / 2) - (width / 2),
+				itemName_Label.getY() + itemName_Label.getHeight() + insets, width, 28);
+		addItem_Panel.add(itemName_TF);
 
+		
+		
 		JLabel itemDescription_Label = new JLabel("Item Description:");
 		width = (int) itemDescription_Label.getPreferredSize().getWidth();
 		height = (int) itemDescription_Label.getPreferredSize().getHeight();
 		itemDescription_Label.setBounds((addItem_Panel.getWidth() / 2) - (width / 2),
-				addItemTitle_Label.getY() + addItemTitle_Label.getHeight() + insetsBtwField, width, height);
+				itemName_TF.getY() + itemName_TF.getHeight() + insetsBtwField, width, height);
 		addItem_Panel.add(itemDescription_Label);
-
 		itemDescription_TF = new JTextField();
 		width = 350;
 		itemDescription_TF.setHorizontalAlignment(JTextField.CENTER);
 		itemDescription_TF.setBounds((addItem_Panel.getWidth() / 2) - (width / 2),
 				itemDescription_Label.getY() + itemDescription_Label.getHeight() + insets, width, 28);
+		
 		addItem_Panel.add(itemDescription_TF);
 
+		
+		
+		
 		JLabel itemPrice_Label = new JLabel("Price (Excl. VAT):");
 		width = (int) itemPrice_Label.getPreferredSize().getWidth();
 		height = (int) itemPrice_Label.getPreferredSize().getHeight();
 		itemPrice_Label.setBounds((addItem_Panel.getWidth() / 2) - (width / 2),
 				itemDescription_TF.getY() + itemDescription_TF.getHeight() + insetsBtwField, width, height);
 		addItem_Panel.add(itemPrice_Label);
-
 		NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.getDefault());
 		DecimalFormat decimalFormat = (DecimalFormat) numberFormat;
 		decimalFormat.setGroupingUsed(false);
-
 		itemPrice_TF = new JFormattedTextField(decimalFormat);
 		itemPrice_TF.setColumns(15);
 		width = 70;
@@ -122,7 +139,7 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 			public void actionPerformed(ActionEvent e) {
 				// save invoice
 				if(addItem_Panel.isSaving()) {
-					mongoUiComunication.addInvoiceToDatabase("da cambiare :-) ", itemDescription_TF.getText(), itemPrice_TF.getText());
+					mongoUiComunication.addInvoiceToDatabase(itemName_TF.getText(), itemDescription_TF.getText(), itemPrice_TF.getText());
 				}else {
 					
 				}

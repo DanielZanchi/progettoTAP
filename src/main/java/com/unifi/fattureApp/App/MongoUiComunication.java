@@ -50,6 +50,7 @@ public class MongoUiComunication {
 
 		myCompanyController = new CompanyController(database);
 		editButtons=new LinkedList<>();
+		invoiceCounter=myCompanyController.getAllPrintedInvoice().size();
 	}
 
 	public boolean addClientToDatabase(String name, String fiscalCode, String residence, String city, String province,
@@ -122,7 +123,7 @@ public class MongoUiComunication {
 		System.out.println(currentSelectedInvoice.getDescription());
 		
 		if (currentSelectedClient != null && currentSelectedCompany != null && currentSelectedInvoice != null) {
-			invoiceCounter++;
+			increseInvoiceNumber();
 			System.out.println("Invoice Number: " + invoiceCounter);
 			System.out.println(" Selected: ");
 			System.out.println(" Company : " + currentSelectedCompany.getName());
@@ -138,6 +139,15 @@ public class MongoUiComunication {
 			new PDFCreator(currentSelectedCompany, currentSelectedClient, currentSelectedInvoice);
 
 		}
+	}
+
+	private void  increseInvoiceNumber() {
+		invoiceCounter++;
+		myCompanyController.addPrintedInvoice(new PrintedInvoice(currentSelectedCompany, currentSelectedClient, currentSelectedInvoice, String.valueOf(invoiceCounter)));
+		PrintedInvoice pInvoice=myCompanyController.getPrintedInvoiceId( String.valueOf(invoiceCounter));
+		System.out.println("company: " + pInvoice.getPrintedCompany().getName());
+		System.out.println(" client: "+pInvoice.getPrintedClient().getName());
+		System.out.println(" invoice: " + pInvoice.getPrintedInvoice().getName());
 	}
 
 	// end prints !!!

@@ -10,11 +10,13 @@ import java.net.UnknownHostException;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.testcontainers.shaded.org.bouncycastle.crypto.ec.ECNewPublicKeyTransform;
 
 import com.mongodb.MongoClient;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Invoice;
+import com.unifi.fattureApp.App.PrintedInvoice;
 import com.unifi.fattureApp.helpTestTools.MongoTestHelperTool;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
@@ -154,4 +156,44 @@ public abstract class MongoWrapperTestAbstract {
 		assertEquals("2", findInvoiceById.getId());
 		assertEquals("nameI2", findInvoiceById.getName());
 	}
+	
+	// PrintedCompany
+	
+	@Test
+	public void testGetAllPrintedInvoicesEmpty() {
+		assertTrue(mongoDatabase.getAllPrintedInvoiceList().isEmpty());
+	}
+
+	/*
+	@Test
+	public void testGetAllPrintedInvoicesNotEmpty() {
+		mongoTestHelper.addPrintedInvoice(mongoTestHelper.createPrintedInvoice("0"));
+		mongoTestHelper.addPrintedInvoice(mongoTestHelper.createPrintedInvoice("1"));
+		assertEquals(2, mongoDatabase.getAllPrintedInvoiceList().size());
+	}
+	
+
+	@Test
+	public void testFindPrintedInvoiceByIdNotFound() {
+		mongoTestHelper.addPrintedInvoice(mongoTestHelper.createPrintedInvoice("0"));
+		assertNull(mongoDatabase.findInvoiceById("1"));
+	}
+
+	@Test
+	public void testPrintedInvoiceIsSaved() {
+		PrintedInvoice printedInvoice=mongoTestHelper.createPrintedInvoice("0");
+		mongoDatabase.savePrintedInvoice(printedInvoice);
+		assertTrue(mongoTestHelper.containsPrintedInvoice(printedInvoice.getPrintedId(),
+				printedInvoice.getPrintedCompany(),printedInvoice.getPrintedClient(),printedInvoice.getPrintedInvoice()));
+	}
+
+	@Test
+	public void testFindPrintedInvoiceByIdFound() {
+		mongoTestHelper.addPrintedInvoice(mongoTestHelper.createPrintedInvoice("0"));
+		mongoTestHelper.addPrintedInvoice(mongoTestHelper.createPrintedInvoice("1"));
+		PrintedInvoice findPrintedInvoiceById = mongoDatabase.findPrintedInvoiceById("1");
+		assertNotNull(findPrintedInvoiceById);
+		assertEquals("1", findPrintedInvoiceById.getPrintedId());
+	}
+	*/
 }
