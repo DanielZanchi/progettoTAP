@@ -10,13 +10,11 @@ import java.net.UnknownHostException;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.testcontainers.shaded.org.bouncycastle.crypto.ec.ECNewPublicKeyTransform;
 
 import com.mongodb.MongoClient;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Invoice;
-import com.unifi.fattureApp.App.PrintedInvoice;
 import com.unifi.fattureApp.helpTestTools.MongoTestHelperTool;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 

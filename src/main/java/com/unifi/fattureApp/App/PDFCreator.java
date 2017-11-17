@@ -3,7 +3,6 @@ package com.unifi.fattureApp.App;
 import java.awt.Font;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.apache.pdfbox.pdmodel.PDDocument;

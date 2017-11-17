@@ -16,7 +16,6 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.MongoUiComunication;
 
 public class CompanyPanel extends JPanel implements AddPanel{

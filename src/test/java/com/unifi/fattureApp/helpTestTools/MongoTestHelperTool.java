@@ -1,12 +1,9 @@
 package com.unifi.fattureApp.helpTestTools;
 
-import org.testcontainers.shaded.javax.ws.rs.ClientErrorException;
-
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
-import com.mongodb.gridfs.CLI;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Invoice;
