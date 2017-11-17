@@ -244,7 +244,7 @@ public class MainWindowUI {
 		clientPanel.add(editClient);
 		outer_Panel.setLayer(myCompany_Panel, 1);
 
-		JComboBox clientListComboBox = new JComboBox();
+		JComboBox<String> clientListComboBox = new JComboBox<String>();
 		clientListComboBox.setName("clientsComboBox");
 		clientListComboBox.setBounds(0, (clientPanel.getHeight() / 2) - 14, 338, 28);
 		clientPanel.add(clientListComboBox);
@@ -308,7 +308,7 @@ public class MainWindowUI {
 		invoiceProvisionPanel.add(editInvoiceProvision);
 
 		
-		JComboBox invoiceListcomboBox = new JComboBox();
+		JComboBox<String> invoiceListcomboBox = new JComboBox<String>();
 		invoiceListcomboBox.setName("invoicesComboBox");
 		invoiceListcomboBox.setBounds(0, (invoiceProvisionPanel.getHeight() / 2) - 14, 338, 28);
 		invoiceProvisionPanel.add(invoiceListcomboBox);
@@ -367,10 +367,7 @@ public class MainWindowUI {
 	}
 	
 	
-	
-	
-
-	private void updateReferences(JComboBox clientListComboBox,JComboBox invoiceListcomboBox,JLabel companyInfo) {
+	private void updateReferences(JComboBox<String> clientListComboBox,JComboBox<String> invoiceListcomboBox,JLabel companyInfo) {
 		mongoUiCom.setClientsList(clientListComboBox);
 		mongoUiCom.setInvoicesList(invoiceListcomboBox);
 		mongoUiCom.setCompanyInfo(companyInfo);

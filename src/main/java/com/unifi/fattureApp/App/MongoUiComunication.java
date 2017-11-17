@@ -19,8 +19,8 @@ public class MongoUiComunication {
 	private Client currentSelectedClient;
 	private Invoice currentSelectedInvoice;
 
-	private JComboBox clientsList;
-	private JComboBox invoicesList;
+	private JComboBox<String> clientsList;
+	private JComboBox<String> invoicesList;
 	private JLabel companyInfo;
 
 	private int companyCounter = 0;
@@ -213,11 +213,11 @@ public class MongoUiComunication {
 		}
 	}
 
-	public void setClientsList(JComboBox clientsList) {
+	public void setClientsList(JComboBox<String> clientsList) {
 		this.clientsList = clientsList;
 	}
 
-	public void setInvoicesList(JComboBox invoicesList) {
+	public void setInvoicesList(JComboBox<String> invoicesList) {
 		this.invoicesList = invoicesList;
 	}
 
