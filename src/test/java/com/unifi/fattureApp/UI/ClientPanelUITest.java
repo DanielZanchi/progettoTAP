@@ -15,9 +15,10 @@ public class ClientPanelUITest {
 	private JButtonFixture addClient_Button;
 
 
-	@Before public void setUp() {
+	@Before
+	public void setUp() {
 		//MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
-		MainWindowUI frame=new MainWindowUI();
+		MainWindowUI frame = new MainWindowUI();
 		window = new FrameFixture(frame.getMainFrame());
 		window.show();
 		addClient_Button = window.panel("ClientPanel").button("AddClientButton");
@@ -28,8 +29,6 @@ public class ClientPanelUITest {
 		window.cleanUp();
 	}
 
-
-	
 	@Test
 	public void testAddButtonAction() {		
 		addClient_Button.click();
@@ -106,11 +105,6 @@ public class ClientPanelUITest {
 		addClient_Panel.textBox("clientPhone_TF").setText(string8);
 		addClient_Panel.textBox("clientEmail_TF").setText(string9);
 		
-		
 	}
-	
-	
-	
-	
 	
 }
