@@ -19,7 +19,7 @@ public class ItemInvoicePanelUITest {
 		MainWindowUI frame = new MainWindowUI();
 		window = new FrameFixture(frame.getMainFrame());
 		window.show();
-		addInvoice_Button = window.panel("InvoicePanel").button("AddInvoiceButton");
+		addInvoice_Button = window.panel("InvoicePanel").button("addInvoiceButton");
 	}
 	
 	@After
@@ -45,7 +45,7 @@ public class ItemInvoicePanelUITest {
 	@Test
 	public void testCancelButtonAction() {
 		addInvoice_Button.click();
-		addInvoice_Panel = window.panel("AddInvoicetPanel");
+		addInvoice_Panel = window.panel("AddInvoicePanel");
 		cancelAdd_Button = addInvoice_Panel.button("CancelButton");
 		cancelAdd_Button.click();
 		addInvoice_Panel.requireNotVisible();
@@ -76,7 +76,7 @@ public class ItemInvoicePanelUITest {
 	@Test
 	public void testSaveButtonWithWrongInputsAction() {
 		getSaveButton();
-		setTextfieldsStrings("0","1","2","");
+		setTextfieldsStrings("0","1","");
 		saveAdd_Button.requireDisabled();
 	}
 
@@ -88,13 +88,10 @@ public class ItemInvoicePanelUITest {
 	
 	
 	
-	private void setTextfieldsStrings(String string1, String string2, String string3, String string4) {
-		
-		addInvoice_Panel.textBox("invoiceID_TF").setText(string1);
-		addInvoice_Panel.textBox("invoiceName_TF").setText(string2);
-		addInvoice_Panel.textBox("invoicePrice_TF").setText(string3);
-		addInvoice_Panel.textBox("invoiceDescription_TF").setText(string4);
-				
+	private void setTextfieldsStrings(String string1, String string2, String string3) {
+		addInvoice_Panel.textBox("invoiceName_TF").setText(string1);
+		addInvoice_Panel.textBox("invoicePrice_TF").setText(string2);
+		addInvoice_Panel.textBox("invoiceDescription_TF").setText(string3);	
 	}
 	
 }

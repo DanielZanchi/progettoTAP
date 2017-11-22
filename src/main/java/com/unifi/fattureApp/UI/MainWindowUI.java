@@ -327,6 +327,7 @@ public class MainWindowUI {
 
 		
 		JButton addInvoiceProvision = new JButton("Add");
+		addInvoiceProvision.setName("addInvoiceButton");
 		addInvoiceProvision.setBounds(editInvoiceProvision.getX() - innerInsets - buttonWidth,
 				(invoiceProvisionPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
 		addInvoiceProvision.setBorder(BorderFactory.createLineBorder(Color.GRAY));

@@ -39,7 +39,7 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 		addItem_Panel = this;
 		this.setVisible(false);
 		
-		addItem_Panel.setName("AddItemPanel");
+		addItem_Panel.setName("AddInvoicePanel");
 		addItem_Panel.setBackground(layerColor);
 		addItem_Panel.setBorder(BorderFactory.createLineBorder(Color.white, 3));
 		int insets = 22;
@@ -72,6 +72,7 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 		addItem_Panel.add(itemName_Label);
 		itemName_TF = new JTextField();
 		width = 200;
+		itemName_TF.setName("invoiceName_TF");
 		itemName_TF.setHorizontalAlignment(JTextField.CENTER);
 		itemName_TF.setBounds((addItem_Panel.getWidth() / 2) - (width / 2),
 				itemName_Label.getY() + itemName_Label.getHeight() + insets, width, 28);
@@ -90,7 +91,7 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 		itemDescription_TF.setHorizontalAlignment(JTextField.CENTER);
 		itemDescription_TF.setBounds((addItem_Panel.getWidth() / 2) - (width / 2),
 				itemDescription_Label.getY() + itemDescription_Label.getHeight() + insets, width, 28);
-		
+		itemDescription_TF.setName("invoiceDescription_TF");
 		addItem_Panel.add(itemDescription_TF);
 
 		
@@ -109,6 +110,7 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 		itemPrice_TF.setColumns(15);
 		width = 70;
 		itemPrice_TF.setHorizontalAlignment(JTextField.CENTER);
+		itemPrice_TF.setName("invoicePrice_TF");
 		itemPrice_TF.setBounds((addItem_Panel.getWidth() / 2) - (width / 2),
 				itemPrice_Label.getY() + itemPrice_Label.getHeight() + insets, width, 28);
 		addItem_Panel.add(itemPrice_TF);
