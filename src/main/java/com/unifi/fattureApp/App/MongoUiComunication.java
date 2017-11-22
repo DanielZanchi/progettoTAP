@@ -1,5 +1,6 @@
 package com.unifi.fattureApp.App;
 
+import java.net.UnknownHostException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
 import com.mongodb.MongoClient;
+import com.unifi.fattureApp.mongoDB.MongodbWrapperTests;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
 public class MongoUiComunication {
@@ -29,7 +31,7 @@ public class MongoUiComunication {
 	private JButton editCompanyButton;
 	private LinkedList<JButton> editButtons;
 
-	public MongoUiComunication() {
+	public MongoUiComunication(boolean testing) {
 		// if (args.length > 0)
 		// mongoHost = args[0];
 		// Database database = null;
@@ -41,8 +43,24 @@ public class MongoUiComunication {
 		// }
 		// myCompanyController = new CompanyController(database);
 
+		
+		MongoClient mongoClient=null;
+		if(testing) {
+			MongodbWrapperTests mongodbWrapperTests=new MongodbWrapperTests();
+			mongoClient=mongodbWrapperTests.createMongoClient();
+		}else {
+			try {
+				mongoClient=new MongoClient(mongoHost, 27017);
+			} catch (UnknownHostException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
 		try {
-			database = new MongoWrapper(new MongoClient(mongoHost, 27017));
+			//database = new MongoWrapper(new MongoClient(mongoHost, 27017));
+			database = new MongoWrapper(mongoClient);
 		} catch (Exception e) {
 			System.out.println("Error while connecting to mongoHost");
 			e.printStackTrace();
