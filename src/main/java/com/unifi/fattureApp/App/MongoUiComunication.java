@@ -8,8 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
+import com.github.fakemongo.Fongo;
 import com.mongodb.MongoClient;
-import com.unifi.fattureApp.mongoDB.MongodbWrapperTests;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
 public class MongoUiComunication {
@@ -46,8 +46,9 @@ public class MongoUiComunication {
 		
 		MongoClient mongoClient=null;
 		if(testing) {
-			MongodbWrapperTests mongodbWrapperTests=new MongodbWrapperTests();
-			mongoClient=mongodbWrapperTests.createMongoClient();
+			Fongo fongo = new Fongo("mongo server 1");
+			mongoClient = fongo.getMongo();
+			
 		}else {
 			try {
 				mongoClient=new MongoClient(mongoHost, 27017);
