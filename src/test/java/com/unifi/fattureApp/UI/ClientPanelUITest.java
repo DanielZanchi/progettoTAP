@@ -65,7 +65,7 @@ public class ClientPanelUITest {
 		saveAdd_Button.requireDisabled();
 	}
 	
-	/*
+	
 	@Test
 	public void testSaveButtonWithInputsAction() {
 		getSaveButton();
@@ -73,7 +73,7 @@ public class ClientPanelUITest {
 		saveAdd_Button.click();
 		addClient_Panel.requireNotVisible();
 	}
-	*/
+	
 	
 	@Test
 	public void testSaveButtonWithWrongInputsAction() {

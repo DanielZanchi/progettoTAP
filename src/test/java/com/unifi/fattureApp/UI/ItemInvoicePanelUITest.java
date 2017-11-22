@@ -63,15 +63,15 @@ public class ItemInvoicePanelUITest {
 		saveAdd_Button.requireDisabled();
 	}
 	
-	/*
+	
 	@Test
 	public void testSaveButtonWithInputsAction() {
 		getSaveButton();
-		setTextfieldsStrings("0","1","2","");
+		setTextfieldsStrings("0","1","2");
 		saveAdd_Button.click();
 		addInvoice_Panel.requireNotVisible();
 	}
-	*/
+	
 	
 	@Test
 	public void testSaveButtonWithWrongInputsAction() {
