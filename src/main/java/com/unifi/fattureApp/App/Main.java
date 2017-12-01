@@ -6,7 +6,7 @@ public class Main {
 	public static void main(String[] args) throws UnknownHostException {
 		//Launch UI
 		//		new MainWindowUI(new MongoUiComunication());
-		MongoUiComunication mongoUiComunication = new MongoUiComunication(false,args);
+		MongoUiComunication mongoUiComunication = new MongoUiComunication(false, args);
 
 		//new MainWindowUI(mongoUiComunication);
 
