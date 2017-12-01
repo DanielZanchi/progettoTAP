@@ -31,7 +31,7 @@ public class MongoUiComunication {
 	private JButton editCompanyButton;
 	private LinkedList<JButton> editButtons;
 
-	public MongoUiComunication(boolean testing) {
+	public MongoUiComunication(boolean testing,String args[]) {
 		// if (args.length > 0)
 		// mongoHost = args[0];
 		// Database database = null;
@@ -42,7 +42,8 @@ public class MongoUiComunication {
 		// e1.printStackTrace();
 		// }
 		// myCompanyController = new CompanyController(database);
-
+		if (args!=null && args.length > 0)
+				 mongoHost = args[0];
 		
 		MongoClient mongoClient=null;
 		if(testing) {

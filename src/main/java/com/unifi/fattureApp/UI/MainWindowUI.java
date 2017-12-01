@@ -65,7 +65,7 @@ public class MainWindowUI {
 
 	
 	public MainWindowUI() {
-		mongoUiCom = new MongoUiComunication(true);
+		mongoUiCom = new MongoUiComunication(true,null);
 		initialize();
 	}
 	

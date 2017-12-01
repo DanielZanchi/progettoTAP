@@ -10,9 +10,9 @@ public class Main {
 		
 		//Launch UI
 //		new MainWindowUI(new MongoUiComunication());
-		MongoUiComunication mongoUiComunication=new MongoUiComunication(false);
+		MongoUiComunication mongoUiComunication=new MongoUiComunication(false,args);
 		
-		new MainWindowUI(mongoUiComunication);
+		//new MainWindowUI(mongoUiComunication);
 		
 		
 		
