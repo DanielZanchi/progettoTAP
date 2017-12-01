@@ -31,17 +31,16 @@ public class MongoWrapper implements Database{
 		invoices = jongo.getCollection("invoices");
 		printedInvoices=jongo.getCollection("printedInvoices");
 	}	
-	
+
 	//Clients
-	
 	@Override
 	public List<Client> getAllClientsList() {
 		Iterable<Client> iterable = clients.find().as(Client.class);
 		return StreamSupport.
-			stream(iterable.spliterator(), false).
-			collect(Collectors.toList());
+				stream(iterable.spliterator(), false).
+				collect(Collectors.toList());
 	}
-	
+
 	@Override
 	public Client findClientById(String id) {
 		return clients.findOne("{id: #}", id).as(Client.class);
@@ -51,19 +50,16 @@ public class MongoWrapper implements Database{
 	public void saveClient(Client client) {
 		clients.save(client);
 	}
-	
-	
+
 	//Company
-	
-	
 	@Override
 	public List<Company> getAllCompaniesList() {
 		Iterable<Company> iterable = companies.find().as(Company.class);
 		return StreamSupport.
-			stream(iterable.spliterator(), false).
-			collect(Collectors.toList());
+				stream(iterable.spliterator(), false).
+				collect(Collectors.toList());
 	}
-	
+
 	@Override
 	public Company findCompanyById(String id) {
 		return companies.findOne("{id: #}", id).as(Company.class);
@@ -75,13 +71,12 @@ public class MongoWrapper implements Database{
 	}
 
 	//Invoice
-	
 	@Override
 	public List<Invoice> getAllInvoicesList() {
 		Iterable<Invoice> iterable = invoices.find().as(Invoice.class);
 		return StreamSupport.
-			stream(iterable.spliterator(), false).
-			collect(Collectors.toList());
+				stream(iterable.spliterator(), false).
+				collect(Collectors.toList());
 	}
 
 	@Override
@@ -93,18 +88,14 @@ public class MongoWrapper implements Database{
 	public void saveInvoice(Invoice invoice) {
 		invoices.save(invoice);
 	}
-	
-	
-	
-	
+
 	//PrintedInvoice
-	
 	@Override
 	public List<PrintedInvoice> getAllPrintedInvoiceList() {
 		Iterable<PrintedInvoice> iterable = printedInvoices.find().as(PrintedInvoice.class);
 		return StreamSupport.
-			stream(iterable.spliterator(), false).
-			collect(Collectors.toList());
+				stream(iterable.spliterator(), false).
+				collect(Collectors.toList());
 	}
 
 	@Override
@@ -116,6 +107,4 @@ public class MongoWrapper implements Database{
 	public void savePrintedInvoice(PrintedInvoice printedInvoice) {
 		printedInvoices.save(printedInvoice);
 	}
-	
-	
 }

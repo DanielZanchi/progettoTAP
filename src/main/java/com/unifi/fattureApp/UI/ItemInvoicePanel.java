@@ -38,7 +38,7 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 		this.mongoUiComunication = mongoUiCom;
 		addItem_Panel = this;
 		this.setVisible(false);
-		
+
 		addItem_Panel.setName("AddInvoicePanel");
 		addItem_Panel.setBackground(layerColor);
 		addItem_Panel.setBorder(BorderFactory.createLineBorder(Color.white, 3));
@@ -63,7 +63,7 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 		height = (int) addItemTitle_Label.getPreferredSize().getHeight();
 		addItemTitle_Label.setBounds((addItem_Panel.getWidth() / 2) - (width / 2), addPanelY - 10, width, height);
 		addItem_Panel.add(addItemTitle_Label);
-		
+
 		JLabel itemName_Label = new JLabel("Item Name:");
 		width = (int) itemName_Label.getPreferredSize().getWidth();
 		height = (int) itemName_Label.getPreferredSize().getHeight();
@@ -78,8 +78,6 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 				itemName_Label.getY() + itemName_Label.getHeight() + insets, width, 28);
 		addItem_Panel.add(itemName_TF);
 
-		
-		
 		JLabel itemDescription_Label = new JLabel("Item Description:");
 		width = (int) itemDescription_Label.getPreferredSize().getWidth();
 		height = (int) itemDescription_Label.getPreferredSize().getHeight();
@@ -94,9 +92,6 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 		itemDescription_TF.setName("invoiceDescription_TF");
 		addItem_Panel.add(itemDescription_TF);
 
-		
-		
-		
 		JLabel itemPrice_Label = new JLabel("Price (Excl. VAT):");
 		width = (int) itemPrice_Label.getPreferredSize().getWidth();
 		height = (int) itemPrice_Label.getPreferredSize().getHeight();
@@ -142,10 +137,9 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 				// save invoice
 				if(addItem_Panel.isSaving()) {
 					mongoUiComunication.addInvoiceToDatabase(itemName_TF.getText(), itemDescription_TF.getText(), itemPrice_TF.getText());
-				}else {
-					
+				}else {					
 				}
-				
+
 				addItem_Panel.setVisible(false);
 				mongoUiComunication.updateInvoicesReferences();
 				// outer_Panel.remove(addClient_Panel);
@@ -153,7 +147,6 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 		});
 
 		// check if all required field aren't empty. if so activate the save button.
-
 		Component[] components = addItem_Panel.getComponents();
 		for (Component component : components) {
 			if (component.getClass().equals(JTextField.class)) {
@@ -176,7 +169,6 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 				@Override
 				public void changedUpdate(DocumentEvent e) {
 					changed();
-
 				}
 
 				public void changed() {
@@ -193,18 +185,14 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 		}
 	}
 
-	
-
 	public boolean isSaving() {
 		return isSaving;
 	}
 
-
 	@Override
 	public void setAddingMode(boolean isSaving) {
 		// TODO Auto-generated method stub
-		this.isSaving=isSaving;
+		this.isSaving = isSaving;
 		this.setVisible(true);
 	}
-
 }

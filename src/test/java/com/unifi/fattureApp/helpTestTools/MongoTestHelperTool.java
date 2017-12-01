@@ -23,12 +23,12 @@ public class MongoTestHelperTool {
 		db.getCollection("invoices").drop();
 		db.getCollection("printedInvoices").drop();
 		clients = db.getCollection("client");
-		companies=db.getCollection("companies");
-		invoices=db.getCollection("invoices");
-		printedInvoices=db.getCollection("printedInvoices");
+		companies = db.getCollection("companies");
+		invoices = db.getCollection("invoices");
+		printedInvoices = db.getCollection("printedInvoices");
 	}
 
-	public void addClient(String id, String name,String fiscalCode,String cityResidence,String city,String province,String zip,String country,String phone,String email/*,String birthDay*/) {
+	public void addClient(String id, String name, String fiscalCode, String cityResidence, String city, String province, String zip, String country, String phone, String email/*, String birthDay*/) {
 		BasicDBObject document = new BasicDBObject();
 		document.put("id", id);
 		document.put("name", name);
@@ -45,7 +45,7 @@ public class MongoTestHelperTool {
 		clients.insert(document);
 	}
 
-	public boolean containsClient(String id, String name,String fiscalCode,String cityResidence,String city,String province,String zip,String country,String phone,String email/*,String birthDay*/) {
+	public boolean containsClient(String id, String name, String fiscalCode, String cityResidence, String city, String province, String zip, String country, String phone, String email/*, String birthDay*/) {
 		BasicDBObject query = new BasicDBObject();
 		query.put("id", id);
 		query.put("name", name);
@@ -58,12 +58,12 @@ public class MongoTestHelperTool {
 		query.put("phone", phone);
 		query.put("email", email);
 		//query.put("birthDay", birthDay);
-		
+
 		return clients.find(query).hasNext();
 	}
-		
-	public void addCompany(String id, String name,String vatCode,
-			String address,String city,String province,String zipCode,String country,String phone,String email) {
+
+	public void addCompany(String id, String name, String vatCode,
+			String address, String city, String province, String zipCode, String country, String phone, String email) {
 		BasicDBObject document = new BasicDBObject();
 		document.put("id", id);
 		document.put("name", name);
@@ -79,8 +79,8 @@ public class MongoTestHelperTool {
 		companies.insert(document);
 	}
 
-	public boolean containsCompany(String id, String name,String vatCode,
-			String address,String city,String province,String zipCode,String country,String phone,String email) {
+	public boolean containsCompany(String id, String name, String vatCode,
+			String address, String city, String province, String zipCode, String country, String phone, String email) {
 		BasicDBObject query = new BasicDBObject();
 		query.put("id", id);
 		query.put("name", name);
@@ -94,8 +94,8 @@ public class MongoTestHelperTool {
 		query.put("email", email);
 		return companies.find(query).hasNext();
 	}
-	
-	public void addInvoice(String id, String name,String price,String description) {
+
+	public void addInvoice(String id, String name, String price, String description) {
 		BasicDBObject document = new BasicDBObject();
 		document.put("id", id);
 		document.put("name", name);
@@ -104,7 +104,7 @@ public class MongoTestHelperTool {
 		invoices.insert(document);
 	}
 
-	public boolean containsInvoice(String id, String name,String price,String description) {
+	public boolean containsInvoice(String id, String name, String price, String description) {
 		BasicDBObject query = new BasicDBObject();
 		query.put("id", id);
 		query.put("name", name);
@@ -112,8 +112,7 @@ public class MongoTestHelperTool {
 		query.put("description", description);
 		return invoices.find(query).hasNext();
 	}
-	
-	
+
 	public void addPrintedInvoice(PrintedInvoice printedInvoice) {
 		BasicDBObject document = new BasicDBObject();
 		document.put("id", printedInvoice.getPrintedId());
@@ -123,7 +122,7 @@ public class MongoTestHelperTool {
 		printedInvoices.insert(document);
 	}
 
-	public boolean containsPrintedInvoice(String id, Company printedCompany,Client printedClient,Invoice printedInvoice) {
+	public boolean containsPrintedInvoice(String id, Company printedCompany, Client printedClient, Invoice printedInvoice) {
 		BasicDBObject query = new BasicDBObject();
 		query.put("id", id);
 		query.put("printedCompany", printedCompany);
@@ -131,14 +130,11 @@ public class MongoTestHelperTool {
 		query.put("printedInvoice", printedInvoice);
 		return printedInvoices.find(query).hasNext();
 	}
-	
+
 	public PrintedInvoice createPrintedInvoice(String id) {
-		Company company=new Company(id,"companyName"+id,"vat"+id,"address"+id,"city","province"+id,"zip"+id,"country"+id,""+id,""+id);
-		Client client=new Client(id,"clientName"+id,"fiscal"+id,"residence"+id,"city"+id,"province"+id,"zip"+id,"country"+id,""+id,""+id);
-		Invoice invoice=new Invoice(id,"invoiceName"+id,"description"+id,"price"+id);
-		return new PrintedInvoice(company,client,invoice,id);
+		Company company = new Company(id, "companyName"+id, "vat"+id, "address"+id, "city", "province"+id, "zip"+id, "country"+id, ""+id, ""+id);
+		Client client = new Client(id, "clientName"+id, "fiscal"+id, "residence"+id, "city"+id, "province"+id, "zip"+id, "country"+id, ""+id, ""+id);
+		Invoice invoice = new Invoice(id, "invoiceName"+id, "description"+id, "price"+id);
+		return new PrintedInvoice(company, client, invoice, id);
 	}
-	
-	
-	
 }

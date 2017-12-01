@@ -20,7 +20,6 @@ import javax.swing.JPanel;
 import com.unifi.fattureApp.App.MongoUiComunication;
 
 public class MainWindowUI {
-
 	// prova pull request...
 	private MongoUiComunication mongoUiCom;
 
@@ -44,7 +43,6 @@ public class MainWindowUI {
 	 * Launch the application.
 	 */
 
-	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -56,23 +54,19 @@ public class MainWindowUI {
 			}
 		});
 	}
-	
 
 	public MainWindowUI(MongoUiComunication mongoUiComm) {
 		mongoUiCom = mongoUiComm;
 		initialize();
 	}
 
-	
 	public MainWindowUI() {
 		mongoUiCom = new MongoUiComunication(true,null);
 		initialize();
 	}
-	
 
 	private void initialize() {
 		// mongoUiCom=new MongoUiComunication();
-
 		fattureApp_Frame = new JFrame();
 		fattureApp_Frame.setTitle("Fatture App");
 		fattureApp_Frame.setPreferredSize(windowDimension);
@@ -83,7 +77,6 @@ public class MainWindowUI {
 		fattureApp_Frame.setLocationRelativeTo(null);
 
 		fattureApp_Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 
 		outer_Panel = new JLayeredPane();
 		outer_Panel.setName("OuterPanel");
@@ -122,7 +115,6 @@ public class MainWindowUI {
 				(int) width, (int) height);
 		myCompany_Panel.add(myCompanyInfo_Label);
 
-		
 		JButton editMyCompany_Button = new JButton("Edit");
 		editMyCompany_Button.setEnabled(false);
 		editMyCompany_Button.setName("EditCompanyButton");
@@ -150,11 +142,8 @@ public class MainWindowUI {
 				showGenericAddPanel(addCompany_Panel, true);
 			}
 		});
-		
-		
 
 		// ▲, ▼
-
 		JButton prevCompany_Button = new JButton("▲");
 		prevCompany_Button.setName("prevCompany_Button");
 		prevCompany_Button.setBorder(BorderFactory.createLineBorder(Color.GRAY));
@@ -168,9 +157,9 @@ public class MainWindowUI {
 			public void actionPerformed(ActionEvent e) {
 				// go to previous company
 				if(mongoUiCom.getCompanyCounter()-1<0) {
-					
+
 					//disabilitarlo?
-					
+
 				}else{
 					mongoUiCom.setCompanyCounter(mongoUiCom.getCompanyCounter()-1);
 					editMyCompany_Button.setEnabled(true);
@@ -191,7 +180,7 @@ public class MainWindowUI {
 			public void actionPerformed(ActionEvent e) {
 				// TODO go to next company
 				if(mongoUiCom.getCompanyCounter()+1>mongoUiCom.getCompaniesCount()-1) {
-					
+
 					//disabilitarlo?
 
 				}else {
@@ -216,7 +205,6 @@ public class MainWindowUI {
 		outer_Panel.setLayer(invoice_Panel, 1);
 
 		// Client Panel
-
 		JPanel clientPanel = new JPanel();
 		clientPanel.setName("ClientPanel");
 		clientPanel.setBackground(layer1Color);
@@ -228,7 +216,7 @@ public class MainWindowUI {
 		clientLbl.setBounds((clientPanel.getWidth() / 2) - 26, innerInsets, 52, 16);
 		clientLbl.setFont(new Font("Arial", Font.BOLD, 16));
 		clientPanel.add(clientLbl);
-		
+
 		JButton editClient = new JButton("Edit");
 		editClient.setName("editClientButton");
 		editClient.setEnabled(false);
@@ -255,13 +243,9 @@ public class MainWindowUI {
 				if(e.getStateChange() == ItemEvent.SELECTED) {
 					editClient.setEnabled(true);
 					mongoUiCom.setCurrentSelectedClient(mongoUiCom.getSavedClients().get(clientListComboBox.getSelectedIndex()));
-	            }
-				
+				}
 			}
 		});
-
-		
-		
 
 		JButton addClient = new JButton("Add");
 		addClient.setName("AddClientButton");
@@ -271,7 +255,6 @@ public class MainWindowUI {
 		outer_Panel.setLayer(myCompany_Panel, 1);
 		clientPanel.add(addClient);
 		addClient.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				showGenericAddPanel(addClient_Panel, true);
@@ -279,7 +262,6 @@ public class MainWindowUI {
 		});
 
 		// Description panel
-
 		JPanel invoiceProvisionPanel = new JPanel();
 		invoiceProvisionPanel.setName("InvoiceDescription");
 		invoiceProvisionPanel.setBackground(layer1Color);
@@ -291,8 +273,7 @@ public class MainWindowUI {
 		invoiceItemLbl.setBounds((invoiceProvisionPanel.getWidth() / 2) - 54, innerInsets, 108, 16);
 		invoiceItemLbl.setFont(new Font("Arial", Font.BOLD, 16));
 		invoiceProvisionPanel.add(invoiceItemLbl);
-		
-		
+
 		JButton editInvoiceProvision = new JButton("Edit");
 		editInvoiceProvision.setName("editInvoiceButton");
 		editInvoiceProvision.setEnabled(false);
@@ -307,13 +288,11 @@ public class MainWindowUI {
 		});
 		invoiceProvisionPanel.add(editInvoiceProvision);
 
-		
 		JComboBox<String> invoiceListcomboBox = new JComboBox<String>();
 		invoiceListcomboBox.setName("invoicesComboBox");
 		invoiceListcomboBox.setBounds(0, (invoiceProvisionPanel.getHeight() / 2) - 14, 338, 28);
 		invoiceProvisionPanel.add(invoiceListcomboBox);
-		invoiceListcomboBox.addItemListener(new ItemListener() {
-			
+		invoiceListcomboBox.addItemListener(new ItemListener() {			
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				// TODO Auto-generated method stub
@@ -324,8 +303,6 @@ public class MainWindowUI {
 			}
 		});
 
-
-		
 		JButton addInvoiceProvision = new JButton("Add");
 		addInvoiceProvision.setName("addInvoiceButton");
 		addInvoiceProvision.setBounds(editInvoiceProvision.getX() - innerInsets - buttonWidth,
@@ -338,8 +315,6 @@ public class MainWindowUI {
 				showGenericAddPanel(addItem_Panel, true);
 			}
 		});
-
-		
 
 		JButton createInvoice_Button = new JButton("CREATE INVOICE");
 		createInvoice_Button.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -360,38 +335,31 @@ public class MainWindowUI {
 		});
 
 		createAddRecordsPanels();
-		updateReferences(clientListComboBox,invoiceListcomboBox,myCompany_Label);
-		
+		updateReferences(clientListComboBox, invoiceListcomboBox, myCompany_Label);
 
 		fattureApp_Frame.pack();
 		fattureApp_Frame.setVisible(true);
 	}
-	
-	
-	private void updateReferences(JComboBox<String> clientListComboBox,JComboBox<String> invoiceListcomboBox,JLabel companyInfo) {
+
+	private void updateReferences(JComboBox<String> clientListComboBox, JComboBox<String> invoiceListcomboBox, JLabel companyInfo) {
 		mongoUiCom.setClientsList(clientListComboBox);
 		mongoUiCom.setInvoicesList(invoiceListcomboBox);
 		mongoUiCom.setCompanyInfo(companyInfo);
-		
+
 		mongoUiCom.updateAllReferences();
 	}
 
-	
-
 	private void createAddRecordsPanels() {
 		addCompany_Panel = new CompanyPanel(outer_Panel, buttonWidth, buttonHeight, mongoUiCom);
-
 		addClient_Panel = new ClientPanel(outer_Panel, buttonWidth, buttonHeight, mongoUiCom);
-
-		addItem_Panel = new ItemInvoicePanel(outer_Panel, buttonWidth, buttonHeight,mongoUiCom);
+		addItem_Panel = new ItemInvoicePanel(outer_Panel, buttonWidth, buttonHeight, mongoUiCom);
 	}
-	
-	
-	private void showGenericAddPanel(AddPanel panelToShow,boolean isSaving) {
+
+	private void showGenericAddPanel(AddPanel panelToShow, boolean isSaving) {
 		panelToShow.setAddingMode(isSaving);
 	}
-	
-/*
+
+	/*
 	private void showAddCompanyPanel() {
 		// SHOW PANEL TO ADD CUSTOMER
 		addCompany_Panel.setVisible(true);
@@ -405,7 +373,7 @@ public class MainWindowUI {
 	private void showAddItemPanel() {
 		addItem_Panel.setVisible(true);
 	}
-	*/
+	 */
 
 	public JFrame getMainFrame() {
 		// TODO Auto-generated method stub

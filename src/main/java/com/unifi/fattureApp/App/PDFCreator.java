@@ -17,26 +17,23 @@ public class PDFCreator {
 	private Company selectedCompany;
 	private Client selectedClient;
 	private Invoice selectedInvoice;
-	
+
 	final PDFont courierBoldFont = PDType1Font.COURIER_BOLD;
 
-
 	public PDFCreator(Company company, Client client, Invoice invoice) {
-
 		this.selectedCompany = company;
 		this.selectedClient = client;
 		this.selectedInvoice = invoice;
-		
+
 		create();
 	}
 
 	private void create() {
-
 		final PDPage singlePage = new PDPage();
 
 		try (final PDDocument document = new PDDocument()) {
 			document.addPage(singlePage);
-			 PDPageContentStream contentStream = new PDPageContentStream(document, singlePage);
+			PDPageContentStream contentStream = new PDPageContentStream(document, singlePage);
 			contentStream.beginText();
 			contentStream = this.companyName(contentStream, singlePage);
 			contentStream.endText();
@@ -46,14 +43,14 @@ public class PDFCreator {
 			System.err.println("Exception while trying to create blank document - " + ioEx);
 		}
 	}
-	
+
 	private PDPageContentStream companyName(PDPageContentStream cs, PDPage sp) {
 		Font titleFont = new Font("Courier", Font.PLAIN, 16);
 		String s = selectedCompany.getName();
 		AffineTransform affinetransform = new AffineTransform();     
 		FontRenderContext frc = new FontRenderContext(affinetransform,true,true); 
 		float textWidth = (float) titleFont.getStringBounds(s, frc).getWidth();
-		
+
 		try {
 			cs.setFont(courierBoldFont, 16);
 			cs.newLineAtOffset(sp.getMediaBox().getWidth() / 2 - textWidth / 2, sp.getMediaBox().getHeight() - 100);
@@ -64,8 +61,8 @@ public class PDFCreator {
 		}
 		return cs;
 	}
-	
+
 	private float pt2mm(float pt) {
-		   return pt * 25.4f / 72;
+		return pt * 25.4f / 72;
 	}
 }
