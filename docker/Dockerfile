@@ -1,6 +1,6 @@
 FROM openjdk:8
 
-unset DISPLAY
+ENV DISPLAY :99
 CMD xeyes
 
 ARG fatjar
