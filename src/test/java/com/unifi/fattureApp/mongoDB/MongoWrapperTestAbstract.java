@@ -41,48 +41,48 @@ public abstract class MongoWrapperTestAbstract {
 
 	@Test
 	public void testGetAllClientsNotEmpty() {
-//		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstPhone","firstEmail"/*,"firstBD"*/);
-//		mongoTestHelper.addClient("2", "second","secondFC","secondCR","secondPhone","secondEmail"/*,"secondBD"*/);
-	
-		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstCity","firstProvince","firstZip","firstCountry","firstPhone","firstEmail"/*,"firstBD"*/);
-		mongoTestHelper.addClient("2", "second","secondFC","secondCR","secondCity","secondProvince","secondZip","secondCountry","secondPhone","secondEmail");
-	
+		//		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstPhone","firstEmail"/*,"firstBD"*/);
+		//		mongoTestHelper.addClient("2", "second","secondFC","secondCR","secondPhone","secondEmail"/*,"secondBD"*/);
+
+		mongoTestHelper.addClient("1", "first", "firstFC", "firstCR", "firstCity", "firstProvince", "firstZip", "firstCountry", "firstPhone", "firstEmail"/*, "firstBD"*/);
+		mongoTestHelper.addClient("2", "second", "secondFC", "secondCR", "secondCity", "secondProvince", "secondZip", "secondCountry", "secondPhone", "secondEmail");
+
 		assertEquals(2, mongoDatabase.getAllClientsList().size());
 	}
 
 	@Test
 	public void testFindClientByIdNotFound() {
-//		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstPhone","firstEmail"/*,"firstBD"*/);
-		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstCity","firstProvince","firstZip","firstCountry","firstPhone","firstEmail"/*,"firstBD"*/);
+		//		mongoTestHelper.addClient("1", "first", "firstFC", "firstCR", "firstPhone", "firstEmail"/*, "firstBD"*/);
+		mongoTestHelper.addClient("1", "first", "firstFC", "firstCR", "firstCity", "firstProvince", "firstZip", "firstCountry", "firstPhone", "firstEmail"/*, "firstBD"*/);
 
 		assertNull(mongoDatabase.findClientById("2"));
 	}
 
 	@Test
 	public void testClientIsSaved() {
-		mongoDatabase.saveClient(new Client("1", "test","testFC","testCR","testCity","testProvince","testZip","testCountry","testPhone","testEmail"/*,"testBD"*/));
-		assertTrue(mongoTestHelper.containsClient("1", "test","testFC","testCR","testCity","testProvince","testZip","testCountry","testPhone","testEmail"/*, "testBD"*/));
+		mongoDatabase.saveClient(new Client("1", "test", "testFC", "testCR", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail"/*, "testBD"*/));
+		assertTrue(mongoTestHelper.containsClient("1", "test", "testFC", "testCR", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail"/*, "testBD"*/));
 
-		//assertNotNull(mongoTestHelper.containsClient("1", "test","testFC","testCR","testBD"));
+		//assertNotNull(mongoTestHelper.containsClient("1", "test", "testFC", "testCR", "testBD"));
 	}
-	
+
 	@Test
 	public void testClientIsNotSaved() {
-		mongoDatabase.saveClient(new Client("1", "test","testFC","testCR","testCity","testProvince","testZip","testCountry","testPhone","testEmail"/*,"testBD"*/));
-		assertFalse(mongoTestHelper.containsClient("2", "test2","testFC2","testCR2","testCity2","testProvince2","testZip2","testCountry2","testPhone2","testEmail2"));
+		mongoDatabase.saveClient(new Client("1", "test", "testFC", "testCR", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail"/*, "testBD"*/));
+		assertFalse(mongoTestHelper.containsClient("2", "test2", "testFC2", "testCR2", "testCity2", "testProvince2", "testZip2", "testCountry2", "testPhone2", "testEmail2"));
 	}
 
 	@Test
 	public void testFindClientByIdFound() {
-		mongoTestHelper.addClient("1", "first","firstFC","firstCR","firstCity","firstProvince","firstZip","firstCountry","firstPhone","firstEmail"/*,"firstBD"*/);
-		mongoTestHelper.addClient("2", "second","secondFC","secondCR","secondCity","secondProvince","secondZip","secondCountry","secondPhone","secondEmail");
-	
+		mongoTestHelper.addClient("1", "first", "firstFC", "firstCR", "firstCity", "firstProvince", "firstZip", "firstCountry", "firstPhone", "firstEmail"/*, "firstBD"*/);
+		mongoTestHelper.addClient("2", "second", "secondFC", "secondCR", "secondCity", "secondProvince", "secondZip", "secondCountry", "secondPhone", "secondEmail");
+
 		Client findClientById = mongoDatabase.findClientById("2");
 		assertNotNull(findClientById);
 		assertEquals("2", findClientById.getId());
 		assertEquals("second", findClientById.getName());
 	}
-	
+
 	@Test
 	public void testGetAllCompaniesEmpty() {
 		assertTrue(mongoDatabase.getAllCompaniesList().isEmpty());
@@ -118,7 +118,7 @@ public abstract class MongoWrapperTestAbstract {
 		assertEquals("2", findCompanyById.getId());
 		assertEquals("nameC2", findCompanyById.getName());
 	}	
-	
+
 	@Test
 	public void testGetAllInvoicesEmpty() {
 		assertTrue(mongoDatabase.getAllInvoicesList().isEmpty());
@@ -128,7 +128,7 @@ public abstract class MongoWrapperTestAbstract {
 	public void testGetAllInvoicesNotEmpty() {
 		mongoTestHelper.addInvoice("1", "nameI1", "100", "basic invoice type1");
 		mongoTestHelper.addInvoice("2", "nameI2", "200", "basic invoice type2");
-	
+
 		assertEquals(2, mongoDatabase.getAllInvoicesList().size());
 	}
 
@@ -154,4 +154,43 @@ public abstract class MongoWrapperTestAbstract {
 		assertEquals("2", findInvoiceById.getId());
 		assertEquals("nameI2", findInvoiceById.getName());
 	}
+
+	// PrintedCompany
+	@Test
+	public void testGetAllPrintedInvoicesEmpty() {
+		assertTrue(mongoDatabase.getAllPrintedInvoiceList().isEmpty());
+	}
+
+	/*
+	@Test
+	public void testGetAllPrintedInvoicesNotEmpty() {
+		mongoTestHelper.addPrintedInvoice(mongoTestHelper.createPrintedInvoice("0"));
+		mongoTestHelper.addPrintedInvoice(mongoTestHelper.createPrintedInvoice("1"));
+		assertEquals(2, mongoDatabase.getAllPrintedInvoiceList().size());
+	}
+
+
+	@Test
+	public void testFindPrintedInvoiceByIdNotFound() {
+		mongoTestHelper.addPrintedInvoice(mongoTestHelper.createPrintedInvoice("0"));
+		assertNull(mongoDatabase.findInvoiceById("1"));
+	}
+
+	@Test
+	public void testPrintedInvoiceIsSaved() {
+		PrintedInvoice printedInvoice=mongoTestHelper.createPrintedInvoice("0");
+		mongoDatabase.savePrintedInvoice(printedInvoice);
+		assertTrue(mongoTestHelper.containsPrintedInvoice(printedInvoice.getPrintedId(),
+				printedInvoice.getPrintedCompany(),printedInvoice.getPrintedClient(),printedInvoice.getPrintedInvoice()));
+	}
+
+	@Test
+	public void testFindPrintedInvoiceByIdFound() {
+		mongoTestHelper.addPrintedInvoice(mongoTestHelper.createPrintedInvoice("0"));
+		mongoTestHelper.addPrintedInvoice(mongoTestHelper.createPrintedInvoice("1"));
+		PrintedInvoice findPrintedInvoiceById = mongoDatabase.findPrintedInvoiceById("1");
+		assertNotNull(findPrintedInvoiceById);
+		assertEquals("1", findPrintedInvoiceById.getPrintedId());
+	}
+	 */
 }

@@ -9,7 +9,7 @@ public class Invoice {
 	public Invoice() {
 	}
 
-	public Invoice(String id, String name,String price,String description) {
+	public Invoice(String id, String name, String price, String description) {
 		this.setId(id);
 		this.setName(name);
 		this.setPrice(price);

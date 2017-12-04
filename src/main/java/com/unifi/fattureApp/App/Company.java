@@ -1,9 +1,6 @@
 package com.unifi.fattureApp.App;
 
-import java.awt.List;
-import java.util.LinkedList;
-
-public class Company {
+public class Company{
 	private String id;
 	private String name;
 	private String vatCode;
@@ -14,22 +11,22 @@ public class Company {
 	private String country;
 	private String phone;
 	private String email;
-	
+
 	public  Company() {
 	}
 
-	public Company(String id, String name,String vatCode,
-			String address,String city,String province,String zipCode,String country,String phone,String email){
-				this.setId(id);
-				this.setName(name);
-				this.setVatCode(vatCode);
-				this.setAddress(address);
-				this.setCity(city);
-				this.setProvince(province);
-				this.setZipCode(zipCode);
-				this.setCountry(country);
-				this.setPhone(phone);
-				this.setEmail(email);
+	public Company(String id, String name, String vatCode,
+			String address, String city, String province, String zipCode, String country, String phone, String email){
+		this.setId(id);
+		this.setName(name);
+		this.setVatCode(vatCode);
+		this.setAddress(address);
+		this.setCity(city);
+		this.setProvince(province);
+		this.setZipCode(zipCode);
+		this.setCountry(country);
+		this.setPhone(phone);
+		this.setEmail(email);
 	}
 
 	public String getId() {
@@ -111,5 +108,4 @@ public class Company {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
 }

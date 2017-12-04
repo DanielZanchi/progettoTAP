@@ -1,5 +1,6 @@
 package com.unifi.fattureApp.App;
 
+import java.net.UnknownHostException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
+import com.github.fakemongo.Fongo;
 import com.mongodb.MongoClient;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
@@ -19,17 +21,17 @@ public class MongoUiComunication {
 	private Client currentSelectedClient;
 	private Invoice currentSelectedInvoice;
 
-	private JComboBox clientsList;
-	private JComboBox invoicesList;
+	private JComboBox<String> clientsList;
+	private JComboBox<String> invoicesList;
 	private JLabel companyInfo;
 
 	private int companyCounter = 0;
 	private int invoiceCounter = 0;
-	
+
 	private JButton editCompanyButton;
 	private LinkedList<JButton> editButtons;
 
-	public MongoUiComunication() {
+	public MongoUiComunication(boolean testing, String args[]) {
 		// if (args.length > 0)
 		// mongoHost = args[0];
 		// Database database = null;
@@ -40,16 +42,32 @@ public class MongoUiComunication {
 		// e1.printStackTrace();
 		// }
 		// myCompanyController = new CompanyController(database);
+		if (args!=null && args.length > 0)
+			mongoHost = args[0];
+
+		MongoClient mongoClient = null;
+		if(testing) {
+			Fongo fongo = new Fongo("mongo server 1");
+			mongoClient = fongo.getMongo();
+		}else {
+			try {
+				mongoClient = new MongoClient(mongoHost, 27017);
+			} catch (UnknownHostException e) {
+				e.printStackTrace();
+			}
+		}
 
 		try {
-			database = new MongoWrapper(new MongoClient(mongoHost, 27017));
+			//database = new MongoWrapper(new MongoClient(mongoHost, 27017));
+			database = new MongoWrapper(mongoClient);
 		} catch (Exception e) {
 			System.out.println("Error while connecting to mongoHost");
 			e.printStackTrace();
 		}
 
 		myCompanyController = new CompanyController(database);
-		editButtons=new LinkedList<>();
+		editButtons = new LinkedList<>();
+		invoiceCounter = myCompanyController.getAllPrintedInvoice().size();
 	}
 
 	public boolean addClientToDatabase(String name, String fiscalCode, String residence, String city, String province,
@@ -62,8 +80,7 @@ public class MongoUiComunication {
 	public boolean addCompanyToDatabase(String name, String vat, String address, String city, String province,
 			String zip, String country, String phone, String email) {
 		String currentId = String.valueOf(this.getCompaniesCount() + 1);
-		return myCompanyController
-				.addCompany(new Company(currentId, name, vat, address, city, province, zip, country, phone, email));
+		return myCompanyController.addCompany(new Company(currentId, name, vat, address, city, province, zip, country, phone, email));
 	}
 
 	public boolean addInvoiceToDatabase(String name, String price, String description) {
@@ -99,20 +116,17 @@ public class MongoUiComunication {
 	}
 
 	// Just console prints!!!
-
 	public void printAllClients() {
 		System.out.println("In the database Clients:");
 		List<Client> clients = myCompanyController.getAllClients();
-		clients.stream()
-				.forEach(client -> System.out.println("Client Name : " + client.getId() + " - " + client.getName()));
+		clients.stream().forEach(client -> System.out.println("Client Name : " + client.getId() + " - " + client.getName()));
 		System.out.println("--------/Clients---------");
 	}
 
 	public void printAllCompanies() {
 		System.out.println("In the database Companies:");
 		List<Company> companies = myCompanyController.getAllCompany();
-		companies.stream().forEach(
-				company -> System.out.println("Company Name : " + company.getId() + " - " + company.getName()));
+		companies.stream().forEach(company -> System.out.println("Company Name : " + company.getId() + " - " + company.getName()));
 		System.out.println("--------/Companies---------");
 	}
 
@@ -120,9 +134,9 @@ public class MongoUiComunication {
 		System.out.println(currentSelectedCompany.getName());
 		System.out.println(currentSelectedClient.getName());
 		System.out.println(currentSelectedInvoice.getDescription());
-		
+
 		if (currentSelectedClient != null && currentSelectedCompany != null && currentSelectedInvoice != null) {
-			invoiceCounter++;
+			increseInvoiceNumber();
 			System.out.println("Invoice Number: " + invoiceCounter);
 			System.out.println(" Selected: ");
 			System.out.println(" Company : " + currentSelectedCompany.getName());
@@ -134,12 +148,19 @@ public class MongoUiComunication {
 			System.out.println(" Invoice : " + currentSelectedInvoice.getName());
 			System.out.println(currentSelectedInvoice.getPrice());
 			System.out.println(" -------/Selected---------- ");
-			
-			new PDFCreator(currentSelectedCompany, currentSelectedClient, currentSelectedInvoice);
 
+			new PDFCreator(currentSelectedCompany, currentSelectedClient, currentSelectedInvoice);
 		}
 	}
 
+	private void  increseInvoiceNumber() {
+		invoiceCounter++;
+		myCompanyController.addPrintedInvoice(new PrintedInvoice(currentSelectedCompany, currentSelectedClient, currentSelectedInvoice, String.valueOf(invoiceCounter)));
+		PrintedInvoice pInvoice=myCompanyController.getPrintedInvoiceId( String.valueOf(invoiceCounter));
+		System.out.println("company: " + pInvoice.getPrintedCompany().getName());
+		System.out.println(" client: " + pInvoice.getPrintedClient().getName());
+		System.out.println(" invoice: " + pInvoice.getPrintedInvoice().getName());
+	}
 	// end prints !!!
 
 	public Company getCurrentSelectedCompany() {
@@ -178,7 +199,6 @@ public class MongoUiComunication {
 			if (this.getSavedCompanies().size() > 0) {
 				companyInfo.setText(this.getSavedCompanies().get(0).getName());
 				this.setCurrentSelectedCompany(this.getSavedCompanies().get(0));
-
 			}
 		} else {
 			if (this.getSavedCompanies().size() > 0) {
@@ -186,7 +206,6 @@ public class MongoUiComunication {
 				this.setCurrentSelectedCompany(this.getSavedCompanies().get(companyCounter));
 			}
 		}
-
 	}
 
 	public void updateClientsReferences() {
@@ -203,11 +222,11 @@ public class MongoUiComunication {
 		}
 	}
 
-	public void setClientsList(JComboBox clientsList) {
+	public void setClientsList(JComboBox<String> clientsList) {
 		this.clientsList = clientsList;
 	}
 
-	public void setInvoicesList(JComboBox invoicesList) {
+	public void setInvoicesList(JComboBox<String> invoicesList) {
 		this.invoicesList = invoicesList;
 	}
 
@@ -224,13 +243,11 @@ public class MongoUiComunication {
 		this.updateCompanyReference();
 	}
 
-	
 	public void enableEditCompanyButton() {
 		editCompanyButton.setEnabled(true);
 	}
 
 	public void seteditCompanyButton(JButton editMyCompany_Button) {
-		editCompanyButton=editMyCompany_Button;
+		editCompanyButton = editMyCompany_Button;
 	}
-	
 }

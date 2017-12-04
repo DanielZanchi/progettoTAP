@@ -1,114 +1,114 @@
 package com.unifi.fattureApp.App;
 
 public class Client {
-		private String id;
-		private String name;
-		private String fiscalCode;
-		private String cityResidence;
-		private String city;
-		private String province;
-		private String zip;
-		private String country;
-		private String phone;
-		private String email;
-		
-		public Client() {
-		}
+	private String id;
+	private String name;
+	private String fiscalCode;
+	private String cityResidence;
+	private String city;
+	private String province;
+	private String zip;
+	private String country;
+	private String phone;
+	private String email;
 
-		public Client(String id, String name,String fiscalCode,String cityResidence,String city,String province,String zip,String country,String phone,String email) {
-			this.id = id;
-			this.name = name;
-			this.setFiscalCode(fiscalCode);
-			this.setCityResidence(cityResidence);
-			this.setCity(city);
-			this.setProvince(province);
-			this.setZip(zip);
-			this.setCountry(country);
-			this.setPhone(phone);
-			this.setEmail(email);
-		}
+	public Client() {
+	}
 
-		public String getId() {
-			return id;
-		}
+	public Client(String id, String name, String fiscalCode, String cityResidence, String city, String province, String zip, String country, String phone, String email) {
+		this.id = id;
+		this.name = name;
+		this.setFiscalCode(fiscalCode);
+		this.setCityResidence(cityResidence);
+		this.setCity(city);
+		this.setProvince(province);
+		this.setZip(zip);
+		this.setCountry(country);
+		this.setPhone(phone);
+		this.setEmail(email);
+	}
 
-		public void setId(String id) {
-			this.id = id;
-		}
+	public String getId() {
+		return id;
+	}
 
-		public String getName() {
-			return name;
-		}
+	public void setId(String id) {
+		this.id = id;
+	}
 
-		public void setName(String name) {
-			this.name = name;
-		}
+	public String getName() {
+		return name;
+	}
 
-		public String getFiscalCode() {
-			return fiscalCode;
-		}
+	public void setName(String name) {
+		this.name = name;
+	}
 
-		public void setFiscalCode(String fiscalCode) {
-			this.fiscalCode = fiscalCode;
-		}
+	public String getFiscalCode() {
+		return fiscalCode;
+	}
 
-		public String getCityResidence() {
-			return cityResidence;
-		}
+	public void setFiscalCode(String fiscalCode) {
+		this.fiscalCode = fiscalCode;
+	}
 
-		public void setCityResidence(String cityResidence) {
-			this.cityResidence = cityResidence;
-		}
+	public String getCityResidence() {
+		return cityResidence;
+	}
 
-		public String getEmail() {
-			return email;
-		}
+	public void setCityResidence(String cityResidence) {
+		this.cityResidence = cityResidence;
+	}
 
-		public void setEmail(String email) {
-			this.email = email;
-		}
+	public String getEmail() {
+		return email;
+	}
 
-		public String getPhone() {
-			return phone;
-		}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-		public void setPhone(String phone) {
-			this.phone = phone;
-		}
+	public String getPhone() {
+		return phone;
+	}
 
-		public String getCity() {
-			return city;
-		}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
-		public void setCity(String city) {
-			this.city = city;
-		}
+	public String getCity() {
+		return city;
+	}
 
-		public String getProvince() {
-			return province;
-		}
+	public void setCity(String city) {
+		this.city = city;
+	}
 
-		public void setProvince(String province) {
-			this.province = province;
-		}
+	public String getProvince() {
+		return province;
+	}
 
-		public String getZip() {
-			return zip;
-		}
+	public void setProvince(String province) {
+		this.province = province;
+	}
 
-		public void setZip(String zip) {
-			this.zip = zip;
-		}
+	public String getZip() {
+		return zip;
+	}
 
-		public String getCountry() {
-			return country;
-		}
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
 
-		public void setCountry(String country) {
-			this.country = country;
-		}
+	public String getCountry() {
+		return country;
+	}
 
-		/*
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	/*
 		public String getBirthDate() {
 			return birthDate;
 		}
@@ -116,5 +116,5 @@ public class Client {
 		public void setBirthDate(String birthDate) {
 			this.birthDate = birthDate;
 		}
-		*/
+	 */
 }

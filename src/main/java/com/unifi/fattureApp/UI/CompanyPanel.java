@@ -16,7 +16,6 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.MongoUiComunication;
 
 public class CompanyPanel extends JPanel implements AddPanel{
@@ -42,9 +41,8 @@ public class CompanyPanel extends JPanel implements AddPanel{
 	public CompanyPanel(JLayeredPane outer_Panel, int buttonWidth, int buttonHeight, MongoUiComunication mongoUiCom) {
 		addCompany_Panel = this;
 		myMongoUiComunication = mongoUiCom;
-		
-		this.setVisible(false);
 
+		this.setVisible(false);
 
 		addCompany_Panel.setName("AddCompanyPanel");
 		addCompany_Panel.setBackground(layerColor);
@@ -232,28 +230,26 @@ public class CompanyPanel extends JPanel implements AddPanel{
 		addCompany_Panel.add(save_Button);
 		save_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				if(addCompany_Panel.isSaving()) {
-				boolean saved = myMongoUiComunication.addCompanyToDatabase(companyName_TF.getText(),
-						companyVat_TF.getText(), companyAddress_TF.getText(), companyCity_TF.getText(),
-						companyProvince_TF.getText(), companyZip_TF.getText(), companyCountry_TF.getText(),
-						companyPhone_TF.getText(), companyEmail_TF.getText());
 
-				if (saved) {
-					myMongoUiComunication.printAllCompanies();
-					myMongoUiComunication.setCurrentSelectedCompany(myMongoUiComunication.getSavedCompanies().get(myMongoUiComunication.getSavedCompanies().size()-1));
-					myMongoUiComunication.enableEditCompanyButton();
-				} else {
-					System.err.println("Error: Company was not saved!!!");
-				}
-				}else {
-					
+				if(addCompany_Panel.isSaving()) {
+					boolean saved = myMongoUiComunication.addCompanyToDatabase(companyName_TF.getText(),
+							companyVat_TF.getText(), companyAddress_TF.getText(), companyCity_TF.getText(),
+							companyProvince_TF.getText(), companyZip_TF.getText(), companyCountry_TF.getText(),
+							companyPhone_TF.getText(), companyEmail_TF.getText());
+
+					if (saved) {
+						myMongoUiComunication.printAllCompanies();
+						myMongoUiComunication.setCurrentSelectedCompany(myMongoUiComunication.getSavedCompanies().get(myMongoUiComunication.getSavedCompanies().size()-1));
+						myMongoUiComunication.enableEditCompanyButton();
+					} else {
+						System.err.println("Error: Company was not saved!!!");
+					}
+				}else {					
 				}
 
 				addCompany_Panel.setVisible(false);
 				resetTextFields();
 				myMongoUiComunication.updateCompanyReference();
-				
 				// outer_Panel.remove(addCompany_Panel);
 			}
 		});
@@ -263,7 +259,6 @@ public class CompanyPanel extends JPanel implements AddPanel{
 		Component[] components = addCompany_Panel.getComponents();
 		for (Component component : components) {
 			if (component.getClass().equals(JTextField.class)) {
-
 				if (!((JTextField) component).getName().equals("companyPhoneTextField")
 						&& !((JTextField) component).getName().equals("companyEmailTextField")) {
 					textFields.add((JTextField) component);
@@ -286,7 +281,6 @@ public class CompanyPanel extends JPanel implements AddPanel{
 				@Override
 				public void changedUpdate(DocumentEvent e) {
 					changed();
-
 				}
 
 				public void changed() {
@@ -302,7 +296,6 @@ public class CompanyPanel extends JPanel implements AddPanel{
 			});
 		}
 	}
-	
 
 	private void resetTextFields() {
 		companyName_TF.setText("");
@@ -315,24 +308,15 @@ public class CompanyPanel extends JPanel implements AddPanel{
 		companyPhone_TF.setText("");
 		companyEmail_TF.setText("");
 	}
-	
-
 
 	public boolean isSaving() {
 		return isSaving;
 	}
 
-
 	@Override
 	public void setAddingMode(boolean isSaving) {
 		// TODO Auto-generated method stub
-		this.isSaving=isSaving;
+		this.isSaving = isSaving;
 		this.setVisible(true);
 	}
-
-	
-	
-	
-	
-	
 }

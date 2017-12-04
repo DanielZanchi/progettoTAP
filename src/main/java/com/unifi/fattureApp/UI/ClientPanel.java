@@ -42,9 +42,8 @@ public class ClientPanel extends JPanel implements AddPanel {
 	public ClientPanel(JLayeredPane outer_Panel, int buttonWidth, int buttonHeight, MongoUiComunication mongoUiCom) {
 		addClient_Panel = this;
 		myMongoUiComunication = mongoUiCom;
-		
-		this.setVisible(false);
 
+		this.setVisible(false);
 
 		addClient_Panel.setName("AddClientPanel");
 		addClient_Panel.setBackground(layerColor);
@@ -60,7 +59,6 @@ public class ClientPanel extends JPanel implements AddPanel {
 		textFields = new LinkedList<>();
 
 		// ADD COMPONENTS INSIDE PANEL
-
 		int addPanelY = addClient_Panel.getY();
 		insets = 8;
 		int insetsBtwField = 23;
@@ -236,15 +234,13 @@ public class ClientPanel extends JPanel implements AddPanel {
 			public void actionPerformed(ActionEvent e) {
 				// save company
 				if(addClient_Panel.isSaving()) {
-				myMongoUiComunication.addClientToDatabase(clientName_TF.getText(), clientVat_TF.getText(),
-						clientAddress_TF.getText(), clientCity_TF.getText(), clientProvince_TF.getText(),
-						clientZip_TF.getText(), clientCity_TF.getText(), clientPhone_TF.getText(),
-						clientEmail_TF.getText());
-
+					myMongoUiComunication.addClientToDatabase(clientName_TF.getText(), clientVat_TF.getText(),
+							clientAddress_TF.getText(), clientCity_TF.getText(), clientProvince_TF.getText(),
+							clientZip_TF.getText(), clientCity_TF.getText(), clientPhone_TF.getText(),
+							clientEmail_TF.getText());
 				}else {
-					
 				}
-				
+
 				addClient_Panel.setVisible(false); // outer_Panel.remove(addClient_Panel); }
 				resetTextFields();
 				mongoUiCom.updateClientsReferences();
@@ -256,7 +252,6 @@ public class ClientPanel extends JPanel implements AddPanel {
 		Component[] components = addClient_Panel.getComponents();
 		for (Component component : components) {
 			if (component.getClass().equals(JTextField.class)) {
-
 				if (!((JTextField) component).getName().equals("clientPhone_TF")
 						&& !((JTextField) component).getName().equals("clientEmail_TF")) {
 					textFields.add((JTextField) component);
@@ -279,7 +274,6 @@ public class ClientPanel extends JPanel implements AddPanel {
 				@Override
 				public void changedUpdate(DocumentEvent e) {
 					changed();
-
 				}
 
 				public void changed() {
@@ -307,16 +301,15 @@ public class ClientPanel extends JPanel implements AddPanel {
 		clientPhone_TF.setText("");
 		clientEmail_TF.setText("");
 	}
-	
+
 	public boolean isSaving() {
 		return isSaving;
 	}
-	
 
 	@Override
 	public void setAddingMode(boolean isSaving) {
 		// TODO Auto-generated method stub
-		this.isSaving=isSaving;
+		this.isSaving = isSaving;
 		this.setVisible(true);
 	}
 }
