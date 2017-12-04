@@ -1,6 +1,7 @@
 package com.unifi.fattureApp.App;
 
 import java.awt.Font;
+import java.awt.Insets;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
 import java.io.FileNotFoundException;
@@ -18,6 +19,9 @@ public class PDFCreator {
 	private Company selectedCompany;
 	private Client selectedClient;
 	private Invoice selectedInvoice;
+	
+	private float topInsets = 88;
+	private float insets = 60;
 	
 	final PDFont courierBoldFont = PDType1Font.COURIER_BOLD;
 
@@ -38,9 +42,8 @@ public class PDFCreator {
 		try (final PDDocument document = new PDDocument()) {
 			document.addPage(singlePage);
 			 PDPageContentStream contentStream = new PDPageContentStream(document, singlePage);
-			contentStream.beginText();
 			contentStream = this.companyName(contentStream, singlePage);
-			contentStream.endText();
+			contentStream = this.footer(contentStream, singlePage);
 			contentStream.close(); // Stream must be closed before saving document.
 			document.save("EmptyPage.pdf");
 		} catch (IOException ioEx) {
@@ -49,16 +52,17 @@ public class PDFCreator {
 	}
 	
 	private PDPageContentStream companyName(PDPageContentStream cs, PDPage sp) {
-		Font titleFont = new Font("Courier", Font.PLAIN, 16);
-		String s = selectedCompany.getName();
-		AffineTransform affinetransform = new AffineTransform();     
-		FontRenderContext frc = new FontRenderContext(affinetransform,true,true); 
-		float textWidth = (float) titleFont.getStringBounds(s, frc).getWidth();
+		int fontSize = 16;
+		String stringToPrint = selectedCompany.getName();
+		float textWidth = getTextWidth(fontSize, stringToPrint);
 		
 		try {
-			cs.setFont(courierBoldFont, 16);
-			cs.newLineAtOffset(sp.getMediaBox().getWidth() / 2 - textWidth / 2, sp.getMediaBox().getHeight() - 100);
-			cs.showText(selectedCompany.getName());
+			cs.beginText();
+			cs.setFont(courierBoldFont, fontSize);
+			System.out.println(sp.getMediaBox().getHeight() - topInsets);
+			cs.newLineAtOffset(verticalCenter(sp, textWidth), sp.getMediaBox().getHeight() - topInsets);
+			cs.showText(stringToPrint);
+			cs.endText();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,7 +70,43 @@ public class PDFCreator {
 		return cs;
 	}
 	
-	private float pt2mm(float pt) {
-		   return pt * 25.4f / 72;
+	private PDPageContentStream footer(PDPageContentStream cs, PDPage sp) {
+		int fontSize = 11;
+		String stringToPrint = selectedCompany.getName() + selectedCompany.getVatCode() + selectedCompany.getAddress() + selectedCompany.getCity() + selectedCompany.getCountry() + selectedCompany.getPhone() + selectedCompany.getEmail();
+		float textWidth = getTextWidth(fontSize, stringToPrint);
+		
+		try {
+			cs.beginText();
+			cs.setFont(courierBoldFont, fontSize);
+			cs.newLineAtOffset(verticalCenter(sp, textWidth), topInsets);
+			cs.showText(stringToPrint);
+			cs.endText();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cs;
 	}
+	
+	private float verticalCenter(PDPage sp,  float textWidth) {
+		return (sp.getMediaBox().getWidth() / 2 - textWidth / 2);
+	}
+	
+	private float verticalLeft(PDPage sp,  float textWidth) {
+		return (insets);
+	}
+	
+	private float verticalRight(PDPage sp,  float textWidth) {
+		return (sp.getMediaBox().getWidth() - insets - textWidth);
+	}
+	
+	private float getTextWidth(int fontSize, String s) {
+		Font titleFont = new Font("Courier", Font.PLAIN, fontSize);
+		AffineTransform affinetransform = new AffineTransform();     
+		FontRenderContext frc = new FontRenderContext(affinetransform,true,true); 
+		float textWidth = (float) titleFont.getStringBounds(s, frc).getWidth();
+		return textWidth;
+	}
+	
+
 }
