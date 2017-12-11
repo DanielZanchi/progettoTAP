@@ -10,6 +10,7 @@ public class Main {
 		
 		MongoUiComunication mongoUiComunication = new MongoUiComunication(false, args);
 
+		
 		//Launch UI
 		MainWindowUI mainWindowUI=null;
 		try {
@@ -17,7 +18,9 @@ public class Main {
 		}catch (Exception e) {
 			System.out.println("In docker container, gui not running");
 		}
-
+		
+		
+		
 		System.out.println("Fatture-app terminates");
 	}
 }

@@ -224,6 +224,7 @@
 							</execution>
 						</executions>
 						<configuration>
+						<skip>true</skip>
 							<executable>java</executable>
 							<arguments>
 								<argument>-jar</argument>
