@@ -12,7 +12,7 @@ install:
  - docker pull mongo
 
 script:
-- mvn -f pom.xml clean verify
+- mvn -f pom.xml clean verify coveralls:report
 - mvn -f pom.xml verify -Pdocker-compose
 
 #env:
