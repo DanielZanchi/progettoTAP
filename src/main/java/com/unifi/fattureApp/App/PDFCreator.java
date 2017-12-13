@@ -127,6 +127,7 @@ public class PDFCreator {
 		String stringToPrint = "Invoice #: ";
 		float textWidth = getTextWidth(fontSize, "invoice date: dd/MM/yyyy   ");
 		float leading = 1.5f * fontSize;
+		selectedCompany.setNumInvoice(selectedCompany.getNumInvoice()+1);
 
 		try {
 			cs.beginText();
@@ -137,7 +138,7 @@ public class PDFCreator {
 			cs.setFont(helveticaFont, fontSize);
 			cs.newLineAtOffset(54, 0);
 			//invoice number here
-			cs.showText("1");
+			cs.showText(String.valueOf(selectedCompany.getNumInvoice()));
 			
 			
 			stringToPrint = "Invoice date: ";
