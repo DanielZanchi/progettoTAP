@@ -83,7 +83,7 @@ public class MongoUiComunication {
 		return myCompanyController.addCompany(new Company(currentId, name, vat, address, city, province, zip, country, phone, email));
 	}
 
-	public boolean addInvoiceToDatabase(String name, String price, String description) {
+	public boolean addInvoiceToDatabase(String name, String description, String price) {
 		String currentId = String.valueOf(this.getInvoicesCount() + 1);
 		return myCompanyController.addInvoice(new Invoice(currentId, name, price, description));
 	}

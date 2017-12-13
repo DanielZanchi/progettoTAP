@@ -92,7 +92,7 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 		itemDescription_TF.setName("invoiceDescription_TF");
 		addItem_Panel.add(itemDescription_TF);
 
-		JLabel itemPrice_Label = new JLabel("Price (Excl. VAT):");
+		JLabel itemPrice_Label = new JLabel("Price (incl. VAT):");
 		width = (int) itemPrice_Label.getPreferredSize().getWidth();
 		height = (int) itemPrice_Label.getPreferredSize().getHeight();
 		itemPrice_Label.setBounds((addItem_Panel.getWidth() / 2) - (width / 2),
