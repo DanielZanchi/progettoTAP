@@ -42,9 +42,9 @@ public class CompanyIntegrationTest {
 
 	private Client addTestClientToDB() {
 		mongoTestHelper.addClient("1", "test", "testFC", "testCR", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail");
-		Client Client = companyController.getClientId("1");
-		assertNotNull(Client);
-		return Client;
+		Client client = companyController.getClientId("1");
+		assertNotNull(client);
+		return client;
 	}
 
 	@Test
@@ -306,6 +306,13 @@ public class CompanyIntegrationTest {
 	}
 
 	/////////invoice
+	private Invoice addTestInvoiceToDB() {
+		mongoTestHelper.addInvoice("1", "testName", "testPrice", "testDescription");
+		Invoice invoice = companyController.getInvoiceId("1");
+		assertNotNull(invoice);
+		return invoice;
+	}
+	
 	@Test
 	public void testGetAllInvoicesWhenThereAreNoInvoices() {
 		List<Invoice> allInvoices = companyController.getAllInvoices();
@@ -324,5 +331,29 @@ public class CompanyIntegrationTest {
 		mongoTestHelper.addInvoice("2", "nameI1", "100", "basic invoice type1");
 		Invoice invoice = companyController.getInvoiceId("1");
 		assertNull(invoice);
+	}
+
+	@Test
+	public void testGetInvoiceByIdWithRightPrice() {
+		Invoice invoice = addTestInvoiceToDB();
+		assertEquals("testPrice", invoice.getPrice());
+	}
+
+	@Test
+	public void testGetInvoiceByIdWithWrongPrice() {
+		Invoice invoice = addTestInvoiceToDB();
+		assertNotEquals("wrongTestPrice", invoice.getPrice());
+	}
+	
+	@Test
+	public void testGetInvoiceByIdWithRightDescription() {
+		Invoice invoice = addTestInvoiceToDB();
+		assertEquals("testDescription", invoice.getDescription());
+	}
+
+	@Test
+	public void testGetInvoiceByIdWithWrongDescription() {
+		Invoice invoice = addTestInvoiceToDB();
+		assertNotEquals("wrongTestDescription", invoice.getDescription());
 	}
 }
