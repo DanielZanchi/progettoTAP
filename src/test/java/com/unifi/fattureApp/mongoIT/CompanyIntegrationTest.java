@@ -212,7 +212,9 @@ public class CompanyIntegrationTest {
 
 	@Test
 	public void testGetCompanyByIdWhenCompanyIsNotThere() {
-		addTestCompanyToDB();
+		mongoTestHelper.addCompany("1", "testName", "testVat", "testAddress", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail");
+		Company company = companyController.getCompanyId("2");
+		assertNull(company);
 	}
 
 	@Test
