@@ -246,6 +246,18 @@ public class CompanyIntegrationTest {
 		Company company = addTestCompanyToDB();
 		assertNotEquals("wrongCity", company.getCity());
 	}
+	
+	@Test
+	public void testGetCompanyByIdWithRightAddress() {
+		Company company = addTestCompanyToDB();
+		assertEquals("address1", company.getAddress());
+	}
+
+	@Test
+	public void testGetCompanyByIdWithWrongAddress() {
+		Company company = addTestCompanyToDB();
+		assertNotEquals("wrongAddress", company.getAddress());
+	}
 
 	@Test
 	public void testGetCompanyByIdWithRightProvince() {

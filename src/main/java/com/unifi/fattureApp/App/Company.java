@@ -16,8 +16,7 @@ public class Company{
 	public  Company() {
 	}
 
-	public Company(String id, String name, String vatCode,
-			String address, String city, String province, String zipCode, String country, String phone, String email){
+	public Company(String id, String name, String vatCode, String address, String city, String province, String zipCode, String country, String phone, String email){
 		this.setId(id);
 		this.setName(name);
 		this.setVatCode(vatCode);
@@ -28,7 +27,7 @@ public class Company{
 		this.setCountry(country);
 		this.setPhone(phone);
 		this.setEmail(email);
-	//	this.setNumInvoice(0);
+		this.setNumInvoice(0);
 	}
 
 	public String getId() {
