@@ -28,7 +28,7 @@ public class Company{
 		this.setCountry(country);
 		this.setPhone(phone);
 		this.setEmail(email);
-		this.setNumInvoice(0);
+	//	this.setNumInvoice(0);
 	}
 
 	public String getId() {
