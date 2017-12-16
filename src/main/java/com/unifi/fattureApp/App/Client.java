@@ -16,8 +16,8 @@ public class Client {
 	}
 
 	public Client(String id, String name, String fiscalCode, String cityResidence, String city, String province, String zip, String country, String phone, String email) {
-		this.id = id;
-		this.name = name;
+		this.setId(id);
+		this.setName(name);
 		this.setFiscalCode(fiscalCode);
 		this.setCityResidence(cityResidence);
 		this.setCity(city);

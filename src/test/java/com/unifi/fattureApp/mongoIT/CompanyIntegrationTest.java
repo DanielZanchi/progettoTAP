@@ -69,56 +69,104 @@ public class CompanyIntegrationTest {
 
 	@Test
 	public void testGetClientByIdWhenClientIsThere() {
-		Client Client = addTestClientToDB();
-		assertEquals("test", Client.getName());
+		Client client = addTestClientToDB();
+		assertEquals("test", client.getName());
 	}
 
 	@Test
 	public void testGetClientByIdWithRightFiscalCode() {
-		Client Client = addTestClientToDB();
-		assertEquals("testFC", Client.getFiscalCode());
+		Client client = addTestClientToDB();
+		assertEquals("testFC", client.getFiscalCode());
 	}
 
 	@Test
 	public void testGetClientByIdWithWrongFiscalCode() {
-		Client Client = addTestClientToDB();
-		assertNotEquals("wrongtestFC", Client.getFiscalCode());
+		Client client = addTestClientToDB();
+		assertNotEquals("wrongTestFC", client.getFiscalCode());
 	}
 
 	@Test
 	public void testGetClientByIdWithRightCityResidence() {
-		Client Client = addTestClientToDB();
-		assertEquals("testCR", Client.getCityResidence());
+		Client client = addTestClientToDB();
+		assertEquals("testCR", client.getCityResidence());
 	}
 
 	@Test
 	public void testGetClientByIdWithWrongCityResidence() {
-		Client Client = addTestClientToDB();
-		assertNotEquals("wrongtestCR", Client.getCityResidence());
+		Client client = addTestClientToDB();
+		assertNotEquals("wrongTestCR", client.getCityResidence());
 	}
 
 	@Test
 	public void testGetClientByIdWithRightPhone() {
-		Client Client = addTestClientToDB();
-		assertEquals("testPhone", Client.getPhone());
+		Client client = addTestClientToDB();
+		assertEquals("testPhone", client.getPhone());
 	}
 
 	@Test
 	public void testGetClientByIdWithWrongPhone() {
-		Client Client = addTestClientToDB();
-		assertNotEquals("wrongtestPhone", Client.getPhone());
+		Client client = addTestClientToDB();
+		assertNotEquals("wrongTestPhone", client.getPhone());
 	}
 
 	@Test
 	public void testGetClientByIdWithRightEmail() {
-		Client Client = addTestClientToDB();
-		assertEquals("testEmail", Client.getEmail());
+		Client client = addTestClientToDB();
+		assertEquals("testEmail", client.getEmail());
 	}
 
 	@Test
 	public void testGetClientByIdWithWrongEmail() {
-		Client Client = addTestClientToDB();
-		assertNotEquals("wrongtestEmail", Client.getEmail());
+		Client client = addTestClientToDB();
+		assertNotEquals("wrongTestEmail", client.getEmail());
+	}
+	
+	@Test
+	public void testGetClientByIdWithRightCity() {
+		Client client = addTestClientToDB();
+		assertEquals("testCity", client.getCity());
+	}
+	
+	@Test
+	public void testGetClientByIdWithWrongCity() {
+		Client client = addTestClientToDB();
+		assertNotEquals("wrongTestCity", client.getCity());
+	}
+	
+	@Test
+	public void testGetClientByIdWithRightProvince() {
+		Client client = addTestClientToDB();
+		assertEquals("testProvince", client.getProvince());
+	}
+	
+	@Test
+	public void testGetClientByIdWithWrongProvince() {
+		Client client = addTestClientToDB();
+		assertNotEquals("wrongTestProvince", client.getProvince());
+	}
+	
+	@Test
+	public void testGetClientByIdWithRightZip() {
+		Client client = addTestClientToDB();
+		assertEquals("testZip", client.getZip());
+	}
+	
+	@Test
+	public void testGetClientByIdWithWrongZip() {
+		Client client = addTestClientToDB();
+		assertNotEquals("wrongTestZip", client.getZip());
+	}
+	
+	@Test
+	public void testGetClientByIdWithRightCountry() {
+		Client client = addTestClientToDB();
+		assertEquals("testCountry", client.getCountry());
+	}
+	
+	@Test
+	public void testGetClientByIdWithWrongCountry() {
+		Client client = addTestClientToDB();
+		assertNotEquals("wrongTestCountry", client.getCountry());
 	}
 
 	/*
@@ -147,8 +195,8 @@ public class CompanyIntegrationTest {
 		Company company = companyController.getCompanyId("1");
 		assertNotNull(company);
 		return company;
-	}
-
+	}	
+	
 	@Test
 	public void testGetAllCompaniesWhenThereAreNoCompanies() {
 		List<Company> allCompanies = companyController.getAllCompany();
@@ -182,7 +230,7 @@ public class CompanyIntegrationTest {
 	@Test
 	public void testGetCompanyByIdWithWrongVatCode() {
 		Company company = addTestCompanyToDB();
-		assertNotEquals("wrongvatCode", company.getVatCode());
+		assertNotEquals("wrongVatCode", company.getVatCode());
 	}
 
 	@Test
@@ -194,7 +242,7 @@ public class CompanyIntegrationTest {
 	@Test
 	public void testGetCompanyByIdWithWrongCity() {
 		Company company = addTestCompanyToDB();
-		assertNotEquals("wrongcity", company.getCity());
+		assertNotEquals("wrongCity", company.getCity());
 	}
 
 	@Test
@@ -206,7 +254,7 @@ public class CompanyIntegrationTest {
 	@Test
 	public void testGetCompanyByIdWithWrongProvince() {
 		Company company = addTestCompanyToDB();
-		assertNotEquals("wrongprovince", company.getProvince());
+		assertNotEquals("wrongProvince", company.getProvince());
 	}
 
 	@Test
@@ -218,7 +266,7 @@ public class CompanyIntegrationTest {
 	@Test
 	public void testGetCompanyByIdWithWrongZipCode() {
 		Company company = addTestCompanyToDB();
-		assertNotEquals("wrongzipCode", company.getZipCode());
+		assertNotEquals("wrongZipCode", company.getZipCode());
 	}
 
 	@Test
@@ -230,7 +278,7 @@ public class CompanyIntegrationTest {
 	@Test
 	public void testGetCompanyByIdWithWrongCountry() {
 		Company company = addTestCompanyToDB();
-		assertNotEquals("wrongcountry", company.getCountry());
+		assertNotEquals("wrongCountry", company.getCountry());
 	}
 
 	@Test
@@ -242,7 +290,7 @@ public class CompanyIntegrationTest {
 	@Test
 	public void testGetCompanyByIdWithWrongPhone() {
 		Company company = addTestCompanyToDB();
-		assertNotEquals("wrongphone", company.getPhone());
+		assertNotEquals("wrongPhone", company.getPhone());
 	}
 
 	@Test
@@ -254,7 +302,7 @@ public class CompanyIntegrationTest {
 	@Test
 	public void testGetCompanyByIdWithWrongEmail() {
 		Company company = addTestCompanyToDB();
-		assertNotEquals("wrongemail", company.getEmail());
+		assertNotEquals("wrongEmail", company.getEmail());
 	}
 
 	/////////invoice
