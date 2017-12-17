@@ -11,12 +11,16 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.github.fakemongo.Fongo;
+import com.google.gson.Gson;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.CompanyController;
 import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.Invoice;
+import com.unifi.fattureApp.App.PrintedInvoice;
 import com.unifi.fattureApp.helpTestTools.MongoTestHelperTool;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
@@ -370,4 +374,30 @@ public class CompanyIntegrationTest {
 		Invoice invoice = addTestInvoiceToDB();
 		assertNotEquals("wrongTestDescription", invoice.getDescription());
 	}
+	
+	
+	///printedinvoice
+	
+	/*
+	private PrintedInvoice addTestPrintedInvoiceToDB() { 
+		mongoTestHelper.addPrintedInvoice(new PrintedInvoice(addTestCompanyToDB(), addTestClientToDB(), addTestInvoiceToDB(), "1"));
+		PrintedInvoice printedInvoice = companyController.getPrintedInvoiceId("1");
+		assertNotNull(printedInvoice);
+		return printedInvoice;
+	}
+	
+	@Test
+	public void testGetAllPrintedInvoicesWhenThereAreNoPrintedInvoices() {
+		List<PrintedInvoice> allPrintedInvoices = companyController.getAllPrintedInvoice();
+		assertEquals(0, allPrintedInvoices.size());	
+	}
+
+	@Test
+	public void testGetAllPrintedInvoicesWhenThereIsOnePrintedInvoice() {
+		addTestPrintedInvoiceToDB();
+		List<PrintedInvoice> allPrintedInvoices = companyController.getAllPrintedInvoice();
+		assertEquals(1, allPrintedInvoices.size());	
+	}
+	*/
+	
 }

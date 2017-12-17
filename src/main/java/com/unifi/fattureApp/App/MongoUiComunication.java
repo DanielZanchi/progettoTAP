@@ -131,10 +131,11 @@ public class MongoUiComunication {
 	}
 
 	public void printSelected() {
+		/*
 		System.out.println(currentSelectedCompany.getName());
 		System.out.println(currentSelectedClient.getName());
 		System.out.println(currentSelectedInvoice.getDescription());
-
+		*/
 		if (currentSelectedClient != null && currentSelectedCompany != null && currentSelectedInvoice != null) {
 			increseInvoiceNumber();
 			System.out.println("Invoice Number: " + invoiceCounter);

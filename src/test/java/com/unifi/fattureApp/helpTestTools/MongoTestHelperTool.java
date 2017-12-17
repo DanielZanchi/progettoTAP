@@ -1,9 +1,12 @@
 package com.unifi.fattureApp.helpTestTools;
 
+import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
+import com.mongodb.util.JSON;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Invoice;
@@ -115,10 +118,11 @@ public class MongoTestHelperTool {
 
 	public void addPrintedInvoice(PrintedInvoice printedInvoice) {
 		BasicDBObject document = new BasicDBObject();
+		Gson gson=new Gson();
 		document.put("id", printedInvoice.getPrintedId());
-		document.put("printedCompany", printedInvoice.getPrintedCompany());
-		document.put("printedClient", printedInvoice.getPrintedClient());
-		document.put("printedInvoice", printedInvoice.getPrintedInvoice());
+		document.put("printedCompany",gson.toJson(printedInvoice.getPrintedCompany()));
+		document.put("printedClient", gson.toJson(printedInvoice.getPrintedClient()));
+		document.put("printedInvoice", gson.toJson(printedInvoice.getPrintedInvoice()));
 		printedInvoices.insert(document);
 	}
 
