@@ -155,42 +155,4 @@ public abstract class MongoWrapperTestAbstract {
 		assertEquals("nameI2", findInvoiceById.getName());
 	}
 
-	// PrintedCompany
-	@Test
-	public void testGetAllPrintedInvoicesEmpty() {
-		assertTrue(mongoDatabase.getAllPrintedInvoiceList().isEmpty());
-	}
-
-	/*
-	@Test
-	public void testGetAllPrintedInvoicesNotEmpty() {
-		mongoTestHelper.addPrintedInvoice(mongoTestHelper.createPrintedInvoice("0"));
-		mongoTestHelper.addPrintedInvoice(mongoTestHelper.createPrintedInvoice("1"));
-		assertEquals(2, mongoDatabase.getAllPrintedInvoiceList().size());
-	}
-
-
-	@Test
-	public void testFindPrintedInvoiceByIdNotFound() {
-		mongoTestHelper.addPrintedInvoice(mongoTestHelper.createPrintedInvoice("0"));
-		assertNull(mongoDatabase.findInvoiceById("1"));
-	}
-
-	@Test
-	public void testPrintedInvoiceIsSaved() {
-		PrintedInvoice printedInvoice=mongoTestHelper.createPrintedInvoice("0");
-		mongoDatabase.savePrintedInvoice(printedInvoice);
-		assertTrue(mongoTestHelper.containsPrintedInvoice(printedInvoice.getPrintedId(),
-				printedInvoice.getPrintedCompany(),printedInvoice.getPrintedClient(),printedInvoice.getPrintedInvoice()));
-	}
-
-	@Test
-	public void testFindPrintedInvoiceByIdFound() {
-		mongoTestHelper.addPrintedInvoice(mongoTestHelper.createPrintedInvoice("0"));
-		mongoTestHelper.addPrintedInvoice(mongoTestHelper.createPrintedInvoice("1"));
-		PrintedInvoice findPrintedInvoiceById = mongoDatabase.findPrintedInvoiceById("1");
-		assertNotNull(findPrintedInvoiceById);
-		assertEquals("1", findPrintedInvoiceById.getPrintedId());
-	}
-	 */
 }

@@ -21,9 +21,5 @@ public interface Database {
 
 	public void saveInvoice(Invoice invoice);
 
-	public List<PrintedInvoice> getAllPrintedInvoiceList();
-
-	public PrintedInvoice findPrintedInvoiceById(String id);
-
-	public void savePrintedInvoice(PrintedInvoice printedInvoice);
+	
 }

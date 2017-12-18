@@ -61,20 +61,5 @@ public class CompanyController {
 		return true;
 	}
 
-	//PrintedInvoice
-	public List<PrintedInvoice> getAllPrintedInvoice() {
-		return database.getAllPrintedInvoiceList();
-	}
-
-	public PrintedInvoice getPrintedInvoiceId(String id) {
-		return database.findPrintedInvoiceById(id);
-	}
-
-	public boolean addPrintedInvoice(PrintedInvoice printedInvoice) {
-		if (getPrintedInvoiceId(printedInvoice.getPrintedId()) != null)
-			return false;
-
-		database.savePrintedInvoice(printedInvoice);
-		return true;
-	}
+	
 }

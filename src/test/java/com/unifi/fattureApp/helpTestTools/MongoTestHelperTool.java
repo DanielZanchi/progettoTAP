@@ -10,7 +10,6 @@ import com.mongodb.util.JSON;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Invoice;
-import com.unifi.fattureApp.App.PrintedInvoice;
 
 public class MongoTestHelperTool {
 	private DBCollection clients;
@@ -116,29 +115,6 @@ public class MongoTestHelperTool {
 		return invoices.find(query).hasNext();
 	}
 
-	public void addPrintedInvoice(PrintedInvoice printedInvoice) {
-		BasicDBObject document = new BasicDBObject();
-		Gson gson=new Gson();
-		document.put("id", printedInvoice.getPrintedId());
-		document.put("printedCompany",gson.toJson(printedInvoice.getPrintedCompany()));
-		document.put("printedClient", gson.toJson(printedInvoice.getPrintedClient()));
-		document.put("printedInvoice", gson.toJson(printedInvoice.getPrintedInvoice()));
-		printedInvoices.insert(document);
-	}
-
-	public boolean containsPrintedInvoice(String id, Company printedCompany, Client printedClient, Invoice printedInvoice) {
-		BasicDBObject query = new BasicDBObject();
-		query.put("id", id);
-		query.put("printedCompany", printedCompany);
-		query.put("printedClient", printedClient);
-		query.put("printedInvoice", printedInvoice);
-		return printedInvoices.find(query).hasNext();
-	}
-
-	public PrintedInvoice createPrintedInvoice(String id) {
-		Company company = new Company(id, "companyName"+id, "vat"+id, "address"+id, "city", "province"+id, "zip"+id, "country"+id, ""+id, ""+id);
-		Client client = new Client(id, "clientName"+id, "fiscal"+id, "residence"+id, "city"+id, "province"+id, "zip"+id, "country"+id, ""+id, ""+id);
-		Invoice invoice = new Invoice(id, "invoiceName"+id, "description"+id, "price"+id);
-		return new PrintedInvoice(company, client, invoice, id);
-	}
+	
+	
 }

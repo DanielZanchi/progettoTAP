@@ -14,7 +14,6 @@ import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.Invoice;
-import com.unifi.fattureApp.App.PrintedInvoice;
 
 public class MongoWrapper implements Database{
 	private MongoCollection clients;
@@ -89,22 +88,5 @@ public class MongoWrapper implements Database{
 		invoices.save(invoice);
 	}
 
-	//PrintedInvoice
-	@Override
-	public List<PrintedInvoice> getAllPrintedInvoiceList() {
-		Iterable<PrintedInvoice> iterable = printedInvoices.find().as(PrintedInvoice.class);
-		return StreamSupport.
-				stream(iterable.spliterator(), false).
-				collect(Collectors.toList());
-	}
-
-	@Override
-	public PrintedInvoice findPrintedInvoiceById(String id) {
-		return printedInvoices.findOne("{id: #}", id).as(PrintedInvoice.class);
-	}
-
-	@Override
-	public void savePrintedInvoice(PrintedInvoice printedInvoice) {
-		printedInvoices.save(printedInvoice);
-	}
+	
 }
