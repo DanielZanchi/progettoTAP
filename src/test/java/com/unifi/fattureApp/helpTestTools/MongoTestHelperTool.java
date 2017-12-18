@@ -1,6 +1,5 @@
 package com.unifi.fattureApp.helpTestTools;
 
-import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;

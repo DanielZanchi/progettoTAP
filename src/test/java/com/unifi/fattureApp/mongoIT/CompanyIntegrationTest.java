@@ -11,9 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.github.fakemongo.Fongo;
-import com.google.gson.Gson;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
+
 import com.mongodb.MongoClient;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
