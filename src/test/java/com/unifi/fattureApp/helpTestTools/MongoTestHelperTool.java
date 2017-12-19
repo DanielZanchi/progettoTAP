@@ -3,18 +3,12 @@ package com.unifi.fattureApp.helpTestTools;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
-import com.mongodb.util.JSON;
-import com.unifi.fattureApp.App.Client;
-import com.unifi.fattureApp.App.Company;
-import com.unifi.fattureApp.App.Invoice;
-
+	
 public class MongoTestHelperTool {
 	private DBCollection clients;
 	private DBCollection companies;
 	private DBCollection invoices;
-	private DBCollection printedInvoices;
 
 	public MongoTestHelperTool (MongoClient mongoClient) {
 		// make sure to drop the clients table for testing
@@ -26,7 +20,6 @@ public class MongoTestHelperTool {
 		clients = db.getCollection("client");
 		companies = db.getCollection("companies");
 		invoices = db.getCollection("invoices");
-		printedInvoices = db.getCollection("printedInvoices");
 	}
 
 	public void addClient(String id, String name, String fiscalCode, String cityResidence, String city, String province, String zip, String country, String phone, String email/*, String birthDay*/) {

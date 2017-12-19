@@ -1,8 +1,5 @@
 package com.unifi.fattureApp.App;
 
-
-import com.mongodb.BasicDBObject;
-
 public class Company{
 	
 	private String id;

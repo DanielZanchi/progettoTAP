@@ -246,16 +246,45 @@ public class MyCompanyPanelUITest {
 		addCompany_Button.click();
 		addCompany_Panel = window.panel("AddCompanyPanel");
 	}
+	
+	@Test
+	public void testSaveButtonWithInputsAction() {
+		getSaveButton();
+		setTextfieldsStrings("0", "1", "2", "3", "4", "5", "6", "", "");
+		saveAdd_Button.click();
+		addCompany_Panel.requireNotVisible();
+	}
+
 
 	private void saveCompany() {
 		showAddCompanyPanel();
 		saveAdd_Button = addCompany_Panel.button("SaveButton");
 		saveAdd_Button.click();
 	}
+	
+	private void getSaveButton() {
+		addCompany_Button.click();
+		addCompany_Panel = window.panel("AddCompanyPanel");
+		saveAdd_Button = addCompany_Panel.button("SaveButton");
+	}
 
 	private void cancelCompany(){
 		showAddCompanyPanel();
 		cancelAdd_Button = addCompany_Panel.button("CancelButton");
 		cancelAdd_Button.click();
+	}
+	
+	private void setTextfieldsStrings(String string1, String string2, String string3, String string4, String string5,
+			String string6, String string7, String string8, String string9) {
+
+		addCompany_Panel.textBox("companyName_TF").setText(string1);
+		addCompany_Panel.textBox("companyVatCode_TF").setText(string2);
+		addCompany_Panel.textBox("companyAddress_TF").setText(string3);
+		addCompany_Panel.textBox("companyCity_TF").setText(string4);
+		addCompany_Panel.textBox("companyProvince_TF").setText(string5);
+		addCompany_Panel.textBox("companyZip_TF").setText(string6);
+		addCompany_Panel.textBox("companyCountry_TF").setText(string7);
+		addCompany_Panel.textBox("companyPhone_TF").setText(string8);
+		addCompany_Panel.textBox("companyEmail_TF").setText(string9);
 	}
 }
