@@ -28,7 +28,7 @@ public class MyCompanyPanelUITest {
 		window = new FrameFixture(frame.getMainFrame());
 		window.show();
 		myCompany_Panel = window.panel("CompanyPanel");
-		addCompany_Button = window.panel("CompanyPanel").button("AddCompanyButton");		
+		addCompany_Button = window.panel("CompanyPanel").button("AddCompanyButton");
 	}
 
 	@After
@@ -47,7 +47,7 @@ public class MyCompanyPanelUITest {
 	}
 
 	@Test
-	public void testAddButtonAction() {		
+	public void testAddButtonAction() {
 		showAddCompanyPanel();
 		addCompany_Panel.requireVisible();
 	}
@@ -80,7 +80,7 @@ public class MyCompanyPanelUITest {
 		saveAdd_Button.requireDisabled();
 	}
 
-	@Test 
+	@Test
 	public void testSaveResetNameTextField(){
 		saveCompany();
 
@@ -89,7 +89,7 @@ public class MyCompanyPanelUITest {
 		companyName.text().compareTo("");
 	}
 
-	@Test 
+	@Test
 	public void testCancelResetNameTextField(){
 		cancelCompany();
 
@@ -98,43 +98,42 @@ public class MyCompanyPanelUITest {
 		companyName.text().compareTo("");
 	}
 
-	@Test 
+	@Test
 	public void testSaveResetVatTextField(){
 		saveCompany();
 		showAddCompanyPanel();
-
 		JTextComponentFixture companyVat = addCompany_Panel.textBox("companyVatTextField");
-		companyVat.text().isEmpty();	
+		companyVat.text().isEmpty();
 	}
 
-	@Test 
+	@Test
 	public void testCancelResetVatTextField(){
 		cancelCompany();
 		showAddCompanyPanel();
 
 		JTextComponentFixture companyVat = addCompany_Panel.textBox("companyVatTextField");
-		companyVat.text().isEmpty();	
+		companyVat.text().isEmpty();
 	}
 
-	@Test 
+	@Test
 	public void testSaveResetAddressTextField(){
 		saveCompany();
 		showAddCompanyPanel();
 
 		JTextComponentFixture companyAddress = addCompany_Panel.textBox("companyAddressTextField");
-		companyAddress.text().isEmpty();	
+		companyAddress.text().isEmpty();
 	}
 
-	@Test 
+	@Test
 	public void testCancelResetAddressTextField(){
 		cancelCompany();
 		showAddCompanyPanel();
 
 		JTextComponentFixture companyAddress = addCompany_Panel.textBox("companyAddressTextField");
-		companyAddress.text().isEmpty();	
+		companyAddress.text().isEmpty();
 	}
 
-	@Test 
+	@Test
 	public void testSaveResetCityTextField(){
 		saveCompany();
 		showAddCompanyPanel();
@@ -143,7 +142,7 @@ public class MyCompanyPanelUITest {
 		companyCity.text().isEmpty();
 	}
 
-	@Test 
+	@Test
 	public void testCancelResetCityTextField(){
 		cancelCompany();
 		showAddCompanyPanel();
@@ -152,7 +151,7 @@ public class MyCompanyPanelUITest {
 		companyCity.text().isEmpty();
 	}
 
-	@Test 
+	@Test
 	public void testSaveResetProvinceTextField(){
 		saveCompany();
 		showAddCompanyPanel();
@@ -161,7 +160,7 @@ public class MyCompanyPanelUITest {
 		companyProvince.text().isEmpty();
 	}
 
-	@Test 
+	@Test
 	public void testCancelResetProvinceTextField(){
 		cancelCompany();
 		showAddCompanyPanel();
@@ -170,7 +169,7 @@ public class MyCompanyPanelUITest {
 		companyProvince.text().isEmpty();
 	}
 
-	@Test 
+	@Test
 	public void testSaveResetZipTextField(){
 		saveCompany();
 		showAddCompanyPanel();
@@ -179,7 +178,7 @@ public class MyCompanyPanelUITest {
 		companyZip.text().isEmpty();
 	}
 
-	@Test 
+	@Test
 	public void testCancelResetZipTextField(){
 		cancelCompany();
 		showAddCompanyPanel();
@@ -188,7 +187,7 @@ public class MyCompanyPanelUITest {
 		companyZip.text().isEmpty();
 	}
 
-	@Test 
+	@Test
 	public void testSaveResetCountryTextField(){
 		saveCompany();
 		showAddCompanyPanel();
@@ -197,7 +196,7 @@ public class MyCompanyPanelUITest {
 		companyCountry.text().isEmpty();
 	}
 
-	@Test 
+	@Test
 	public void testCancelResetCountryTextField(){
 		cancelCompany();
 		showAddCompanyPanel();
@@ -206,7 +205,7 @@ public class MyCompanyPanelUITest {
 		companyCountry.text().isEmpty();
 	}
 
-	@Test 
+	@Test
 	public void testSaveResetPhoneTextField(){
 		saveCompany();
 		showAddCompanyPanel();
@@ -215,7 +214,7 @@ public class MyCompanyPanelUITest {
 		companyPhone.text().compareTo("");
 	}
 
-	@Test 
+	@Test
 	public void testCancelResetPhoneTextField(){
 		cancelCompany();
 		showAddCompanyPanel();
@@ -224,7 +223,7 @@ public class MyCompanyPanelUITest {
 		companyPhone.text().compareTo("");
 	}
 
-	@Test 
+	@Test
 	public void testSaveResetEmailTextField(){
 		saveCompany();
 		showAddCompanyPanel();
@@ -233,7 +232,7 @@ public class MyCompanyPanelUITest {
 		companyEmail.text().compareTo("");
 	}
 
-	@Test 
+	@Test
 	public void testCancelResetEmailTextField(){
 		cancelCompany();
 		showAddCompanyPanel();
@@ -241,6 +240,23 @@ public class MyCompanyPanelUITest {
 		JTextComponentFixture companyEmail = addCompany_Panel.textBox("companyEmailTextField");
 		companyEmail.text().compareTo("");
 	}
+
+	@Test
+	public void testSaveButtonWithInputsAction() {
+		showAddCompanyPanel();
+		setTextfieldsStrings("0", "1", "2", "3", "4", "5", "6", "", "");
+		saveCompany();
+		addCompany_Panel.requireNotVisible();
+	}
+
+	@Test
+	public void testSaveButtonWithWrongInputsAction() {
+		showAddCompanyPanel();
+		setTextfieldsStrings("0", "1", "2", "3", "4", "", "", "", "");
+		saveAdd_Button = addCompany_Panel.button("SaveButton");
+		saveAdd_Button.requireDisabled();
+	}
+
 
 	private void showAddCompanyPanel() {
 		addCompany_Button.click();
@@ -252,10 +268,23 @@ public class MyCompanyPanelUITest {
 		saveAdd_Button = addCompany_Panel.button("SaveButton");
 		saveAdd_Button.click();
 	}
-	
+
 	private void cancelCompany(){
 		showAddCompanyPanel();
 		cancelAdd_Button = addCompany_Panel.button("CancelButton");
 		cancelAdd_Button.click();
+	}
+
+	private void setTextfieldsStrings(String string1, String string2, String string3, String string4, String string5,
+			 		String string6, String string7, String string8, String string9) {
+			 		addCompany_Panel.textBox("companyNameTextField").setText(string1);
+			 		addCompany_Panel.textBox("companyVatTextField").setText(string2);
+			 		addCompany_Panel.textBox("companyAddressTextField").setText(string3);
+			 		addCompany_Panel.textBox("companyCityTextField").setText(string4);
+			 		addCompany_Panel.textBox("companyProvinceTextField").setText(string5);
+			 		addCompany_Panel.textBox("companyZipTextField").setText(string6);
+			 		addCompany_Panel.textBox("companyCountryTextField").setText(string7);
+			 		addCompany_Panel.textBox("companyPhoneTextField").setText(string8);
+			 		addCompany_Panel.textBox("companyEmailTextField").setText(string9);
 	}
 }
