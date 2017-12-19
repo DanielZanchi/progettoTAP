@@ -359,21 +359,6 @@ public class MainWindowUI {
 		panelToShow.setAddingMode(isSaving);
 	}
 
-	/*
-	private void showAddCompanyPanel() {
-		// SHOW PANEL TO ADD CUSTOMER
-		addCompany_Panel.setVisible(true);
-	}
-
-	private void showAddClientPanel() {
-		// SHOW PANEL TO ADD CUSTOMER
-		addClient_Panel.setVisible(true);
-	}
-
-	private void showAddItemPanel() {
-		addItem_Panel.setVisible(true);
-	}
-	 */
 
 	public JFrame getMainFrame() {
 		// TODO Auto-generated method stub

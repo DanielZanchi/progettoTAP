@@ -19,7 +19,6 @@ public class MongoWrapper implements Database{
 	private MongoCollection clients;
 	private MongoCollection companies;
 	private MongoCollection invoices;
-	private MongoCollection printedInvoices;
 
 	public MongoWrapper(MongoClient mc) throws UnknownHostException {
 		DB db = mc.getDB("company");
@@ -28,7 +27,6 @@ public class MongoWrapper implements Database{
 		clients = jongo.getCollection("client");
 		companies = jongo.getCollection("companies");
 		invoices = jongo.getCollection("invoices");
-		printedInvoices=jongo.getCollection("printedInvoices");
 	}	
 
 	//Clients

@@ -108,13 +108,4 @@ public class Client {
 		this.country = country;
 	}
 
-	/*
-		public String getBirthDate() {
-			return birthDate;
-		}
-
-		public void setBirthDate(String birthDate) {
-			this.birthDate = birthDate;
-		}
-	 */
 }

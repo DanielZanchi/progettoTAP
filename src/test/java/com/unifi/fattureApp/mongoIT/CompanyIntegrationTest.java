@@ -24,19 +24,14 @@ import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 public class CompanyIntegrationTest {
 	private CompanyController companyController;
 
-	// helper for testing with Mongo
 	private MongoTestHelperTool mongoTestHelper;
 
 	@Before
 	public void setUp() throws Exception {
-		// in-memory java implementation of MongoDB
-		// so that we don't need to install MongoDB in our computer
 		Fongo fongo = new Fongo("mongo server 1");
 		MongoClient mongoClient = fongo.getMongo();
 		mongoTestHelper = new MongoTestHelperTool(mongoClient);
 
-		// we don't mock the database:
-		// we use a real instance of MongoDatabaseWrapper
 		Database database = new MongoWrapper(mongoClient);
 		companyController = new CompanyController(database);
 	}

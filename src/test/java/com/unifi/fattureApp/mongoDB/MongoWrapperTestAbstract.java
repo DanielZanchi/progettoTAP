@@ -27,8 +27,6 @@ public abstract class MongoWrapperTestAbstract {
 
 	@Before
 	public void initDB() throws UnknownHostException {
-		// in-memory java implementation of MongoDB
-		// so that we don't need to install MongoDB in our computer
 		MongoClient mongoClient = createMongoClient();
 		mongoTestHelper = new MongoTestHelperTool(mongoClient);
 		mongoDatabase = new MongoWrapper(mongoClient);

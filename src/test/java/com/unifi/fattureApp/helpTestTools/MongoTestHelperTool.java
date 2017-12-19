@@ -11,7 +11,6 @@ public class MongoTestHelperTool {
 	private DBCollection invoices;
 
 	public MongoTestHelperTool (MongoClient mongoClient) {
-		// make sure to drop the clients table for testing
 		DB db = mongoClient.getDB("company");
 		db.getCollection("client").drop();
 		db.getCollection("companies").drop();
@@ -34,7 +33,6 @@ public class MongoTestHelperTool {
 		document.put("country", country);
 		document.put("phone", phone);
 		document.put("email", email);
-		//document.put("birthDay", birthDay);
 
 		clients.insert(document);
 	}
@@ -51,7 +49,6 @@ public class MongoTestHelperTool {
 		query.put("country", country);
 		query.put("phone", phone);
 		query.put("email", email);
-		//query.put("birthDay", birthDay);
 
 		return clients.find(query).hasNext();
 	}

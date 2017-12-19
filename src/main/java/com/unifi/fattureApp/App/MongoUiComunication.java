@@ -32,16 +32,7 @@ public class MongoUiComunication {
 	private LinkedList<JButton> editButtons;
 
 	public MongoUiComunication(boolean testing, String args[]) {
-		// if (args.length > 0)
-		// mongoHost = args[0];
-		// Database database = null;
-		// try {
-		// database = new MongoWrapper(new MongoClient(mongoHost));
-		// } catch (UnknownHostException e1) {
-		// // TODO Auto-generated catch block
-		// e1.printStackTrace();
-		// }
-		// myCompanyController = new CompanyController(database);
+		
 		if (args!=null && args.length > 0)
 			mongoHost = args[0];
 
