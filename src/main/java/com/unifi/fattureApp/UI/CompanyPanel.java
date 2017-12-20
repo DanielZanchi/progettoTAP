@@ -238,7 +238,7 @@ public class CompanyPanel extends JPanel implements AddPanel{
 							companyPhone_TF.getText(), companyEmail_TF.getText());
 
 					if (saved) {
-						myMongoUiComunication.printAllCompanies();
+						//myMongoUiComunication.printAllCompanies();
 						myMongoUiComunication.setCurrentSelectedCompany(myMongoUiComunication.getSavedCompanies().get(myMongoUiComunication.getSavedCompanies().size()-1));
 						myMongoUiComunication.enableEditCompanyButton();
 					} else {

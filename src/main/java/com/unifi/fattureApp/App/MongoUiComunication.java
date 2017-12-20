@@ -58,6 +58,8 @@ public class MongoUiComunication {
 
 		myCompanyController = new CompanyController(database);
 		editButtons = new LinkedList<>();
+		
+		editCompanyButton=new JButton();
 	}
 
 	public boolean addClientToDatabase(String name, String fiscalCode, String residence, String city, String province,
@@ -105,27 +107,8 @@ public class MongoUiComunication {
 		return myCompanyController.getAllInvoices();
 	}
 
-	// Just console prints!!!
-	public void printAllClients() {
-		System.out.println("In the database Clients:");
-		List<Client> clients = myCompanyController.getAllClients();
-		clients.stream().forEach(client -> System.out.println("Client Name : " + client.getId() + " - " + client.getName()));
-		System.out.println("--------/Clients---------");
-	}
-
-	public void printAllCompanies() {
-		System.out.println("In the database Companies:");
-		List<Company> companies = myCompanyController.getAllCompany();
-		companies.stream().forEach(company -> System.out.println("Company Name : " + company.getId() + " - " + company.getName()));
-		System.out.println("--------/Companies---------");
-	}
-
-	public void printSelected() {
-		/*
-		System.out.println(currentSelectedCompany.getName());
-		System.out.println(currentSelectedClient.getName());
-		System.out.println(currentSelectedInvoice.getDescription());
-		*/
+	
+	public boolean printSelected() {
 		if (currentSelectedClient != null && currentSelectedCompany != null && currentSelectedInvoice != null) {
 			increseInvoiceNumber();
 			System.out.println("Invoice Number: " + invoiceCounter);
@@ -141,14 +124,14 @@ public class MongoUiComunication {
 			System.out.println(" -------/Selected---------- ");
 
 			new PDFCreator(currentSelectedCompany, currentSelectedClient, currentSelectedInvoice);
+			return true;
 		}
+		return false;
 	}
 
 	private void  increseInvoiceNumber() {
 		invoiceCounter++;
-		
 	}
-	// end prints !!!
 
 	public Company getCurrentSelectedCompany() {
 		return currentSelectedCompany;
