@@ -69,7 +69,6 @@ public class PDFCreator {
 			cs.showText(stringToPrint);
 			cs.endText();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return cs;
@@ -87,7 +86,6 @@ public class PDFCreator {
 			cs.showText(stringToPrint);
 			cs.endText();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		fontSize = 9;
@@ -114,7 +112,6 @@ public class PDFCreator {
 				y = y + leading;
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return cs;
@@ -155,7 +152,6 @@ public class PDFCreator {
 
 			cs.endText();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return cs;
@@ -175,7 +171,6 @@ public class PDFCreator {
 			cs.showText(stringToPrint);
 			cs.endText();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -187,7 +182,6 @@ public class PDFCreator {
 			cs.fill();
 			cs.setNonStrokingColor(Color.BLACK);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -214,7 +208,6 @@ public class PDFCreator {
 			cs.setNonStrokingColor(Color.black);
 			cs.endText();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return cs;
@@ -236,14 +229,12 @@ public class PDFCreator {
 			cs.newLineAtOffset(320, 0);
 			cs.showText(stringToPrint);
 
-
 			stringToPrint = "  €  " + selectedInvoice.getPrice();
 			cs.newLineAtOffset(132, 0);
 			cs.showText(stringToPrint);
 
 			cs.endText();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return cs;
@@ -274,7 +265,6 @@ public class PDFCreator {
 				y = y - leading;
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return cs;
