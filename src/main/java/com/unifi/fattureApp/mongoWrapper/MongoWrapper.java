@@ -85,6 +85,4 @@ public class MongoWrapper implements Database{
 	public void saveInvoice(Invoice invoice) {
 		invoices.save(invoice);
 	}
-
-	
 }

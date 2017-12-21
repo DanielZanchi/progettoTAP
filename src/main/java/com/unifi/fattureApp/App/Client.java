@@ -107,5 +107,4 @@ public class Client {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-
 }

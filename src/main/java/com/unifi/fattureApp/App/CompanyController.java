@@ -59,7 +59,5 @@ public class CompanyController {
 
 		database.saveInvoice(invoice);
 		return true;
-	}
-
-	
+	}	
 }

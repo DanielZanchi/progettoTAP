@@ -31,7 +31,6 @@ public class PDFCreator {
 	final PDFont helveticaFont = PDType1Font.HELVETICA;
 
 	public PDFCreator(Company company, Client client, Invoice invoice) {
-
 		this.selectedCompany = company;
 		this.selectedClient = client;
 		this.selectedInvoice = invoice;
@@ -40,7 +39,6 @@ public class PDFCreator {
 	}
 
 	private void create() {
-
 		final PDPage singlePage = new PDPage();
 
 		try (final PDDocument document = new PDDocument()) {
@@ -76,7 +74,7 @@ public class PDFCreator {
 		}
 		return cs;
 	}
-	
+
 	private PDPageContentStream billTo(PDPageContentStream cs, PDPage sp) {
 		int fontSize = 10;
 		String stringToPrint = "Bill To:";
@@ -121,7 +119,7 @@ public class PDFCreator {
 		}
 		return cs;
 	}
-	
+
 	private PDPageContentStream invoiceNumber(PDPageContentStream cs, PDPage sp) {
 		int fontSize = 10;
 		String stringToPrint = "Invoice #: ";
@@ -134,27 +132,27 @@ public class PDFCreator {
 			cs.setFont(helveticaBoldFont, fontSize);
 			cs.newLineAtOffset(verticalRight(sp, textWidth) - 2, sp.getMediaBox().getHeight() - 140);
 			cs.showText(stringToPrint);
-			
+
 			cs.setFont(helveticaFont, fontSize);
 			cs.newLineAtOffset(54, 0);
 			//invoice number here
 			cs.showText(String.valueOf(selectedCompany.getNumInvoice()));
-			
-			
+
+
 			stringToPrint = "Invoice date: ";
 			cs.setFont(helveticaBoldFont, fontSize);
 			cs.newLineAtOffset(- (textWidth / 2) + 6, -leading);
 			cs.showText(stringToPrint);
-			
+
 			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 			Date date = new java.util.Date();
 			String dateString = dateFormat.format(date);
-			
+
 			stringToPrint = dateString;
 			cs.setFont(helveticaFont, fontSize);
 			cs.newLineAtOffset(getTextWidth(fontSize, "invoice date: ") + 8, 0);
 			cs.showText(stringToPrint);
-			
+
 			cs.endText();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -237,7 +235,7 @@ public class PDFCreator {
 			stringToPrint = "  €  " + getPriceExcVAT(selectedInvoice.getPrice());
 			cs.newLineAtOffset(320, 0);
 			cs.showText(stringToPrint);
-			
+
 
 			stringToPrint = "  €  " + selectedInvoice.getPrice();
 			cs.newLineAtOffset(132, 0);
@@ -250,8 +248,6 @@ public class PDFCreator {
 		}
 		return cs;
 	}
-
-	
 
 	private PDPageContentStream footer(PDPageContentStream cs, PDPage sp) {
 		int fontSize = 9;
@@ -335,12 +331,10 @@ public class PDFCreator {
 		float textWidth = (float) titleFont.getStringBounds(s, frc).getWidth();
 		return textWidth;
 	}
-	
+
 	private String getPriceExcVAT(String price) {
 		float p = Float.parseFloat(price);
 		p = (float) (p / 1.22);
-		return Float.toString(p);
-		
+		return Float.toString(p);	
 	}
-
 }

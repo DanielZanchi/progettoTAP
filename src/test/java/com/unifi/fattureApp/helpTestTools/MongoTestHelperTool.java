@@ -4,7 +4,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
-	
+
 public class MongoTestHelperTool {
 	private DBCollection clients;
 	private DBCollection companies;
@@ -103,7 +103,4 @@ public class MongoTestHelperTool {
 		query.put("description", description);
 		return invoices.find(query).hasNext();
 	}
-
-	
-	
 }

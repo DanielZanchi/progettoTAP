@@ -42,7 +42,6 @@ public class MainWindowUI {
 	/**
 	 * Launch the application.
 	 */
-
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -358,7 +357,6 @@ public class MainWindowUI {
 	private void showGenericAddPanel(AddPanel panelToShow, boolean isSaving) {
 		panelToShow.setAddingMode(isSaving);
 	}
-
 
 	public JFrame getMainFrame() {
 		// TODO Auto-generated method stub

@@ -116,49 +116,49 @@ public class CompanyIntegrationTest {
 		Client client = addTestClientToDB();
 		assertNotEquals("wrongTestEmail", client.getEmail());
 	}
-	
+
 	@Test
 	public void testGetClientByIdWithRightCity() {
 		Client client = addTestClientToDB();
 		assertEquals("testCity", client.getCity());
 	}
-	
+
 	@Test
 	public void testGetClientByIdWithWrongCity() {
 		Client client = addTestClientToDB();
 		assertNotEquals("wrongTestCity", client.getCity());
 	}
-	
+
 	@Test
 	public void testGetClientByIdWithRightProvince() {
 		Client client = addTestClientToDB();
 		assertEquals("testProvince", client.getProvince());
 	}
-	
+
 	@Test
 	public void testGetClientByIdWithWrongProvince() {
 		Client client = addTestClientToDB();
 		assertNotEquals("wrongTestProvince", client.getProvince());
 	}
-	
+
 	@Test
 	public void testGetClientByIdWithRightZip() {
 		Client client = addTestClientToDB();
 		assertEquals("testZip", client.getZip());
 	}
-	
+
 	@Test
 	public void testGetClientByIdWithWrongZip() {
 		Client client = addTestClientToDB();
 		assertNotEquals("wrongTestZip", client.getZip());
 	}
-	
+
 	@Test
 	public void testGetClientByIdWithRightCountry() {
 		Client client = addTestClientToDB();
 		assertEquals("testCountry", client.getCountry());
 	}
-	
+
 	@Test
 	public void testGetClientByIdWithWrongCountry() {
 		Client client = addTestClientToDB();
@@ -192,7 +192,7 @@ public class CompanyIntegrationTest {
 		assertNotNull(company);
 		return company;
 	}	
-	
+
 	@Test
 	public void testGetAllCompaniesWhenThereAreNoCompanies() {
 		List<Company> allCompanies = companyController.getAllCompany();
@@ -242,7 +242,7 @@ public class CompanyIntegrationTest {
 		Company company = addTestCompanyToDB();
 		assertNotEquals("wrongCity", company.getCity());
 	}
-	
+
 	@Test
 	public void testGetCompanyByIdWithRightAddress() {
 		Company company = addTestCompanyToDB();
@@ -322,7 +322,7 @@ public class CompanyIntegrationTest {
 		assertNotNull(invoice);
 		return invoice;
 	}
-	
+
 	@Test
 	public void testGetAllInvoicesWhenThereAreNoInvoices() {
 		List<Invoice> allInvoices = companyController.getAllInvoices();
@@ -354,7 +354,7 @@ public class CompanyIntegrationTest {
 		Invoice invoice = addTestInvoiceToDB();
 		assertNotEquals("wrongTestPrice", invoice.getPrice());
 	}
-	
+
 	@Test
 	public void testGetInvoiceByIdWithRightDescription() {
 		Invoice invoice = addTestInvoiceToDB();
@@ -365,8 +365,5 @@ public class CompanyIntegrationTest {
 	public void testGetInvoiceByIdWithWrongDescription() {
 		Invoice invoice = addTestInvoiceToDB();
 		assertNotEquals("wrongTestDescription", invoice.getDescription());
-	}
-	
-	
-	
+	}	
 }

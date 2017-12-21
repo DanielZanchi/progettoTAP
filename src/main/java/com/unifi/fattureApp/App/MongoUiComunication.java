@@ -31,8 +31,7 @@ public class MongoUiComunication {
 	private JButton editCompanyButton;
 	private LinkedList<JButton> editButtons;
 
-	public MongoUiComunication(boolean testing, String args[]) {
-		
+	public MongoUiComunication(boolean testing, String args[]) {		
 		if (args!=null && args.length > 0)
 			mongoHost = args[0];
 
@@ -58,7 +57,7 @@ public class MongoUiComunication {
 
 		myCompanyController = new CompanyController(database);
 		editButtons = new LinkedList<>();
-		
+
 		editCompanyButton=new JButton();
 	}
 
@@ -107,7 +106,6 @@ public class MongoUiComunication {
 		return myCompanyController.getAllInvoices();
 	}
 
-	
 	public boolean printSelected() {
 		if (currentSelectedClient != null && currentSelectedCompany != null && currentSelectedInvoice != null) {
 			increseInvoiceNumber();
