@@ -16,7 +16,7 @@ public class MongoUiComunicationTest {
 	@Before
 	public void setUp() {
 		String args[] = null;
-		myMongoUiCom=new MongoUiComunication(true, args);
+		myMongoUiCom = new MongoUiComunication(true, args);
 	}
 
 	@Test
@@ -25,70 +25,70 @@ public class MongoUiComunicationTest {
 	}
 
 	private void addTestClient() {
-		boolean added=myMongoUiCom.addClientToDatabase("name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
-		assertEquals(added, true);
+		boolean added = myMongoUiCom.addClientToDatabase("name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
+		assertEquals(true, added);
 	}
 
 	@Test
 	public void clientsCountWithNoClientsTest() {
-		assertEquals(myMongoUiCom.getClientsCount(),0);
+		assertEquals(0, myMongoUiCom.getClientsCount());
 	}
 
 	@Test
 	public void clientsCountWithOneClientTest() {
 		addTestClient();
-		assertEquals(myMongoUiCom.getClientsCount(),1);
+		assertEquals(1, myMongoUiCom.getClientsCount());
 	}
 
 	@Test
 	public void getListSizeOfClientsWithNoClients() {
-		assertEquals(myMongoUiCom.getSavedClients().size(), 0);
+		assertEquals(0, myMongoUiCom.getSavedClients().size());
 	}
 
 	@Test
 	public void getListSizeOfClientsWithOneClient() {
 		addTestClient();
-		assertEquals(myMongoUiCom.getSavedClients().size(), 1);
+		assertEquals(1, myMongoUiCom.getSavedClients().size());
 	}
 
 	@Test
 	public void getListOfClientsWithOneClientCheckName() {
 		addTestClient();
-		assertEquals(myMongoUiCom.getSavedClients().get(0).getName(), "name");
+		assertEquals("name", myMongoUiCom.getSavedClients().get(0).getName());
 	}
 
 	@Test 
 	public void getCurrentSelectedClientWithNoClientSelected() {
-		assertEquals(myMongoUiCom.getCurrentSelectedClient(), null);
+		assertEquals(null, myMongoUiCom.getCurrentSelectedClient());
 	}
 
 	@Test 
 	public void getCurrentSelectedClientWithClientSelected() {
-		Client client=new Client("1","name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
+		Client client = new Client("1","name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
 		myMongoUiCom.setCurrentSelectedClient(client);
 		assertEquals(myMongoUiCom.getCurrentSelectedClient(), client);
 	}
 
 	@Test 
 	public void getCurrentSelectedClientWithClientSelectedNameTest() {
-		Client client=new Client("1","name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
+		Client client = new Client("1","name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
 		myMongoUiCom.setCurrentSelectedClient(client);
 		assertEquals(myMongoUiCom.getCurrentSelectedClient().getName(), client.getName());
 	}
 
 	@Test 
 	public void printSelectedWithNoSelectedTest() {
-		assertEquals(myMongoUiCom.printSelected(), false);
+		assertEquals(false, myMongoUiCom.printSelected());
 	}
 
 	@Test 
 	public void printSelectedWithSelectedTest() {
-		Company company=new Company("1", "nameComp", "vatCodeComp", "addressComp", "cityComp", "provinceComp", "zipCodeComp", "countryComp", "phoneComp", "emailComp");
+		Company company = new Company("1", "nameComp", "vatCodeComp", "addressComp", "cityComp", "provinceComp", "zipCodeComp", "countryComp", "phoneComp", "emailComp");
 		myMongoUiCom.setCurrentSelectedCompany(company);
-		Client client=new Client("1","name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
+		Client client = new Client("1","name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
 		myMongoUiCom.setCurrentSelectedClient(client);
-		Invoice invoice=new Invoice("1","invoiceName","15","invoiceDescription");
+		Invoice invoice = new Invoice("1","invoiceName","15","invoiceDescription");
 		myMongoUiCom.setCurrentSelectedInvoice(invoice);
-		assertEquals(myMongoUiCom.printSelected(), true);
+		assertEquals(true, myMongoUiCom.printSelected());
 	}
 }
