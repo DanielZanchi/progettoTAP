@@ -21,227 +21,228 @@ import com.unifi.fattureApp.App.MongoUiComunication;
 public class ClientPanel extends JPanel implements AddPanel {
 	private MongoUiComunication myMongoUiComunication;
 
-	private JTextField clientName_TF;
-	private JTextField clientVat_TF;
-	private JTextField clientAddress_TF;
-	private JTextField clientCity_TF;
-	private JTextField clientProvince_TF;
-	private JTextField clientZip_TF;
-	private JTextField clientCountry_TF;
-	private JTextField clientPhone_TF;
-	private JTextField clientEmail_TF;
+	private JTextField clientNameTF;
+	private JTextField clientVatTF;
+	private JTextField clientAddressTF;
+	private JTextField clientCityTF;
+	private JTextField clientProvinceTF;
+	private JTextField clientZipTF;
+	private JTextField clientCountryTF;
+	private JTextField clientPhoneTF;
+	private JTextField clientEmailTF;
 
 	private LinkedList<JTextField> textFields;
 
 	private Color layerColor = new java.awt.Color(216, 245, 255);
 
-	private ClientPanel addClient_Panel;
+	private ClientPanel addClientPanel;
 
 	private boolean isSaving;
 
-	public ClientPanel(JLayeredPane outer_Panel, int buttonWidth, int buttonHeight, MongoUiComunication mongoUiCom) {
-		addClient_Panel = this;
+	public ClientPanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight, MongoUiComunication mongoUiCom) {
+		addClientPanel = this;
 		myMongoUiComunication = mongoUiCom;
 
 		this.setVisible(false);
 
-		addClient_Panel.setName("AddClientPanel");
-		addClient_Panel.setBackground(layerColor);
-		addClient_Panel.setBorder(BorderFactory.createLineBorder(Color.white, 3));
+		addClientPanel.setName("AddClientPanel");
+		addClientPanel.setBackground(layerColor);
+		addClientPanel.setBorder(BorderFactory.createLineBorder(Color.white, 3));
 		int insets = 22;
-		int width = outer_Panel.getWidth() - insets - insets;
-		int height = outer_Panel.getHeight() - insets - insets;
-		addClient_Panel.setBounds(insets, insets, width, height);
-		outer_Panel.add(addClient_Panel);
-		addClient_Panel.setLayout(null);
-		outer_Panel.setLayer(addClient_Panel, 2);
+		int width = outerPanel.getWidth() - insets - insets;
+		int height = outerPanel.getHeight() - insets - insets;
+		addClientPanel.setBounds(insets, insets, width, height);
+		outerPanel.add(addClientPanel);
+		addClientPanel.setLayout(null);
+		outerPanel.setLayer(addClientPanel, 2);
 
 		textFields = new LinkedList<>();
 
 		// ADD COMPONENTS INSIDE PANEL
-		int addPanelY = addClient_Panel.getY();
+		int addPanelY = addClientPanel.getY();
 		insets = 8;
 		int insetsBtwField = 23;
 
-		JLabel addClientTitle_Label = new JLabel("Client");
-		addClientTitle_Label.setFont(new Font("Lucida Grande", Font.BOLD, 20));
-		width = (int) addClientTitle_Label.getPreferredSize().getWidth();
-		height = (int) addClientTitle_Label.getPreferredSize().getHeight();
-		addClientTitle_Label.setBounds((addClient_Panel.getWidth() / 2) - (width / 2), addPanelY - 10, width, height);
-		addClient_Panel.add(addClientTitle_Label);
+		JLabel addClientTitleLabel = new JLabel("Client");
+		addClientTitleLabel.setFont(new Font("Lucida Grande", Font.BOLD, 20));
+		width = (int) addClientTitleLabel.getPreferredSize().getWidth();
+		height = (int) addClientTitleLabel.getPreferredSize().getHeight();
+		addClientTitleLabel.setBounds((addClientPanel.getWidth() / 2) - (width / 2), addPanelY - 10, width, height);
+		addClientPanel.add(addClientTitleLabel);
 
-		JLabel clientName_Label = new JLabel("Client Name:");
-		width = (int) clientName_Label.getPreferredSize().getWidth();
-		height = (int) clientName_Label.getPreferredSize().getHeight();
-		clientName_Label.setBounds((addClient_Panel.getWidth() / 2) - (width / 2),
-				addClientTitle_Label.getY() + addClientTitle_Label.getHeight() + insetsBtwField, width, height);
-		addClient_Panel.add(clientName_Label);
+		JLabel clientNameLabel = new JLabel("Client Name:");
+		width = (int) clientNameLabel.getPreferredSize().getWidth();
+		height = (int) clientNameLabel.getPreferredSize().getHeight();
+		clientNameLabel.setBounds((addClientPanel.getWidth() / 2) - (width / 2),
+				addClientTitleLabel.getY() + addClientTitleLabel.getHeight() + insetsBtwField, width, height);
+		addClientPanel.add(clientNameLabel);
 
-		clientName_TF = new JTextField();
+		clientNameTF = new JTextField();
 		width = 300;
-		clientName_TF.setName("clientName_TF");
-		clientName_TF.setHorizontalAlignment(JTextField.CENTER);
-		clientName_TF.setBounds((addClient_Panel.getWidth() / 2) - (width / 2),
-				clientName_Label.getY() + clientName_Label.getHeight() + insets, width, 28);
-		addClient_Panel.add(clientName_TF);
+		clientNameTF.setName("clientName_TF");
+		clientNameTF.setHorizontalAlignment(JTextField.CENTER);
+		clientNameTF.setBounds((addClientPanel.getWidth() / 2) - (width / 2),
+				clientNameLabel.getY() + clientNameLabel.getHeight() + insets, width, 28);
+		addClientPanel.add(clientNameTF);
 
-		JLabel clientVat_Label = new JLabel("VAT / Fiscal Number:");
-		width = (int) clientVat_Label.getPreferredSize().getWidth();
-		height = (int) clientVat_Label.getPreferredSize().getHeight();
-		clientVat_Label.setBounds((addClient_Panel.getWidth() / 2) - (width / 2),
-				clientName_TF.getY() + clientName_TF.getHeight() + insetsBtwField, width, height);
-		addClient_Panel.add(clientVat_Label);
+		JLabel clientVatLabel = new JLabel("VAT / Fiscal Number:");
+		width = (int) clientVatLabel.getPreferredSize().getWidth();
+		height = (int) clientVatLabel.getPreferredSize().getHeight();
+		clientVatLabel.setBounds((addClientPanel.getWidth() / 2) - (width / 2),
+				clientNameTF.getY() + clientNameTF.getHeight() + insetsBtwField, width, height);
+		addClientPanel.add(clientVatLabel);
 
-		clientVat_TF = new JTextField();
+		clientVatTF = new JTextField();
 		width = 200;
-		clientVat_TF.setName("clientVat_TF");
-		clientVat_TF.setHorizontalAlignment(JTextField.CENTER);
-		clientVat_TF.setBounds((addClient_Panel.getWidth() / 2) - (width / 2),
-				clientVat_Label.getY() + clientVat_Label.getHeight() + insets, width, 28);
-		addClient_Panel.add(clientVat_TF);
+		clientVatTF.setName("clientVat_TF");
+		clientVatTF.setHorizontalAlignment(JTextField.CENTER);
+		clientVatTF.setBounds((addClientPanel.getWidth() / 2) - (width / 2),
+				clientVatLabel.getY() + clientVatLabel.getHeight() + insets, width, 28);
+		addClientPanel.add(clientVatTF);
 
-		JLabel clientAddress_Label = new JLabel("Address:");
-		width = (int) clientAddress_Label.getPreferredSize().getWidth();
-		height = (int) clientAddress_Label.getPreferredSize().getHeight();
-		clientAddress_Label.setBounds((addClient_Panel.getWidth() / 2) - (width / 2),
-				clientVat_TF.getY() + clientVat_TF.getHeight() + insetsBtwField, width, height);
-		addClient_Panel.add(clientAddress_Label);
+		JLabel clientAddressLabel = new JLabel("Address:");
+		width = (int) clientAddressLabel.getPreferredSize().getWidth();
+		height = (int) clientAddressLabel.getPreferredSize().getHeight();
+		clientAddressLabel.setBounds((addClientPanel.getWidth() / 2) - (width / 2),
+				clientVatTF.getY() + clientVatTF.getHeight() + insetsBtwField, width, height);
+		addClientPanel.add(clientAddressLabel);
 
-		clientAddress_TF = new JTextField();
+		clientAddressTF = new JTextField();
 		width = 300;
-		clientAddress_TF.setName("clientAddress_TF");
-		clientAddress_TF.setHorizontalAlignment(JTextField.CENTER);
-		clientAddress_TF.setBounds((addClient_Panel.getWidth() / 2) - (width / 2),
-				clientAddress_Label.getY() + clientAddress_Label.getHeight() + insets, width, 28);
-		addClient_Panel.add(clientAddress_TF);
+		clientAddressTF.setName("clientAddress_TF");
+		clientAddressTF.setHorizontalAlignment(JTextField.CENTER);
+		clientAddressTF.setBounds((addClientPanel.getWidth() / 2) - (width / 2),
+				clientAddressLabel.getY() + clientAddressLabel.getHeight() + insets, width, 28);
+		addClientPanel.add(clientAddressTF);
 
 		int insetsMiddle = 80;
 
-		JLabel clientCity_Label = new JLabel("City:");
-		width = (int) clientCity_Label.getPreferredSize().getWidth();
-		height = (int) clientCity_Label.getPreferredSize().getHeight();
-		clientCity_Label.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) - insetsMiddle,
-				clientAddress_TF.getY() + clientAddress_TF.getHeight() + insetsBtwField, width, height);
-		addClient_Panel.add(clientCity_Label);
+		JLabel clientCityLabel = new JLabel("City:");
+		width = (int) clientCityLabel.getPreferredSize().getWidth();
+		height = (int) clientCityLabel.getPreferredSize().getHeight();
+		clientCityLabel.setBounds((addClientPanel.getWidth() / 2) - (width / 2) - insetsMiddle,
+				clientAddressTF.getY() + clientAddressTF.getHeight() + insetsBtwField, width, height);
+		addClientPanel.add(clientCityLabel);
 
-		clientCity_TF = new JTextField();
+		clientCityTF = new JTextField();
 		width = 130;
-		clientCity_TF.setName("clientCity_TF");
-		clientCity_TF.setHorizontalAlignment(JTextField.CENTER);
-		clientCity_TF.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) - insetsMiddle,
-				clientCity_Label.getY() + clientCity_Label.getHeight() + insets, width, 28);
-		addClient_Panel.add(clientCity_TF);
+		clientCityTF.setName("clientCity_TF");
+		clientCityTF.setHorizontalAlignment(JTextField.CENTER);
+		clientCityTF.setBounds((addClientPanel.getWidth() / 2) - (width / 2) - insetsMiddle,
+				clientCityLabel.getY() + clientCityLabel.getHeight() + insets, width, 28);
+		addClientPanel.add(clientCityTF);
 
-		JLabel clientProvince_Label = new JLabel("Province:");
-		width = (int) clientProvince_Label.getPreferredSize().getWidth();
-		height = (int) clientProvince_Label.getPreferredSize().getHeight();
-		clientProvince_Label.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) + insetsMiddle,
-				clientAddress_TF.getY() + clientAddress_TF.getHeight() + insetsBtwField, width, height);
-		addClient_Panel.add(clientProvince_Label);
+		JLabel clientProvinceLabel = new JLabel("Province:");
+		width = (int) clientProvinceLabel.getPreferredSize().getWidth();
+		height = (int) clientProvinceLabel.getPreferredSize().getHeight();
+		clientProvinceLabel.setBounds((addClientPanel.getWidth() / 2) - (width / 2) + insetsMiddle,
+				clientAddressTF.getY() + clientAddressTF.getHeight() + insetsBtwField, width, height);
+		addClientPanel.add(clientProvinceLabel);
 
-		clientProvince_TF = new JTextField();
+		clientProvinceTF = new JTextField();
 		width = 130;
-		clientProvince_TF.setName("clientProvince_TF");
-		clientProvince_TF.setHorizontalAlignment(JTextField.CENTER);
-		clientProvince_TF.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) + insetsMiddle,
-				clientProvince_Label.getY() + clientProvince_Label.getHeight() + insets, width, 28);
-		addClient_Panel.add(clientProvince_TF);
+		clientProvinceTF.setName("clientProvince_TF");
+		clientProvinceTF.setHorizontalAlignment(JTextField.CENTER);
+		clientProvinceTF.setBounds((addClientPanel.getWidth() / 2) - (width / 2) + insetsMiddle,
+				clientProvinceLabel.getY() + clientProvinceLabel.getHeight() + insets, width, 28);
+		addClientPanel.add(clientProvinceTF);
 
-		JLabel clientZip_Label = new JLabel("ZIP Code:");
-		width = (int) clientZip_Label.getPreferredSize().getWidth();
-		height = (int) clientZip_Label.getPreferredSize().getHeight();
-		clientZip_Label.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) - insetsMiddle,
-				clientProvince_TF.getY() + clientProvince_TF.getHeight() + insetsBtwField, width, height);
-		addClient_Panel.add(clientZip_Label);
+		JLabel clientZipLabel = new JLabel("ZIP Code:");
+		width = (int) clientZipLabel.getPreferredSize().getWidth();
+		height = (int) clientZipLabel.getPreferredSize().getHeight();
+		clientZipLabel.setBounds((addClientPanel.getWidth() / 2) - (width / 2) - insetsMiddle,
+				clientProvinceTF.getY() + clientProvinceTF.getHeight() + insetsBtwField, width, height);
+		addClientPanel.add(clientZipLabel);
 
-		clientZip_TF = new JTextField();
+		clientZipTF = new JTextField();
 		width = 80;
-		clientZip_TF.setName("clientZip_TF");
-		clientZip_TF.setHorizontalAlignment(JTextField.CENTER);
-		clientZip_TF.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) - insetsMiddle,
-				clientZip_Label.getY() + clientZip_Label.getHeight() + insets, width, 28);
-		addClient_Panel.add(clientZip_TF);
+		clientZipTF.setName("clientZip_TF");
+		clientZipTF.setHorizontalAlignment(JTextField.CENTER);
+		clientZipTF.setBounds((addClientPanel.getWidth() / 2) - (width / 2) - insetsMiddle,
+				clientZipLabel.getY() + clientZipLabel.getHeight() + insets, width, 28);
+		addClientPanel.add(clientZipTF);
 
-		JLabel clientCountry_Label = new JLabel("Country:");
-		width = (int) clientCountry_Label.getPreferredSize().getWidth();
-		height = (int) clientCountry_Label.getPreferredSize().getHeight();
-		clientCountry_Label.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) + insetsMiddle,
-				clientProvince_TF.getY() + clientProvince_TF.getHeight() + insetsBtwField, width, height);
-		addClient_Panel.add(clientCountry_Label);
+		JLabel clientCountryLabel = new JLabel("Country:");
+		width = (int) clientCountryLabel.getPreferredSize().getWidth();
+		height = (int) clientCountryLabel.getPreferredSize().getHeight();
+		clientCountryLabel.setBounds((addClientPanel.getWidth() / 2) - (width / 2) + insetsMiddle,
+				clientProvinceTF.getY() + clientProvinceTF.getHeight() + insetsBtwField, width, height);
+		addClientPanel.add(clientCountryLabel);
 
-		clientCountry_TF = new JTextField();
+		clientCountryTF = new JTextField();
 		width = 100;
-		clientCountry_TF.setName("clientCountry_TF");
-		clientCountry_TF.setHorizontalAlignment(JTextField.CENTER);
-		clientCountry_TF.setBounds((addClient_Panel.getWidth() / 2) - (width / 2) + insetsMiddle,
-				clientCountry_Label.getY() + clientCountry_Label.getHeight() + insets, width, 28);
-		addClient_Panel.add(clientCountry_TF);
+		clientCountryTF.setName("clientCountry_TF");
+		clientCountryTF.setHorizontalAlignment(JTextField.CENTER);
+		clientCountryTF.setBounds((addClientPanel.getWidth() / 2) - (width / 2) + insetsMiddle,
+				clientCountryLabel.getY() + clientCountryLabel.getHeight() + insets, width, 28);
+		addClientPanel.add(clientCountryTF);
 
-		JLabel clientPhone_Label = new JLabel("Phone:");
-		width = (int) clientPhone_Label.getPreferredSize().getWidth();
-		height = (int) clientPhone_Label.getPreferredSize().getHeight();
-		clientPhone_Label.setBounds((addClient_Panel.getWidth() / 2) - (width / 2),
-				clientCountry_TF.getY() + clientCountry_TF.getHeight() + insetsBtwField, width, height);
-		addClient_Panel.add(clientPhone_Label);
+		JLabel clientPhoneLabel = new JLabel("Phone:");
+		width = (int) clientPhoneLabel.getPreferredSize().getWidth();
+		height = (int) clientPhoneLabel.getPreferredSize().getHeight();
+		clientPhoneLabel.setBounds((addClientPanel.getWidth() / 2) - (width / 2),
+				clientCountryTF.getY() + clientCountryTF.getHeight() + insetsBtwField, width, height);
+		addClientPanel.add(clientPhoneLabel);
 
-		clientPhone_TF = new JTextField();
+		clientPhoneTF = new JTextField();
 		width = 150;
-		clientPhone_TF.setName("clientPhone_TF");
-		clientPhone_TF.setHorizontalAlignment(JTextField.CENTER);
-		clientPhone_TF.setBounds((addClient_Panel.getWidth() / 2) - (width / 2),
-				clientPhone_Label.getY() + clientPhone_Label.getHeight() + insets, width, 28);
-		addClient_Panel.add(clientPhone_TF);
+		clientPhoneTF.setName("clientPhone_TF");
+		clientPhoneTF.setHorizontalAlignment(JTextField.CENTER);
+		clientPhoneTF.setBounds((addClientPanel.getWidth() / 2) - (width / 2),
+				clientPhoneLabel.getY() + clientPhoneLabel.getHeight() + insets, width, 28);
+		addClientPanel.add(clientPhoneTF);
 
-		JLabel clientEmail_Label = new JLabel("Email:");
-		width = (int) clientEmail_Label.getPreferredSize().getWidth();
-		height = (int) clientEmail_Label.getPreferredSize().getHeight();
-		clientEmail_Label.setBounds((addClient_Panel.getWidth() / 2) - (width / 2),
-				clientPhone_TF.getY() + clientPhone_TF.getHeight() + insetsBtwField, width, height);
-		addClient_Panel.add(clientEmail_Label);
+		JLabel clientEmailLabel = new JLabel("Email:");
+		width = (int) clientEmailLabel.getPreferredSize().getWidth();
+		height = (int) clientEmailLabel.getPreferredSize().getHeight();
+		clientEmailLabel.setBounds((addClientPanel.getWidth() / 2) - (width / 2),
+				clientPhoneTF.getY() + clientPhoneTF.getHeight() + insetsBtwField, width, height);
+		addClientPanel.add(clientEmailLabel);
 
-		clientEmail_TF = new JTextField();
+		clientEmailTF = new JTextField();
 		width = 190;
-		clientEmail_TF.setName("clientEmail_TF");
-		clientEmail_TF.setHorizontalAlignment(JTextField.CENTER);
-		clientEmail_TF.setBounds((addClient_Panel.getWidth() / 2) - (width / 2),
-				clientEmail_Label.getY() + clientEmail_Label.getHeight() + insets, width, 28);
-		addClient_Panel.add(clientEmail_TF);
+		clientEmailTF.setName("clientEmail_TF");
+		clientEmailTF.setHorizontalAlignment(JTextField.CENTER);
+		clientEmailTF.setBounds((addClientPanel.getWidth() / 2) - (width / 2),
+				clientEmailLabel.getY() + clientEmailLabel.getHeight() + insets, width, 28);
+		addClientPanel.add(clientEmailTF);
 
-		JButton cancel_Button = new JButton();
-		cancel_Button.setName("CancelButton");
-		cancel_Button.setText("Cancel");
-		cancel_Button.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		cancel_Button.setBounds((addClient_Panel.getWidth() / 2) - buttonWidth - 24,
-				addClient_Panel.getHeight() - 20 - addClient_Panel.getY(), buttonWidth, buttonHeight);
-		addClient_Panel.add(cancel_Button);
-		cancel_Button.addActionListener(new ActionListener() {
+		JButton cancelButton = new JButton();
+		cancelButton.setName("CancelButton");
+		cancelButton.setText("Cancel");
+		cancelButton.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		cancelButton.setBounds((addClientPanel.getWidth() / 2) - buttonWidth - 24,
+				addClientPanel.getHeight() - 20 - addClientPanel.getY(), buttonWidth, buttonHeight);
+		addClientPanel.add(cancelButton);
+		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				addClient_Panel.setVisible(false);
+				addClientPanel.setVisible(false);
 				// outer_Panel.remove(addClient_Panel);
 			}
 		});
 
-		JButton save_Button = new JButton();
-		save_Button.setEnabled(false);
-		save_Button.setName("SaveButton");
-		save_Button.setText("Save");
-		save_Button.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		save_Button.setBounds((addClient_Panel.getWidth() / 2) + 24,
-				addClient_Panel.getHeight() - 20 - addClient_Panel.getY(), buttonWidth, buttonHeight);
-		addClient_Panel.add(save_Button);
+		JButton saveButton = new JButton();
+		saveButton.setEnabled(false);
+		saveButton.setName("SaveButton");
+		saveButton.setText("Save");
+		saveButton.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		saveButton.setBounds((addClientPanel.getWidth() / 2) + 24,
+				addClientPanel.getHeight() - 20 - addClientPanel.getY(), buttonWidth, buttonHeight);
+		addClientPanel.add(saveButton);
 
-		save_Button.addActionListener(new ActionListener() {
+		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// save company
-				if(addClient_Panel.isSaving()) {
-					myMongoUiComunication.addClientToDatabase(clientName_TF.getText(), clientVat_TF.getText(),
-							clientAddress_TF.getText(), clientCity_TF.getText(), clientProvince_TF.getText(),
-							clientZip_TF.getText(), clientCity_TF.getText(), clientPhone_TF.getText(),
-							clientEmail_TF.getText());
+				if(addClientPanel.isSaving()) {
+					myMongoUiComunication.addClientToDatabase(clientNameTF.getText(), clientVatTF.getText(),
+							clientAddressTF.getText(), clientCityTF.getText(), clientProvinceTF.getText(),
+							clientZipTF.getText(), clientCityTF.getText(), clientPhoneTF.getText(),
+							clientEmailTF.getText());
 				}else {
 				}
 
-				addClient_Panel.setVisible(false); // outer_Panel.remove(addClient_Panel); }
+				addClientPanel.setVisible(false);
+				// outer_Panel.remove(addClient_Panel); }
 				resetTextFields();
 				mongoUiCom.updateClientsReferences();
 			};
@@ -249,7 +250,7 @@ public class ClientPanel extends JPanel implements AddPanel {
 
 		// check if all required field aren't empty. if so activate the save button.
 
-		Component[] components = addClient_Panel.getComponents();
+		Component[] components = addClientPanel.getComponents();
 		for (Component component : components) {
 			if (component.getClass().equals(JTextField.class)) {
 				if (!((JTextField) component).getName().equals("clientPhone_TF")
@@ -284,22 +285,22 @@ public class ClientPanel extends JPanel implements AddPanel {
 							break;
 						}
 					}
-					save_Button.setEnabled(shouldActivate);
+					saveButton.setEnabled(shouldActivate);
 				}
 			});
 		}
 	}
 
 	private void resetTextFields() {
-		clientName_TF.setText("");
-		clientVat_TF.setText("");
-		clientAddress_TF.setText("");
-		clientCity_TF.setText("");
-		clientProvince_TF.setText("");
-		clientZip_TF.setText("");
-		clientCountry_TF.setText("");
-		clientPhone_TF.setText("");
-		clientEmail_TF.setText("");
+		clientNameTF.setText("");
+		clientVatTF.setText("");
+		clientAddressTF.setText("");
+		clientCityTF.setText("");
+		clientProvinceTF.setText("");
+		clientZipTF.setText("");
+		clientCountryTF.setText("");
+		clientPhoneTF.setText("");
+		clientEmailTF.setText("");
 	}
 
 	public boolean isSaving() {
@@ -308,7 +309,6 @@ public class ClientPanel extends JPanel implements AddPanel {
 
 	@Override
 	public void setAddingMode(boolean isSaving) {
-		// TODO Auto-generated method stub
 		this.isSaving = isSaving;
 		this.setVisible(true);
 	}

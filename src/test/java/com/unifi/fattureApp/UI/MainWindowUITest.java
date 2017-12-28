@@ -71,7 +71,7 @@ public class MainWindowUITest {
 	public void testEditButtonWithNoCompanySelected() {
 		JButtonFixture editButton = window.button("EditCompanyButton");
 		JLabelFixture currentCompanySelected = window.label("currentSelectedCompanyLabel");
-		assertEquals(currentCompanySelected.text(), "My Company");
+		assertEquals("My Company", currentCompanySelected.text());
 		editButton.requireDisabled();
 	}
 
@@ -79,7 +79,7 @@ public class MainWindowUITest {
 	@Test 
 	public void testEditButtonWithNoClientSelected() {
 		JComboBoxFixture clientComboBox = window.comboBox("clientsComboBox");
-		assertEquals(clientComboBox.selectedItem(), null);
+		assertEquals(null, clientComboBox.selectedItem());
 		JButtonFixture editClientButton=window.button("editClientButton");
 		editClientButton.requireDisabled();
 	}
@@ -94,7 +94,7 @@ public class MainWindowUITest {
 	@Test 
 	public void testEditButtonWithNoInvoiceSelected() {
 		JComboBoxFixture invoiceComboBox = window.comboBox("invoicesComboBox");
-		assertEquals(invoiceComboBox.selectedItem(), null);
+		assertEquals(null, invoiceComboBox.selectedItem());
 		JButtonFixture editInvoiceButton=window.button("editInvoiceButton");
 		editInvoiceButton.requireDisabled();
 	}

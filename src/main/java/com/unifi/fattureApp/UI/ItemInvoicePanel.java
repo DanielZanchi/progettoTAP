@@ -23,131 +23,131 @@ import javax.swing.event.DocumentListener;
 import com.unifi.fattureApp.App.MongoUiComunication;
 
 public class ItemInvoicePanel extends JPanel implements AddPanel {
-	private JTextField itemDescription_TF;
-	private JTextField itemName_TF;
-	private JFormattedTextField itemPrice_TF;
+	private JTextField itemDescriptionTF;
+	private JTextField itemNameTF;
+	private JFormattedTextField itemPriceTF;
 
 	private LinkedList<JTextField> textFields;
-	private MongoUiComunication mongoUiComunication ;
+	private MongoUiComunication mongoUiComunication;
 
 	private Color layerColor = new java.awt.Color(216, 245, 255);
-	private ItemInvoicePanel addItem_Panel;
+	private ItemInvoicePanel addItemPanel;
 	private boolean isSaving;
 
-	public ItemInvoicePanel(JLayeredPane outer_Panel, int buttonWidth, int buttonHeight,MongoUiComunication mongoUiCom) {
+	public ItemInvoicePanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight,MongoUiComunication mongoUiCom) {
 		this.mongoUiComunication = mongoUiCom;
-		addItem_Panel = this;
+		addItemPanel = this;
 		this.setVisible(false);
 
-		addItem_Panel.setName("AddInvoicePanel");
-		addItem_Panel.setBackground(layerColor);
-		addItem_Panel.setBorder(BorderFactory.createLineBorder(Color.white, 3));
+		addItemPanel.setName("AddInvoicePanel");
+		addItemPanel.setBackground(layerColor);
+		addItemPanel.setBorder(BorderFactory.createLineBorder(Color.white, 3));
 		int insets = 22;
-		int width = outer_Panel.getWidth() - insets - insets;
-		int height = outer_Panel.getHeight() - (insets * 2) - 250;
-		addItem_Panel.setBounds(insets, insets, width, height);
-		outer_Panel.add(addItem_Panel);
-		addItem_Panel.setLayout(null);
-		outer_Panel.setLayer(addItem_Panel, 2);
+		int width = outerPanel.getWidth() - insets - insets;
+		int height = outerPanel.getHeight() - (insets * 2) - 250;
+		addItemPanel.setBounds(insets, insets, width, height);
+		outerPanel.add(addItemPanel);
+		addItemPanel.setLayout(null);
+		outerPanel.setLayer(addItemPanel, 2);
 
 		textFields = new LinkedList<>();
 
 		// ADD COMPONENTS INSIDE PANEL
-		int addPanelY = addItem_Panel.getY();
+		int addPanelY = addItemPanel.getY();
 		insets = 8;
 		int insetsBtwField = 23;
 
-		JLabel addItemTitle_Label = new JLabel("Item");
-		addItemTitle_Label.setFont(new Font("Lucida Grande", Font.BOLD, 20));
-		width = (int) addItemTitle_Label.getPreferredSize().getWidth();
-		height = (int) addItemTitle_Label.getPreferredSize().getHeight();
-		addItemTitle_Label.setBounds((addItem_Panel.getWidth() / 2) - (width / 2), addPanelY - 10, width, height);
-		addItem_Panel.add(addItemTitle_Label);
+		JLabel addItemTitleLabel = new JLabel("Item");
+		addItemTitleLabel.setFont(new Font("Lucida Grande", Font.BOLD, 20));
+		width = (int) addItemTitleLabel.getPreferredSize().getWidth();
+		height = (int) addItemTitleLabel.getPreferredSize().getHeight();
+		addItemTitleLabel.setBounds((addItemPanel.getWidth() / 2) - (width / 2), addPanelY - 10, width, height);
+		addItemPanel.add(addItemTitleLabel);
 
-		JLabel itemName_Label = new JLabel("Item Name:");
-		width = (int) itemName_Label.getPreferredSize().getWidth();
-		height = (int) itemName_Label.getPreferredSize().getHeight();
-		itemName_Label.setBounds((addItem_Panel.getWidth() / 2) - (width / 2),
-				addItemTitle_Label.getY() + addItemTitle_Label.getHeight() + insetsBtwField, width, height);
-		addItem_Panel.add(itemName_Label);
-		itemName_TF = new JTextField();
+		JLabel itemNameLabel = new JLabel("Item Name:");
+		width = (int) itemNameLabel.getPreferredSize().getWidth();
+		height = (int) itemNameLabel.getPreferredSize().getHeight();
+		itemNameLabel.setBounds((addItemPanel.getWidth() / 2) - (width / 2),
+				addItemTitleLabel.getY() + addItemTitleLabel.getHeight() + insetsBtwField, width, height);
+		addItemPanel.add(itemNameLabel);
+		itemNameTF = new JTextField();
 		width = 200;
-		itemName_TF.setName("invoiceName_TF");
-		itemName_TF.setHorizontalAlignment(JTextField.CENTER);
-		itemName_TF.setBounds((addItem_Panel.getWidth() / 2) - (width / 2),
-				itemName_Label.getY() + itemName_Label.getHeight() + insets, width, 28);
-		addItem_Panel.add(itemName_TF);
+		itemNameTF.setName("invoiceName_TF");
+		itemNameTF.setHorizontalAlignment(JTextField.CENTER);
+		itemNameTF.setBounds((addItemPanel.getWidth() / 2) - (width / 2),
+				itemNameLabel.getY() + itemNameLabel.getHeight() + insets, width, 28);
+		addItemPanel.add(itemNameTF);
 
-		JLabel itemDescription_Label = new JLabel("Item Description:");
-		width = (int) itemDescription_Label.getPreferredSize().getWidth();
-		height = (int) itemDescription_Label.getPreferredSize().getHeight();
-		itemDescription_Label.setBounds((addItem_Panel.getWidth() / 2) - (width / 2),
-				itemName_TF.getY() + itemName_TF.getHeight() + insetsBtwField, width, height);
-		addItem_Panel.add(itemDescription_Label);
-		itemDescription_TF = new JTextField();
+		JLabel itemDescriptionLabel = new JLabel("Item Description:");
+		width = (int) itemDescriptionLabel.getPreferredSize().getWidth();
+		height = (int) itemDescriptionLabel.getPreferredSize().getHeight();
+		itemDescriptionLabel.setBounds((addItemPanel.getWidth() / 2) - (width / 2),
+				itemNameTF.getY() + itemNameTF.getHeight() + insetsBtwField, width, height);
+		addItemPanel.add(itemDescriptionLabel);
+		itemDescriptionTF = new JTextField();
 		width = 350;
-		itemDescription_TF.setHorizontalAlignment(JTextField.CENTER);
-		itemDescription_TF.setBounds((addItem_Panel.getWidth() / 2) - (width / 2),
-				itemDescription_Label.getY() + itemDescription_Label.getHeight() + insets, width, 28);
-		itemDescription_TF.setName("invoiceDescription_TF");
-		addItem_Panel.add(itemDescription_TF);
+		itemDescriptionTF.setHorizontalAlignment(JTextField.CENTER);
+		itemDescriptionTF.setBounds((addItemPanel.getWidth() / 2) - (width / 2),
+				itemDescriptionLabel.getY() + itemDescriptionLabel.getHeight() + insets, width, 28);
+		itemDescriptionTF.setName("invoiceDescription_TF");
+		addItemPanel.add(itemDescriptionTF);
 
-		JLabel itemPrice_Label = new JLabel("Price (incl. VAT):");
-		width = (int) itemPrice_Label.getPreferredSize().getWidth();
-		height = (int) itemPrice_Label.getPreferredSize().getHeight();
-		itemPrice_Label.setBounds((addItem_Panel.getWidth() / 2) - (width / 2),
-				itemDescription_TF.getY() + itemDescription_TF.getHeight() + insetsBtwField, width, height);
-		addItem_Panel.add(itemPrice_Label);
+		JLabel itemPriceLabel = new JLabel("Price (incl. VAT):");
+		width = (int) itemPriceLabel.getPreferredSize().getWidth();
+		height = (int) itemPriceLabel.getPreferredSize().getHeight();
+		itemPriceLabel.setBounds((addItemPanel.getWidth() / 2) - (width / 2),
+				itemDescriptionTF.getY() + itemDescriptionTF.getHeight() + insetsBtwField, width, height);
+		addItemPanel.add(itemPriceLabel);
 		NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.getDefault());
 		DecimalFormat decimalFormat = (DecimalFormat) numberFormat;
 		decimalFormat.setGroupingUsed(false);
-		itemPrice_TF = new JFormattedTextField(decimalFormat);
-		itemPrice_TF.setColumns(15);
+		itemPriceTF = new JFormattedTextField(decimalFormat);
+		itemPriceTF.setColumns(15);
 		width = 70;
-		itemPrice_TF.setHorizontalAlignment(JTextField.CENTER);
-		itemPrice_TF.setName("invoicePrice_TF");
-		itemPrice_TF.setBounds((addItem_Panel.getWidth() / 2) - (width / 2),
-				itemPrice_Label.getY() + itemPrice_Label.getHeight() + insets, width, 28);
-		addItem_Panel.add(itemPrice_TF);
+		itemPriceTF.setHorizontalAlignment(JTextField.CENTER);
+		itemPriceTF.setName("invoicePrice_TF");
+		itemPriceTF.setBounds((addItemPanel.getWidth() / 2) - (width / 2),
+				itemPriceLabel.getY() + itemPriceLabel.getHeight() + insets, width, 28);
+		addItemPanel.add(itemPriceTF);
 
-		JButton cancel_Button = new JButton();
-		cancel_Button.setName("CancelButton");
-		cancel_Button.setText("Cancel");
-		cancel_Button.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		cancel_Button.setBounds((addItem_Panel.getWidth() / 2) - buttonWidth - 24,
-				addItem_Panel.getHeight() - 20 - addItem_Panel.getY(), buttonWidth, buttonHeight);
-		addItem_Panel.add(cancel_Button);
-		cancel_Button.addActionListener(new ActionListener() {
+		JButton cancelButton = new JButton();
+		cancelButton.setName("CancelButton");
+		cancelButton.setText("Cancel");
+		cancelButton.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		cancelButton.setBounds((addItemPanel.getWidth() / 2) - buttonWidth - 24,
+				addItemPanel.getHeight() - 20 - addItemPanel.getY(), buttonWidth, buttonHeight);
+		addItemPanel.add(cancelButton);
+		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				addItem_Panel.setVisible(false);
+				addItemPanel.setVisible(false);
 				// outer_Panel.remove(addClient_Panel);
 			}
 		});
 
-		JButton save_Button = new JButton();
-		save_Button.setName("SaveButton");
-		save_Button.setText("Save");
-		save_Button.setEnabled(false);
-		save_Button.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		save_Button.setBounds((addItem_Panel.getWidth() / 2) + 24,
-				addItem_Panel.getHeight() - 20 - addItem_Panel.getY(), buttonWidth, buttonHeight);
-		addItem_Panel.add(save_Button);
-		save_Button.addActionListener(new ActionListener() {
+		JButton saveButton = new JButton();
+		saveButton.setName("SaveButton");
+		saveButton.setText("Save");
+		saveButton.setEnabled(false);
+		saveButton.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		saveButton.setBounds((addItemPanel.getWidth() / 2) + 24,
+				addItemPanel.getHeight() - 20 - addItemPanel.getY(), buttonWidth, buttonHeight);
+		addItemPanel.add(saveButton);
+		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// save invoice
-				if(addItem_Panel.isSaving()) {
-					mongoUiComunication.addInvoiceToDatabase(itemName_TF.getText(), itemDescription_TF.getText(), itemPrice_TF.getText());
+				if(addItemPanel.isSaving()) {
+					mongoUiComunication.addInvoiceToDatabase(itemNameTF.getText(), itemDescriptionTF.getText(), itemPriceTF.getText());
 				}else {					
 				}
 
-				addItem_Panel.setVisible(false);
+				addItemPanel.setVisible(false);
 				mongoUiComunication.updateInvoicesReferences();
 				// outer_Panel.remove(addClient_Panel);
 			}
 		});
 
 		// check if all required field aren't empty. if so activate the save button.
-		Component[] components = addItem_Panel.getComponents();
+		Component[] components = addItemPanel.getComponents();
 		for (Component component : components) {
 			if (component.getClass().equals(JTextField.class)) {
 				textFields.add((JTextField) component);
@@ -179,7 +179,7 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 							break;
 						}
 					}
-					save_Button.setEnabled(shouldActivate);
+					saveButton.setEnabled(shouldActivate);
 				}
 			});
 		}
@@ -191,7 +191,6 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 
 	@Override
 	public void setAddingMode(boolean isSaving) {
-		// TODO Auto-generated method stub
 		this.isSaving = isSaving;
 		this.setVisible(true);
 	}

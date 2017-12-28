@@ -164,12 +164,12 @@ public class MongoUiComunication {
 
 	public void updateCompanyReference() {
 		if (companyInfo.getText().equals("My Company")) {
-			if (this.getSavedCompanies().size() > 0) {
+			if (!this.getSavedCompanies().isEmpty()) {
 				companyInfo.setText(this.getSavedCompanies().get(0).getName());
 				this.setCurrentSelectedCompany(this.getSavedCompanies().get(0));
 			}
 		} else {
-			if (this.getSavedCompanies().size() > 0) {
+			if (!this.getSavedCompanies().isEmpty()) {
 				companyInfo.setText(this.getSavedCompanies().get(companyCounter).getName());
 				this.setCurrentSelectedCompany(this.getSavedCompanies().get(companyCounter));
 			}
@@ -215,7 +215,7 @@ public class MongoUiComunication {
 		editCompanyButton.setEnabled(true);
 	}
 
-	public void seteditCompanyButton(JButton editMyCompany_Button) {
-		editCompanyButton = editMyCompany_Button;
+	public void seteditCompanyButton(JButton editMyCompanyButton) {
+		editCompanyButton = editMyCompanyButton;
 	}
 }

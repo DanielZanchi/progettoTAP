@@ -21,16 +21,16 @@ import com.unifi.fattureApp.App.MongoUiComunication;
 public class CompanyPanel extends JPanel implements AddPanel{
 	private MongoUiComunication myMongoUiComunication;
 
-	private JTextField companyName_TF;
-	private JTextField companyVat_TF;
-	private JTextField companyAddress_TF;
-	private JTextField companyCity_TF;
-	private JTextField companyProvince_TF;
-	private JTextField companyZip_TF;
-	private JTextField companyCountry_TF;
-	private JTextField companyPhone_TF;
-	private JTextField companyEmail_TF;
-	private CompanyPanel addCompany_Panel;
+	private JTextField companyNameTF;
+	private JTextField companyVatTF;
+	private JTextField companyAddressTF;
+	private JTextField companyCityTF;
+	private JTextField companyProvinceTF;
+	private JTextField companyZipTF;
+	private JTextField companyCountryTF;
+	private JTextField companyPhoneTF;
+	private JTextField companyEmailTF;
+	private CompanyPanel addCompanyPanel;
 
 	private LinkedList<JTextField> textFields;
 
@@ -38,204 +38,204 @@ public class CompanyPanel extends JPanel implements AddPanel{
 
 	private boolean isSaving;
 
-	public CompanyPanel(JLayeredPane outer_Panel, int buttonWidth, int buttonHeight, MongoUiComunication mongoUiCom) {
-		addCompany_Panel = this;
+	public CompanyPanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight, MongoUiComunication mongoUiCom) {
+		addCompanyPanel = this;
 		myMongoUiComunication = mongoUiCom;
 
 		this.setVisible(false);
 
-		addCompany_Panel.setName("AddCompanyPanel");
-		addCompany_Panel.setBackground(layerColor);
-		addCompany_Panel.setBorder(BorderFactory.createLineBorder(Color.white, 3));
+		addCompanyPanel.setName("AddCompanyPanel");
+		addCompanyPanel.setBackground(layerColor);
+		addCompanyPanel.setBorder(BorderFactory.createLineBorder(Color.white, 3));
 		int insets = 22;
-		int width = outer_Panel.getWidth() - insets - insets;
-		int height = outer_Panel.getHeight() - insets - insets;
-		addCompany_Panel.setBounds(insets, insets, width, height);
-		outer_Panel.add(addCompany_Panel);
-		addCompany_Panel.setLayout(null);
-		outer_Panel.setLayer(addCompany_Panel, 2);
+		int width = outerPanel.getWidth() - insets - insets;
+		int height = outerPanel.getHeight() - insets - insets;
+		addCompanyPanel.setBounds(insets, insets, width, height);
+		outerPanel.add(addCompanyPanel);
+		addCompanyPanel.setLayout(null);
+		outerPanel.setLayer(addCompanyPanel, 2);
 
 		textFields = new LinkedList<>();
 
 		// ADD COMPONENTS INSIDE PANEL
-		int addPanelY = addCompany_Panel.getY();
+		int addPanelY = addCompanyPanel.getY();
 		insets = 8;
 		int insetsBtwField = 23;
 
-		JLabel addCompanyTitle_Label = new JLabel("Company");
-		addCompanyTitle_Label.setFont(new Font("Lucida Grande", Font.BOLD, 20));
-		width = (int) addCompanyTitle_Label.getPreferredSize().getWidth();
-		height = (int) addCompanyTitle_Label.getPreferredSize().getHeight();
-		addCompanyTitle_Label.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2), addPanelY - 10, width, height);
-		addCompany_Panel.add(addCompanyTitle_Label);
+		JLabel addCompanyTitleLabel = new JLabel("Company");
+		addCompanyTitleLabel.setFont(new Font("Lucida Grande", Font.BOLD, 20));
+		width = (int) addCompanyTitleLabel.getPreferredSize().getWidth();
+		height = (int) addCompanyTitleLabel.getPreferredSize().getHeight();
+		addCompanyTitleLabel.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2), addPanelY - 10, width, height);
+		addCompanyPanel.add(addCompanyTitleLabel);
 
-		JLabel companyName_Label = new JLabel("Company Name:");
-		width = (int) companyName_Label.getPreferredSize().getWidth();
-		height = (int) companyName_Label.getPreferredSize().getHeight();
-		companyName_Label.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2),
-				addCompanyTitle_Label.getY() + addCompanyTitle_Label.getHeight() + insetsBtwField, width, height);
-		addCompany_Panel.add(companyName_Label);
+		JLabel companyNameLabel = new JLabel("Company Name:");
+		width = (int) companyNameLabel.getPreferredSize().getWidth();
+		height = (int) companyNameLabel.getPreferredSize().getHeight();
+		companyNameLabel.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2),
+				addCompanyTitleLabel.getY() + addCompanyTitleLabel.getHeight() + insetsBtwField, width, height);
+		addCompanyPanel.add(companyNameLabel);
 
-		companyName_TF = new JTextField();
-		companyName_TF.setName("companyNameTextField");
+		companyNameTF = new JTextField();
+		companyNameTF.setName("companyNameTextField");
 		width = 300;
-		companyName_TF.setHorizontalAlignment(JTextField.CENTER);
-		companyName_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2),
-				companyName_Label.getY() + companyName_Label.getHeight() + insets, width, 28);
-		addCompany_Panel.add(companyName_TF);
+		companyNameTF.setHorizontalAlignment(JTextField.CENTER);
+		companyNameTF.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2),
+				companyNameLabel.getY() + companyNameLabel.getHeight() + insets, width, 28);
+		addCompanyPanel.add(companyNameTF);
 
-		JLabel companyVat_Label = new JLabel("VAT Number:");
-		width = (int) companyVat_Label.getPreferredSize().getWidth();
-		height = (int) companyVat_Label.getPreferredSize().getHeight();
-		companyVat_Label.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2),
-				companyName_TF.getY() + companyName_TF.getHeight() + insetsBtwField, width, height);
-		addCompany_Panel.add(companyVat_Label);
+		JLabel companyVatLabel = new JLabel("VAT Number:");
+		width = (int) companyVatLabel.getPreferredSize().getWidth();
+		height = (int) companyVatLabel.getPreferredSize().getHeight();
+		companyVatLabel.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2),
+				companyNameTF.getY() + companyNameTF.getHeight() + insetsBtwField, width, height);
+		addCompanyPanel.add(companyVatLabel);
 
-		companyVat_TF = new JTextField();
-		companyVat_TF.setName("companyVatTextField");
+		companyVatTF = new JTextField();
+		companyVatTF.setName("companyVatTextField");
 		width = 200;
-		companyVat_TF.setHorizontalAlignment(JTextField.CENTER);
-		companyVat_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2),
-				companyVat_Label.getY() + companyVat_Label.getHeight() + insets, width, 28);
-		addCompany_Panel.add(companyVat_TF);
+		companyVatTF.setHorizontalAlignment(JTextField.CENTER);
+		companyVatTF.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2),
+				companyVatLabel.getY() + companyVatLabel.getHeight() + insets, width, 28);
+		addCompanyPanel.add(companyVatTF);
 
-		JLabel companyAddress_Label = new JLabel("Address:");
-		width = (int) companyAddress_Label.getPreferredSize().getWidth();
-		height = (int) companyAddress_Label.getPreferredSize().getHeight();
-		companyAddress_Label.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2),
-				companyVat_TF.getY() + companyVat_TF.getHeight() + insetsBtwField, width, height);
-		addCompany_Panel.add(companyAddress_Label);
+		JLabel companyAddressLabel = new JLabel("Address:");
+		width = (int) companyAddressLabel.getPreferredSize().getWidth();
+		height = (int) companyAddressLabel.getPreferredSize().getHeight();
+		companyAddressLabel.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2),
+				companyVatTF.getY() + companyVatTF.getHeight() + insetsBtwField, width, height);
+		addCompanyPanel.add(companyAddressLabel);
 
-		companyAddress_TF = new JTextField();
-		companyAddress_TF.setName("companyAddressTextField");
+		companyAddressTF = new JTextField();
+		companyAddressTF.setName("companyAddressTextField");
 		width = 300;
-		companyAddress_TF.setHorizontalAlignment(JTextField.CENTER);
-		companyAddress_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2),
-				companyAddress_Label.getY() + companyAddress_Label.getHeight() + insets, width, 28);
-		addCompany_Panel.add(companyAddress_TF);
+		companyAddressTF.setHorizontalAlignment(JTextField.CENTER);
+		companyAddressTF.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2),
+				companyAddressLabel.getY() + companyAddressLabel.getHeight() + insets, width, 28);
+		addCompanyPanel.add(companyAddressTF);
 
 		int insetsMiddle = 80;
 
-		JLabel companyCity_Label = new JLabel("City:");
-		width = (int) companyCity_Label.getPreferredSize().getWidth();
-		height = (int) companyCity_Label.getPreferredSize().getHeight();
-		companyCity_Label.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) - insetsMiddle,
-				companyAddress_TF.getY() + companyAddress_TF.getHeight() + insetsBtwField, width, height);
-		addCompany_Panel.add(companyCity_Label);
+		JLabel companyCityLabel = new JLabel("City:");
+		width = (int) companyCityLabel.getPreferredSize().getWidth();
+		height = (int) companyCityLabel.getPreferredSize().getHeight();
+		companyCityLabel.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2) - insetsMiddle,
+				companyAddressTF.getY() + companyAddressTF.getHeight() + insetsBtwField, width, height);
+		addCompanyPanel.add(companyCityLabel);
 
-		companyCity_TF = new JTextField();
-		companyCity_TF.setName("companyCityTextField");
+		companyCityTF = new JTextField();
+		companyCityTF.setName("companyCityTextField");
 		width = 130;
-		companyCity_TF.setHorizontalAlignment(JTextField.CENTER);
-		companyCity_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) - insetsMiddle,
-				companyCity_Label.getY() + companyCity_Label.getHeight() + insets, width, 28);
-		addCompany_Panel.add(companyCity_TF);
+		companyCityTF.setHorizontalAlignment(JTextField.CENTER);
+		companyCityTF.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2) - insetsMiddle,
+				companyCityLabel.getY() + companyCityLabel.getHeight() + insets, width, 28);
+		addCompanyPanel.add(companyCityTF);
 
-		JLabel companyProvince_Label = new JLabel("Province:");
-		width = (int) companyProvince_Label.getPreferredSize().getWidth();
-		height = (int) companyProvince_Label.getPreferredSize().getHeight();
-		companyProvince_Label.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) + insetsMiddle,
-				companyAddress_TF.getY() + companyAddress_TF.getHeight() + insetsBtwField, width, height);
-		addCompany_Panel.add(companyProvince_Label);
+		JLabel companyProvinceLabel = new JLabel("Province:");
+		width = (int) companyProvinceLabel.getPreferredSize().getWidth();
+		height = (int) companyProvinceLabel.getPreferredSize().getHeight();
+		companyProvinceLabel.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2) + insetsMiddle,
+				companyAddressTF.getY() + companyAddressTF.getHeight() + insetsBtwField, width, height);
+		addCompanyPanel.add(companyProvinceLabel);
 
-		companyProvince_TF = new JTextField();
-		companyProvince_TF.setName("companyProvinceTextField");
+		companyProvinceTF = new JTextField();
+		companyProvinceTF.setName("companyProvinceTextField");
 		width = 130;
-		companyProvince_TF.setHorizontalAlignment(JTextField.CENTER);
-		companyProvince_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) + insetsMiddle,
-				companyProvince_Label.getY() + companyProvince_Label.getHeight() + insets, width, 28);
-		addCompany_Panel.add(companyProvince_TF);
+		companyProvinceTF.setHorizontalAlignment(JTextField.CENTER);
+		companyProvinceTF.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2) + insetsMiddle,
+				companyProvinceLabel.getY() + companyProvinceLabel.getHeight() + insets, width, 28);
+		addCompanyPanel.add(companyProvinceTF);
 
-		JLabel companyZip_Label = new JLabel("ZIP Code:");
-		width = (int) companyZip_Label.getPreferredSize().getWidth();
-		height = (int) companyZip_Label.getPreferredSize().getHeight();
-		companyZip_Label.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) - insetsMiddle,
-				companyProvince_TF.getY() + companyProvince_TF.getHeight() + insetsBtwField, width, height);
-		addCompany_Panel.add(companyZip_Label);
+		JLabel companyZipLabel = new JLabel("ZIP Code:");
+		width = (int) companyZipLabel.getPreferredSize().getWidth();
+		height = (int) companyZipLabel.getPreferredSize().getHeight();
+		companyZipLabel.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2) - insetsMiddle,
+				companyProvinceTF.getY() + companyProvinceTF.getHeight() + insetsBtwField, width, height);
+		addCompanyPanel.add(companyZipLabel);
 
-		companyZip_TF = new JTextField();
-		companyZip_TF.setName("companyZipTextField");
+		companyZipTF = new JTextField();
+		companyZipTF.setName("companyZipTextField");
 		width = 80;
-		companyZip_TF.setHorizontalAlignment(JTextField.CENTER);
-		companyZip_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) - insetsMiddle,
-				companyZip_Label.getY() + companyZip_Label.getHeight() + insets, width, 28);
-		addCompany_Panel.add(companyZip_TF);
+		companyZipTF.setHorizontalAlignment(JTextField.CENTER);
+		companyZipTF.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2) - insetsMiddle,
+				companyZipLabel.getY() + companyZipLabel.getHeight() + insets, width, 28);
+		addCompanyPanel.add(companyZipTF);
 
-		JLabel companyCountry_Label = new JLabel("Country:");
-		width = (int) companyCountry_Label.getPreferredSize().getWidth();
-		height = (int) companyCountry_Label.getPreferredSize().getHeight();
-		companyCountry_Label.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) + insetsMiddle,
-				companyProvince_TF.getY() + companyProvince_TF.getHeight() + insetsBtwField, width, height);
-		addCompany_Panel.add(companyCountry_Label);
+		JLabel companyCountryLabel = new JLabel("Country:");
+		width = (int) companyCountryLabel.getPreferredSize().getWidth();
+		height = (int) companyCountryLabel.getPreferredSize().getHeight();
+		companyCountryLabel.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2) + insetsMiddle,
+				companyProvinceTF.getY() + companyProvinceTF.getHeight() + insetsBtwField, width, height);
+		addCompanyPanel.add(companyCountryLabel);
 
-		companyCountry_TF = new JTextField();
-		companyCountry_TF.setName("companyCountryTextField");
+		companyCountryTF = new JTextField();
+		companyCountryTF.setName("companyCountryTextField");
 		width = 100;
-		companyCountry_TF.setHorizontalAlignment(JTextField.CENTER);
-		companyCountry_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2) + insetsMiddle,
-				companyCountry_Label.getY() + companyCountry_Label.getHeight() + insets, width, 28);
-		addCompany_Panel.add(companyCountry_TF);
+		companyCountryTF.setHorizontalAlignment(JTextField.CENTER);
+		companyCountryTF.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2) + insetsMiddle,
+				companyCountryLabel.getY() + companyCountryLabel.getHeight() + insets, width, 28);
+		addCompanyPanel.add(companyCountryTF);
 
-		JLabel companyPhone_Label = new JLabel("Phone:");
-		width = (int) companyPhone_Label.getPreferredSize().getWidth();
-		height = (int) companyPhone_Label.getPreferredSize().getHeight();
-		companyPhone_Label.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2),
-				companyCountry_TF.getY() + companyCountry_TF.getHeight() + insetsBtwField, width, height);
-		addCompany_Panel.add(companyPhone_Label);
+		JLabel companyPhoneLabel = new JLabel("Phone:");
+		width = (int) companyPhoneLabel.getPreferredSize().getWidth();
+		height = (int) companyPhoneLabel.getPreferredSize().getHeight();
+		companyPhoneLabel.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2),
+				companyCountryTF.getY() + companyCountryTF.getHeight() + insetsBtwField, width, height);
+		addCompanyPanel.add(companyPhoneLabel);
 
-		companyPhone_TF = new JTextField();
-		companyPhone_TF.setName("companyPhoneTextField");
+		companyPhoneTF = new JTextField();
+		companyPhoneTF.setName("companyPhoneTextField");
 		width = 150;
-		companyPhone_TF.setHorizontalAlignment(JTextField.CENTER);
-		companyPhone_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2),
-				companyPhone_Label.getY() + companyPhone_Label.getHeight() + insets, width, 28);
-		addCompany_Panel.add(companyPhone_TF);
+		companyPhoneTF.setHorizontalAlignment(JTextField.CENTER);
+		companyPhoneTF.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2),
+				companyPhoneLabel.getY() + companyPhoneLabel.getHeight() + insets, width, 28);
+		addCompanyPanel.add(companyPhoneTF);
 
-		JLabel companyEmail_Label = new JLabel("Email:");
-		width = (int) companyEmail_Label.getPreferredSize().getWidth();
-		height = (int) companyEmail_Label.getPreferredSize().getHeight();
-		companyEmail_Label.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2),
-				companyPhone_TF.getY() + companyPhone_TF.getHeight() + insetsBtwField, width, height);
-		addCompany_Panel.add(companyEmail_Label);
+		JLabel companyEmailLabel = new JLabel("Email:");
+		width = (int) companyEmailLabel.getPreferredSize().getWidth();
+		height = (int) companyEmailLabel.getPreferredSize().getHeight();
+		companyEmailLabel.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2),
+				companyPhoneTF.getY() + companyPhoneTF.getHeight() + insetsBtwField, width, height);
+		addCompanyPanel.add(companyEmailLabel);
 
-		companyEmail_TF = new JTextField();
-		companyEmail_TF.setName("companyEmailTextField");
+		companyEmailTF = new JTextField();
+		companyEmailTF.setName("companyEmailTextField");
 		width = 190;
-		companyEmail_TF.setHorizontalAlignment(JTextField.CENTER);
-		companyEmail_TF.setBounds((addCompany_Panel.getWidth() / 2) - (width / 2),
-				companyEmail_Label.getY() + companyEmail_Label.getHeight() + insets, width, 28);
-		addCompany_Panel.add(companyEmail_TF);
+		companyEmailTF.setHorizontalAlignment(JTextField.CENTER);
+		companyEmailTF.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2),
+				companyEmailLabel.getY() + companyEmailLabel.getHeight() + insets, width, 28);
+		addCompanyPanel.add(companyEmailTF);
 
-		JButton cancel_Button = new JButton();
-		cancel_Button.setName("CancelButton");
-		cancel_Button.setText("Cancel");
-		cancel_Button.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		cancel_Button.setBounds((addCompany_Panel.getWidth() / 2) - buttonWidth - 24,
-				addCompany_Panel.getHeight() - 20 - addCompany_Panel.getY(), buttonWidth, buttonHeight);
-		addCompany_Panel.add(cancel_Button);
-		cancel_Button.addActionListener(new ActionListener() {
+		JButton cancelButton = new JButton();
+		cancelButton.setName("CancelButton");
+		cancelButton.setText("Cancel");
+		cancelButton.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		cancelButton.setBounds((addCompanyPanel.getWidth() / 2) - buttonWidth - 24,
+				addCompanyPanel.getHeight() - 20 - addCompanyPanel.getY(), buttonWidth, buttonHeight);
+		addCompanyPanel.add(cancelButton);
+		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				addCompany_Panel.setVisible(false);
+				addCompanyPanel.setVisible(false);
 				// outer_Panel.remove(addCompany_Panel);
 			}
 		});
 
-		JButton save_Button = new JButton();
-		save_Button.setName("SaveButton");
-		save_Button.setEnabled(false);
-		save_Button.setText("Save");
-		save_Button.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		save_Button.setBounds((addCompany_Panel.getWidth() / 2) + 24,
-				addCompany_Panel.getHeight() - 20 - addCompany_Panel.getY(), buttonWidth, buttonHeight);
-		addCompany_Panel.add(save_Button);
-		save_Button.addActionListener(new ActionListener() {
+		JButton saveButton = new JButton();
+		saveButton.setName("SaveButton");
+		saveButton.setEnabled(false);
+		saveButton.setText("Save");
+		saveButton.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		saveButton.setBounds((addCompanyPanel.getWidth() / 2) + 24,
+				addCompanyPanel.getHeight() - 20 - addCompanyPanel.getY(), buttonWidth, buttonHeight);
+		addCompanyPanel.add(saveButton);
+		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if(addCompany_Panel.isSaving()) {
-					boolean saved = myMongoUiComunication.addCompanyToDatabase(companyName_TF.getText(),
-							companyVat_TF.getText(), companyAddress_TF.getText(), companyCity_TF.getText(),
-							companyProvince_TF.getText(), companyZip_TF.getText(), companyCountry_TF.getText(),
-							companyPhone_TF.getText(), companyEmail_TF.getText());
+				if(addCompanyPanel.isSaving()) {
+					boolean saved = myMongoUiComunication.addCompanyToDatabase(companyNameTF.getText(),
+							companyVatTF.getText(), companyAddressTF.getText(), companyCityTF.getText(),
+							companyProvinceTF.getText(), companyZipTF.getText(), companyCountryTF.getText(),
+							companyPhoneTF.getText(), companyEmailTF.getText());
 
 					if (saved) {
 						//myMongoUiComunication.printAllCompanies();
@@ -247,7 +247,7 @@ public class CompanyPanel extends JPanel implements AddPanel{
 				}else {					
 				}
 
-				addCompany_Panel.setVisible(false);
+				addCompanyPanel.setVisible(false);
 				resetTextFields();
 				myMongoUiComunication.updateCompanyReference();
 				// outer_Panel.remove(addCompany_Panel);
@@ -256,7 +256,7 @@ public class CompanyPanel extends JPanel implements AddPanel{
 
 		// check if all required field aren't empty. if so activate the save button.
 
-		Component[] components = addCompany_Panel.getComponents();
+		Component[] components = addCompanyPanel.getComponents();
 		for (Component component : components) {
 			if (component.getClass().equals(JTextField.class)) {
 				if (!((JTextField) component).getName().equals("companyPhoneTextField")
@@ -291,22 +291,22 @@ public class CompanyPanel extends JPanel implements AddPanel{
 							break;
 						}
 					}
-					save_Button.setEnabled(shouldActivate);
+					saveButton.setEnabled(shouldActivate);
 				}
 			});
 		}
 	}
 
 	private void resetTextFields() {
-		companyName_TF.setText("");
-		companyVat_TF.setText("");
-		companyAddress_TF.setText("");
-		companyCity_TF.setText("");
-		companyProvince_TF.setText("");
-		companyZip_TF.setText("");
-		companyCountry_TF.setText("");
-		companyPhone_TF.setText("");
-		companyEmail_TF.setText("");
+		companyNameTF.setText("");
+		companyVatTF.setText("");
+		companyAddressTF.setText("");
+		companyCityTF.setText("");
+		companyProvinceTF.setText("");
+		companyZipTF.setText("");
+		companyCountryTF.setText("");
+		companyPhoneTF.setText("");
+		companyEmailTF.setText("");
 	}
 
 	public boolean isSaving() {
@@ -315,7 +315,6 @@ public class CompanyPanel extends JPanel implements AddPanel{
 
 	@Override
 	public void setAddingMode(boolean isSaving) {
-		// TODO Auto-generated method stub
 		this.isSaving = isSaving;
 		this.setVisible(true);
 	}

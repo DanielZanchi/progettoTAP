@@ -27,8 +27,8 @@ public class PDFCreator {
 	private float topInsets = 88;
 	private float margin = 60;
 
-	final PDFont helveticaBoldFont = PDType1Font.HELVETICA_BOLD;
-	final PDFont helveticaFont = PDType1Font.HELVETICA;
+	static final PDFont helveticaBoldFont = PDType1Font.HELVETICA_BOLD;
+	static final PDFont helveticaFont = PDType1Font.HELVETICA;
 
 	public PDFCreator(Company company, Client client, Invoice invoice) {
 		this.selectedCompany = company;
@@ -274,7 +274,7 @@ public class PDFCreator {
 		PDRectangle mediabox = sp.getMediaBox();
 		float width = mediabox.getWidth() - 2 * margin;
 
-		ArrayList<String> lines = new ArrayList<String>();
+		ArrayList<String> lines = new ArrayList<>();
 
 		for (String text : stringToSplit.split("\n")) {
 			int lastSpace = -1;
@@ -318,8 +318,7 @@ public class PDFCreator {
 		Font titleFont = new Font("Helvetica", Font.PLAIN, fontSize);
 		AffineTransform affinetransform = new AffineTransform();
 		FontRenderContext frc = new FontRenderContext(affinetransform, true, true);
-		float textWidth = (float) titleFont.getStringBounds(s, frc).getWidth();
-		return textWidth;
+		return (float) titleFont.getStringBounds(s, frc).getWidth();
 	}
 
 	private String getPriceExcVAT(String price) {
