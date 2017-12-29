@@ -21,7 +21,6 @@ public class CompanyController {
 	public boolean addClient(Client client) {
 		if (getClientId(client.getId()) != null)
 			return false;
-
 		database.saveClient(client);
 		return true;
 	}

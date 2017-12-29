@@ -42,6 +42,13 @@ public class CompanyIntegrationTest {
 		assertNotNull(client);
 		return client;
 	}
+	
+	@Test
+	public void addTestClientToDBWhenClientAlreadyInDB() {
+		companyController.addClient(new Client("1", "test", "testFC", "testCR", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail"));
+		boolean added=companyController.addClient(new Client("1", "test", "testFC", "testCR", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail"));
+		assertEquals(false, added);
+	}
 
 	@Test
 	public void testGetAllClientsWhenThereAreNoClients() {
@@ -192,6 +199,14 @@ public class CompanyIntegrationTest {
 		assertNotNull(company);
 		return company;
 	}	
+	
+	
+	@Test
+	public void addTestCompanyToDBWhenCompanyAlreadyInDB() {
+		companyController.addCompany(new Company("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1"));
+		boolean added=companyController.addCompany(new Company("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1"));
+		assertEquals(false, added);
+	}
 
 	@Test
 	public void testGetAllCompaniesWhenThereAreNoCompanies() {
@@ -321,6 +336,13 @@ public class CompanyIntegrationTest {
 		Invoice invoice = companyController.getInvoiceId("1");
 		assertNotNull(invoice);
 		return invoice;
+	}
+	
+	@Test
+	public void addTestInvoiceToDBWhenInvoiceAlreadyInDB() {
+		companyController.addInvoice(new Invoice("1", "testName", "testPrice", "testDescription"));
+		boolean added=companyController.addInvoice(new Invoice("1", "testName", "testPrice", "testDescription"));
+		assertEquals(false, added);
 	}
 
 	@Test
