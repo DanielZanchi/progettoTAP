@@ -30,7 +30,7 @@ public class PDFCreator {
 	static final PDFont helveticaBoldFont = PDType1Font.HELVETICA_BOLD;
 	static final PDFont helveticaFont = PDType1Font.HELVETICA;
 
-	public PDFCreator(Company company, Client client, Invoice invoice) {
+	public PDFCreator(Company company, Client client, Invoice invoice) throws IOException{
 		this.selectedCompany = company;
 		this.selectedClient = client;
 		this.selectedInvoice = invoice;
@@ -38,10 +38,10 @@ public class PDFCreator {
 		create();
 	}
 
-	private void create() {
+	private void create() throws IOException {
 		final PDPage singlePage = new PDPage();
 
-		try (final PDDocument document = new PDDocument()) {
+		final PDDocument document = new PDDocument();
 			document.addPage(singlePage);
 			PDPageContentStream contentStream = new PDPageContentStream(document, singlePage);
 			contentStream = this.companyName(contentStream, singlePage);
@@ -52,32 +52,28 @@ public class PDFCreator {
 			contentStream = this.footer(contentStream, singlePage);
 			contentStream.close(); // Stream must be closed before saving document.
 			document.save("Invoice.pdf");
-		} catch (IOException ioEx) {
-			System.err.println("Exception while trying to create blank document - " + ioEx);
-		}
+		
 	}
 
-	private PDPageContentStream companyName(PDPageContentStream cs, PDPage sp) {
+	private PDPageContentStream companyName(PDPageContentStream cs, PDPage sp) throws IOException {
 		int fontSize = 18;
 		String stringToPrint = selectedCompany.getName();
 		stringToPrint = stringToPrint.toUpperCase();
 		float textWidth = getTextWidth(fontSize, stringToPrint);
-		try {
-			cs.beginText();
-			cs.setFont(helveticaBoldFont, fontSize);
-			cs.newLineAtOffset(verticalCenter(sp, textWidth), sp.getMediaBox().getHeight() - topInsets);
-			cs.showText(stringToPrint);
-			cs.endText();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
+		cs.beginText();
+		cs.setFont(helveticaBoldFont, fontSize);
+		cs.newLineAtOffset(verticalCenter(sp, textWidth), sp.getMediaBox().getHeight() - topInsets);			
+		cs.showText(stringToPrint);
+		cs.endText();
+		
 		return cs;
 	}
 
-	private PDPageContentStream billTo(PDPageContentStream cs, PDPage sp) {
+	private PDPageContentStream billTo(PDPageContentStream cs, PDPage sp) throws IOException {
 		int fontSize = 10;
 		String stringToPrint = "Bill To:";
-		try {
+		
 			cs.setFont(helveticaBoldFont, fontSize);
 			float y = 140;
 			cs.beginText();
@@ -85,9 +81,7 @@ public class PDFCreator {
 			cs.newLineAtOffset(verticalLeft(sp, textWidth), sp.getMediaBox().getHeight() - y);
 			cs.showText(stringToPrint);
 			cs.endText();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 		fontSize = 9;
 		float leading = 1.5f * fontSize;
 
@@ -95,14 +89,14 @@ public class PDFCreator {
 				+ selectedClient.getCity() + " - " + selectedClient.getZip() + " - " + selectedClient.getCityResidence()
 				+ " - " + selectedClient.getCountry() + "\n" + "Tel: " + selectedClient.getPhone() + " - "
 				+ selectedClient.getEmail();
-		float textWidth = getTextWidth(fontSize, stringToPrint);
+		textWidth = getTextWidth(fontSize, stringToPrint);
 
 		// new line when finds \n
 		ArrayList<String> lines = splitLines(stringToPrint, fontSize, sp);
 
-		try {
+		
 			cs.setFont(helveticaFont, fontSize);
-			float y = 140 + leading;
+			y = 140 + leading;
 			for (String line : lines) {
 				cs.beginText();
 				textWidth = getTextWidth(fontSize, line);
@@ -111,20 +105,18 @@ public class PDFCreator {
 				cs.endText();
 				y = y + leading;
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 		return cs;
 	}
 
-	private PDPageContentStream invoiceNumber(PDPageContentStream cs, PDPage sp) {
+	private PDPageContentStream invoiceNumber(PDPageContentStream cs, PDPage sp) throws IOException {
 		int fontSize = 10;
 		String stringToPrint = "Invoice #: ";
 		float textWidth = getTextWidth(fontSize, "invoice date: dd/MM/yyyy   ");
 		float leading = 1.5f * fontSize;
 		selectedCompany.setNumInvoice(selectedCompany.getNumInvoice()+1);
 
-		try {
+		
 			cs.beginText();
 			cs.setFont(helveticaBoldFont, fontSize);
 			cs.newLineAtOffset(verticalRight(sp, textWidth) - 2, sp.getMediaBox().getHeight() - 140);
@@ -151,46 +143,40 @@ public class PDFCreator {
 			cs.showText(stringToPrint);
 
 			cs.endText();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 		return cs;
 	}
 
-	private PDPageContentStream invoiceContainer(PDPageContentStream cs, PDPage sp) {
+	private PDPageContentStream invoiceContainer(PDPageContentStream cs, PDPage sp) throws IOException {
 		// container title
 		int fontSize = 18;
 		String stringToPrint = "INVOICE";
 		float textWidth = getTextWidth(fontSize, stringToPrint);
 		float x = verticalLeft(sp, textWidth);
-		try {
+		
 			cs.beginText();
 			cs.setFont(helveticaBoldFont, fontSize);
 			cs.setNonStrokingColor(new Color(0, 51, 102));
 			cs.newLineAtOffset(x, 578);
 			cs.showText(stringToPrint);
 			cs.endText();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 
 		// create a rectangle
 		float rectWidth = (sp.getMediaBox().getWidth() - (margin * 2));
 		x = verticalLeft(sp, rectWidth);
-		try {
+		
 			cs.addRect(x, 550, rectWidth, 20);
 			cs.fill();
 			cs.setNonStrokingColor(Color.BLACK);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 
 		// create table header
 		fontSize = 12;
 		stringToPrint = " #    Description";
 		textWidth = getTextWidth(fontSize, stringToPrint);
 		x = verticalLeft(sp, textWidth);
-		try {
+		
 			cs.beginText();
 			cs.setFont(helveticaBoldFont, fontSize);
 			cs.setNonStrokingColor(Color.white);
@@ -207,19 +193,16 @@ public class PDFCreator {
 
 			cs.setNonStrokingColor(Color.black);
 			cs.endText();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 		return cs;
 	}
 
-	private PDPageContentStream invoiceDescription(PDPageContentStream cs, PDPage sp) {
+	private PDPageContentStream invoiceDescription(PDPageContentStream cs, PDPage sp) throws IOException {
 		// create table header
 		int fontSize = 11;
 		String stringToPrint = " 1      " + selectedInvoice.getName() + " (" + selectedInvoice.getDescription()  + ")";
 		float textWidth = getTextWidth(fontSize, stringToPrint);
 		float x = verticalLeft(sp, textWidth);
-		try {
 			cs.beginText();
 			cs.setFont(helveticaFont, fontSize);
 			cs.newLineAtOffset(x, 530);
@@ -234,13 +217,11 @@ public class PDFCreator {
 			cs.showText(stringToPrint);
 
 			cs.endText();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 		return cs;
 	}
 
-	private PDPageContentStream footer(PDPageContentStream cs, PDPage sp) {
+	private PDPageContentStream footer(PDPageContentStream cs, PDPage sp) throws IOException {
 		int fontSize = 9;
 		float leading = 1.5f * fontSize;
 
@@ -253,7 +234,7 @@ public class PDFCreator {
 		// new line when finds \n
 		ArrayList<String> lines = splitLines(stringToPrint, fontSize, sp);
 
-		try {
+		
 			cs.setFont(helveticaFont, fontSize);
 			float y = topInsets;
 			for (String line : lines) {
@@ -264,9 +245,7 @@ public class PDFCreator {
 				cs.endText();
 				y = y - leading;
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		
 		return cs;
 	}
 

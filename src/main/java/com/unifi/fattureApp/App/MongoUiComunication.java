@@ -109,19 +109,12 @@ public class MongoUiComunication {
 	public boolean printSelected() {
 		if (currentSelectedClient != null && currentSelectedCompany != null && currentSelectedInvoice != null) {
 			increseInvoiceNumber();
-			System.out.println("Invoice Number: " + invoiceCounter);
-			System.out.println(" Selected: ");
-			System.out.println(" Company : " + currentSelectedCompany.getName());
-			System.out.println(currentSelectedCompany.getAddress());
-			System.out.println("");
-			System.out.println(" Client : " + currentSelectedClient.getName());
-			System.out.println(currentSelectedClient.getCityResidence());
-			System.out.println("");
-			System.out.println(" Invoice : " + currentSelectedInvoice.getName());
-			System.out.println(currentSelectedInvoice.getPrice());
-			System.out.println(" -------/Selected---------- ");
-
-			new PDFCreator(currentSelectedCompany, currentSelectedClient, currentSelectedInvoice);
+			try {
+				new PDFCreator(currentSelectedCompany, currentSelectedClient, currentSelectedInvoice);
+			} catch (Exception e) {
+				System.out.println("Error while creating pdf!");
+			}
+			
 			return true;
 		}
 		return false;
@@ -208,6 +201,7 @@ public class MongoUiComunication {
 
 	public void setCompanyCounter(int companyCounter) {
 		this.companyCounter = companyCounter;
+		
 		this.updateCompanyReference();
 	}
 

@@ -75,6 +75,46 @@ public class MongoUiComunicationTest {
 		myMongoUiCom.setCurrentSelectedClient(client);
 		assertEquals(myMongoUiCom.getCurrentSelectedClient().getName(), client.getName());
 	}
+	
+	//Company
+	@Test 
+	public void getCurrentSelectedCompanyWithNoCompanySelected() {
+		assertEquals(null, myMongoUiCom.getCurrentSelectedCompany());
+	}
+
+	@Test 
+	public void getCurrentSelectedCompanyWithCompanySelected() {
+		Company company = new Company("1", "nameComp", "vatCodeComp", "addressComp", "cityComp", "provinceComp", "zipCodeComp", "countryComp", "phoneComp", "emailComp");
+		myMongoUiCom.setCurrentSelectedCompany(company);
+		assertEquals(myMongoUiCom.getCurrentSelectedCompany(), company);
+	}
+
+	@Test 
+	public void getCurrentSelectedCompanyWithCompanySelectedNameTest() {
+		Company company = new Company("1", "nameComp", "vatCodeComp", "addressComp", "cityComp", "provinceComp", "zipCodeComp", "countryComp", "phoneComp", "emailComp");
+		myMongoUiCom.setCurrentSelectedCompany(company);
+		assertEquals(myMongoUiCom.getCurrentSelectedCompany().getName(), company.getName());
+	}
+	
+	//Invoice
+	@Test 
+	public void getCurrentSelectedInvoiceWithNoInvoiceSelected() {
+		assertEquals(null, myMongoUiCom.getCurrentSelectedInvoice());
+	}
+
+	@Test 
+	public void getCurrentSelectedInvoiceWithInvoiceSelected() {
+		Invoice invoice = new Invoice("1","invoiceName","15","invoiceDescription");
+		myMongoUiCom.setCurrentSelectedInvoice(invoice);
+		assertEquals(myMongoUiCom.getCurrentSelectedInvoice(), invoice);
+	}
+
+	@Test 
+	public void getCurrentSelectedInvoiceWithInvoiceSelectedNameTest() {
+		Invoice invoice = new Invoice("1","invoiceName","15","invoiceDescription");
+		myMongoUiCom.setCurrentSelectedInvoice(invoice);
+		assertEquals(myMongoUiCom.getCurrentSelectedInvoice().getName(), invoice.getName());
+	}
 
 	@Test 
 	public void printSelectedWithNoSelectedTest() {
@@ -91,4 +131,18 @@ public class MongoUiComunicationTest {
 		myMongoUiCom.setCurrentSelectedInvoice(invoice);
 		assertEquals(true, myMongoUiCom.printSelected());
 	}
+	
+	/*
+	@Test
+	public void setCompanyCounterTest() {
+		myMongoUiCom.setCompanyCounter(0);
+		assertEquals(0, myMongoUiCom.getCompanyCounter());
+	}
+	
+	@Test
+	public void setCompanyCounterWrongValueTest() {
+		myMongoUiCom.setCompanyCounter(0);
+		assertEquals(1, myMongoUiCom.getCompanyCounter());
+	}
+	*/
 }
