@@ -4,12 +4,13 @@ os:
 jdk:
   - oraclejdk8
   
-addons:
-  sonarcloud:
-    branches:
-      - sonarcloud
-      - master
-    organization: "dani1993-github"
+#addons:
+ # sonarcloud:
+  #  branches:
+   #   - sonarcloud
+    #  - master
+    #organization: "dani1993-github"
+    
  
 services:
   - docker
@@ -17,15 +18,19 @@ services:
 cache:
   directories:
   - $HOME/.m2
-   - '$HOME/.sonar/cache'
+  # - '$HOME/.sonar/cache'
    
-install:
+install: 
+# - true
  - docker pull mongo
  
 script:
-- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
 - mvn -f pom.xml clean verify coveralls:report
 - mvn -f pom.xml verify -Pdocker-compose
+- mvn sonar:sonar \
+  -Dsonar.organization=dani1993-github \
+  -Dsonar.host.url=https://sonarcloud.io \
+  -Dsonar.login=a10dedc31f82e4f7860774d99a2545881bf90aa6
 
 #env:
 #  - DISPLAY=:99.0
