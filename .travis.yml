@@ -23,7 +23,7 @@ install:
  - docker pull mongo
  
 script:
-- mvn -f pom.xml clean verify coveralls:report
+- mvn -f pom.xml clean verify coveralls:report sonar:sonar
 - mvn -f pom.xml verify -Pdocker-compose
 
 #env:
@@ -41,7 +41,7 @@ before_script:
  #- "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 2048x2732x16"
 
 after_success:
-- mvn clean test jacoco:report coveralls:report sonar:sonar
+- mvn clean test jacoco:report coveralls:report
 
 notifications:
  email: false
