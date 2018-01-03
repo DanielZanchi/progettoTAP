@@ -23,7 +23,8 @@ install:
  - docker pull mongo
  
 script:
-- ./mvnw clean verify -Pjacoco coveralls:report sonar:sonar
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
+- mvn -f pom.xml clean verify coveralls:report
 - mvn -f pom.xml verify -Pdocker-compose
 
 #env:
