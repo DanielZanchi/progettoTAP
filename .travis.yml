@@ -26,7 +26,10 @@ install:
 script:
 - mvn -f pom.xml clean verify coveralls:report
 - mvn -f pom.xml verify -Pdocker-compose
-- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar \
+    -Dsonar.host.url=https://sonarcloud.io \
+    -Dsonar.organization="federicoguerri-github" \
+    -Dsonar.login="77b4026d89a6e705fe586a12b1700d89b4e0c2e8"
 #- mvn sonar:sonar \
  # -Dsonar.organization=dani1993-github \
  # -Dsonar.host.url=https://sonarcloud.io \
