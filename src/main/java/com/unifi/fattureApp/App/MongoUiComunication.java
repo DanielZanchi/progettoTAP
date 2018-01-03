@@ -114,7 +114,7 @@ public class MongoUiComunication {
 			} catch (Exception e) {
 				System.out.println("Error while creating pdf!");
 			}
-			
+
 			return true;
 		}
 		return false;
@@ -201,7 +201,7 @@ public class MongoUiComunication {
 
 	public void setCompanyCounter(int companyCounter) {
 		this.companyCounter = companyCounter;
-		
+
 		this.updateCompanyReference();
 	}
 

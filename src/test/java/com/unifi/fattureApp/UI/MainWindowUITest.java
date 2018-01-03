@@ -109,5 +109,4 @@ public class MainWindowUITest {
 		addCompanyButton.click();
 		addCompanyPanel = window.panel("AddCompanyPanel");
 	}
-	
 }

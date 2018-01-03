@@ -19,6 +19,8 @@ import javax.swing.event.DocumentListener;
 import com.unifi.fattureApp.App.MongoUiComunication;
 
 public class CompanyPanel extends JPanel implements AddPanel{
+	private static final long serialVersionUID = 1L;
+
 	private MongoUiComunication myMongoUiComunication;
 
 	private JTextField companyNameTF;

@@ -19,6 +19,8 @@ import javax.swing.event.DocumentListener;
 import com.unifi.fattureApp.App.MongoUiComunication;
 
 public class ClientPanel extends JPanel implements AddPanel {
+	private static final long serialVersionUID = 1L;
+
 	private MongoUiComunication myMongoUiComunication;
 
 	private JTextField clientNameTF;
@@ -245,7 +247,7 @@ public class ClientPanel extends JPanel implements AddPanel {
 				// outer_Panel.remove(addClient_Panel); }
 				resetTextFields();
 				mongoUiCom.updateClientsReferences();
-			};
+			}
 		});
 
 		// check if all required field aren't empty. if so activate the save button.

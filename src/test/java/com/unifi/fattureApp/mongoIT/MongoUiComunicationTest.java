@@ -75,7 +75,7 @@ public class MongoUiComunicationTest {
 		myMongoUiCom.setCurrentSelectedClient(client);
 		assertEquals(myMongoUiCom.getCurrentSelectedClient().getName(), client.getName());
 	}
-	
+
 	//Company
 	@Test 
 	public void getCurrentSelectedCompanyWithNoCompanySelected() {
@@ -95,7 +95,7 @@ public class MongoUiComunicationTest {
 		myMongoUiCom.setCurrentSelectedCompany(company);
 		assertEquals(myMongoUiCom.getCurrentSelectedCompany().getName(), company.getName());
 	}
-	
+
 	//Invoice
 	@Test 
 	public void getCurrentSelectedInvoiceWithNoInvoiceSelected() {
@@ -131,18 +131,18 @@ public class MongoUiComunicationTest {
 		myMongoUiCom.setCurrentSelectedInvoice(invoice);
 		assertEquals(true, myMongoUiCom.printSelected());
 	}
-	
+
 	/*
 	@Test
 	public void setCompanyCounterTest() {
 		myMongoUiCom.setCompanyCounter(0);
 		assertEquals(0, myMongoUiCom.getCompanyCounter());
 	}
-	
+
 	@Test
 	public void setCompanyCounterWrongValueTest() {
 		myMongoUiCom.setCompanyCounter(0);
 		assertEquals(1, myMongoUiCom.getCompanyCounter());
 	}
-	*/
+	 */
 }

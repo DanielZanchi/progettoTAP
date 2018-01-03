@@ -1,6 +1,6 @@
 package com.unifi.fattureApp.App;
 
-public class Company{
+public class Company {
 	private String id;
 	private String name;
 	private String vatCode;
