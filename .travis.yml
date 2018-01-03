@@ -27,10 +27,10 @@ install:
 script:
 - mvn -f pom.xml clean verify coveralls:report
 - mvn -f pom.xml verify -Pdocker-compose
-- mvn sonar:sonar \
-  -Dsonar.organization=dani1993-github \
-  -Dsonar.host.url=https://sonarcloud.io \
-  -Dsonar.login=a10dedc31f82e4f7860774d99a2545881bf90aa6
+#- mvn sonar:sonar \
+ # -Dsonar.organization=dani1993-github \
+ # -Dsonar.host.url=https://sonarcloud.io \
+ # -Dsonar.login=a10dedc31f82e4f7860774d99a2545881bf90aa6
 
 #env:
 #  - DISPLAY=:99.0
