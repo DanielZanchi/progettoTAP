@@ -3,14 +3,25 @@ os:
  - linux
 jdk:
   - oraclejdk8
+  
+addons:
+  sonarcloud:
+    branches:
+      - sonarcloud
+      - master
+    organization: "dani1993-github"
+ 
 services:
   - docker
+
 cache:
   directories:
   - $HOME/.m2
+   - '$HOME/.sonar/cache'
+   
 install:
  - docker pull mongo
-
+ 
 script:
 - mvn -f pom.xml clean verify coveralls:report
 - mvn -f pom.xml verify -Pdocker-compose
