@@ -8,9 +8,9 @@ jdk:
   
 addons:
   sonarcloud:
-    organization: "federicoguerri-github"
+    organization: "dani1993-github"
     token:
-      secure: "77b4026d89a6e705fe586a12b1700d89b4e0c2e8"
+      secure: "ad865b7e0fe87c86f7be5b2074085dfe58515ef3"
     
  
 services:
@@ -19,7 +19,7 @@ services:
 cache:
   directories:
   - $HOME/.m2
- # - '$HOME/.sonar/cache'
+  - '$HOME/.sonar/cache'
    
 install: 
 # - true
@@ -28,7 +28,7 @@ install:
 script:
 - mvn -f pom.xml clean verify coveralls:report
 - mvn -f pom.xml verify -Pdocker-compose
-- mvn clean install sonar:sonar
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
 #- mvn clean install sonar:sonar -Dsonar.host.url=https:/sonarqube.com -Dsonar.login="77b4026d89a6e705fe586a12b1700d89b4e0c2e8"
 #- mvn sonar:sonar \
  # -Dsonar.organization=dani1993-github \
