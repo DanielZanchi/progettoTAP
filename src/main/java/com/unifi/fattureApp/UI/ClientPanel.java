@@ -219,7 +219,6 @@ public class ClientPanel extends JPanel implements AddPanel {
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addClientPanel.setVisible(false);
-				// outer_Panel.remove(addClient_Panel);
 			}
 		});
 
