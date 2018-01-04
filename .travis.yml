@@ -22,7 +22,7 @@ cache:
   - '$HOME/.sonar/cache'
    
 install: 
-# - true
+ - true
  - docker pull mongo
  
 script:
