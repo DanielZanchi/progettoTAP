@@ -243,7 +243,6 @@ public class ClientPanel extends JPanel implements AddPanel {
 				}
 
 				addClientPanel.setVisible(false);
-				// outer_Panel.remove(addClient_Panel); }
 				resetTextFields();
 				mongoUiCom.updateClientsReferences();
 			}
