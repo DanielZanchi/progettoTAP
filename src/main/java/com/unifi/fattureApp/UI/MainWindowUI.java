@@ -26,7 +26,6 @@ public class MainWindowUI {
 	private JFrame fattureAppFrame;
 	private JLayeredPane outerPanel;
 
-	// private int buttonPadding = 8;
 	private int buttonHeight = 30;
 	private int buttonWidth = 50;
 
