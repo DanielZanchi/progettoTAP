@@ -19,6 +19,7 @@ public class MongoWrapper implements Database{
 	private MongoCollection clients;
 	private MongoCollection companies;
 	private MongoCollection invoices;
+	private static final String ID = "{id: #}";
 
 	public MongoWrapper(MongoClient mc) throws UnknownHostException {
 		DB db = mc.getDB("company");
@@ -40,7 +41,7 @@ public class MongoWrapper implements Database{
 
 	@Override
 	public Client findClientById(String id) {
-		return clients.findOne("{id: #}", id).as(Client.class);
+		return clients.findOne(ID, id).as(Client.class);
 	}
 
 	@Override
@@ -59,7 +60,7 @@ public class MongoWrapper implements Database{
 
 	@Override
 	public Company findCompanyById(String id) {
-		return companies.findOne("{id: #}", id).as(Company.class);
+		return companies.findOne(ID, id).as(Company.class);
 	}
 
 	@Override
@@ -78,7 +79,7 @@ public class MongoWrapper implements Database{
 
 	@Override
 	public Invoice findInvoiceById(String id) {
-		return invoices.findOne("{id: #}", id).as(Invoice.class);
+		return invoices.findOne(ID, id).as(Invoice.class);
 	}
 
 	@Override

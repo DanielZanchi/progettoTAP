@@ -28,7 +28,7 @@
 		<sonar.jacoco.itReportPath>${jacoco.data.it.file}</sonar.jacoco.itReportPath>
 
 		<sonar.coverage.exclusions>**/Main.*</sonar.coverage.exclusions>
-
+		
 		<!-- For each rule to be ignore, add another eXX and two corresponding 
 			properties with eXX in the name as below -->
 		<sonar.issue.ignore.multicriteria>e11</sonar.issue.ignore.multicriteria>
@@ -99,8 +99,8 @@
 	</dependencies>
 
 	<build>
-	
- 		
+
+
 
 		<pluginManagement>
 			<plugins>
@@ -115,10 +115,10 @@
 					</configuration>
 				</plugin>
 				<plugin>
-   				<groupId>org.sonarsource.scanner.maven</groupId>
-   				<artifactId>sonar-maven–plugin</artifactId>
-   				<version>3.0.1</version>
-  			</plugin>
+					<groupId>org.sonarsource.scanner.maven</groupId>
+					<artifactId>sonar-maven–plugin</artifactId>
+					<version>3.0.1</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
