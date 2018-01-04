@@ -8,9 +8,9 @@ jdk:
   
 addons:
   sonarcloud:
-    organization: "dani1993-github"
+    organization: "federicoguerri-github"
     token:
-      secure: "ad865b7e0fe87c86f7be5b2074085dfe58515ef3"
+      secure: "77b4026d89a6e705fe586a12b1700d89b4e0c2e8"
     
  
 services:
