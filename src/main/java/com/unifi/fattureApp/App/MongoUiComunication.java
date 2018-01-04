@@ -31,7 +31,7 @@ public class MongoUiComunication {
 	private JButton editCompanyButton;
 	private LinkedList<JButton> editButtons;
 
-	public MongoUiComunication(boolean testing, String args[]) {		
+	public MongoUiComunication(boolean testing, String[] args) {		
 		if (args!=null && args.length > 0)
 			mongoHost = args[0];
 

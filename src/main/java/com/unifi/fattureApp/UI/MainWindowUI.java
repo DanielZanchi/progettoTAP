@@ -38,6 +38,8 @@ public class MainWindowUI {
 	private AddPanel addClientPanel;
 	private AddPanel addItemPanel;
 
+	private static final String ARIAL = "Arial";
+
 	/**
 	 * Launch the application.
 	 */
@@ -150,7 +152,7 @@ public class MainWindowUI {
 		JButton prevCompanyButton = new JButton("▲");
 		prevCompanyButton.setName("prevCompany_Button");
 		prevCompanyButton.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		prevCompanyButton.setFont(new Font("Arial", Font.PLAIN, 10));
+		prevCompanyButton.setFont(new Font(ARIAL, Font.PLAIN, 10));
 		int h = 16;
 		int w = 16;
 		prevCompanyButton.setBounds(addMyCompanyButton.getX() - innerInsets - w, myCompanyPanel.getHeight() / 2 - h,
@@ -173,7 +175,7 @@ public class MainWindowUI {
 		JButton nextCompanyButton = new JButton("▼");
 		nextCompanyButton.setName("nextCompany_Button");
 		nextCompanyButton.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		nextCompanyButton.setFont(new Font("Arial", Font.PLAIN, 10));
+		nextCompanyButton.setFont(new Font(ARIAL, Font.PLAIN, 10));
 		h = 16;
 		w = 16;
 		nextCompanyButton.setBounds(addMyCompanyButton.getX() - innerInsets - w, myCompanyPanel.getHeight() / 2 + 2,
@@ -216,7 +218,7 @@ public class MainWindowUI {
 
 		JLabel clientLbl = new JLabel("Client");
 		clientLbl.setBounds((clientPanel.getWidth() / 2) - 26, innerInsets, 52, 16);
-		clientLbl.setFont(new Font("Arial", Font.BOLD, 16));
+		clientLbl.setFont(new Font(ARIAL, Font.BOLD, 16));
 		clientPanel.add(clientLbl);
 
 		JButton editClient = new JButton("Edit");
@@ -272,7 +274,7 @@ public class MainWindowUI {
 
 		JLabel invoiceItemLbl = new JLabel("Invoice item");
 		invoiceItemLbl.setBounds((invoiceProvisionPanel.getWidth() / 2) - 54, innerInsets, 108, 16);
-		invoiceItemLbl.setFont(new Font("Arial", Font.BOLD, 16));
+		invoiceItemLbl.setFont(new Font(ARIAL, Font.BOLD, 16));
 		invoiceProvisionPanel.add(invoiceItemLbl);
 
 		JButton editInvoiceProvision = new JButton("Edit");
@@ -316,18 +318,18 @@ public class MainWindowUI {
 			}
 		});
 
-		JButton createInvoice_Button = new JButton("CREATE INVOICE");
-		createInvoice_Button.setFont(new Font("Arial", Font.PLAIN, 14));
-		createInvoice_Button.setEnabled(true);
-		createInvoice_Button.setBackground(Color.white);
-		createInvoice_Button.setOpaque(true);
-		createInvoice_Button.setName("createInvoice_Button");
-		createInvoice_Button.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		JButton createInvoiceButton = new JButton("CREATE INVOICE");
+		createInvoiceButton.setFont(new Font(ARIAL, Font.PLAIN, 14));
+		createInvoiceButton.setEnabled(true);
+		createInvoiceButton.setBackground(Color.white);
+		createInvoiceButton.setOpaque(true);
+		createInvoiceButton.setName("createInvoice_Button");
+		createInvoiceButton.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		h = 50;
 		w = 180;
-		createInvoice_Button.setBounds(invoicePanelWidth / 2 - (w / 2), invoicePanel.getHeight() - h - 8, w, h);
-		invoicePanel.add(createInvoice_Button);
-		createInvoice_Button.addActionListener(new ActionListener() {
+		createInvoiceButton.setBounds(invoicePanelWidth / 2 - (w / 2), invoicePanel.getHeight() - h - 8, w, h);
+		invoicePanel.add(createInvoiceButton);
+		createInvoiceButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// creare la fattura.
 				mongoUiCom.printSelected();

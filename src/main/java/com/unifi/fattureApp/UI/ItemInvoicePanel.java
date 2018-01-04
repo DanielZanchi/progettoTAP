@@ -23,6 +23,7 @@ import javax.swing.event.DocumentListener;
 import com.unifi.fattureApp.App.MongoUiComunication;
 
 public class ItemInvoicePanel extends JPanel implements AddPanel {
+	private static final long serialVersionUID = 1L;
 	private JTextField itemDescriptionTF;
 	private JTextField itemNameTF;
 	private JFormattedTextField itemPriceTF;
@@ -137,7 +138,6 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 				// save invoice
 				if(addItemPanel.isSaving()) {
 					mongoUiComunication.addInvoiceToDatabase(itemNameTF.getText(), itemDescriptionTF.getText(), itemPriceTF.getText());
-				}else {					
 				}
 
 				addItemPanel.setVisible(false);
