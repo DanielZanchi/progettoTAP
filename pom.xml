@@ -95,13 +95,14 @@
 			<artifactId>pdfbox</artifactId>
 			<version>2.0.7</version>
 		</dependency>
-
+		<dependency>
+   		    <groupId>biz.paluch.redis</groupId>
+    			<artifactId>lettuce</artifactId>
+    			<version>4.4.2.Final</version>
+		</dependency>
 	</dependencies>
 
 	<build>
-
-
-
 		<pluginManagement>
 			<plugins>
 				<plugin>
