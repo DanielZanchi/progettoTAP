@@ -121,7 +121,6 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addItemPanel.setVisible(false);
-				// outer_Panel.remove(addClient_Panel);
 			}
 		});
 
@@ -142,7 +141,6 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 
 				addItemPanel.setVisible(false);
 				mongoUiComunication.updateInvoicesReferences();
-				// outer_Panel.remove(addClient_Panel);
 			}
 		});
 

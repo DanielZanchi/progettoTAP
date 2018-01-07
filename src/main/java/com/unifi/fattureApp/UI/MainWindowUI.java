@@ -70,7 +70,6 @@ public class MainWindowUI {
 	private void initialize() {
 		final JPanel myCompanyPanel;
 		
-		// mongoUiCom=new MongoUiComunication();
 		fattureAppFrame = new JFrame();
 		fattureAppFrame.setTitle("Fatture App");
 		fattureAppFrame.setPreferredSize(windowDimension);

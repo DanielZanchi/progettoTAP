@@ -16,10 +16,14 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import org.apache.log4j.Logger;
+
 import com.unifi.fattureApp.App.MongoUiComunication;
 
 public class CompanyPanel extends JPanel implements AddPanel{
 	private static final long serialVersionUID = 1L;
+
+	private static final Logger LOGGER = Logger.getLogger(CompanyPanel.class);
 
 	private MongoUiComunication myMongoUiComunication;
 
@@ -218,7 +222,6 @@ public class CompanyPanel extends JPanel implements AddPanel{
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addCompanyPanel.setVisible(false);
-				// outer_Panel.remove(addCompany_Panel);
 			}
 		});
 
@@ -240,19 +243,16 @@ public class CompanyPanel extends JPanel implements AddPanel{
 							companyPhoneTF.getText(), companyEmailTF.getText());
 
 					if (saved) {
-						//myMongoUiComunication.printAllCompanies();
 						myMongoUiComunication.setCurrentSelectedCompany(myMongoUiComunication.getSavedCompanies().get(myMongoUiComunication.getSavedCompanies().size()-1));
 						myMongoUiComunication.enableEditCompanyButton();
 					} else {
-						System.err.println("Error: Company was not saved!!!");
+						LOGGER.error("Error: Company was not saved!!!");
 					}
-				}else {					
 				}
 
 				addCompanyPanel.setVisible(false);
 				resetTextFields();
 				myMongoUiComunication.updateCompanyReference();
-				// outer_Panel.remove(addCompany_Panel);
 			}
 		});
 

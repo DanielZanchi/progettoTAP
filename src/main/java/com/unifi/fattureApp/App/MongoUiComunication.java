@@ -8,11 +8,14 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
+import org.apache.log4j.Logger;
+
 import com.github.fakemongo.Fongo;
 import com.mongodb.MongoClient;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
 public class MongoUiComunication {
+	private static final Logger LOGGER = Logger.getLogger(MongoUiComunication.class);
 	Database database;
 	String mongoHost = "localhost";
 	CompanyController myCompanyController;
@@ -31,7 +34,7 @@ public class MongoUiComunication {
 	private JButton editCompanyButton;
 	private LinkedList<JButton> editButtons;
 
-	public MongoUiComunication(boolean testing, String[] args) {		
+	public MongoUiComunication(boolean testing, String[] args) {	
 		if (args!=null && args.length > 0)
 			mongoHost = args[0];
 
@@ -48,10 +51,9 @@ public class MongoUiComunication {
 		}
 
 		try {
-			//database = new MongoWrapper(new MongoClient(mongoHost, 27017));
 			database = new MongoWrapper(mongoClient);
 		} catch (Exception e) {
-			System.out.println("Error while connecting to mongoHost");
+			LOGGER.info("Error while connecting to mongoHost");
 			e.printStackTrace();
 		}
 
@@ -112,7 +114,7 @@ public class MongoUiComunication {
 			try {
 				new PDFCreator(currentSelectedCompany, currentSelectedClient, currentSelectedInvoice);
 			} catch (Exception e) {
-				System.out.println("Error while creating pdf!");
+				LOGGER.info("Error while creating pdf!");
 			}
 
 			return true;

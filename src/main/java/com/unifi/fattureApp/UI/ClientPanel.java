@@ -239,7 +239,6 @@ public class ClientPanel extends JPanel implements AddPanel {
 							clientAddressTF.getText(), clientCityTF.getText(), clientProvinceTF.getText(),
 							clientZipTF.getText(), clientCityTF.getText(), clientPhoneTF.getText(),
 							clientEmailTF.getText());
-				}else {
 				}
 
 				addClientPanel.setVisible(false);
