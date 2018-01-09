@@ -1,7 +1,6 @@
 package com.unifi.fattureApp.App;
 
 import java.net.UnknownHostException;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -32,7 +31,6 @@ public class MongoUiComunication {
 	private int invoiceCounter = 0;
 
 	private JButton editCompanyButton;
-	private LinkedList<JButton> editButtons;
 
 	public MongoUiComunication(boolean testing, String[] args) {	
 		if (args!=null && args.length > 0)
@@ -46,7 +44,7 @@ public class MongoUiComunication {
 			try {
 				mongoClient = new MongoClient(mongoHost, 27017);
 			} catch (UnknownHostException e) {
-				e.printStackTrace();
+				LOGGER.log(null, e);
 			}
 		}
 
@@ -54,13 +52,12 @@ public class MongoUiComunication {
 			database = new MongoWrapper(mongoClient);
 		} catch (Exception e) {
 			LOGGER.info("Error while connecting to mongoHost");
-			e.printStackTrace();
+			LOGGER.log(null, e);
 		}
 
 		myCompanyController = new CompanyController(database);
-		editButtons = new LinkedList<>();
 
-		editCompanyButton=new JButton();
+		editCompanyButton = new JButton();
 	}
 
 	public boolean addClientToDatabase(String name, String fiscalCode, String residence, String city, String province,
@@ -110,7 +107,7 @@ public class MongoUiComunication {
 
 	public boolean printSelected() {
 		if (currentSelectedClient != null && currentSelectedCompany != null && currentSelectedInvoice != null) {
-			increseInvoiceNumber();
+			increaseInvoiceNumber();
 			try {
 				new PDFCreator(currentSelectedCompany, currentSelectedClient, currentSelectedInvoice);
 			} catch (Exception e) {
@@ -122,7 +119,7 @@ public class MongoUiComunication {
 		return false;
 	}
 
-	private void  increseInvoiceNumber() {
+	private void  increaseInvoiceNumber() {
 		invoiceCounter++;
 	}
 
