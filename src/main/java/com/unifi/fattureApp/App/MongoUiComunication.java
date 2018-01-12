@@ -11,6 +11,9 @@ import org.apache.log4j.Logger;
 
 import com.github.fakemongo.Fongo;
 import com.mongodb.MongoClient;
+import com.orientechnologies.orient.core.db.OrientDB;
+import com.orientechnologies.orient.core.db.OrientDBConfigBuilder;
+import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
 public class MongoUiComunication {
@@ -32,7 +35,25 @@ public class MongoUiComunication {
 
 	private JButton editCompanyButton;
 
-	public MongoUiComunication(boolean testing, String[] args) {	
+	public MongoUiComunication(boolean testing, String[] args, boolean usingMongodb) {	
+		if(usingMongodb) {
+			settingUpMongodb(args,testing);
+		}else {
+			setUpOtherdb();
+		}
+		
+		myCompanyController = new CompanyController(database);
+		editCompanyButton = new JButton();
+	}
+	
+
+	private void setUpOtherdb() {
+		
+		
+	}
+
+	
+	private void settingUpMongodb(String[] args,boolean testing) {
 		if (args!=null && args.length > 0)
 			mongoHost = args[0];
 
@@ -54,10 +75,7 @@ public class MongoUiComunication {
 			LOGGER.info("Error while connecting to mongoHost");
 			LOGGER.log(null, e);
 		}
-
-		myCompanyController = new CompanyController(database);
-
-		editCompanyButton = new JButton();
+		
 	}
 
 	public boolean addClientToDatabase(String name, String fiscalCode, String residence, String city, String province,

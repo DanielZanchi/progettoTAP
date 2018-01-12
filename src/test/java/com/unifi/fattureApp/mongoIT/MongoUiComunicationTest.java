@@ -16,7 +16,7 @@ public class MongoUiComunicationTest {
 	@Before
 	public void setUp() {
 		String args[] = null;
-		myMongoUiCom = new MongoUiComunication(true, args);
+		myMongoUiCom = new MongoUiComunication(true, args,true);
 	}
 
 	@Test

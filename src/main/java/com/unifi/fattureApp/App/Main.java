@@ -9,7 +9,7 @@ import com.unifi.fattureApp.UI.MainWindowUI;
 public class Main {
 	private static final Logger LOGGER = Logger.getLogger(Main.class);
 	public static void main(String[] args) throws UnknownHostException {
-		MongoUiComunication mongoUiComunication = new MongoUiComunication(false, args);
+		MongoUiComunication mongoUiComunication = new MongoUiComunication(false, args,true);
 
 		//Launch UI
 		MainWindowUI mainWindowUI = null;

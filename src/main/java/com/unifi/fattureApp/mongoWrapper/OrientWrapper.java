@@ -2,6 +2,7 @@ package com.unifi.fattureApp.mongoWrapper;
 
 import java.util.List;
 
+import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
@@ -12,8 +13,6 @@ public class OrientWrapper implements Database{
 	
 	
 	public  OrientWrapper() {
-		ODatabaseDocumentTx db = new ODatabaseDocumentTx("remote:localhost/company").open("admin", "admin");
-
 
 	}
 
