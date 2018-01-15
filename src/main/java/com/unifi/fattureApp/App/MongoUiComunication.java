@@ -14,7 +14,10 @@ import com.mongodb.MongoClient;
 import com.orientechnologies.orient.core.db.OrientDB;
 import com.orientechnologies.orient.core.db.OrientDBConfigBuilder;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
+import com.rethinkdb.RethinkDB;
+import com.rethinkdb.RethinkDBConnection;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
+import com.unifi.fattureApp.mongoWrapper.RethinkWrapper;
 
 public class MongoUiComunication {
 	private static final Logger LOGGER = Logger.getLogger(MongoUiComunication.class);
@@ -48,7 +51,9 @@ public class MongoUiComunication {
 	
 
 	private void setUpOtherdb() {
-		
+		RethinkDB db=RethinkDB.r;
+		RethinkDBConnection connection=db.connect();
+		database=new RethinkWrapper(db,connection);
 		
 	}
 

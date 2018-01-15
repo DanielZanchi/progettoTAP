@@ -1,7 +1,8 @@
 package com.unifi.fattureApp.mongoWrapper;
 
-import java.net.UnknownHostException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.rethinkdb.RethinkDB;
 import com.rethinkdb.RethinkDBConnection;
@@ -12,17 +13,27 @@ import com.unifi.fattureApp.App.Invoice;
 
 public class RethinkWrapper implements Database { 
 	
-	public RethinkWrapper() throws UnknownHostException {
-		RethinkDB r = RethinkDB.r;
-		RethinkDBConnection conn = r.connect();
-		r.dbCreate("company").run(conn);
+	private RethinkDB rethinkDB;
+	private RethinkDBConnection connection;
+	
+	public RethinkWrapper(RethinkDB rethinkDB,RethinkDBConnection connection) {
 		
-		r.db("company").tableCreate("companies").run(conn);	
+		this.rethinkDB=rethinkDB;
+		this.connection=connection;
+		
+		if(rethinkDB.dbList().run(connection).size()==0) {
+			rethinkDB.dbCreate("company").run(connection);
+			rethinkDB.db("company").tableCreate("companies").run(connection);	
+			rethinkDB.db("company").tableCreate("clients").run(connection);	
+			rethinkDB.db("company").tableCreate("invoices").run(connection);	
+		}
+		
+		
 	}
 	
 	@Override
 	public List<Client> getAllClientsList() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -34,8 +45,7 @@ public class RethinkWrapper implements Database {
 
 	@Override
 	public void saveClient(Client client) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
