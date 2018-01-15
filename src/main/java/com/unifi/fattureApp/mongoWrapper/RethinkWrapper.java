@@ -45,9 +45,7 @@ public class RethinkWrapper implements Database {
 
 	@Override
 	public void saveClient(Client client) {
-		HashMap<String, Object> hmap = new HashMap<String,Object>();
-		hmap.put(client.getId(), client);
-		rethinkDB.table("clients").insert(hmap);
+		
 	}
 
 	@Override
