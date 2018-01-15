@@ -27,7 +27,7 @@ public class Company {
 		this.setCountry(country);
 		this.setPhone(phone);
 		this.setEmail(email);
-		this.setNumInvoice(0);
+//		this.setNumInvoice(0);
 	}
 
 	public String getId() {
@@ -108,13 +108,5 @@ public class Company {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public int getNumInvoice() {
-		return numInvoice;
-	}
-
-	public void setNumInvoice(int numInvoice) {
-		this.numInvoice = numInvoice;
 	}
 }
