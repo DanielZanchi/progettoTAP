@@ -2,18 +2,18 @@ package com.unifi.fattureApp.mongoWrapper;
 
 import java.util.List;
 
-import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
+import org.lightcouch.CouchDbClient;
+
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.Invoice;
 
-public class OrientWrapper implements Database{
+public class CouchWrapper implements Database{
 	
 	
-	public  OrientWrapper() {
-
+	public  CouchWrapper(CouchDbClient couchDbClient) {
+		
 	}
 
 	@Override
