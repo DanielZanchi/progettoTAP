@@ -10,8 +10,7 @@ public class CouchdbWrapperTests extends CouchdbWrapperTestAbstract{
 
 	@Override
 	public CouchDbClient createCouchDbClient() throws UnknownHostException {
-		CouchDbClient couchDbClient=new CouchDbClient(new CouchDbProperties().setDbName("testcompany").setPort(2017).setHost("localhost"));
+		CouchDbClient couchDbClient = new CouchDbClient(new CouchDbProperties().setDbName("testcompany").setPort(2017).setHost("localhost"));
 		return couchDbClient;
 	}
-
 }

@@ -32,7 +32,6 @@ public class PDFCreator {
 	static final PDFont helveticaFont = PDType1Font.HELVETICA;
 
 	public PDFCreator(Company company, Client client, Invoice invoice) throws IOException {
-
 		this.selectedCompany = company;
 		this.selectedClient = client;
 		this.selectedInvoice = invoice;
@@ -41,7 +40,6 @@ public class PDFCreator {
 	}
 
 	private void create() throws IOException {
-
 		final PDPage singlePage = new PDPage();
 		final PDDocument document = new PDDocument();
 
@@ -271,7 +269,7 @@ public class PDFCreator {
 		PDRectangle mediabox = sp.getMediaBox();
 		float width = mediabox.getWidth() - 2 * margin;
 
-		ArrayList<String> lines = new ArrayList<String>();
+		ArrayList<String> lines = new ArrayList<>();
 
 		for (String text : stringToSplit.split("\n")) {
 			int lastSpace = -1;
@@ -316,7 +314,5 @@ public class PDFCreator {
 		float p = Float.parseFloat(price);
 		p = (float) (p / 1.22);
 		return Float.toString(p);
-
 	}
-
 }

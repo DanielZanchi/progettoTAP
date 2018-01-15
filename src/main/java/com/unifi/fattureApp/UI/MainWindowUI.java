@@ -2,7 +2,6 @@ package com.unifi.fattureApp.UI;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -42,20 +41,6 @@ public class MainWindowUI {
 	/**
 	 * Launch the application.
 	 */
-	
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					new MainWindowUI();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	*/
 
 	public MainWindowUI(MongoUiComunication mongoUiComm) {
 		mongoUiCom = mongoUiComm;
@@ -69,7 +54,7 @@ public class MainWindowUI {
 
 	private void initialize() {
 		final JPanel myCompanyPanel;
-		
+
 		fattureAppFrame = new JFrame();
 		fattureAppFrame.setTitle("Fatture App");
 		fattureAppFrame.setPreferredSize(windowDimension);

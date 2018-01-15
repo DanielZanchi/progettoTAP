@@ -14,14 +14,13 @@ public class TestHelperTool {
 	private DBCollection invoices;
 
 	public TestHelperTool () {
-		
+
 	}
-	
+
 	public void setUpCouchClient(CouchDbClient couchDbClient) {
-		couchDbClient=new CouchDbClient(new CouchDbProperties().setPort(27017).setHost("localhost").setDbName("testcompany"));
+		couchDbClient = new CouchDbClient(new CouchDbProperties().setPort(27017).setHost("localhost").setDbName("testcompany"));
 	}
-	
-	
+
 	public void setUpMongoClient(MongoClient mongoClient) {
 		DB db = mongoClient.getDB("company");
 		db.getCollection("client").drop();

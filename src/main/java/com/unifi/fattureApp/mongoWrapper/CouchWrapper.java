@@ -10,16 +10,15 @@ import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.Invoice;
 
 public class CouchWrapper implements Database{
-	
+
 	private CouchDbClient couchDbClient;
-	
+
 	public  CouchWrapper(CouchDbClient couchDbClient) {
 		this.couchDbClient=couchDbClient;
 	}
 
 	@Override
 	public List<Client> getAllClientsList() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -35,7 +34,6 @@ public class CouchWrapper implements Database{
 
 	@Override
 	public List<Company> getAllCompaniesList() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -51,7 +49,6 @@ public class CouchWrapper implements Database{
 
 	@Override
 	public List<Invoice> getAllInvoicesList() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -64,5 +61,4 @@ public class CouchWrapper implements Database{
 	public void saveInvoice(Invoice invoice) {
 		couchDbClient.save(invoice);	
 	}
-
 }

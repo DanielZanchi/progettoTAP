@@ -47,21 +47,18 @@ public class MongoUiComunication {
 	}
 
 	private void setUpOtherdb(boolean testing) {
-		CouchDbClient couchDbClient=null;
+		CouchDbClient couchDbClient = null;
 		if(testing) {
-			couchDbClient=new CouchDbClient(new CouchDbProperties().setPort(27017).setHost(mongoHost).setDbName("company"));
+			couchDbClient = new CouchDbClient(new CouchDbProperties().setPort(27017).setHost(mongoHost).setDbName("company"));
 		}else {
-			couchDbClient=new CouchDbClient(new CouchDbProperties().setPort(27017).setHost(mongoHost).setDbName("testcompany"));
+			couchDbClient = new CouchDbClient(new CouchDbProperties().setPort(27017).setHost(mongoHost).setDbName("testcompany"));
 		}
 	}
 
 	private void setUpOtherdb() {
-
-		CouchDbClient couchDbClient=new CouchDbClient(new CouchDbProperties().setPort(27017).setHost(mongoHost));
-		database=new CouchWrapper(couchDbClient);
-
+		CouchDbClient couchDbClient = new CouchDbClient(new CouchDbProperties().setPort(27017).setHost(mongoHost));
+		database = new CouchWrapper(couchDbClient);
 	}
-
 
 	private void settingUpMongodb(String[] args,boolean testing) {
 		if (args!=null && args.length > 0)
@@ -85,7 +82,6 @@ public class MongoUiComunication {
 			LOGGER.info("Error while connecting to mongoHost");
 			LOGGER.log(null, e);
 		}
-
 	}
 
 	public boolean addClientToDatabase(String name, String fiscalCode, String residence, String city, String province,
@@ -141,7 +137,6 @@ public class MongoUiComunication {
 			} catch (Exception e) {
 				LOGGER.info("Error while creating pdf!");
 			}
-
 			return true;
 		}
 		return false;

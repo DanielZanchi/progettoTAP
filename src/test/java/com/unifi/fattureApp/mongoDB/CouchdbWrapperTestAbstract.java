@@ -9,9 +9,7 @@ import org.lightcouch.CouchDbClient;
 import com.unifi.fattureApp.helpTestTools.TestHelperTool;
 import com.unifi.fattureApp.mongoWrapper.CouchWrapper;
 
-
 public abstract class CouchdbWrapperTestAbstract {
-
 	public abstract CouchDbClient createCouchDbClient() throws UnknownHostException;
 
 	private CouchWrapper couchDatabase;
@@ -24,7 +22,5 @@ public abstract class CouchdbWrapperTestAbstract {
 		mongoTestHelper = new TestHelperTool();
 		mongoTestHelper.setUpCouchClient(couchDbClient);
 		couchDatabase = new CouchWrapper(couchDbClient);
-	}
-	
-	
+	}	
 }
