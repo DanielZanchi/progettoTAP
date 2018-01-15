@@ -11,9 +11,10 @@ import com.unifi.fattureApp.App.Invoice;
 
 public class CouchWrapper implements Database{
 	
+	private CouchDbClient couchDbClient;
 	
 	public  CouchWrapper(CouchDbClient couchDbClient) {
-		
+		this.couchDbClient=couchDbClient;
 	}
 
 	@Override
@@ -24,14 +25,12 @@ public class CouchWrapper implements Database{
 
 	@Override
 	public Client findClientById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return couchDbClient.find(Client.class, id);
 	}
 
 	@Override
 	public void saveClient(Client client) {
-		// TODO Auto-generated method stub
-		
+		couchDbClient.save(client);
 	}
 
 	@Override
@@ -42,14 +41,12 @@ public class CouchWrapper implements Database{
 
 	@Override
 	public Company findCompanyById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return couchDbClient.find(Company.class, id);
 	}
 
 	@Override
 	public void saveCompany(Company company) {
-		// TODO Auto-generated method stub
-		
+		couchDbClient.save(company);
 	}
 
 	@Override
@@ -60,14 +57,12 @@ public class CouchWrapper implements Database{
 
 	@Override
 	public Invoice findInvoiceById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return couchDbClient.find(Invoice.class, id);
 	}
 
 	@Override
 	public void saveInvoice(Invoice invoice) {
-		// TODO Auto-generated method stub
-		
+		couchDbClient.save(invoice);	
 	}
 
 }

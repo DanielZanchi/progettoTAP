@@ -15,7 +15,7 @@ import com.mongodb.MongoClient;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Invoice;
-import com.unifi.fattureApp.helpTestTools.MongoTestHelperTool;
+import com.unifi.fattureApp.helpTestTools.TestHelperTool;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
 public abstract class MongoWrapperTestAbstract { 
@@ -23,12 +23,13 @@ public abstract class MongoWrapperTestAbstract {
 
 	public abstract MongoClient createMongoClient() throws UnknownHostException;
 
-	private MongoTestHelperTool mongoTestHelper;
+	private TestHelperTool mongoTestHelper;
 
 	@Before
 	public void initDB() throws UnknownHostException {
 		MongoClient mongoClient = createMongoClient();
-		mongoTestHelper = new MongoTestHelperTool(mongoClient);
+		mongoTestHelper = new TestHelperTool();
+		mongoTestHelper.setUpMongoClient(mongoClient);
 		mongoDatabase = new MongoWrapper(mongoClient);
 	}
 

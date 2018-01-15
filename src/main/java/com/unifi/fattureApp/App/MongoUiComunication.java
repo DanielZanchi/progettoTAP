@@ -44,7 +44,7 @@ public class MongoUiComunication {
 		if(usingMongodb) {
 			settingUpMongodb(args,testing);
 		}else {
-			setUpOtherdb();
+			setUpOtherdb(testing);
 		}
 		
 		myCompanyController = new CompanyController(database);
@@ -52,9 +52,13 @@ public class MongoUiComunication {
 	}
 	
 
-	private void setUpOtherdb() {
-		
-		CouchDbClient couchDbClient=new CouchDbClient(new CouchDbProperties().setPort(27017).setHost(mongoHost));
+	private void setUpOtherdb(boolean testing) {
+		CouchDbClient couchDbClient=null;
+		if(testing) {
+			couchDbClient=new CouchDbClient(new CouchDbProperties().setPort(27017).setHost(mongoHost).setDbName("company"));
+		}else {
+			couchDbClient=new CouchDbClient(new CouchDbProperties().setPort(27017).setHost(mongoHost).setDbName("testcompany"));
+		}
 		database=new CouchWrapper(couchDbClient);
 		
 	}

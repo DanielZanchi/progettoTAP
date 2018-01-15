@@ -1,16 +1,28 @@
 package com.unifi.fattureApp.helpTestTools;
 
+import org.lightcouch.CouchDbClient;
+import org.lightcouch.CouchDbProperties;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 
-public class MongoTestHelperTool {
+public class TestHelperTool {
 	private DBCollection clients;
 	private DBCollection companies;
 	private DBCollection invoices;
 
-	public MongoTestHelperTool (MongoClient mongoClient) {
+	public TestHelperTool () {
+		
+	}
+	
+	public void setUpCouchClient(CouchDbClient couchDbClient) {
+		couchDbClient=new CouchDbClient(new CouchDbProperties().setPort(27017).setHost("localhost").setDbName("testcompany"));
+	}
+	
+	
+	public void setUpMongoClient(MongoClient mongoClient) {
 		DB db = mongoClient.getDB("company");
 		db.getCollection("client").drop();
 		db.getCollection("companies").drop();
