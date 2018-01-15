@@ -46,8 +46,6 @@ public class MongoUiComunication {
 		editCompanyButton = new JButton();
 	}
 
-
-<<<<<<< HEAD
 	private void setUpOtherdb(boolean testing) {
 		CouchDbClient couchDbClient=null;
 		if(testing) {
@@ -55,11 +53,11 @@ public class MongoUiComunication {
 		}else {
 			couchDbClient=new CouchDbClient(new CouchDbProperties().setPort(27017).setHost(mongoHost).setDbName("testcompany"));
 		}
-=======
+	}
+
 	private void setUpOtherdb() {
 
 		CouchDbClient couchDbClient=new CouchDbClient(new CouchDbProperties().setPort(27017).setHost(mongoHost));
->>>>>>> branch 'master' of https://github.com/Danny182/progettoTAP.git
 		database=new CouchWrapper(couchDbClient);
 
 	}
