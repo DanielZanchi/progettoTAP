@@ -6,7 +6,7 @@ The app will create an _invoice_ in PDF format
 It's built in *Java* using the *Eclipse* IDE  
   
 We used the following tools: 
- *Maven
- *Travis
+ * Maven
+ * Travis
 
 
