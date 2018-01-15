@@ -13,11 +13,6 @@ import org.lightcouch.CouchDbProperties;
 
 import com.github.fakemongo.Fongo;
 import com.mongodb.MongoClient;
-import com.orientechnologies.orient.core.db.OrientDB;
-import com.orientechnologies.orient.core.db.OrientDBConfigBuilder;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocument;
-import com.rethinkdb.RethinkDB;
-import com.rethinkdb.RethinkDBConnection;
 import com.unifi.fattureApp.mongoWrapper.CouchWrapper;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
@@ -46,12 +41,13 @@ public class MongoUiComunication {
 		}else {
 			setUpOtherdb(testing);
 		}
-		
+
 		myCompanyController = new CompanyController(database);
 		editCompanyButton = new JButton();
 	}
-	
 
+
+<<<<<<< HEAD
 	private void setUpOtherdb(boolean testing) {
 		CouchDbClient couchDbClient=null;
 		if(testing) {
@@ -59,11 +55,16 @@ public class MongoUiComunication {
 		}else {
 			couchDbClient=new CouchDbClient(new CouchDbProperties().setPort(27017).setHost(mongoHost).setDbName("testcompany"));
 		}
+=======
+	private void setUpOtherdb() {
+
+		CouchDbClient couchDbClient=new CouchDbClient(new CouchDbProperties().setPort(27017).setHost(mongoHost));
+>>>>>>> branch 'master' of https://github.com/Danny182/progettoTAP.git
 		database=new CouchWrapper(couchDbClient);
-		
+
 	}
 
-	
+
 	private void settingUpMongodb(String[] args,boolean testing) {
 		if (args!=null && args.length > 0)
 			mongoHost = args[0];
@@ -86,7 +87,7 @@ public class MongoUiComunication {
 			LOGGER.info("Error while connecting to mongoHost");
 			LOGGER.log(null, e);
 		}
-		
+
 	}
 
 	public boolean addClientToDatabase(String name, String fiscalCode, String residence, String city, String province,

@@ -281,14 +281,7 @@ public class PDFCreator {
 					spaceIndex = text.length();
 				String subString = text.substring(0, spaceIndex);
 				float size = getTextWidth(fontSize, subString);
-				if (size > width) {
-					if (lastSpace < 0)
-						lastSpace = spaceIndex;
-					subString = text.substring(0, lastSpace);
-					lines.add(subString);
-					text = text.substring(lastSpace).trim();
-					lastSpace = -1;
-				} else if (spaceIndex == text.length()) {
+				if (spaceIndex == text.length()) {
 					lines.add(text);
 					text = "";
 				} else {
