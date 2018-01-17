@@ -3,8 +3,6 @@ package com.unifi.fattureApp.UI;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.LinkedList;
@@ -128,16 +126,14 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 		saveButton.setBounds((addItemPanel.getWidth() / 2) + 24,
 				addItemPanel.getHeight() - 20 - addItemPanel.getY(), buttonWidth, buttonHeight);
 		addItemPanel.add(saveButton);
-		saveButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// save invoice
-				if(addItemPanel.isSaving()) {
-					mongoUiComunication.addInvoiceToDatabase(itemNameTF.getText(), itemDescriptionTF.getText(), itemPriceTF.getText());
-				}
-
-				addItemPanel.setVisible(false);
-				mongoUiComunication.updateInvoicesReferences();
+		saveButton.addActionListener(e -> {
+			// save invoice
+			if(addItemPanel.isSaving()) {
+				mongoUiComunication.addInvoiceToDatabase(itemNameTF.getText(), itemDescriptionTF.getText(), itemPriceTF.getText());
 			}
+
+			addItemPanel.setVisible(false);
+			mongoUiComunication.updateInvoicesReferences();
 		});
 
 		// check if all required field aren't empty. if so activate the save button.

@@ -3,10 +3,7 @@ package com.unifi.fattureApp.UI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -133,17 +130,15 @@ public class MainWindowUI {
 		prevCompanyButton.setBounds(addMyCompanyButton.getX() - innerInsets - w, myCompanyPanel.getHeight() / 2 - h,
 				w, h);
 		myCompanyPanel.add(prevCompanyButton);
-		prevCompanyButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// go to previous company
-				if(mongoUiCom.getCompanyCounter()-1<0) {
+		prevCompanyButton.addActionListener(e -> {
+			// go to previous company
+			if(mongoUiCom.getCompanyCounter()-1<0) {
 
-					//disabilitarlo?
+				//disabilitarlo?
 
-				}else{
-					mongoUiCom.setCompanyCounter(mongoUiCom.getCompanyCounter()-1);
-					editMyCompanyButton.setEnabled(true);
-				}
+			}else{
+				mongoUiCom.setCompanyCounter(mongoUiCom.getCompanyCounter()-1);
+				editMyCompanyButton.setEnabled(true);
 			}
 		});
 
@@ -156,16 +151,14 @@ public class MainWindowUI {
 		nextCompanyButton.setBounds(addMyCompanyButton.getX() - innerInsets - w, myCompanyPanel.getHeight() / 2 + 2,
 				w, h);
 		myCompanyPanel.add(nextCompanyButton);
-		nextCompanyButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(mongoUiCom.getCompanyCounter()+1>mongoUiCom.getCompaniesCount()-1) {
+		nextCompanyButton.addActionListener(e -> {
+			if(mongoUiCom.getCompanyCounter()+1>mongoUiCom.getCompaniesCount()-1) {
 
-					//disabilitarlo?
+				//disabilitarlo?
 
-				}else {
-					mongoUiCom.setCompanyCounter(mongoUiCom.getCompanyCounter()+1);
-					editMyCompanyButton.setEnabled(true);
-				}
+			}else {
+				mongoUiCom.setCompanyCounter(mongoUiCom.getCompanyCounter()+1);
+				editMyCompanyButton.setEnabled(true);
 			}
 		});
 
@@ -202,12 +195,7 @@ public class MainWindowUI {
 		editClient.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		editClient.setBounds(clientPanel.getWidth() - buttonWidth,
 				(clientPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
-		editClient.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				showGenericAddPanel(addClientPanel, false);
-			}
-		});
+		editClient.addActionListener(e -> showGenericAddPanel(addClientPanel, false));
 		clientPanel.add(editClient);
 		outerPanel.setLayer(myCompanyPanel, 1);
 
@@ -215,13 +203,10 @@ public class MainWindowUI {
 		clientListComboBox.setName("clientsComboBox");
 		clientListComboBox.setBounds(0, (clientPanel.getHeight() / 2) - 14, 338, 28);
 		clientPanel.add(clientListComboBox);
-		clientListComboBox.addItemListener(new ItemListener() {
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				if(e.getStateChange() == ItemEvent.SELECTED) {
-					editClient.setEnabled(true);
-					mongoUiCom.setCurrentSelectedClient(mongoUiCom.getSavedClients().get(clientListComboBox.getSelectedIndex()));
-				}
+		clientListComboBox.addItemListener(e -> {
+			if(e.getStateChange() == ItemEvent.SELECTED) {
+				editClient.setEnabled(true);
+				mongoUiCom.setCurrentSelectedClient(mongoUiCom.getSavedClients().get(clientListComboBox.getSelectedIndex()));
 			}
 		});
 
@@ -253,25 +238,17 @@ public class MainWindowUI {
 		editInvoiceProvision.setBounds(invoiceProvisionPanel.getWidth() - buttonWidth,
 				(invoiceProvisionPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
 		editInvoiceProvision.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-		editInvoiceProvision.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				showGenericAddPanel(addItemPanel, false);
-			}
-		});
+		editInvoiceProvision.addActionListener(e -> showGenericAddPanel(addItemPanel, false));
 		invoiceProvisionPanel.add(editInvoiceProvision);
 
 		JComboBox<String> invoiceListcomboBox = new JComboBox<>();
 		invoiceListcomboBox.setName("invoicesComboBox");
 		invoiceListcomboBox.setBounds(0, (invoiceProvisionPanel.getHeight() / 2) - 14, 338, 28);
 		invoiceProvisionPanel.add(invoiceListcomboBox);
-		invoiceListcomboBox.addItemListener(new ItemListener() {			
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				if(e.getStateChange() == ItemEvent.SELECTED) {
-					mongoUiCom.setCurrentSelectedInvoice(mongoUiCom.getSavedInvoices().get(invoiceListcomboBox.getSelectedIndex()));
-					editInvoiceProvision.setEnabled(true);
-				}
+		invoiceListcomboBox.addItemListener(e -> {
+			if(e.getStateChange() == ItemEvent.SELECTED) {
+				mongoUiCom.setCurrentSelectedInvoice(mongoUiCom.getSavedInvoices().get(invoiceListcomboBox.getSelectedIndex()));
+				editInvoiceProvision.setEnabled(true);
 			}
 		});
 
