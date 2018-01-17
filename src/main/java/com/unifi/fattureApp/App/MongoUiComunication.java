@@ -51,7 +51,6 @@ public class MongoUiComunication {
 		CouchDbClient couchDbClient = null;
 		if(testing) {
 			couchDbClient = new CouchDbClient(new CouchDbProperties().setPort(27017).setHost(mongoHost).setDbName("company"));
-
 		}else {
 			couchDbClient = new CouchDbClient(new CouchDbProperties().setPort(27017).setHost(mongoHost).setDbName("testcompany"));
 		}

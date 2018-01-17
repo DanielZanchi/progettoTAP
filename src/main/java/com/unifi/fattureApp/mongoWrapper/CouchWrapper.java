@@ -11,7 +11,6 @@ import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.Invoice;
 
 public class CouchWrapper implements Database{
-
 	private CouchDbClient couchDbClient;
 
 	public  CouchWrapper(CouchDbClient couchDbClient) {

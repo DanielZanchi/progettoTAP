@@ -1,7 +1,6 @@
 package com.unifi.fattureApp.App;
 
 import java.io.IOException;
-import java.net.UnknownHostException;
 
 import org.apache.log4j.Logger;
 

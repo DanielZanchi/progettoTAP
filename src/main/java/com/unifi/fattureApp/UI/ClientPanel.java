@@ -3,8 +3,6 @@ package com.unifi.fattureApp.UI;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
@@ -19,7 +17,7 @@ import javax.swing.event.DocumentListener;
 import com.unifi.fattureApp.App.MongoUiComunication;
 
 public class ClientPanel extends JPanel implements AddPanel {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -4964123340815964907L;
 
 	private MongoUiComunication myMongoUiComunication;
 

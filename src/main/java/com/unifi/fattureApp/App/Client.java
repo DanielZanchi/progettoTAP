@@ -1,6 +1,6 @@
 package com.unifi.fattureApp.App;
 
-public class Client {
+public class Client {	
 	private String id;
 	private String name;
 	private String fiscalCode;
