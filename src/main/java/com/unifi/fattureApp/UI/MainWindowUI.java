@@ -111,11 +111,7 @@ public class MainWindowUI {
 				(myCompanyPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
 		myCompanyPanel.add(editMyCompanyButton);
 		outerPanel.setLayer(editMyCompanyButton, 1);
-		editMyCompanyButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				showGenericAddPanel(addCompanyPanel, false);
-			}
-		});
+		editMyCompanyButton.addActionListener(e -> showGenericAddPanel(addCompanyPanel, false));
 		mongoUiCom.seteditCompanyButton(editMyCompanyButton);
 
 		JButton addMyCompanyButton = new JButton("Add");
@@ -236,12 +232,7 @@ public class MainWindowUI {
 				(clientPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
 		outerPanel.setLayer(myCompanyPanel, 1);
 		clientPanel.add(addClient);
-		addClient.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				showGenericAddPanel(addClientPanel, true);
-			}
-		});
+		addClient.addActionListener(e -> showGenericAddPanel(addClientPanel, true));
 
 		// Description panel
 		JPanel invoiceProvisionPanel = new JPanel();
@@ -290,12 +281,7 @@ public class MainWindowUI {
 				(invoiceProvisionPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
 		addInvoiceProvision.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		invoiceProvisionPanel.add(addInvoiceProvision);
-		addInvoiceProvision.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				showGenericAddPanel(addItemPanel, true);
-			}
-		});
+		addInvoiceProvision.addActionListener(e -> showGenericAddPanel(addItemPanel, true));
 
 		JButton createInvoiceButton = new JButton("CREATE INVOICE");
 		createInvoiceButton.setFont(new Font(ARIAL, Font.PLAIN, 14));
@@ -308,12 +294,9 @@ public class MainWindowUI {
 		w = 180;
 		createInvoiceButton.setBounds(invoicePanelWidth / 2 - (w / 2), invoicePanel.getHeight() - h - 8, w, h);
 		invoicePanel.add(createInvoiceButton);
-		createInvoiceButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// creare la fattura.
-				mongoUiCom.printSelected();
-			}
-		});
+
+		// creare la fattura.
+		createInvoiceButton.addActionListener(e -> mongoUiCom.printSelected());
 
 		createAddRecordsPanels();
 		updateReferences(clientListComboBox, invoiceListcomboBox, myCompanyLabel);

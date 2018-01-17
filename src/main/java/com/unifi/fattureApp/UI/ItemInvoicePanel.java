@@ -118,11 +118,7 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 		cancelButton.setBounds((addItemPanel.getWidth() / 2) - buttonWidth - 24,
 				addItemPanel.getHeight() - 20 - addItemPanel.getY(), buttonWidth, buttonHeight);
 		addItemPanel.add(cancelButton);
-		cancelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				addItemPanel.setVisible(false);
-			}
-		});
+		cancelButton.addActionListener(e -> addItemPanel.setVisible(false));
 
 		JButton saveButton = new JButton();
 		saveButton.setName("SaveButton");

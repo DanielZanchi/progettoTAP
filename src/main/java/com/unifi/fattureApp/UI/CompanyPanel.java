@@ -219,11 +219,7 @@ public class CompanyPanel extends JPanel implements AddPanel{
 		cancelButton.setBounds((addCompanyPanel.getWidth() / 2) - buttonWidth - 24,
 				addCompanyPanel.getHeight() - 20 - addCompanyPanel.getY(), buttonWidth, buttonHeight);
 		addCompanyPanel.add(cancelButton);
-		cancelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				addCompanyPanel.setVisible(false);
-			}
-		});
+		cancelButton.addActionListener(e ->	addCompanyPanel.setVisible(false));
 
 		JButton saveButton = new JButton();
 		saveButton.setName("SaveButton");

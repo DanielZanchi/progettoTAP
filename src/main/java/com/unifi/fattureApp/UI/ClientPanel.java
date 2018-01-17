@@ -216,11 +216,7 @@ public class ClientPanel extends JPanel implements AddPanel {
 		cancelButton.setBounds((addClientPanel.getWidth() / 2) - buttonWidth - 24,
 				addClientPanel.getHeight() - 20 - addClientPanel.getY(), buttonWidth, buttonHeight);
 		addClientPanel.add(cancelButton);
-		cancelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				addClientPanel.setVisible(false);
-			}
-		});
+		cancelButton.addActionListener(e -> addClientPanel.setVisible(false));
 
 		JButton saveButton = new JButton();
 		saveButton.setEnabled(false);
