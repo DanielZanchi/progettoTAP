@@ -307,7 +307,7 @@ public class PDFCreator {
 		AffineTransform affinetransform = new AffineTransform();
 		FontRenderContext frc = new FontRenderContext(affinetransform, true, true);
 		return (float) titleFont.getStringBounds(s, frc).getWidth();
-		}
+	}
 
 	private String getPriceExcVAT(String price) {
 		float p = Float.parseFloat(price);

@@ -1,5 +1,6 @@
 package com.unifi.fattureApp.App;
 
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class MongoUiComunication {
 
 	private JButton editCompanyButton;
 
-	public MongoUiComunication(boolean testing, String[] args, boolean usingMongodb) {	
+	public MongoUiComunication(boolean testing, String[] args, boolean usingMongodb) throws IOException {	
 		if(usingMongodb) {
 			settingUpMongodb(args,testing);
 		}else {
@@ -46,13 +47,15 @@ public class MongoUiComunication {
 		editCompanyButton = new JButton();
 	}
 
-	private void setUpOtherdb(boolean testing) {
+	private void setUpOtherdb(boolean testing) throws IOException {
 		CouchDbClient couchDbClient = null;
 		if(testing) {
 			couchDbClient = new CouchDbClient(new CouchDbProperties().setPort(27017).setHost(mongoHost).setDbName("company"));
+
 		}else {
 			couchDbClient = new CouchDbClient(new CouchDbProperties().setPort(27017).setHost(mongoHost).setDbName("testcompany"));
 		}
+		couchDbClient.close();
 	}
 
 	private void setUpOtherdb() {

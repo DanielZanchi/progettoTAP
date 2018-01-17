@@ -2,6 +2,8 @@ package com.unifi.fattureApp.mongoIT;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,7 +16,7 @@ public class MongoUiComunicationTest {
 	private MongoUiComunication myMongoUiCom;
 
 	@Before
-	public void setUp() {
+	public void setUp() throws IOException {
 		String args[] = null;
 		myMongoUiCom = new MongoUiComunication(true, args,true);
 	}

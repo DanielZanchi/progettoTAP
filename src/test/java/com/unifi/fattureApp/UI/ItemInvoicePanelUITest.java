@@ -1,5 +1,7 @@
 package com.unifi.fattureApp.UI;
 
+import java.io.IOException;
+
 import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.fixture.JButtonFixture;
 import org.assertj.swing.fixture.JPanelFixture;
@@ -15,7 +17,7 @@ public class ItemInvoicePanelUITest {
 	private JButtonFixture addInvoice_Button;
 
 	@Before
-	public void setUp() {
+	public void setUp() throws IOException {
 		MainWindowUI frame = new MainWindowUI();
 		window = new FrameFixture(frame.getMainFrame());
 		window.show();

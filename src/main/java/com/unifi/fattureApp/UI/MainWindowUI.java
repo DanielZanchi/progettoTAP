@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
+import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -44,7 +45,7 @@ public class MainWindowUI {
 		initialize();
 	}
 
-	public MainWindowUI() {
+	public MainWindowUI() throws IOException {
 		mongoUiCom = new MongoUiComunication(true, null,true);
 		initialize();
 	}

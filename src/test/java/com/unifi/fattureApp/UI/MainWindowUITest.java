@@ -10,6 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 public class MainWindowUITest {
 	private FrameFixture window;
 
@@ -20,7 +22,7 @@ public class MainWindowUITest {
 	private JButtonFixture addClient_Button;
 
 	@Before
-	public void setUp() {
+	public void setUp() throws IOException {
 		//MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
 		MainWindowUI frame = new MainWindowUI();
 		window = new FrameFixture(frame.getMainFrame());
