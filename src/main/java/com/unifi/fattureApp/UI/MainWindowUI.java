@@ -125,11 +125,7 @@ public class MainWindowUI {
 				(myCompanyPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
 		myCompanyPanel.add(addMyCompanyButton);
 		outerPanel.setLayer(addMyCompanyButton, 1);
-		addMyCompanyButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				showGenericAddPanel(addCompanyPanel, true);
-			}
-		});
+		addMyCompanyButton.addActionListener(e -> showGenericAddPanel(addCompanyPanel, true));
 
 		// ▲, ▼
 		JButton prevCompanyButton = new JButton("▲");

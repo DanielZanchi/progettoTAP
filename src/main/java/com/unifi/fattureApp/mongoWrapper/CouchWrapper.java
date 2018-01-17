@@ -1,5 +1,6 @@
 package com.unifi.fattureApp.mongoWrapper;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.lightcouch.CouchDbClient;
@@ -14,12 +15,13 @@ public class CouchWrapper implements Database{
 	private CouchDbClient couchDbClient;
 
 	public  CouchWrapper(CouchDbClient couchDbClient) {
-		this.couchDbClient=couchDbClient;
+		this.couchDbClient = couchDbClient;
 	}
 
 	@Override
 	public List<Client> getAllClientsList() {
-		return null;
+		//da implementare
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -34,7 +36,8 @@ public class CouchWrapper implements Database{
 
 	@Override
 	public List<Company> getAllCompaniesList() {
-		return null;
+		//da implementare
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -49,7 +52,8 @@ public class CouchWrapper implements Database{
 
 	@Override
 	public List<Invoice> getAllInvoicesList() {
-		return null;
+		//da implementare
+		return Collections.emptyList();
 	}
 
 	@Override

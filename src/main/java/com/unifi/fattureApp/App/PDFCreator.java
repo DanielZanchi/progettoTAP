@@ -306,9 +306,8 @@ public class PDFCreator {
 		Font titleFont = new Font("Helvetica", Font.PLAIN, fontSize);
 		AffineTransform affinetransform = new AffineTransform();
 		FontRenderContext frc = new FontRenderContext(affinetransform, true, true);
-		float textWidth = (float) titleFont.getStringBounds(s, frc).getWidth();
-		return textWidth;
-	}
+		return (float) titleFont.getStringBounds(s, frc).getWidth();
+		}
 
 	private String getPriceExcVAT(String price) {
 		float p = Float.parseFloat(price);
