@@ -247,11 +247,9 @@ public class ClientPanel extends JPanel implements AddPanel {
 
 		Component[] components = addClientPanel.getComponents();
 		for (Component component : components) {
-			if (component.getClass().equals(JTextField.class)) {
-				if (!((JTextField) component).getName().equals("clientPhone_TF")
-						&& !((JTextField) component).getName().equals("clientEmail_TF")) {
-					textFields.add((JTextField) component);
-				}
+			if (component.getClass().equals(JTextField.class) && (!((JTextField) component).getName().equals("clientPhone_TF")
+					&& !((JTextField) component).getName().equals("clientEmail_TF"))) {
+				textFields.add((JTextField) component);
 			}
 		}
 
