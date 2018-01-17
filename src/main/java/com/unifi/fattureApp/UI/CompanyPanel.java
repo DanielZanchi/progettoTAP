@@ -229,38 +229,33 @@ public class CompanyPanel extends JPanel implements AddPanel{
 		saveButton.setBounds((addCompanyPanel.getWidth() / 2) + 24,
 				addCompanyPanel.getHeight() - 20 - addCompanyPanel.getY(), buttonWidth, buttonHeight);
 		addCompanyPanel.add(saveButton);
-		saveButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		saveButton.addActionListener(e -> {
+			if(addCompanyPanel.isSaving()) {
+				boolean saved = myMongoUiComunication.addCompanyToDatabase(companyNameTF.getText(),
+						companyVatTF.getText(), companyAddressTF.getText(), companyCityTF.getText(),
+						companyProvinceTF.getText(), companyZipTF.getText(), companyCountryTF.getText(),
+						companyPhoneTF.getText(), companyEmailTF.getText());
 
-				if(addCompanyPanel.isSaving()) {
-					boolean saved = myMongoUiComunication.addCompanyToDatabase(companyNameTF.getText(),
-							companyVatTF.getText(), companyAddressTF.getText(), companyCityTF.getText(),
-							companyProvinceTF.getText(), companyZipTF.getText(), companyCountryTF.getText(),
-							companyPhoneTF.getText(), companyEmailTF.getText());
-
-					if (saved) {
-						myMongoUiComunication.setCurrentSelectedCompany(myMongoUiComunication.getSavedCompanies().get(myMongoUiComunication.getSavedCompanies().size()-1));
-						myMongoUiComunication.enableEditCompanyButton();
-					} else {
-						LOGGER.error("Error: Company was not saved!!!");
-					}
+				if (saved) {
+					myMongoUiComunication.setCurrentSelectedCompany(myMongoUiComunication.getSavedCompanies().get(myMongoUiComunication.getSavedCompanies().size()-1));
+					myMongoUiComunication.enableEditCompanyButton();
+				} else {
+					LOGGER.error("Error: Company was not saved!!!");
 				}
-
-				addCompanyPanel.setVisible(false);
-				resetTextFields();
-				myMongoUiComunication.updateCompanyReference();
 			}
+
+			addCompanyPanel.setVisible(false);
+			resetTextFields();
+			myMongoUiComunication.updateCompanyReference();
 		});
 
 		// check if all required field aren't empty. if so activate the save button.
 
 		Component[] components = addCompanyPanel.getComponents();
 		for (Component component : components) {
-			if (component.getClass().equals(JTextField.class)) {
-				if (!((JTextField) component).getName().equals("companyPhoneTextField")
-						&& !((JTextField) component).getName().equals("companyEmailTextField")) {
-					textFields.add((JTextField) component);
-				}
+			if (component.getClass().equals(JTextField.class) && !((JTextField) component).getName().equals("companyPhoneTextField")
+					&& !((JTextField) component).getName().equals("companyEmailTextField")) {
+				textFields.add((JTextField) component);
 			}
 		}
 

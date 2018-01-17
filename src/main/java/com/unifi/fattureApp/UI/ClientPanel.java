@@ -227,20 +227,18 @@ public class ClientPanel extends JPanel implements AddPanel {
 				addClientPanel.getHeight() - 20 - addClientPanel.getY(), buttonWidth, buttonHeight);
 		addClientPanel.add(saveButton);
 
-		saveButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// save company
-				if(addClientPanel.isSaving()) {
-					myMongoUiComunication.addClientToDatabase(clientNameTF.getText(), clientVatTF.getText(),
-							clientAddressTF.getText(), clientCityTF.getText(), clientProvinceTF.getText(),
-							clientZipTF.getText(), clientCityTF.getText(), clientPhoneTF.getText(),
-							clientEmailTF.getText());
-				}
-
-				addClientPanel.setVisible(false);
-				resetTextFields();
-				mongoUiCom.updateClientsReferences();
+		saveButton.addActionListener(e -> {
+			// save company
+			if(addClientPanel.isSaving()) {
+				myMongoUiComunication.addClientToDatabase(clientNameTF.getText(), clientVatTF.getText(),
+						clientAddressTF.getText(), clientCityTF.getText(), clientProvinceTF.getText(),
+						clientZipTF.getText(), clientCityTF.getText(), clientPhoneTF.getText(),
+						clientEmailTF.getText());
 			}
+
+			addClientPanel.setVisible(false);
+			resetTextFields();
+			mongoUiCom.updateClientsReferences();
 		});
 
 		// check if all required field aren't empty. if so activate the save button.
