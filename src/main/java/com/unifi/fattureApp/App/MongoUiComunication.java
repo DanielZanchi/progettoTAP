@@ -54,7 +54,12 @@ public class MongoUiComunication {
 		}else {
 			couchDbClient = new CouchDbClient(new CouchDbProperties().setPort(27017).setHost(mongoHost).setDbName("testcompany"));
 		}
-		couchDbClient.close();
+		try {
+			database = new CouchWrapper(couchDbClient);
+		} catch (Exception e) {
+			LOGGER.info("Error while connecting to couchDb");
+			LOGGER.log(null, e);
+		}
 	}
 
 	private void setUpOtherdb() {
