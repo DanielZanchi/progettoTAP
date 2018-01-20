@@ -19,5 +19,8 @@ public class Main {
 			LOGGER.info("In docker container, gui not running");
 		}		
 		System.out.println("Fatture-app terminates");
+		
+		
+		
 	}
 }
