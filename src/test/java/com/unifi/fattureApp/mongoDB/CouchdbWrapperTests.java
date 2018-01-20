@@ -11,13 +11,12 @@ public class CouchdbWrapperTests extends CouchdbWrapperTestAbstract{
 	@Override
 	public CouchDbClient createCouchDbClient() throws UnknownHostException {
 		CouchDbProperties properties = new CouchDbProperties()
-				  .setDbName("lightcouch-db-load")
+				  .setDbName("testdb")
 				  .setCreateDbIfNotExist(true)
 				  .setProtocol("http")
-				  .setHost("127.0.0.1")
+				  .setHost("localhost")
 				  .setPort(5984)
-				  .setMaxConnections(20);
-		//CouchDbClient couchDbClient = new CouchDbClient("testcompany",true,"http","127.0.0.1",5984,"username","password");
+				  .setMaxConnections(30);
 		CouchDbClient couchDbClient=new CouchDbClient(properties);
 		return couchDbClient;
 	}
