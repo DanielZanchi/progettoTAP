@@ -9,7 +9,9 @@ It's built in *Java* using the *Eclipse* IDE
 We used the following tools: 
  * Maven
  * Travis  
- 
+ * Coveralls
+ * Docker
+ * MongoDB
  
    
    
