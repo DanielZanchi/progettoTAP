@@ -9,12 +9,10 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
 import org.apache.log4j.Logger;
-import org.lightcouch.CouchDbClient;
-import org.lightcouch.CouchDbProperties;
+
 
 import com.github.fakemongo.Fongo;
 import com.mongodb.MongoClient;
-import com.unifi.fattureApp.mongoWrapper.CouchWrapper;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
 public class MongoUiComunication {
@@ -48,23 +46,11 @@ public class MongoUiComunication {
 	}
 
 	private void setUpOtherdb(boolean testing) throws IOException {
-		CouchDbClient couchDbClient = null;
-		if(testing) {
-			couchDbClient = new CouchDbClient(new CouchDbProperties().setPort(27017).setHost(mongoHost).setDbName("company"));
-		}else {
-			couchDbClient = new CouchDbClient(new CouchDbProperties().setPort(27017).setHost(mongoHost).setDbName("testcompany"));
-		}
-		try {
-			database = new CouchWrapper(couchDbClient);
-		} catch (Exception e) {
-			LOGGER.info("Error while connecting to couchDb");
-			LOGGER.log(null, e);
-		}
+		
 	}
 
 	private void setUpOtherdb() {
-		CouchDbClient couchDbClient = new CouchDbClient(new CouchDbProperties().setPort(27017).setHost(mongoHost));
-		database = new CouchWrapper(couchDbClient);
+		
 	}
 
 	private void settingUpMongodb(String[] args,boolean testing) {

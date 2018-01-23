@@ -3,9 +3,7 @@ package com.unifi.fattureApp.helpTestTools;
 import static org.junit.Assert.assertNotNull;
 
 import org.jongo.MongoCollection;
-import org.lightcouch.CouchDbClient;
-import org.lightcouch.CouchDbProperties;
-import org.lightcouch.Params;
+
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -21,15 +19,12 @@ public class TestHelperTool {
 	private DBCollection invoices;
 	private boolean usingMongo=true;
 	
-	private CouchDbClient couchDbClient;
+	
 	public TestHelperTool () {
 
 	}
 
-	public void setUpCouchClient(CouchDbClient couchDbClient) {
-		usingMongo=false;
-		couchDbClient = new CouchDbClient(new CouchDbProperties().setPort(27017).setHost("localhost").setDbName("testcompany"));
-	}
+	
 	
 
 	public void setUpMongoClient(MongoClient mongoClient) {
@@ -59,7 +54,6 @@ public class TestHelperTool {
 
 		clients.insert(document);
 		}else {
-			couchDbClient.save(new Client(id, name, fiscalCode, cityResidence, city, province, zip, country, phone, email));
 		}
 	}
 
@@ -79,7 +73,7 @@ public class TestHelperTool {
 
 		return clients.find(query).hasNext();
 		}else {
-		  return couchDbClient.find(Client.class, id)!=null;
+		  return false;
 		}
 	}
 
@@ -100,7 +94,6 @@ public class TestHelperTool {
 
 		companies.insert(document);
 		}else {
-			couchDbClient.save(new Company(id, name, vatCode, address, city, province, zipCode, country, phone, email));
 		}
 	}
 
@@ -120,7 +113,7 @@ public class TestHelperTool {
 		query.put("email", email);
 		return companies.find(query).hasNext();
 		}else {
-			return couchDbClient.find(Company.class, id)!=null;
+			return false;
 		}
 	}
 
@@ -133,7 +126,6 @@ public class TestHelperTool {
 		document.put("description", description);
 		invoices.insert(document);
 		}else {
-			couchDbClient.save(new Invoice(id, name, price, description));
 		}
 		
 	}
@@ -147,7 +139,7 @@ public class TestHelperTool {
 		query.put("description", description);
 		return invoices.find(query).hasNext();
 		}else {
-			return couchDbClient.find(Invoice.class,id)!=null;
+			return false;
 		}
 	}
 }
