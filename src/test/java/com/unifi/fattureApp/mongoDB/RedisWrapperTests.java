@@ -3,7 +3,6 @@ package com.unifi.fattureApp.mongoDB;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
-import redis.embedded.RedisCluster;
 import redis.embedded.RedisExecProvider;
 import redis.embedded.RedisServer;
 

@@ -14,51 +14,51 @@ import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.Invoice;
 
 public class RedisWrapper implements Database{
-	
+
 	private RedisTemplate<String, Object> redisTemplate;
-    private HashOperations hashOps;
-    
-    private static final String clientKEY = "client"; 
-    private static final String companyKEY = "company"; 
-    private static final String invoiceKEY = "invoice"; 
-	
+	private HashOperations<String, String, Object> hashOps;
+
+	private static final String CLIENTKEY = "client"; 
+	private static final String COMPANYKEY = "company"; 
+	private static final String INVOICEKEY = "invoice"; 
+
 	public RedisWrapper() {
 		this.redisTemplate = redisTemplate();
 		hashOps = redisTemplate.opsForHash();
 	}
-	
+
 	private JedisConnectionFactory jedisConnectionFactory() {
-		 JedisConnectionFactory jedisConFactory = new JedisConnectionFactory();
-		    jedisConFactory.setHostName("localhost");
-		    jedisConFactory.setPort(6379);
-		    return jedisConFactory;
+		JedisConnectionFactory jedisConFactory = new JedisConnectionFactory();
+		jedisConFactory.setHostName("localhost");
+		jedisConFactory.setPort(6379);
+		return jedisConFactory;
 	}
-	 
+
 	private RedisTemplate<String, Object> redisTemplate() {
-	    RedisTemplate<String, Object> template = new RedisTemplate<String, Object>();
-	    template.setConnectionFactory(jedisConnectionFactory());
-	    return template;
+		RedisTemplate<String, Object> template = new RedisTemplate<String, Object>();
+		template.setConnectionFactory(jedisConnectionFactory());
+		return template;
 	}
 
 	@Override
 	public List<Client> getAllClientsList() {
 		LinkedList<Client> clients=new LinkedList<>();
-		Iterator<Client> iterator=hashOps.entries(clientKEY).keySet().iterator();
+		Iterator<String> iterator=hashOps.entries(CLIENTKEY).keySet().iterator();
 		while(iterator.hasNext()) {
-			clients.add((Client) hashOps.entries(clientKEY).get(iterator.next()));
+			clients.add((Client) hashOps.entries(CLIENTKEY).get(iterator.next()));
 		}
-		
+
 		return clients;
 	}
 
 	@Override
 	public Client findClientById(String id) {
-		return (Client) hashOps.get(clientKEY, id);
+		return (Client) hashOps.get(CLIENTKEY, id);
 	}
 
 	@Override
 	public void saveClient(Client client) {
-		 hashOps.put(clientKEY, client.getId(), client);
+		hashOps.put(CLIENTKEY, client.getId(), client);
 	}
 
 	@Override
@@ -76,7 +76,7 @@ public class RedisWrapper implements Database{
 	@Override
 	public void saveCompany(Company company) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -94,7 +94,7 @@ public class RedisWrapper implements Database{
 	@Override
 	public void saveInvoice(Invoice invoice) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

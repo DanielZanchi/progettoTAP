@@ -14,13 +14,13 @@ import com.unifi.fattureApp.mongoWrapper.RedisWrapper;
 public abstract class RedisWrapperAbstract {
 	private RedisWrapper redisDatabase;
 	public abstract void createRedisClient() throws UnknownHostException;
-	private TestHelperTool mongoTestHelper;
+	private TestHelperTool redisTestHelper;
 	
 	@Before
 	public void initDB() throws UnknownHostException {
 		createRedisClient();
-		mongoTestHelper=new TestHelperTool();
-		mongoTestHelper.usingRedis(redisDatabase);
+		redisTestHelper=new TestHelperTool();
+		redisTestHelper.usingRedis(redisDatabase);
 		redisDatabase = new RedisWrapper();
 	}
 	
@@ -31,8 +31,8 @@ public abstract class RedisWrapperAbstract {
 
 	@Test
 	public void testGetAllClientsNotEmpty() {
-		mongoTestHelper.addClient("1", "first", "firstFC", "firstCR", "firstCity", "firstProvince", "firstZip", "firstCountry", "firstPhone", "firstEmail");
-		mongoTestHelper.addClient("2", "second", "secondFC", "secondCR", "secondCity", "secondProvince", "secondZip", "secondCountry", "secondPhone", "secondEmail");
+		redisTestHelper.addClient("1", "first", "firstFC", "firstCR", "firstCity", "firstProvince", "firstZip", "firstCountry", "firstPhone", "firstEmail");
+		redisTestHelper.addClient("2", "second", "secondFC", "secondCR", "secondCity", "secondProvince", "secondZip", "secondCountry", "secondPhone", "secondEmail");
 		assertEquals(2, redisDatabase.getAllClientsList().size());
 	}
 }
