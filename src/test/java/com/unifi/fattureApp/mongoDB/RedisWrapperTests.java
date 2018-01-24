@@ -1,15 +1,24 @@
 package com.unifi.fattureApp.mongoDB;
 
+import java.io.IOException;
 import java.net.UnknownHostException;
 
-import com.mongodb.MongoClient;
+import redis.embedded.RedisCluster;
+import redis.embedded.RedisExecProvider;
+import redis.embedded.RedisServer;
 
 public class RedisWrapperTests extends RedisWrapperAbstract{
 
 	@Override
-	public MongoClient createRedisClient() throws UnknownHostException {
-		// TODO Auto-generated method stub
-		return null;
+	public void createRedisClient() throws UnknownHostException {
+		RedisExecProvider customProvider = RedisExecProvider.defaultProvider();
+		try {
+			RedisServer redisServer = new RedisServer(customProvider, 6379);
+			redisServer.start();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }

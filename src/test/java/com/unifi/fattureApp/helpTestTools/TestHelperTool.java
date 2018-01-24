@@ -12,20 +12,19 @@ import com.mongodb.MongoClient;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Invoice;
+import com.unifi.fattureApp.mongoWrapper.RedisWrapper;
 
 public class TestHelperTool {
 	private DBCollection clients;
 	private DBCollection companies;
 	private DBCollection invoices;
 	private boolean usingMongo=true;
+	private RedisWrapper redisDatabase;
 	
 	
 	public TestHelperTool () {
 
 	}
-
-	
-	
 
 	public void setUpMongoClient(MongoClient mongoClient) {
 		DB db = mongoClient.getDB("company");
@@ -54,6 +53,7 @@ public class TestHelperTool {
 
 		clients.insert(document);
 		}else {
+			redisDatabase.saveClient(new Client(id, name, fiscalCode, cityResidence, city, province, zip, country, phone, email));
 		}
 	}
 
@@ -73,7 +73,7 @@ public class TestHelperTool {
 
 		return clients.find(query).hasNext();
 		}else {
-		  return false;
+		  return redisDatabase.findClientById(id)!=null;
 		}
 	}
 
@@ -94,6 +94,7 @@ public class TestHelperTool {
 
 		companies.insert(document);
 		}else {
+			redisDatabase.saveCompany(new Company(id, name, vatCode, address, city, province, zipCode, country, phone, email));
 		}
 	}
 
@@ -113,7 +114,7 @@ public class TestHelperTool {
 		query.put("email", email);
 		return companies.find(query).hasNext();
 		}else {
-			return false;
+			return redisDatabase.findCompanyById(id)!=null;
 		}
 	}
 
@@ -126,6 +127,7 @@ public class TestHelperTool {
 		document.put("description", description);
 		invoices.insert(document);
 		}else {
+			redisDatabase.saveInvoice(new Invoice(id, name, price, description));
 		}
 		
 	}
@@ -139,7 +141,13 @@ public class TestHelperTool {
 		query.put("description", description);
 		return invoices.find(query).hasNext();
 		}else {
-			return false;
+			return redisDatabase.findInvoiceById(id)!=null;
 		}
+	}
+
+
+	public void usingRedis(RedisWrapper redisDatabase) {
+		usingMongo=false;
+		this.redisDatabase=redisDatabase;
 	}
 }

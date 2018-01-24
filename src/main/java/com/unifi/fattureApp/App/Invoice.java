@@ -1,6 +1,8 @@
 package com.unifi.fattureApp.App;
 
-public class Invoice {
+import java.io.Serializable;
+
+public class Invoice implements Serializable{
 	private String id;
 	private String name;
 	private String price;

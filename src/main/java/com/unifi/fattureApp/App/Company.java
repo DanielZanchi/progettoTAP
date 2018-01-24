@@ -1,6 +1,8 @@
 package com.unifi.fattureApp.App;
 
-public class Company {
+import java.io.Serializable;
+
+public class Company implements Serializable{
 	private String id;
 	private String name;
 	private String vatCode;
