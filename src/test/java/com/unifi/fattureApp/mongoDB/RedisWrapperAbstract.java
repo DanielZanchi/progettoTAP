@@ -15,15 +15,15 @@ public abstract class RedisWrapperAbstract {
 	private RedisWrapper redisDatabase;
 	public abstract void createRedisClient() throws UnknownHostException;
 	private TestHelperTool redisTestHelper;
-	
+
 	@Before
 	public void initDB() throws UnknownHostException {
 		createRedisClient();
-		redisTestHelper=new TestHelperTool();
+		redisTestHelper = new TestHelperTool();
 		redisTestHelper.usingRedis(redisDatabase);
 		redisDatabase = new RedisWrapper();
 	}
-	
+
 	@Test
 	public void testGetAllClientsEmpty() {
 		assertTrue(redisDatabase.getAllClientsList().isEmpty());
