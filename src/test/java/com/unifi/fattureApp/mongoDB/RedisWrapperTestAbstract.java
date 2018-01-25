@@ -11,7 +11,7 @@ import org.junit.Test;
 import com.unifi.fattureApp.helpTestTools.TestHelperTool;
 import com.unifi.fattureApp.mongoWrapper.RedisWrapper;
 
-public abstract class RedisWrapperAbstract {
+public abstract class RedisWrapperTestAbstract {
 	private RedisWrapper redisDatabase;
 	public abstract void createRedisClient() throws UnknownHostException;
 	private TestHelperTool redisTestHelper;

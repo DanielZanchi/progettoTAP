@@ -6,7 +6,7 @@ import java.net.UnknownHostException;
 import redis.embedded.RedisExecProvider;
 import redis.embedded.RedisServer;
 
-public class RedisWrapperTests extends RedisWrapperAbstract{
+public class RedisWrapperTests extends RedisWrapperTestAbstract{
 
 	@Override
 	public void createRedisClient() throws UnknownHostException {
