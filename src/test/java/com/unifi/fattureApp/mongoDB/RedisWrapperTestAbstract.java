@@ -24,7 +24,6 @@ public abstract class RedisWrapperTestAbstract {
 		redisDatabase = new RedisWrapper();
 		redisTestHelper = new TestHelperTool();
 		redisTestHelper.usingRedis(redisDatabase);
-		
 	}
 
 	@Test

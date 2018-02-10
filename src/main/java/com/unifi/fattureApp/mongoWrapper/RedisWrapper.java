@@ -22,6 +22,7 @@ public class RedisWrapper implements Database{
 	private static final String COMPANYKEY = "company"; 
 	private static final String INVOICEKEY = "invoice"; 
 
+	
 	public RedisWrapper() {
 		this.redisTemplate = redisTemplate();
 		hashOps = redisTemplate.opsForHash();
@@ -47,7 +48,6 @@ public class RedisWrapper implements Database{
 		while(iterator.hasNext()) {
 			clients.add((Client) hashOps.entries(CLIENTKEY).get(iterator.next()));
 		}
-
 		return clients;
 	}
 
