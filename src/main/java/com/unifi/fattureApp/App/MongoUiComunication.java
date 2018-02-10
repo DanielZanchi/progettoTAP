@@ -216,7 +216,6 @@ public class MongoUiComunication {
 
 	public void setCompanyCounter(int companyCounter) {
 		this.companyCounter = companyCounter;
-
 		this.updateCompanyReference();
 	}
 

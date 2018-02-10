@@ -78,12 +78,17 @@ public class ClientPanel extends JPanel implements AddPanel {
 		addClientPanel.add(clientNameLabel);
 
 		clientNameTF = new JTextField();
+		/*
 		width = 300;
 		clientNameTF.setName("clientName_TF");
 		clientNameTF.setHorizontalAlignment(JTextField.CENTER);
 		clientNameTF.setBounds((addClientPanel.getWidth() / 2) - (width / 2),
 				clientNameLabel.getY() + clientNameLabel.getHeight() + insets, width, 28);
 		addClientPanel.add(clientNameTF);
+		*/
+		setUpTextFieldInThePanel(clientAddressTF, 300, "clientName_TF", (addClientPanel.getWidth() / 2) - (width / 2),
+				clientNameLabel.getY() + clientNameLabel.getHeight() + insets,clientNameLabel);
+		
 
 		JLabel clientVatLabel = new JLabel("VAT / Fiscal Number:");
 		width = (int) clientVatLabel.getPreferredSize().getWidth();
@@ -93,12 +98,16 @@ public class ClientPanel extends JPanel implements AddPanel {
 		addClientPanel.add(clientVatLabel);
 
 		clientVatTF = new JTextField();
+		/*
 		width = 200;
 		clientVatTF.setName("clientVat_TF");
 		clientVatTF.setHorizontalAlignment(JTextField.CENTER);
 		clientVatTF.setBounds((addClientPanel.getWidth() / 2) - (width / 2),
 				clientVatLabel.getY() + clientVatLabel.getHeight() + insets, width, 28);
 		addClientPanel.add(clientVatTF);
+		*/
+		setUpTextFieldInThePanel(clientVatTF, 200, "clientVat_TF", (addClientPanel.getWidth() / 2) - (width / 2),
+				clientVatLabel.getY() + clientVatLabel.getHeight() + insets,clientVatLabel);
 
 		JLabel clientAddressLabel = new JLabel("Address:");
 		width = (int) clientAddressLabel.getPreferredSize().getWidth();
@@ -108,12 +117,16 @@ public class ClientPanel extends JPanel implements AddPanel {
 		addClientPanel.add(clientAddressLabel);
 
 		clientAddressTF = new JTextField();
+		/*
 		width = 300;
 		clientAddressTF.setName("clientAddress_TF");
 		clientAddressTF.setHorizontalAlignment(JTextField.CENTER);
 		clientAddressTF.setBounds((addClientPanel.getWidth() / 2) - (width / 2),
 				clientAddressLabel.getY() + clientAddressLabel.getHeight() + insets, width, 28);
 		addClientPanel.add(clientAddressTF);
+		*/
+		setUpTextFieldInThePanel(clientAddressTF, 300, "clientAddress_TF", (addClientPanel.getWidth() / 2) - (width / 2),
+				clientAddressLabel.getY() + clientAddressLabel.getHeight() + insets,clientAddressLabel);
 
 		int insetsMiddle = 80;
 
@@ -233,7 +246,6 @@ public class ClientPanel extends JPanel implements AddPanel {
 						clientZipTF.getText(), clientCityTF.getText(), clientPhoneTF.getText(),
 						clientEmailTF.getText());
 			}
-
 			addClientPanel.setVisible(false);
 			resetTextFields();
 			mongoUiCom.updateClientsReferences();
@@ -279,6 +291,16 @@ public class ClientPanel extends JPanel implements AddPanel {
 			});
 		}
 	}
+	
+	
+	private void setUpTextFieldInThePanel(JTextField textField,int width,String name,int boundsWidth,int boundsHeigth, JLabel linkedLabel) {
+		textField.setName(name);
+		textField.setHorizontalAlignment(JTextField.CENTER);
+		textField.setBounds((addClientPanel.getWidth() / 2) - (width / 2),
+				linkedLabel.getY() + linkedLabel.getHeight() + 8, width, 28);
+		addClientPanel.add(textField);
+	}
+
 
 	private void resetTextFields() {
 		clientNameTF.setText("");

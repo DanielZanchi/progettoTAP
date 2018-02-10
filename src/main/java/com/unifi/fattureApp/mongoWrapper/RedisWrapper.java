@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -18,16 +19,17 @@ public class RedisWrapper implements Database{
 	private RedisTemplate<String, Object> redisTemplate;
 	private HashOperations<String, String, Object> hashOps;
 
-	private static final String CLIENTKEY = "client"; 
-	private static final String COMPANYKEY = "company"; 
-	private static final String INVOICEKEY = "invoice"; 
+	private static final String CLIENTKEY = "client_key_redis"; 
+	private static final String COMPANYKEY = "company_key_redis"; 
+	private static final String INVOICEKEY = "invoice_key_redis"; 
 
 	
 	public RedisWrapper() {
 		this.redisTemplate = redisTemplate();
 		hashOps = redisTemplate.opsForHash();
 	}
-
+	
+	@Bean
 	private JedisConnectionFactory jedisConnectionFactory() {
 		JedisConnectionFactory jedisConFactory = new JedisConnectionFactory();
 		jedisConFactory.setHostName("localhost");
@@ -35,6 +37,7 @@ public class RedisWrapper implements Database{
 		return jedisConFactory;
 	}
 
+	@Bean
 	private RedisTemplate<String, Object> redisTemplate() {
 		RedisTemplate<String, Object> template = new RedisTemplate<>();
 		template.setConnectionFactory(jedisConnectionFactory());
