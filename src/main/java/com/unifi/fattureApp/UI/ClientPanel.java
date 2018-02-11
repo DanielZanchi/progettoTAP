@@ -7,12 +7,14 @@ import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.text.View;
 
 import com.unifi.fattureApp.App.MongoUiComunication;
 
@@ -71,31 +73,20 @@ public class ClientPanel extends JPanel implements AddPanel {
 		addClientPanel.add(addClientTitleLabel);
 
 		JLabel clientNameLabel = new JLabel("Client Name:");
-		width = (int) clientNameLabel.getPreferredSize().getWidth();
-		height = (int) clientNameLabel.getPreferredSize().getHeight();
-		clientNameLabel.setBounds((addClientPanel.getWidth() / 2) - (width / 2),
-				addClientTitleLabel.getY() + addClientTitleLabel.getHeight() + insetsBtwField, width, height);
-		addClientPanel.add(clientNameLabel);
-
+		setUpLabelInThePanel(clientNameLabel, 0, addClientTitleLabel);
+		
 		clientNameTF = new JTextField();
 		setUpTextFieldInThePanel(clientNameTF, 300, "clientName_TF", 0, insets,clientNameLabel);
 		
 		JLabel clientVatLabel = new JLabel("VAT / Fiscal Number:");
-		width = (int) clientVatLabel.getPreferredSize().getWidth();
-		height = (int) clientVatLabel.getPreferredSize().getHeight();
-		clientVatLabel.setBounds((addClientPanel.getWidth() / 2) - (width / 2),
-				clientNameTF.getY() + clientNameTF.getHeight() + insetsBtwField, width, height);
-		addClientPanel.add(clientVatLabel);
+		setUpLabelInThePanel(clientVatLabel, 0, clientNameTF);
+
 
 		clientVatTF = new JTextField();
 		setUpTextFieldInThePanel(clientVatTF, 200, "clientVat_TF", 0, insets,clientVatLabel);
 
 		JLabel clientAddressLabel = new JLabel("Address:");
-		width = (int) clientAddressLabel.getPreferredSize().getWidth();
-		height = (int) clientAddressLabel.getPreferredSize().getHeight();
-		clientAddressLabel.setBounds((addClientPanel.getWidth() / 2) - (width / 2),
-				clientVatTF.getY() + clientVatTF.getHeight() + insetsBtwField, width, height);
-		addClientPanel.add(clientAddressLabel);
+		setUpLabelInThePanel(clientAddressLabel, 0, clientVatTF);
 
 		clientAddressTF = new JTextField();
 		setUpTextFieldInThePanel(clientAddressTF, 300, "clientAddress_TF", 0, insets,clientAddressLabel);
@@ -103,62 +94,41 @@ public class ClientPanel extends JPanel implements AddPanel {
 		int insetsMiddle = 80;
 
 		JLabel clientCityLabel = new JLabel("City:");
-		width = (int) clientCityLabel.getPreferredSize().getWidth();
-		height = (int) clientCityLabel.getPreferredSize().getHeight();
-		clientCityLabel.setBounds((addClientPanel.getWidth() / 2) - (width / 2) - insetsMiddle,
-				clientAddressTF.getY() + clientAddressTF.getHeight() + insetsBtwField, width, height);
-		addClientPanel.add(clientCityLabel);
+		setUpLabelInThePanel(clientCityLabel, - insetsMiddle, clientAddressTF);
+
 
 		clientCityTF = new JTextField();
 		setUpTextFieldInThePanel(clientCityTF, 130, "clientCity_TF", - insetsMiddle, insets,clientCityLabel);
 		
 
 		JLabel clientProvinceLabel = new JLabel("Province:");
-		width = (int) clientProvinceLabel.getPreferredSize().getWidth();
-		height = (int) clientProvinceLabel.getPreferredSize().getHeight();
-		clientProvinceLabel.setBounds((addClientPanel.getWidth() / 2) - (width / 2) + insetsMiddle,
-				clientAddressTF.getY() + clientAddressTF.getHeight() + insetsBtwField, width, height);
-		addClientPanel.add(clientProvinceLabel);
+		setUpLabelInThePanel(clientProvinceLabel, insetsMiddle, clientAddressTF);
+
 
 		clientProvinceTF = new JTextField();
 		setUpTextFieldInThePanel(clientProvinceTF, 130, "clientProvince_TF", insetsMiddle, insets,clientProvinceLabel);
 
 		JLabel clientZipLabel = new JLabel("ZIP Code:");
-		width = (int) clientZipLabel.getPreferredSize().getWidth();
-		height = (int) clientZipLabel.getPreferredSize().getHeight();
-		clientZipLabel.setBounds((addClientPanel.getWidth() / 2) - (width / 2) - insetsMiddle,
-				clientProvinceTF.getY() + clientProvinceTF.getHeight() + insetsBtwField, width, height);
-		addClientPanel.add(clientZipLabel);
+		setUpLabelInThePanel(clientZipLabel, -insetsMiddle, clientProvinceTF);
+
 
 		clientZipTF = new JTextField();
 		setUpTextFieldInThePanel(clientZipTF, 80, "clientZip_TF", - insetsMiddle, insets,clientZipLabel);
 
 		JLabel clientCountryLabel = new JLabel("Country:");
-		width = (int) clientCountryLabel.getPreferredSize().getWidth();
-		height = (int) clientCountryLabel.getPreferredSize().getHeight();
-		clientCountryLabel.setBounds((addClientPanel.getWidth() / 2) - (width / 2) + insetsMiddle,
-				clientProvinceTF.getY() + clientProvinceTF.getHeight() + insetsBtwField, width, height);
-		addClientPanel.add(clientCountryLabel);
+		setUpLabelInThePanel(clientCountryLabel, insetsMiddle, clientProvinceTF);
 
 		clientCountryTF = new JTextField();
 		setUpTextFieldInThePanel(clientCountryTF, 100, "clientCountry_TF",  insetsMiddle, insets,clientCountryLabel);
 
 		JLabel clientPhoneLabel = new JLabel("Phone:");
-		width = (int) clientPhoneLabel.getPreferredSize().getWidth();
-		height = (int) clientPhoneLabel.getPreferredSize().getHeight();
-		clientPhoneLabel.setBounds((addClientPanel.getWidth() / 2) - (width / 2),
-				clientCountryTF.getY() + clientCountryTF.getHeight() + insetsBtwField, width, height);
-		addClientPanel.add(clientPhoneLabel);
+		setUpLabelInThePanel(clientPhoneLabel, 0, clientCountryTF);
 
 		clientPhoneTF = new JTextField();
 		setUpTextFieldInThePanel(clientPhoneTF, 150, "clientPhone_TF",0, insets,clientPhoneLabel);
 		
 		JLabel clientEmailLabel = new JLabel("Email:");
-		width = (int) clientEmailLabel.getPreferredSize().getWidth();
-		height = (int) clientEmailLabel.getPreferredSize().getHeight();
-		clientEmailLabel.setBounds((addClientPanel.getWidth() / 2) - (width / 2),
-				clientPhoneTF.getY() + clientPhoneTF.getHeight() + insetsBtwField, width, height);
-		addClientPanel.add(clientEmailLabel);
+		setUpLabelInThePanel(clientEmailLabel, 0, clientPhoneTF);
 
 		clientEmailTF = new JTextField();
 		setUpTextFieldInThePanel(clientEmailTF, 190, "clientEmail_TF",0, insets,clientEmailLabel);
@@ -236,6 +206,15 @@ public class ClientPanel extends JPanel implements AddPanel {
 		}
 	}
 	
+	
+	private void setUpLabelInThePanel(JLabel label, int insetsMiddle, JComponent relatedComponent) {
+		int width = (int) label.getPreferredSize().getWidth();
+		int height = (int) label.getPreferredSize().getHeight();
+		label.setBounds((addClientPanel.getWidth() / 2) - (width / 2)+insetsMiddle, relatedComponent.getY() + relatedComponent.getHeight() + 23, width, height);
+		addClientPanel.add(label);
+	}
+	
+
 	
 	private void setUpTextFieldInThePanel(JTextField textField, int width, String name, int insetsWidth, int insets, JLabel linkedLabel) {
 		textField.setName(name);
