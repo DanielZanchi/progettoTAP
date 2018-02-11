@@ -20,4 +20,6 @@ public interface Database {
 	public Invoice findInvoiceById(String id);
 
 	public void saveInvoice(Invoice invoice);
+
+	public void removeCompanyById(String id);
 }

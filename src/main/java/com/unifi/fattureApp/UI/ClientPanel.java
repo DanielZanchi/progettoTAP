@@ -34,11 +34,8 @@ public class ClientPanel extends JPanel implements AddPanel {
 	private JTextField clientEmailTF;
 
 	private LinkedList<JTextField> textFields;
-
 	private Color layerColor = new java.awt.Color(216, 245, 255);
-
 	private ClientPanel addClientPanel;
-
 	private boolean isSaving;
 
 	public ClientPanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight, MongoUiComunication mongoUiCom) {
@@ -59,81 +56,9 @@ public class ClientPanel extends JPanel implements AddPanel {
 		outerPanel.setLayer(addClientPanel, 2);
 
 		textFields = new LinkedList<>();
-
-		// ADD COMPONENTS INSIDE PANEL
-		int addPanelY = addClientPanel.getY();
-		insets = 8;
-		int insetsBtwField = 23;
-
-		JLabel addClientTitleLabel = new JLabel("Client");
-		addClientTitleLabel.setFont(new Font("Lucida Grande", Font.BOLD, 20));
-		width = (int) addClientTitleLabel.getPreferredSize().getWidth();
-		height = (int) addClientTitleLabel.getPreferredSize().getHeight();
-		addClientTitleLabel.setBounds((addClientPanel.getWidth() / 2) - (width / 2), addPanelY - 10, width, height);
-		addClientPanel.add(addClientTitleLabel);
-
-		JLabel clientNameLabel = new JLabel("Client Name:");
-		setUpLabelInThePanel(clientNameLabel, 0, addClientTitleLabel);
 		
-		clientNameTF = new JTextField();
-		setUpTextFieldInThePanel(clientNameTF, 300, "clientName_TF", 0, insets,clientNameLabel);
+		initLabelsTextFields();
 		
-		JLabel clientVatLabel = new JLabel("VAT / Fiscal Number:");
-		setUpLabelInThePanel(clientVatLabel, 0, clientNameTF);
-
-
-		clientVatTF = new JTextField();
-		setUpTextFieldInThePanel(clientVatTF, 200, "clientVat_TF", 0, insets,clientVatLabel);
-
-		JLabel clientAddressLabel = new JLabel("Address:");
-		setUpLabelInThePanel(clientAddressLabel, 0, clientVatTF);
-
-		clientAddressTF = new JTextField();
-		setUpTextFieldInThePanel(clientAddressTF, 300, "clientAddress_TF", 0, insets,clientAddressLabel);
-
-		int insetsMiddle = 80;
-
-		JLabel clientCityLabel = new JLabel("City:");
-		setUpLabelInThePanel(clientCityLabel, - insetsMiddle, clientAddressTF);
-
-
-		clientCityTF = new JTextField();
-		setUpTextFieldInThePanel(clientCityTF, 130, "clientCity_TF", - insetsMiddle, insets,clientCityLabel);
-		
-
-		JLabel clientProvinceLabel = new JLabel("Province:");
-		setUpLabelInThePanel(clientProvinceLabel, insetsMiddle, clientAddressTF);
-
-
-		clientProvinceTF = new JTextField();
-		setUpTextFieldInThePanel(clientProvinceTF, 130, "clientProvince_TF", insetsMiddle, insets,clientProvinceLabel);
-
-		JLabel clientZipLabel = new JLabel("ZIP Code:");
-		setUpLabelInThePanel(clientZipLabel, -insetsMiddle, clientProvinceTF);
-
-
-		clientZipTF = new JTextField();
-		setUpTextFieldInThePanel(clientZipTF, 80, "clientZip_TF", - insetsMiddle, insets,clientZipLabel);
-
-		JLabel clientCountryLabel = new JLabel("Country:");
-		setUpLabelInThePanel(clientCountryLabel, insetsMiddle, clientProvinceTF);
-
-		clientCountryTF = new JTextField();
-		setUpTextFieldInThePanel(clientCountryTF, 100, "clientCountry_TF",  insetsMiddle, insets,clientCountryLabel);
-
-		JLabel clientPhoneLabel = new JLabel("Phone:");
-		setUpLabelInThePanel(clientPhoneLabel, 0, clientCountryTF);
-
-		clientPhoneTF = new JTextField();
-		setUpTextFieldInThePanel(clientPhoneTF, 150, "clientPhone_TF",0, insets,clientPhoneLabel);
-		
-		JLabel clientEmailLabel = new JLabel("Email:");
-		setUpLabelInThePanel(clientEmailLabel, 0, clientPhoneTF);
-
-		clientEmailTF = new JTextField();
-		setUpTextFieldInThePanel(clientEmailTF, 190, "clientEmail_TF",0, insets,clientEmailLabel);
-
-
 		JButton cancelButton = new JButton();
 		cancelButton.setName("CancelButton");
 		cancelButton.setText("Cancel");
@@ -166,7 +91,6 @@ public class ClientPanel extends JPanel implements AddPanel {
 		});
 
 		// check if all required field aren't empty. if so activate the save button.
-
 		Component[] components = addClientPanel.getComponents();
 		for (Component component : components) {
 			if (component.getClass().equals(JTextField.class) && (!((JTextField) component).getName().equals("clientPhone_TF")
@@ -204,6 +128,72 @@ public class ClientPanel extends JPanel implements AddPanel {
 				}
 			});
 		}
+	}
+	
+	
+	private void initLabelsTextFields() {
+		int addPanelY = addClientPanel.getY();
+		int insets = 8;
+		int insetsMiddle = 80;
+		
+		JLabel addClientTitleLabel = new JLabel("Client");
+		addClientTitleLabel.setFont(new Font("Lucida Grande", Font.BOLD, 20));
+		addClientTitleLabel.setBounds((int) ((addClientPanel.getWidth() / 2) - (addClientTitleLabel.getPreferredSize().getWidth() / 2)), addPanelY - 10, (int)addClientTitleLabel.getPreferredSize().getWidth(), (int)addClientTitleLabel.getPreferredSize().getHeight());
+		addClientPanel.add(addClientTitleLabel);
+
+		JLabel clientNameLabel = new JLabel("Client Name:");
+		setUpLabelInThePanel(clientNameLabel, 0, addClientTitleLabel);
+		
+		clientNameTF = new JTextField();
+		setUpTextFieldInThePanel(clientNameTF, 300, "clientName_TF", 0, insets,clientNameLabel);
+		
+		JLabel clientVatLabel = new JLabel("VAT / Fiscal Number:");
+		setUpLabelInThePanel(clientVatLabel, 0, clientNameTF);
+
+		clientVatTF = new JTextField();
+		setUpTextFieldInThePanel(clientVatTF, 200, "clientVat_TF", 0, insets,clientVatLabel);
+
+		JLabel clientAddressLabel = new JLabel("Address:");
+		setUpLabelInThePanel(clientAddressLabel, 0, clientVatTF);
+
+		clientAddressTF = new JTextField();
+		setUpTextFieldInThePanel(clientAddressTF, 300, "clientAddress_TF", 0, insets,clientAddressLabel);
+
+		JLabel clientCityLabel = new JLabel("City:");
+		setUpLabelInThePanel(clientCityLabel, - insetsMiddle, clientAddressTF);
+
+		clientCityTF = new JTextField();
+		setUpTextFieldInThePanel(clientCityTF, 130, "clientCity_TF", - insetsMiddle, insets,clientCityLabel);
+		
+		JLabel clientProvinceLabel = new JLabel("Province:");
+		setUpLabelInThePanel(clientProvinceLabel, insetsMiddle, clientAddressTF);
+
+		clientProvinceTF = new JTextField();
+		setUpTextFieldInThePanel(clientProvinceTF, 130, "clientProvince_TF", insetsMiddle, insets,clientProvinceLabel);
+
+		JLabel clientZipLabel = new JLabel("ZIP Code:");
+		setUpLabelInThePanel(clientZipLabel, -insetsMiddle, clientProvinceTF);
+
+		clientZipTF = new JTextField();
+		setUpTextFieldInThePanel(clientZipTF, 80, "clientZip_TF", - insetsMiddle, insets,clientZipLabel);
+
+		JLabel clientCountryLabel = new JLabel("Country:");
+		setUpLabelInThePanel(clientCountryLabel, insetsMiddle, clientProvinceTF);
+
+		clientCountryTF = new JTextField();
+		setUpTextFieldInThePanel(clientCountryTF, 100, "clientCountry_TF",  insetsMiddle, insets,clientCountryLabel);
+
+		JLabel clientPhoneLabel = new JLabel("Phone:");
+		setUpLabelInThePanel(clientPhoneLabel, 0, clientCountryTF);
+
+		clientPhoneTF = new JTextField();
+		setUpTextFieldInThePanel(clientPhoneTF, 150, "clientPhone_TF",0, insets,clientPhoneLabel);
+		
+		JLabel clientEmailLabel = new JLabel("Email:");
+		setUpLabelInThePanel(clientEmailLabel, 0, clientPhoneTF);
+
+		clientEmailTF = new JTextField();
+		setUpTextFieldInThePanel(clientEmailTF, 190, "clientEmail_TF",0, insets,clientEmailLabel);
 	}
 	
 	

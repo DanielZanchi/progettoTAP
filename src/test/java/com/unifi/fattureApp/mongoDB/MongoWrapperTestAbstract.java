@@ -10,6 +10,7 @@ import java.net.UnknownHostException;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.validator.PublicClassValidator;
 
 import com.mongodb.MongoClient;
 import com.unifi.fattureApp.App.Client;
@@ -117,6 +118,26 @@ public abstract class MongoWrapperTestAbstract {
 		assertEquals("2", findCompanyById.getId());
 		assertEquals("nameC2", findCompanyById.getName());
 	}	
+	
+	
+	@Test 
+	public void testRemoveCompanyByIdFromDB() {
+		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
+		mongoDatabase.removeCompanyById("1");
+		assertEquals(mongoDatabase.getAllCompaniesList().size(), 0);
+	}
+	
+	@Test 
+	public void testRemoveCompanyByIdFromDBWithMoreCompanies() {
+		mongoTestHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
+		mongoTestHelper.addCompany("2", "nameC2", "vatCode2", "address2", "city2", "province2", "zipCode2", "country2", "phone2", "email2");
+		mongoDatabase.removeCompanyById("2");
+		assertTrue(mongoTestHelper.containsCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1"));
+	}
+	
+	
+	
+	
 
 	@Test
 	public void testGetAllInvoicesEmpty() {

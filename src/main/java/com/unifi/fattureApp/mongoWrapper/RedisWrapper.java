@@ -105,4 +105,10 @@ public class RedisWrapper implements Database{
 	public void saveInvoice(Invoice invoice) {
 		hashOps.put(INVOICEKEY, invoice.getId(), invoice);
 	}
+
+	@Override
+	public void removeCompanyById(String id) {
+		// TODO Auto-generated method stub
+		
+	}
 }

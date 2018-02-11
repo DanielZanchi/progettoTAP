@@ -240,14 +240,22 @@ public class CompanyPanel extends JPanel implements AddPanel {
 				} else {
 					LOGGER.error("Error: Company was not saved!!!");
 				}
+			}else {
+				boolean saved = myMongoUiComunication.editCompanyFromDatabase(companyNameTF.getText(),
+						companyVatTF.getText(), companyAddressTF.getText(), companyCityTF.getText(),
+						companyProvinceTF.getText(), companyZipTF.getText(), companyCountryTF.getText(),
+						companyPhoneTF.getText(), companyEmailTF.getText());
+				if (saved) {
+					System.out.println("Modificata con successo Yay");
+				} else {
+					LOGGER.error("Error: non modificata!!!");
+				}
 			}
 
 			addCompanyPanel.setVisible(false);
 			resetTextFields();
 			myMongoUiComunication.updateCompanyReference();
 		});
-
-		// check if all required field aren't empty. if so activate the save button.
 
 		Component[] components = addCompanyPanel.getComponents();
 		for (Component component : components) {
@@ -307,6 +315,17 @@ public class CompanyPanel extends JPanel implements AddPanel {
 	@Override
 	public void setAddingMode(boolean isSaving) {
 		this.isSaving = isSaving;
+		if(!isSaving) {
+			companyNameTF.setText(myMongoUiComunication.getCurrentSelectedCompany().getName());
+			companyVatTF.setText(myMongoUiComunication.getCurrentSelectedCompany().getVatCode());
+			companyAddressTF.setText(myMongoUiComunication.getCurrentSelectedCompany().getAddress());
+			companyCityTF.setText(myMongoUiComunication.getCurrentSelectedCompany().getCity());
+			companyProvinceTF.setText(myMongoUiComunication.getCurrentSelectedCompany().getProvince());
+			companyZipTF.setText(myMongoUiComunication.getCurrentSelectedCompany().getZipCode());
+			companyCountryTF.setText(myMongoUiComunication.getCurrentSelectedCompany().getCountry());
+			companyPhoneTF.setText(myMongoUiComunication.getCurrentSelectedCompany().getPhone());
+			companyEmailTF.setText(myMongoUiComunication.getCurrentSelectedCompany().getEmail());
+		}
 		this.setVisible(true);
 	}
 }

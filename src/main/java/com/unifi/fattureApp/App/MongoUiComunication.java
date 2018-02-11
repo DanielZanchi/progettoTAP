@@ -43,6 +43,7 @@ public class MongoUiComunication {
 
 		myCompanyController = new CompanyController(database);
 		editCompanyButton = new JButton();
+		companyInfo=new JLabel();
 	}
 
 	private void setUpOtherdb(boolean testing) throws IOException {
@@ -86,8 +87,16 @@ public class MongoUiComunication {
 
 	public boolean addCompanyToDatabase(String name, String vat, String address, String city, String province,
 			String zip, String country, String phone, String email) {
-		String currentId = String.valueOf(this.getCompaniesCount() + 1);
+		String currentId = String.valueOf(this.getCompaniesCount() +1);
 		return myCompanyController.addCompany(new Company(currentId, name, vat, address, city, province, zip, country, phone, email));
+	}
+	
+	public boolean editCompanyFromDatabase(String name, String vat, String address, String city, String province,
+			String zip, String country, String phone, String email) {
+		String currentId=String.valueOf(currentSelectedCompany.getId());
+		boolean saved =  myCompanyController.editCompany(new Company(currentId, name, vat, address, city, province, zip, country, phone, email));
+		setCompanyCounter(getCompaniesCount()-1);
+		return saved;
 	}
 
 	public boolean addInvoiceToDatabase(String name, String description, String price) {

@@ -37,7 +37,14 @@ public class CompanyController {
 	public boolean addCompany(Company company) {
 		if (getCompanyId(company.getId()) != null)
 			return false;
-
+		database.saveCompany(company);
+		return true;
+	}
+	
+	public boolean editCompany(Company company) {
+		if (getCompanyId(company.getId()) == null)
+			return false;
+		database.removeCompanyById(company.getId());
 		database.saveCompany(company);
 		return true;
 	}

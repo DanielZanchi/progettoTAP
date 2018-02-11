@@ -4,8 +4,10 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 
+import org.assertj.swing.fixture.EditableComponentFixture;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
@@ -97,6 +99,13 @@ public class MongoUiComunicationTest {
 		myMongoUiCom.setCurrentSelectedCompany(company);
 		assertEquals(myMongoUiCom.getCurrentSelectedCompany().getName(), company.getName());
 	}
+	
+	
+	@Test (expected = NullPointerException.class)
+	public void editCompanyWhenNoCompanyInDBTest() {
+		myMongoUiCom.editCompanyFromDatabase("nameEdited", "vatCodeEdited", "addressEdited", "cityEdited", "provinceEdited", "zipCodeEdited", "countryEdited", "phoneEdited", "emailEdited");
+	}
+	
 
 	//Invoice
 	@Test 

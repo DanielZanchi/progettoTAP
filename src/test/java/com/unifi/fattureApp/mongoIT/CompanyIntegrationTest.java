@@ -1,6 +1,7 @@
 package com.unifi.fattureApp.mongoIT;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -23,7 +24,6 @@ import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
 public class CompanyIntegrationTest {
 	private CompanyController companyController;
-
 	private TestHelperTool mongoTestHelper;
 
 	@Before
@@ -329,6 +329,31 @@ public class CompanyIntegrationTest {
 	public void testGetCompanyByIdWithWrongEmail() {
 		Company company = addTestCompanyToDB();
 		assertNotEquals("wrongEmail", company.getEmail());
+	}
+	
+	
+	@Test
+	public void testEditCompanyWhileNoCompaniesInDB() {
+		Company company=new Company("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
+		boolean edited=companyController.editCompany(company);
+		assertFalse(edited);
+	}
+	
+	@Test
+	public void testEditCompanyName() {
+		Company company=addTestCompanyToDB();
+		company.setName("EditedName");
+		companyController.editCompany(company);
+		assertEquals("EditedName", companyController.getCompanyId("1").getName());
+	}
+	
+	@Test
+	public void testEditCompanyNameWithTwoCompaniesInDb() {
+		Company company=addTestCompanyToDB();
+		mongoTestHelper.addCompany("2", "nameC2", "vatCode2", "address2", "city2", "province2", "zipCode2", "country2", "phone2", "email2");
+		company.setName("EditedName");
+		companyController.editCompany(company);
+		assertEquals("EditedName", companyController.getCompanyId("1").getName());
 	}
 
 	/////////invoice
