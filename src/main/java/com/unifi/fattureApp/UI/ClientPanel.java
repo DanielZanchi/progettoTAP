@@ -86,7 +86,7 @@ public class ClientPanel extends JPanel implements AddPanel {
 				clientNameLabel.getY() + clientNameLabel.getHeight() + insets, width, 28);
 		addClientPanel.add(clientNameTF);
 		*/
-		setUpTextFieldInThePanel(clientAddressTF, 300, "clientName_TF", (addClientPanel.getWidth() / 2) - (width / 2),
+		setUpTextFieldInThePanel(clientNameTF, 300, "clientName_TF", (addClientPanel.getWidth() / 2) - (width / 2),
 				clientNameLabel.getY() + clientNameLabel.getHeight() + insets,clientNameLabel);
 		
 
