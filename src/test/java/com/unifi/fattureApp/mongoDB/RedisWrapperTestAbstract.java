@@ -37,7 +37,6 @@ public abstract class RedisWrapperTestAbstract {
 		redisTestHelper.addClient("2", "second", "secondFC", "secondCR", "secondCity", "secondProvince", "secondZip", "secondCountry", "secondPhone", "secondEmail");
 		assertEquals(2, redisDatabase.getAllClientsList().size());
 	}
-	
 
 	@After
 	public void stopDBServer() {
@@ -46,11 +45,5 @@ public abstract class RedisWrapperTestAbstract {
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
-	}
-
-		
+	}	
 }
-
-
-
-

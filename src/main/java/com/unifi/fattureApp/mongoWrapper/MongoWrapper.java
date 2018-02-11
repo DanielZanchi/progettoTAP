@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import org.bson.types.ObjectId;
 import org.jongo.Jongo;
 import org.jongo.MongoCollection;
 
@@ -68,7 +67,7 @@ public class MongoWrapper implements Database{
 	public void saveCompany(Company company) {
 		companies.save(company);
 	}
-	
+
 	@Override
 	public void removeCompanyById(String id) {
 		companies.remove(ID, id);

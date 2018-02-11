@@ -47,7 +47,7 @@ public class CompanyIntegrationTest {
 	@Test
 	public void addTestClientToDBWhenClientAlreadyInDB() {
 		companyController.addClient(new Client("1", "test", "testFC", "testCR", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail"));
-		boolean added=companyController.addClient(new Client("1", "test", "testFC", "testCR", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail"));
+		boolean added = companyController.addClient(new Client("1", "test", "testFC", "testCR", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail"));
 		assertEquals(false, added);
 	}
 
@@ -176,7 +176,7 @@ public class CompanyIntegrationTest {
 	/*
 	@Test
 	public void testGetClientByIdWithRightBirthDay() {
-		mongoTestHelper.addClient("1", "test","testFC","testCR","testBD");
+		mongoTestHelper.addClient("1", "test", "testFC", "testCR", "testBD");
 		Client Client = companyController.getClientId("1");
 		assertNotNull(Client);
 		assertEquals("testBD", Client.getBirthDate());
@@ -186,7 +186,7 @@ public class CompanyIntegrationTest {
 	/*
 	@Test
 	public void testGetClientByIdWithWrongBirthDay() {
-		mongoTestHelper.addClient("1", "test","testFC","testCR","testBD");
+		mongoTestHelper.addClient("1", "test", "testFC", "testCR", "testBD");
 		Client Client = companyController.getClientId("1");
 		assertNotNull(Client);
 		assertNotEquals("wrongtestBD", Client.getBirthDate());
@@ -200,7 +200,6 @@ public class CompanyIntegrationTest {
 		assertNotNull(company);
 		return company;
 	}	
-
 
 	@Test
 	public void addTestCompanyToDBWhenCompanyAlreadyInDB() {
@@ -330,26 +329,25 @@ public class CompanyIntegrationTest {
 		Company company = addTestCompanyToDB();
 		assertNotEquals("wrongEmail", company.getEmail());
 	}
-	
-	
+
 	@Test
 	public void testEditCompanyWhileNoCompaniesInDB() {
-		Company company=new Company("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
-		boolean edited=companyController.editCompany(company);
+		Company company = new Company("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
+		boolean edited = companyController.editCompany(company);
 		assertFalse(edited);
 	}
-	
+
 	@Test
 	public void testEditCompanyName() {
-		Company company=addTestCompanyToDB();
+		Company company = addTestCompanyToDB();
 		company.setName("EditedName");
 		companyController.editCompany(company);
 		assertEquals("EditedName", companyController.getCompanyId("1").getName());
 	}
-	
+
 	@Test
 	public void testEditCompanyNameWithTwoCompaniesInDb() {
-		Company company=addTestCompanyToDB();
+		Company company = addTestCompanyToDB();
 		mongoTestHelper.addCompany("2", "nameC2", "vatCode2", "address2", "city2", "province2", "zipCode2", "country2", "phone2", "email2");
 		company.setName("EditedName");
 		companyController.editCompany(company);
@@ -367,7 +365,7 @@ public class CompanyIntegrationTest {
 	@Test
 	public void addTestInvoiceToDBWhenInvoiceAlreadyInDB() {
 		companyController.addInvoice(new Invoice("1", "testName", "testPrice", "testDescription"));
-		boolean added=companyController.addInvoice(new Invoice("1", "testName", "testPrice", "testDescription"));
+		boolean added = companyController.addInvoice(new Invoice("1", "testName", "testPrice", "testDescription"));
 		assertEquals(false, added);
 	}
 

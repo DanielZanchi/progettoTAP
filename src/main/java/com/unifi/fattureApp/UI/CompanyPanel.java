@@ -246,7 +246,7 @@ public class CompanyPanel extends JPanel implements AddPanel {
 						companyProvinceTF.getText(), companyZipTF.getText(), companyCountryTF.getText(),
 						companyPhoneTF.getText(), companyEmailTF.getText());
 				if (saved) {
-					System.out.println("Modificata con successo Yay");
+					LOGGER.info("Modificata con successo Yay");
 				} else {
 					LOGGER.error("Error: non modificata!!!");
 				}

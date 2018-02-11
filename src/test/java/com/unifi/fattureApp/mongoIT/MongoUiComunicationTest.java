@@ -1,13 +1,11 @@
 package com.unifi.fattureApp.mongoIT;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 
-import org.assertj.swing.fixture.EditableComponentFixture;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
@@ -20,7 +18,7 @@ public class MongoUiComunicationTest {
 	@Before
 	public void setUp() throws IOException {
 		String args[] = null;
-		myMongoUiCom = new MongoUiComunication(true, args,true);
+		myMongoUiCom = new MongoUiComunication(true, args, true);
 	}
 
 	@Test
@@ -99,13 +97,11 @@ public class MongoUiComunicationTest {
 		myMongoUiCom.setCurrentSelectedCompany(company);
 		assertEquals(myMongoUiCom.getCurrentSelectedCompany().getName(), company.getName());
 	}
-	
-	
+
 	@Test (expected = NullPointerException.class)
 	public void editCompanyWhenNoCompanyInDBTest() {
 		myMongoUiCom.editCompanyFromDatabase("nameEdited", "vatCodeEdited", "addressEdited", "cityEdited", "provinceEdited", "zipCodeEdited", "countryEdited", "phoneEdited", "emailEdited");
 	}
-	
 
 	//Invoice
 	@Test 
@@ -115,14 +111,14 @@ public class MongoUiComunicationTest {
 
 	@Test 
 	public void getCurrentSelectedInvoiceWithInvoiceSelected() {
-		Invoice invoice = new Invoice("1","invoiceName","15","invoiceDescription");
+		Invoice invoice = new Invoice("1", "invoiceName", "15", "invoiceDescription");
 		myMongoUiCom.setCurrentSelectedInvoice(invoice);
 		assertEquals(myMongoUiCom.getCurrentSelectedInvoice(), invoice);
 	}
 
 	@Test 
 	public void getCurrentSelectedInvoiceWithInvoiceSelectedNameTest() {
-		Invoice invoice = new Invoice("1","invoiceName","15","invoiceDescription");
+		Invoice invoice = new Invoice("1", "invoiceName", "15", "invoiceDescription");
 		myMongoUiCom.setCurrentSelectedInvoice(invoice);
 		assertEquals(myMongoUiCom.getCurrentSelectedInvoice().getName(), invoice.getName());
 	}
@@ -136,9 +132,9 @@ public class MongoUiComunicationTest {
 	public void printSelectedWithSelectedTest() {
 		Company company = new Company("1", "nameComp", "vatCodeComp", "addressComp", "cityComp", "provinceComp", "zipCodeComp", "countryComp", "phoneComp", "emailComp");
 		myMongoUiCom.setCurrentSelectedCompany(company);
-		Client client = new Client("1","name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
+		Client client = new Client("1", "name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
 		myMongoUiCom.setCurrentSelectedClient(client);
-		Invoice invoice = new Invoice("1","invoiceName","15","invoiceDescription");
+		Invoice invoice = new Invoice("1", "invoiceName", "15", "invoiceDescription");
 		myMongoUiCom.setCurrentSelectedInvoice(invoice);
 		assertEquals(true, myMongoUiCom.printSelected());
 	}

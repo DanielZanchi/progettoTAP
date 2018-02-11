@@ -22,7 +22,7 @@ import com.unifi.fattureApp.App.MongoUiComunication;
 
 public class ItemInvoicePanel extends JPanel implements AddPanel {
 	private static final long serialVersionUID = 8698651509983266694L;
-	
+
 	private JTextField itemDescriptionTF;
 	private JTextField itemNameTF;
 	private JFormattedTextField itemPriceTF;
@@ -34,7 +34,7 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 	private ItemInvoicePanel addItemPanel;
 	private boolean isSaving;
 
-	public ItemInvoicePanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight,MongoUiComunication mongoUiCom) {
+	public ItemInvoicePanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight, MongoUiComunication mongoUiCom) {
 		this.mongoUiComunication = mongoUiCom;
 		addItemPanel = this;
 		this.setVisible(false);

@@ -83,7 +83,7 @@ public class MyCompanyPanelUITest {
 	}
 
 	@Test
-	public void testSaveResetNameTextField(){
+	public void testSaveResetNameTextField() {
 		saveCompany();
 
 		showAddCompanyPanel();
@@ -92,7 +92,7 @@ public class MyCompanyPanelUITest {
 	}
 
 	@Test
-	public void testCancelResetNameTextField(){
+	public void testCancelResetNameTextField() {
 		cancelCompany();
 
 		showAddCompanyPanel();
@@ -101,7 +101,7 @@ public class MyCompanyPanelUITest {
 	}
 
 	@Test
-	public void testSaveResetVatTextField(){
+	public void testSaveResetVatTextField() {
 		saveCompany();
 		showAddCompanyPanel();
 		JTextComponentFixture companyVat = addCompany_Panel.textBox("companyVatTextField");
@@ -109,7 +109,7 @@ public class MyCompanyPanelUITest {
 	}
 
 	@Test
-	public void testCancelResetVatTextField(){
+	public void testCancelResetVatTextField() {
 		cancelCompany();
 		showAddCompanyPanel();
 
@@ -118,7 +118,7 @@ public class MyCompanyPanelUITest {
 	}
 
 	@Test
-	public void testSaveResetAddressTextField(){
+	public void testSaveResetAddressTextField() {
 		saveCompany();
 		showAddCompanyPanel();
 
@@ -127,7 +127,7 @@ public class MyCompanyPanelUITest {
 	}
 
 	@Test
-	public void testCancelResetAddressTextField(){
+	public void testCancelResetAddressTextField() {
 		cancelCompany();
 		showAddCompanyPanel();
 
@@ -136,7 +136,7 @@ public class MyCompanyPanelUITest {
 	}
 
 	@Test
-	public void testSaveResetCityTextField(){
+	public void testSaveResetCityTextField() {
 		saveCompany();
 		showAddCompanyPanel();
 
@@ -145,7 +145,7 @@ public class MyCompanyPanelUITest {
 	}
 
 	@Test
-	public void testCancelResetCityTextField(){
+	public void testCancelResetCityTextField() {
 		cancelCompany();
 		showAddCompanyPanel();
 
@@ -154,7 +154,7 @@ public class MyCompanyPanelUITest {
 	}
 
 	@Test
-	public void testSaveResetProvinceTextField(){
+	public void testSaveResetProvinceTextField() {
 		saveCompany();
 		showAddCompanyPanel();
 
@@ -163,7 +163,7 @@ public class MyCompanyPanelUITest {
 	}
 
 	@Test
-	public void testCancelResetProvinceTextField(){
+	public void testCancelResetProvinceTextField() {
 		cancelCompany();
 		showAddCompanyPanel();
 
@@ -172,7 +172,7 @@ public class MyCompanyPanelUITest {
 	}
 
 	@Test
-	public void testSaveResetZipTextField(){
+	public void testSaveResetZipTextField() {
 		saveCompany();
 		showAddCompanyPanel();
 
@@ -181,7 +181,7 @@ public class MyCompanyPanelUITest {
 	}
 
 	@Test
-	public void testCancelResetZipTextField(){
+	public void testCancelResetZipTextField() {
 		cancelCompany();
 		showAddCompanyPanel();
 
@@ -190,7 +190,7 @@ public class MyCompanyPanelUITest {
 	}
 
 	@Test
-	public void testSaveResetCountryTextField(){
+	public void testSaveResetCountryTextField() {
 		saveCompany();
 		showAddCompanyPanel();
 
@@ -199,7 +199,7 @@ public class MyCompanyPanelUITest {
 	}
 
 	@Test
-	public void testCancelResetCountryTextField(){
+	public void testCancelResetCountryTextField() {
 		cancelCompany();
 		showAddCompanyPanel();
 
@@ -208,7 +208,7 @@ public class MyCompanyPanelUITest {
 	}
 
 	@Test
-	public void testSaveResetPhoneTextField(){
+	public void testSaveResetPhoneTextField() {
 		saveCompany();
 		showAddCompanyPanel();
 
@@ -217,7 +217,7 @@ public class MyCompanyPanelUITest {
 	}
 
 	@Test
-	public void testCancelResetPhoneTextField(){
+	public void testCancelResetPhoneTextField() {
 		cancelCompany();
 		showAddCompanyPanel();
 
@@ -226,7 +226,7 @@ public class MyCompanyPanelUITest {
 	}
 
 	@Test
-	public void testSaveResetEmailTextField(){
+	public void testSaveResetEmailTextField() {
 		saveCompany();
 		showAddCompanyPanel();
 
@@ -235,7 +235,7 @@ public class MyCompanyPanelUITest {
 	}
 
 	@Test
-	public void testCancelResetEmailTextField(){
+	public void testCancelResetEmailTextField() {
 		cancelCompany();
 		showAddCompanyPanel();
 

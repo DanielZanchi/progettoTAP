@@ -1,6 +1,9 @@
 package com.unifi.fattureApp.UI;
 
-import org.assertj.swing.edt.GuiActionRunner;
+import static org.junit.Assert.assertEquals;
+
+import java.io.IOException;
+
 import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.fixture.JButtonFixture;
 import org.assertj.swing.fixture.JComboBoxFixture;
@@ -9,9 +12,6 @@ import org.assertj.swing.fixture.JPanelFixture;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
-
-import java.io.IOException;
 
 public class MainWindowUITest {
 	private FrameFixture window;
@@ -103,7 +103,7 @@ public class MainWindowUITest {
 	}
 
 	@Test
-	public void testInvoicesComboBoxWithNoInvoices(){
+	public void testInvoicesComboBoxWithNoInvoices() {
 		JComboBoxFixture invoiceComboBox = window.comboBox("invoicesComboBox");
 		invoiceComboBox.requireItemCount(0);
 	}

@@ -47,11 +47,11 @@ public class MongoUiComunication {
 	}
 
 	private void setUpOtherdb(boolean testing) throws IOException {
-		
+
 	}
 
 	private void setUpOtherdb() {
-		
+
 	}
 
 	private void settingUpMongodb(String[] args,boolean testing) {
@@ -90,7 +90,7 @@ public class MongoUiComunication {
 		String currentId = String.valueOf(this.getCompaniesCount() +1);
 		return myCompanyController.addCompany(new Company(currentId, name, vat, address, city, province, zip, country, phone, email));
 	}
-	
+
 	public boolean editCompanyFromDatabase(String name, String vat, String address, String city, String province,
 			String zip, String country, String phone, String email) {
 		String currentId=String.valueOf(currentSelectedCompany.getId());

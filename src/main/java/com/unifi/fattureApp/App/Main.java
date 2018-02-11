@@ -6,12 +6,9 @@ import org.apache.log4j.Logger;
 
 import com.unifi.fattureApp.UI.MainWindowUI;
 
-import redis.embedded.RedisServer;
-
 public class Main {
 	private static final Logger LOGGER = Logger.getLogger(Main.class);
 	public static void main(String[] args) throws IOException {
-		
 		MongoUiComunication mongoUiComunication = new MongoUiComunication(false, args,true);
 
 		//Launch UI
@@ -22,8 +19,5 @@ public class Main {
 			LOGGER.info("In docker container, gui not running");
 		}		
 		System.out.println("Fatture-app terminates");
-		
-		
-		
 	}
 }

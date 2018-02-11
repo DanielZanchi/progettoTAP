@@ -40,7 +40,7 @@ public class CompanyController {
 		database.saveCompany(company);
 		return true;
 	}
-	
+
 	public boolean editCompany(Company company) {
 		if (getCompanyId(company.getId()) == null)
 			return false;

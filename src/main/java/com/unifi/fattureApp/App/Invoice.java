@@ -2,7 +2,8 @@ package com.unifi.fattureApp.App;
 
 import java.io.Serializable;
 
-public class Invoice implements Serializable{
+public class Invoice implements Serializable {
+	private static final long serialVersionUID = 6436363366345956837L;
 	private String id;
 	private String name;
 	private String price;

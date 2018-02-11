@@ -15,7 +15,6 @@ import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.Invoice;
 
 public class RedisWrapper implements Database{
-
 	private RedisTemplate<String, Object> redisTemplate;
 	private HashOperations<String, String, Object> hashOps;
 
@@ -23,12 +22,11 @@ public class RedisWrapper implements Database{
 	private static final String COMPANYKEY = "company_key_redis"; 
 	private static final String INVOICEKEY = "invoice_key_redis"; 
 
-	
 	public RedisWrapper() {
 		this.redisTemplate = redisTemplate();
 		hashOps = redisTemplate.opsForHash();
 	}
-	
+
 	@Bean
 	private JedisConnectionFactory jedisConnectionFactory() {
 		JedisConnectionFactory jedisConFactory = new JedisConnectionFactory();
@@ -71,7 +69,6 @@ public class RedisWrapper implements Database{
 		while(iterator.hasNext()) {
 			companies.add((Company) hashOps.entries(COMPANYKEY).get(iterator.next()));
 		}
-
 		return companies;
 	}
 
@@ -92,7 +89,6 @@ public class RedisWrapper implements Database{
 		while(iterator.hasNext()) {
 			invoices.add((Invoice) hashOps.entries(INVOICEKEY).get(iterator.next()));
 		}
-
 		return invoices;
 	}
 
@@ -108,7 +104,6 @@ public class RedisWrapper implements Database{
 
 	@Override
 	public void removeCompanyById(String id) {
-		// TODO Auto-generated method stub
-		
+		hashOps.delete(COMPANYKEY, id);
 	}
 }

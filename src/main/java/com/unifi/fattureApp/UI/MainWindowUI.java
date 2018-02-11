@@ -46,7 +46,7 @@ public class MainWindowUI {
 	}
 
 	public MainWindowUI() throws IOException {
-		mongoUiCom = new MongoUiComunication(true, null,true);
+		mongoUiCom = new MongoUiComunication(true, null, true);
 		initialize();
 	}
 
@@ -137,7 +137,7 @@ public class MainWindowUI {
 
 				//disabilitarlo?
 
-			}else{
+			}else {
 				mongoUiCom.setCompanyCounter(mongoUiCom.getCompanyCounter()-1);
 				editMyCompanyButton.setEnabled(true);
 			}

@@ -1,10 +1,5 @@
 package com.unifi.fattureApp.helpTestTools;
 
-import static org.junit.Assert.assertNotNull;
-
-import org.jongo.MongoCollection;
-
-
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -18,12 +13,10 @@ public class TestHelperTool {
 	private DBCollection clients;
 	private DBCollection companies;
 	private DBCollection invoices;
-	private boolean usingMongo=true;
-	private RedisWrapper redisDatabase;
-	
-	
-	public TestHelperTool () {
+	private boolean usingMongo = true;
+	private RedisWrapper redisDatabase;	
 
+	public TestHelperTool () {
 	}
 
 	public void setUpMongoClient(MongoClient mongoClient) {
@@ -39,19 +32,19 @@ public class TestHelperTool {
 
 	public void addClient(String id, String name, String fiscalCode, String cityResidence, String city, String province, String zip, String country, String phone, String email/*, String birthDay*/) {
 		if(usingMongo) {
-		BasicDBObject document = new BasicDBObject();
-		document.put("id", id);
-		document.put("name", name);
-		document.put("fiscalCode", fiscalCode);
-		document.put("cityResidence", cityResidence);
-		document.put("city", city);
-		document.put("province", province);
-		document.put("zip", zip);
-		document.put("country", country);
-		document.put("phone", phone);
-		document.put("email", email);
+			BasicDBObject document = new BasicDBObject();
+			document.put("id", id);
+			document.put("name", name);
+			document.put("fiscalCode", fiscalCode);
+			document.put("cityResidence", cityResidence);
+			document.put("city", city);
+			document.put("province", province);
+			document.put("zip", zip);
+			document.put("country", country);
+			document.put("phone", phone);
+			document.put("email", email);
 
-		clients.insert(document);
+			clients.insert(document);
 		}else {
 			redisDatabase.saveClient(new Client(id, name, fiscalCode, cityResidence, city, province, zip, country, phone, email));
 		}
@@ -59,40 +52,40 @@ public class TestHelperTool {
 
 	public boolean containsClient(String id, String name, String fiscalCode, String cityResidence, String city, String province, String zip, String country, String phone, String email/*, String birthDay*/) {
 		if(usingMongo) {
-		BasicDBObject query = new BasicDBObject();
-		query.put("id", id);
-		query.put("name", name);
-		query.put("fiscalCode", fiscalCode);
-		query.put("cityResidence", cityResidence);
-		query.put("city", city);
-		query.put("province", province);
-		query.put("zip", zip);
-		query.put("country", country);
-		query.put("phone", phone);
-		query.put("email", email);
+			BasicDBObject query = new BasicDBObject();
+			query.put("id", id);
+			query.put("name", name);
+			query.put("fiscalCode", fiscalCode);
+			query.put("cityResidence", cityResidence);
+			query.put("city", city);
+			query.put("province", province);
+			query.put("zip", zip);
+			query.put("country", country);
+			query.put("phone", phone);
+			query.put("email", email);
 
-		return clients.find(query).hasNext();
+			return clients.find(query).hasNext();
 		}else {
-		  return redisDatabase.findClientById(id)!=null;
+			return redisDatabase.findClientById(id)!=null;
 		}
 	}
 
 	public void addCompany(String id, String name, String vatCode,
 			String address, String city, String province, String zipCode, String country, String phone, String email) {
 		if(usingMongo) {
-		BasicDBObject document = new BasicDBObject();
-		document.put("id", id);
-		document.put("name", name);
-		document.put("vatCode", vatCode);
-		document.put("address", address);
-		document.put("city", city);
-		document.put("province", province);
-		document.put("zipCode", zipCode);
-		document.put("country", country);
-		document.put("phone", phone);
-		document.put("email", email);
+			BasicDBObject document = new BasicDBObject();
+			document.put("id", id);
+			document.put("name", name);
+			document.put("vatCode", vatCode);
+			document.put("address", address);
+			document.put("city", city);
+			document.put("province", province);
+			document.put("zipCode", zipCode);
+			document.put("country", country);
+			document.put("phone", phone);
+			document.put("email", email);
 
-		companies.insert(document);
+			companies.insert(document);
 		}else {
 			redisDatabase.saveCompany(new Company(id, name, vatCode, address, city, province, zipCode, country, phone, email));
 		}
@@ -101,18 +94,18 @@ public class TestHelperTool {
 	public boolean containsCompany(String id, String name, String vatCode,
 			String address, String city, String province, String zipCode, String country, String phone, String email) {
 		if(usingMongo) {
-		BasicDBObject query = new BasicDBObject();
-		query.put("id", id);
-		query.put("name", name);
-		query.put("vatCode", vatCode);
-		query.put("address", address);
-		query.put("city", city);
-		query.put("province", province);
-		query.put("zipCode", zipCode);
-		query.put("country", country);
-		query.put("phone", phone);
-		query.put("email", email);
-		return companies.find(query).hasNext();
+			BasicDBObject query = new BasicDBObject();
+			query.put("id", id);
+			query.put("name", name);
+			query.put("vatCode", vatCode);
+			query.put("address", address);
+			query.put("city", city);
+			query.put("province", province);
+			query.put("zipCode", zipCode);
+			query.put("country", country);
+			query.put("phone", phone);
+			query.put("email", email);
+			return companies.find(query).hasNext();
 		}else {
 			return redisDatabase.findCompanyById(id)!=null;
 		}
@@ -120,34 +113,32 @@ public class TestHelperTool {
 
 	public void addInvoice(String id, String name, String price, String description) {
 		if(usingMongo) {
-		BasicDBObject document = new BasicDBObject();
-		document.put("id", id);
-		document.put("name", name);
-		document.put("price", price);
-		document.put("description", description);
-		invoices.insert(document);
+			BasicDBObject document = new BasicDBObject();
+			document.put("id", id);
+			document.put("name", name);
+			document.put("price", price);
+			document.put("description", description);
+			invoices.insert(document);
 		}else {
 			redisDatabase.saveInvoice(new Invoice(id, name, price, description));
-		}
-		
+		}		
 	}
 
 	public boolean containsInvoice(String id, String name, String price, String description) {
 		if(usingMongo) {
-		BasicDBObject query = new BasicDBObject();
-		query.put("id", id);
-		query.put("name", name);
-		query.put("price", price);
-		query.put("description", description);
-		return invoices.find(query).hasNext();
+			BasicDBObject query = new BasicDBObject();
+			query.put("id", id);
+			query.put("name", name);
+			query.put("price", price);
+			query.put("description", description);
+			return invoices.find(query).hasNext();
 		}else {
 			return redisDatabase.findInvoiceById(id)!=null;
 		}
 	}
 
-
 	public void usingRedis(RedisWrapper redisDatabase) {
-		usingMongo=false;
-		this.redisDatabase=redisDatabase;
+		usingMongo = false;
+		this.redisDatabase = redisDatabase;
 	}
 }
