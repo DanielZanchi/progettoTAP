@@ -16,7 +16,7 @@ import javax.swing.event.DocumentListener;
 
 import com.unifi.fattureApp.App.MongoUiComunication;
 
-public class ClientPanel extends JPanel implements AddPanel {
+public class ClientPanel extends ItemPanel {
 	private static final long serialVersionUID = -4964123340815964907L;
 
 	private MongoUiComunication myMongoUiComunication;
@@ -96,6 +96,8 @@ public class ClientPanel extends JPanel implements AddPanel {
 			}
 		}
 
+		update();
+		/*
 		for (JTextField tf : textFields) {
 			tf.getDocument().addDocumentListener(new DocumentListener() {
 				@Override
@@ -124,7 +126,7 @@ public class ClientPanel extends JPanel implements AddPanel {
 					saveButton.setEnabled(shouldActivate);
 				}
 			});
-		}
+		}*/
 	}
 
 	private void initLabelsTextFields() {
