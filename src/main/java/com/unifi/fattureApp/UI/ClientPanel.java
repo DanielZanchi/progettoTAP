@@ -127,7 +127,6 @@ public class ClientPanel extends JPanel implements AddPanel {
 		}
 	}
 
-
 	private void initLabelsTextFields() {
 		int addPanelY = addClientPanel.getY();
 		int insets = 8;

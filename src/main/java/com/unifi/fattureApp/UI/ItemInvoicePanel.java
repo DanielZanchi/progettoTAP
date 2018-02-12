@@ -51,11 +51,11 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 		outerPanel.setLayer(addItemPanel, 2);
 
 		textFields = new LinkedList<>();
-		
+
 		initLabelsTextFields();
 
 		insets = 8;
-		
+
 		FormattedButton cancelButton = new FormattedButton("Cancel", "CancelButton");
 		cancelButton.setBounds((addItemPanel.getWidth() / 2) - buttonWidth - 24,
 				addItemPanel.getHeight() - 20 - addItemPanel.getY(), buttonWidth, buttonHeight);
@@ -117,12 +117,12 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 			});
 		}
 	}
-	
+
 	private void initLabelsTextFields() {
 		int addPanelY = addItemPanel.getY();
 		int insets = 8;
 		int insetsMiddle = 23;
-		
+
 		JLabel addItemTitleLabel = new JLabel("Item");
 		addItemTitleLabel.setFont(new Font("Lucida Grande", Font.BOLD, 20));
 		int width = (int) addItemTitleLabel.getPreferredSize().getWidth();
@@ -132,20 +132,19 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 
 		JLabel itemNameLabel = new JLabel("Item Name:");
 		setUpLabelInThePanel(itemNameLabel, 0, addItemTitleLabel);
-		
+
 		itemNameTF = new JTextField();
 		setUpTextFieldInThePanel(itemNameTF, 200, "invoiceName_TF", 0, insetsMiddle, itemNameLabel);
-		width = 200;
 
 		JLabel itemDescriptionLabel = new JLabel("Item Description:");
 		setUpLabelInThePanel(itemDescriptionLabel, 0, itemNameTF);
-		
+
 		itemDescriptionTF = new JTextField();
 		setUpTextFieldInThePanel(itemDescriptionTF, 350, "invoiceDescription_TF", 0, insetsMiddle, itemDescriptionLabel);
 
 		JLabel itemPriceLabel = new JLabel("Price (incl. VAT):");
 		setUpLabelInThePanel(itemPriceLabel, 0, itemDescriptionTF);
-		
+
 		NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.getDefault());
 		DecimalFormat decimalFormat = (DecimalFormat) numberFormat;
 		decimalFormat.setGroupingUsed(false);
@@ -158,7 +157,7 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 				itemPriceLabel.getY() + itemPriceLabel.getHeight() + insets, width, 28);
 		addItemPanel.add(itemPriceTF);
 	}
-	
+
 	private void setUpLabelInThePanel(JLabel label, int insetsMiddle, JComponent relatedComponent) {
 		int width = (int) label.getPreferredSize().getWidth();
 		int height = (int) label.getPreferredSize().getHeight();
