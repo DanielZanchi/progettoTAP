@@ -20,7 +20,7 @@ import javax.swing.event.DocumentListener;
 
 import com.unifi.fattureApp.App.MongoUiComunication;
 
-public class ItemInvoicePanel extends ItemPanel {
+public class ItemInvoicePanel extends JPanel implements AddPanel {
 	private static final long serialVersionUID = 8698651509983266694L;
 
 	private JTextField itemDescriptionTF;
@@ -87,8 +87,6 @@ public class ItemInvoicePanel extends ItemPanel {
 			}
 		}
 
-		update();
-		/*
 		for (JTextField tf : textFields) {
 			tf.getDocument().addDocumentListener(new DocumentListener() {
 				@Override
@@ -117,7 +115,7 @@ public class ItemInvoicePanel extends ItemPanel {
 					saveButton.setEnabled(shouldActivate);
 				}
 			});
-		}*/
+		}
 	}
 
 	private void initLabelsTextFields() {

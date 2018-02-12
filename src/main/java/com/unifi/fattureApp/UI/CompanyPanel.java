@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
 
 import com.unifi.fattureApp.App.MongoUiComunication;
 
-public class CompanyPanel extends ItemPanel {
+public class CompanyPanel extends JPanel implements AddPanel {
 	private static final long serialVersionUID = 6387743798709513734L;
 
 	private static final Logger LOGGER = Logger.getLogger(CompanyPanel.class);
@@ -111,9 +111,7 @@ public class CompanyPanel extends ItemPanel {
 				textFields.add((JTextField) component);
 			}
 		}
-		
-		update();
-/*
+
 		for (JTextField tf : textFields) {
 			tf.getDocument().addDocumentListener(new DocumentListener() {
 				@Override
@@ -143,7 +141,6 @@ public class CompanyPanel extends ItemPanel {
 				}
 			});
 		}
-		*/
 	}
 
 	private void initLabelsTextFields() {
