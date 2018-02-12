@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -58,20 +57,14 @@ public class ClientPanel extends JPanel implements AddPanel {
 
 		initLabelsTextFields();
 
-		JButton cancelButton = new JButton();
-		cancelButton.setName("CancelButton");
-		cancelButton.setText("Cancel");
-		cancelButton.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		FormattedButton cancelButton = new FormattedButton("Cancel", "CancelButton");
 		cancelButton.setBounds((addClientPanel.getWidth() / 2) - buttonWidth - 24,
 				addClientPanel.getHeight() - 20 - addClientPanel.getY(), buttonWidth, buttonHeight);
 		addClientPanel.add(cancelButton);
 		cancelButton.addActionListener(e -> addClientPanel.setVisible(false));
 
-		JButton saveButton = new JButton();
+		FormattedButton saveButton = new FormattedButton("Save", "SaveButton");
 		saveButton.setEnabled(false);
-		saveButton.setName("SaveButton");
-		saveButton.setText("Save");
-		saveButton.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		saveButton.setBounds((addClientPanel.getWidth() / 2) + 24,
 				addClientPanel.getHeight() - 20 - addClientPanel.getY(), buttonWidth, buttonHeight);
 		addClientPanel.add(saveButton);

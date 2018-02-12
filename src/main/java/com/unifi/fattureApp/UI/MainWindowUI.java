@@ -101,10 +101,8 @@ public class MainWindowUI {
 				(int) width, (int) height);
 		myCompanyPanel.add(myCompanyInfoLabel);
 
-		JButton editMyCompanyButton = new JButton("Edit");
+		FormattedButton editMyCompanyButton = new FormattedButton("Edit", "EditCompanyButton");
 		editMyCompanyButton.setEnabled(false);
-		editMyCompanyButton.setName("EditCompanyButton");
-		editMyCompanyButton.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		editMyCompanyButton.setBounds(myCompanyPanel.getWidth() - innerInsets - buttonWidth,
 				(myCompanyPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
 		myCompanyPanel.add(editMyCompanyButton);
@@ -112,9 +110,7 @@ public class MainWindowUI {
 		editMyCompanyButton.addActionListener(e -> showGenericAddPanel(addCompanyPanel, false));
 		mongoUiCom.seteditCompanyButton(editMyCompanyButton);
 
-		JButton addMyCompanyButton = new JButton("Add");
-		addMyCompanyButton.setName("AddCompanyButton");
-		addMyCompanyButton.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		FormattedButton addMyCompanyButton = new FormattedButton("Add", "AddCompanyButton");
 		addMyCompanyButton.setBounds(editMyCompanyButton.getX() - innerInsets - buttonWidth,
 				(myCompanyPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
 		myCompanyPanel.add(addMyCompanyButton);
@@ -122,9 +118,7 @@ public class MainWindowUI {
 		addMyCompanyButton.addActionListener(e -> showGenericAddPanel(addCompanyPanel, true));
 
 		// ▲, ▼
-		JButton prevCompanyButton = new JButton("▲");
-		prevCompanyButton.setName("prevCompany_Button");
-		prevCompanyButton.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		FormattedButton prevCompanyButton = new FormattedButton("▲", "prevCompany_Button");
 		prevCompanyButton.setFont(new Font(ARIAL, Font.PLAIN, 10));
 		int h = 16;
 		int w = 16;
@@ -143,9 +137,7 @@ public class MainWindowUI {
 			}
 		});
 
-		JButton nextCompanyButton = new JButton("▼");
-		nextCompanyButton.setName("nextCompany_Button");
-		nextCompanyButton.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		FormattedButton nextCompanyButton = new FormattedButton("▼", "nextCompany_Button");
 		nextCompanyButton.setFont(new Font(ARIAL, Font.PLAIN, 10));
 		h = 16;
 		w = 16;
@@ -189,11 +181,9 @@ public class MainWindowUI {
 		clientLbl.setBounds((clientPanel.getWidth() / 2) - 26, innerInsets, 52, 16);
 		clientLbl.setFont(new Font(ARIAL, Font.BOLD, 16));
 		clientPanel.add(clientLbl);
-
-		JButton editClient = new JButton("Edit");
-		editClient.setName("editClientButton");
+		
+		FormattedButton editClient = new FormattedButton("Edit", "editClientButton");
 		editClient.setEnabled(false);
-		editClient.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		editClient.setBounds(clientPanel.getWidth() - buttonWidth,
 				(clientPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
 		editClient.addActionListener(e -> showGenericAddPanel(addClientPanel, false));
@@ -212,9 +202,7 @@ public class MainWindowUI {
 			}
 		});
 
-		JButton addClient = new JButton("Add");
-		addClient.setName("AddClientButton");
-		addClient.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		FormattedButton addClient = new FormattedButton("Add", "AddClientButton");
 		addClient.setBounds(editClient.getX() - innerInsets - buttonWidth,
 				(clientPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
 		outerPanel.setLayer(myCompanyPanel, 1);
@@ -234,12 +222,10 @@ public class MainWindowUI {
 		invoiceItemLbl.setFont(new Font(ARIAL, Font.BOLD, 16));
 		invoiceProvisionPanel.add(invoiceItemLbl);
 
-		JButton editInvoiceProvision = new JButton("Edit");
-		editInvoiceProvision.setName("editInvoiceButton");
+		FormattedButton editInvoiceProvision = new FormattedButton("Edit", "editInvoiceButton");
 		editInvoiceProvision.setEnabled(false);
 		editInvoiceProvision.setBounds(invoiceProvisionPanel.getWidth() - buttonWidth,
 				(invoiceProvisionPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
-		editInvoiceProvision.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		editInvoiceProvision.addActionListener(e -> showGenericAddPanel(addItemPanel, false));
 		invoiceProvisionPanel.add(editInvoiceProvision);
 		mongoUiCom.seteditInvoiceButton(editInvoiceProvision);
@@ -255,21 +241,17 @@ public class MainWindowUI {
 			}
 		});
 
-		JButton addInvoiceProvision = new JButton("Add");
-		addInvoiceProvision.setName("addInvoiceButton");
+		FormattedButton addInvoiceProvision = new FormattedButton("Add", "addInvoiceButton");
 		addInvoiceProvision.setBounds(editInvoiceProvision.getX() - innerInsets - buttonWidth,
 				(invoiceProvisionPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
-		addInvoiceProvision.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		invoiceProvisionPanel.add(addInvoiceProvision);
 		addInvoiceProvision.addActionListener(e -> showGenericAddPanel(addItemPanel, true));
 
-		JButton createInvoiceButton = new JButton("CREATE INVOICE");
+		FormattedButton createInvoiceButton = new FormattedButton("CREATE INVOICE", "createInvoice_Button");
 		createInvoiceButton.setFont(new Font(ARIAL, Font.PLAIN, 14));
 		createInvoiceButton.setEnabled(true);
 		createInvoiceButton.setBackground(Color.white);
 		createInvoiceButton.setOpaque(true);
-		createInvoiceButton.setName("createInvoice_Button");
-		createInvoiceButton.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		h = 50;
 		w = 180;
 		createInvoiceButton.setBounds(invoicePanelWidth / 2 - (w / 2), invoicePanel.getHeight() - h - 8, w, h);

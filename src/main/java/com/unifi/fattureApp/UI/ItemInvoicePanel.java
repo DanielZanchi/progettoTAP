@@ -9,7 +9,6 @@ import java.util.LinkedList;
 import java.util.Locale;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
@@ -55,27 +54,16 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 		
 		initLabelsTextFields();
 
-		// ADD COMPONENTS INSIDE PANEL
-		int addPanelY = addItemPanel.getY();
 		insets = 8;
-		int insetsBtwField = 23;
-
 		
-
-		JButton cancelButton = new JButton();
-		cancelButton.setName("CancelButton");
-		cancelButton.setText("Cancel");
-		cancelButton.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		FormattedButton cancelButton = new FormattedButton("Cancel", "CancelButton");
 		cancelButton.setBounds((addItemPanel.getWidth() / 2) - buttonWidth - 24,
 				addItemPanel.getHeight() - 20 - addItemPanel.getY(), buttonWidth, buttonHeight);
 		addItemPanel.add(cancelButton);
 		cancelButton.addActionListener(e -> addItemPanel.setVisible(false));
 
-		JButton saveButton = new JButton();
-		saveButton.setName("SaveButton");
-		saveButton.setText("Save");
+		FormattedButton saveButton = new FormattedButton("Save", "SaveButton");
 		saveButton.setEnabled(false);
-		saveButton.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		saveButton.setBounds((addItemPanel.getWidth() / 2) + 24,
 				addItemPanel.getHeight() - 20 - addItemPanel.getY(), buttonWidth, buttonHeight);
 		addItemPanel.add(saveButton);
