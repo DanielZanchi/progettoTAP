@@ -106,4 +106,16 @@ public class RedisWrapper implements Database{
 	public void removeCompanyById(String id) {
 		hashOps.delete(COMPANYKEY, id);
 	}
+
+	@Override
+	public void removeClientById(String id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeInvoiceById(String id) {
+		// TODO Auto-generated method stub
+		
+	}
 }

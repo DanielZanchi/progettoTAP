@@ -198,6 +198,7 @@ public class MainWindowUI {
 				(clientPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
 		editClient.addActionListener(e -> showGenericAddPanel(addClientPanel, false));
 		clientPanel.add(editClient);
+		mongoUiCom.seteditClientButton(editClient);
 		outerPanel.setLayer(myCompanyPanel, 1);
 
 		JComboBox<String> clientListComboBox = new JComboBox<>();
@@ -241,6 +242,7 @@ public class MainWindowUI {
 		editInvoiceProvision.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		editInvoiceProvision.addActionListener(e -> showGenericAddPanel(addItemPanel, false));
 		invoiceProvisionPanel.add(editInvoiceProvision);
+		mongoUiCom.seteditInvoiceButton(editInvoiceProvision);
 
 		JComboBox<String> invoiceListcomboBox = new JComboBox<>();
 		invoiceListcomboBox.setName("invoicesComboBox");

@@ -24,6 +24,15 @@ public class CompanyController {
 		database.saveClient(client);
 		return true;
 	}
+	
+	public boolean editClient(Client client) {
+		if (getClientId(client.getId()) == null)
+			return false;
+		database.removeClientById(client.getId());
+		database.saveClient(client);
+		return true;
+	}
+	
 
 	//Company
 	public List<Company> getAllCompany() {
@@ -66,4 +75,12 @@ public class CompanyController {
 		database.saveInvoice(invoice);
 		return true;
 	}	
+	
+	public boolean editInvoice(Invoice invoice) {
+		if (getInvoiceId(invoice.getId()) == null)
+			return false;
+		database.removeInvoiceById(invoice.getId());
+		database.saveInvoice(invoice);
+		return true;
+	}
 }

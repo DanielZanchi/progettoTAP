@@ -83,6 +83,11 @@ public class ClientPanel extends JPanel implements AddPanel {
 						clientAddressTF.getText(), clientCityTF.getText(), clientProvinceTF.getText(),
 						clientZipTF.getText(), clientCityTF.getText(), clientPhoneTF.getText(),
 						clientEmailTF.getText());
+			}else {
+				boolean saved = myMongoUiComunication.editClientFromDatabase(clientNameTF.getText(),
+						clientVatTF.getText(), clientAddressTF.getText(), clientCityTF.getText(),
+						clientProvinceTF.getText(), clientZipTF.getText(), clientCountryTF.getText(),
+						clientPhoneTF.getText(), clientEmailTF.getText());
 			}
 			addClientPanel.setVisible(false);
 			resetTextFields();
@@ -228,6 +233,17 @@ public class ClientPanel extends JPanel implements AddPanel {
 	@Override
 	public void setAddingMode(boolean isSaving) {
 		this.isSaving = isSaving;
+		if(!isSaving) {
+			clientNameTF.setText(myMongoUiComunication.getCurrentSelectedClient().getName());
+			clientVatTF.setText(myMongoUiComunication.getCurrentSelectedClient().getFiscalCode());
+			clientAddressTF.setText(myMongoUiComunication.getCurrentSelectedClient().getCityResidence());
+			clientCityTF.setText(myMongoUiComunication.getCurrentSelectedClient().getCity());
+			clientProvinceTF.setText(myMongoUiComunication.getCurrentSelectedClient().getProvince());
+			clientZipTF.setText(myMongoUiComunication.getCurrentSelectedClient().getZip());
+			clientCountryTF.setText(myMongoUiComunication.getCurrentSelectedClient().getCountry());
+			clientPhoneTF.setText(myMongoUiComunication.getCurrentSelectedClient().getPhone());
+			clientEmailTF.setText(myMongoUiComunication.getCurrentSelectedClient().getEmail());
+		}
 		this.setVisible(true);
 	}
 }

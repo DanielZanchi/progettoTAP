@@ -173,25 +173,29 @@ public class CompanyIntegrationTest {
 		assertNotEquals("wrongTestCountry", client.getCountry());
 	}
 
-	/*
 	@Test
-	public void testGetClientByIdWithRightBirthDay() {
-		mongoTestHelper.addClient("1", "test", "testFC", "testCR", "testBD");
-		Client Client = companyController.getClientId("1");
-		assertNotNull(Client);
-		assertEquals("testBD", Client.getBirthDate());
+	public void testEditClientWhileNoClientsInDB() {
+		Client client = new Client("1", "test", "testFC", "testCR", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail");
+		boolean edited = companyController.editClient(client);
+		assertFalse(edited);
 	}
-	 */
 
-	/*
 	@Test
-	public void testGetClientByIdWithWrongBirthDay() {
-		mongoTestHelper.addClient("1", "test", "testFC", "testCR", "testBD");
-		Client Client = companyController.getClientId("1");
-		assertNotNull(Client);
-		assertNotEquals("wrongtestBD", Client.getBirthDate());
+	public void testEditClientName() {
+		Client client = addTestClientToDB();
+		client.setName("EditedName");
+		companyController.editClient(client);
+		assertEquals("EditedName", companyController.getClientId("1").getName());
 	}
-	 */
+
+	@Test
+	public void testEditClientNameWithTwoClientsInDb() {
+		Client client = addTestClientToDB();
+		mongoTestHelper.addClient("2", "test2", "testFC2", "testCR2", "testCity2", "testProvince2", "testZip2", "testCountry2", "testPhone2", "testEmail2");
+		client.setName("EditedName");
+		companyController.editClient(client);
+		assertEquals("EditedName", companyController.getClientId("1").getName());
+	}
 
 	//      company	
 	private Company addTestCompanyToDB() {
@@ -412,4 +416,28 @@ public class CompanyIntegrationTest {
 		Invoice invoice = addTestInvoiceToDB();
 		assertNotEquals("wrongTestDescription", invoice.getDescription());
 	}	
+	
+	@Test
+	public void testEditInvoiceWhileNoInvoicesInDB() {
+		Invoice invoice = new Invoice("1", "testName", "testPrice", "testDescription");
+		boolean edited = companyController.editInvoice(invoice);
+		assertFalse(edited);
+	}
+
+	@Test
+	public void testEditInvoiceName() {
+		Invoice invoice = addTestInvoiceToDB();
+		invoice.setName("EditedName");
+		companyController.editInvoice(invoice);
+		assertEquals("EditedName", companyController.getInvoiceId("1").getName());
+	}
+
+	@Test
+	public void testEditInvoiceNameWithTwoInvoicesInDb() {
+		Invoice invoice = addTestInvoiceToDB();
+		mongoTestHelper.addInvoice("2", "nameI2", "200", "basic invoice type2");
+		invoice.setName("EditedName");
+		companyController.editInvoice(invoice);
+		assertEquals("EditedName", companyController.getInvoiceId("1").getName());
+	}
 }

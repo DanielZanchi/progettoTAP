@@ -131,6 +131,8 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 			// save invoice
 			if(addItemPanel.isSaving()) {
 				mongoUiComunication.addInvoiceToDatabase(itemNameTF.getText(), itemDescriptionTF.getText(), itemPriceTF.getText());
+			}else {
+				boolean saved = mongoUiComunication.editInvoiceFromDatabase(itemNameTF.getText(), itemPriceTF.getText(), itemDescriptionTF.getText());
 			}
 
 			addItemPanel.setVisible(false);
@@ -183,6 +185,11 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 	@Override
 	public void setAddingMode(boolean isSaving) {
 		this.isSaving = isSaving;
+		if(!isSaving) {
+			itemNameTF.setText(mongoUiComunication.getCurrentSelectedInvoice().getName());
+			itemPriceTF.setText(mongoUiComunication.getCurrentSelectedInvoice().getPrice());
+			itemDescriptionTF.setText(mongoUiComunication.getCurrentSelectedInvoice().getDescription());
+		}
 		this.setVisible(true);
 	}
 }

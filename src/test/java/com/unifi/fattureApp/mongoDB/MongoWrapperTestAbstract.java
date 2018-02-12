@@ -81,7 +81,24 @@ public abstract class MongoWrapperTestAbstract {
 		assertEquals("2", findClientById.getId());
 		assertEquals("second", findClientById.getName());
 	}
+	
+	@Test 
+	public void testRemoveClientByIdFromDB() {
+		mongoTestHelper.addClient("1", "first", "firstFC", "firstCR", "firstCity", "firstProvince", "firstZip", "firstCountry", "firstPhone", "firstEmail"/*, "firstBD"*/);
+		mongoDatabase.removeClientById("1");
+		assertEquals(0, mongoDatabase.getAllClientsList().size());
+	}
 
+	@Test 
+	public void testRemoveClientByIdFromDBWithMoreClients() {
+		mongoTestHelper.addClient("1", "first", "firstFC", "firstCR", "firstCity", "firstProvince", "firstZip", "firstCountry", "firstPhone", "firstEmail"/*, "firstBD"*/);
+		mongoTestHelper.addClient("2", "second", "secondFC", "secondCR", "secondCity", "secondProvince", "secondZip", "secondCountry", "secondPhone", "secondEmail");
+		mongoDatabase.removeClientById("2");
+		assertTrue(mongoTestHelper.containsClient("1", "first", "firstFC", "firstCR", "firstCity", "firstProvince", "firstZip", "firstCountry", "firstPhone", "firstEmail"));
+	}	
+
+	//Company
+	
 	@Test
 	public void testGetAllCompaniesEmpty() {
 		assertTrue(mongoDatabase.getAllCompaniesList().isEmpty());
@@ -132,6 +149,8 @@ public abstract class MongoWrapperTestAbstract {
 		mongoDatabase.removeCompanyById("2");
 		assertTrue(mongoTestHelper.containsCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1"));
 	}	
+	
+	//Invoice
 
 	@Test
 	public void testGetAllInvoicesEmpty() {
@@ -168,4 +187,19 @@ public abstract class MongoWrapperTestAbstract {
 		assertEquals("2", findInvoiceById.getId());
 		assertEquals("nameI2", findInvoiceById.getName());
 	}
+	
+	@Test 
+	public void testRemoveInvoiceByIdFromDB() {
+		mongoTestHelper.addInvoice("1", "nameI1", "100", "basic invoice type1");
+		mongoDatabase.removeInvoiceById("1");
+		assertEquals(0, mongoDatabase.getAllInvoicesList().size());
+	}
+
+	@Test 
+	public void testRemoveInvoiceByIdFromDBWithMoreInvoices() {
+		mongoTestHelper.addInvoice("1", "nameI1", "100", "basic invoice type1");
+		mongoTestHelper.addInvoice("2", "nameI2", "200", "basic invoice type2");
+		mongoDatabase.removeInvoiceById("2");
+		assertTrue(mongoTestHelper.containsInvoice("1", "nameI1", "100", "basic invoice type1"));
+		}	
 }

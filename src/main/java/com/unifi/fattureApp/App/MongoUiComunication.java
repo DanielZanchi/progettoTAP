@@ -30,9 +30,10 @@ public class MongoUiComunication {
 	private JLabel companyInfo;
 
 	private int companyCounter = 0;
-	private int invoiceCounter = 0;
 
 	private JButton editCompanyButton;
+	private JButton editClientButton;
+	private JButton editInvoiceButton;
 
 	public MongoUiComunication(boolean testing, String[] args, boolean usingMongodb) throws IOException {	
 		if(usingMongodb) {
@@ -43,6 +44,8 @@ public class MongoUiComunication {
 
 		myCompanyController = new CompanyController(database);
 		editCompanyButton = new JButton();
+		editClientButton=new JButton();
+		editInvoiceButton=new JButton();
 		companyInfo=new JLabel();
 	}
 
@@ -84,6 +87,12 @@ public class MongoUiComunication {
 		return myCompanyController.addClient(
 				new Client(currentId, name, fiscalCode, residence, city, province, zip, country, phone, email));
 	}
+	
+	public boolean editClientFromDatabase(String name, String vat, String address, String city, String province,
+			String zip, String country, String phone, String email) {
+		String currentId=String.valueOf(currentSelectedClient.getId());
+		return myCompanyController.editClient(new Client(currentId, name, vat, address, city, province, zip, country, phone, email));
+	}
 
 	public boolean addCompanyToDatabase(String name, String vat, String address, String city, String province,
 			String zip, String country, String phone, String email) {
@@ -102,6 +111,11 @@ public class MongoUiComunication {
 	public boolean addInvoiceToDatabase(String name, String description, String price) {
 		String currentId = String.valueOf(this.getInvoicesCount() + 1);
 		return myCompanyController.addInvoice(new Invoice(currentId, name, price, description));
+	}
+	
+	public boolean editInvoiceFromDatabase(String name, String price, String description) {
+		String currentId=String.valueOf(currentSelectedInvoice.getId());
+		return myCompanyController.editInvoice(new Invoice(currentId, name, price, description));
 	}
 
 	public int getCompaniesCount() {
@@ -133,7 +147,6 @@ public class MongoUiComunication {
 
 	public boolean printSelected() {
 		if (currentSelectedClient != null && currentSelectedCompany != null && currentSelectedInvoice != null) {
-			increaseInvoiceNumber();
 			try {
 				new PDFCreator(currentSelectedCompany, currentSelectedClient, currentSelectedInvoice);
 			} catch (Exception e) {
@@ -144,9 +157,7 @@ public class MongoUiComunication {
 		return false;
 	}
 
-	private void  increaseInvoiceNumber() {
-		invoiceCounter++;
-	}
+	
 
 	public Company getCurrentSelectedCompany() {
 		return currentSelectedCompany;
@@ -198,6 +209,7 @@ public class MongoUiComunication {
 		for (int i = 0; i < this.getSavedClients().size(); i++) {
 			clientsList.addItem(this.getSavedClients().get(i).getName());
 		}
+		clientsList.setSelectedIndex(this.getSavedClients().size()-1);
 	}
 
 	public void updateInvoicesReferences() {
@@ -205,6 +217,7 @@ public class MongoUiComunication {
 		for (int i = 0; i < this.getSavedInvoices().size(); i++) {
 			invoicesList.addItem(this.getSavedInvoices().get(i).getName());
 		}
+		invoicesList.setSelectedIndex(this.getSavedInvoices().size()-1);
 	}
 
 	public void setClientsList(JComboBox<String> clientsList) {
@@ -235,4 +248,21 @@ public class MongoUiComunication {
 	public void seteditCompanyButton(JButton editMyCompanyButton) {
 		editCompanyButton = editMyCompanyButton;
 	}
+	
+	public void enableEditClientButton() {
+		editClientButton.setEnabled(true);
+	}
+
+	public void seteditClientButton(JButton editClientButton) {
+		this.editClientButton = editClientButton;
+	}
+	
+	public void enableEditInvoiceButton() {
+		editInvoiceButton.setEnabled(true);
+	}
+
+	public void seteditInvoiceButton(JButton editInvoiceButton) {
+		this.editInvoiceButton = editInvoiceButton;
+	}
+	
 }
