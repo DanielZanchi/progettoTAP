@@ -19,7 +19,7 @@ public class MongoUiComunication {
 	private static final Logger LOGGER = Logger.getLogger(MongoUiComunication.class);
 	Database database;
 	String mongoHost = "localhost";
-	CompanyController myCompanyController;
+	AppController myCompanyController;
 
 	private Company currentSelectedCompany;
 	private Client currentSelectedClient;
@@ -42,7 +42,7 @@ public class MongoUiComunication {
 			setUpOtherdb(testing);
 		}
 
-		myCompanyController = new CompanyController(database);
+		myCompanyController = new AppController(database);
 		editCompanyButton = new JButton();
 		editClientButton=new JButton();
 		editInvoiceButton=new JButton();

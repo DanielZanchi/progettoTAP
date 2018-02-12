@@ -16,14 +16,14 @@ import com.github.fakemongo.Fongo;
 import com.mongodb.MongoClient;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
-import com.unifi.fattureApp.App.CompanyController;
+import com.unifi.fattureApp.App.AppController;
 import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.helpTestTools.TestHelperTool;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
 public class CompanyIntegrationTest {
-	private CompanyController companyController;
+	private AppController companyController;
 	private TestHelperTool mongoTestHelper;
 
 	@Before
@@ -34,7 +34,7 @@ public class CompanyIntegrationTest {
 		mongoTestHelper.setUpMongoClient(mongoClient);
 
 		Database database = new MongoWrapper(mongoClient);
-		companyController = new CompanyController(database);
+		companyController = new AppController(database);
 	}
 
 	private Client addTestClientToDB() {

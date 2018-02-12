@@ -2,10 +2,10 @@ package com.unifi.fattureApp.App;
 
 import java.util.List;
 
-public class CompanyController {
+public class AppController {
 	private Database database;
 
-	public CompanyController(Database database) {
+	public AppController(Database database) {
 		this.database = database;
 	}
 
