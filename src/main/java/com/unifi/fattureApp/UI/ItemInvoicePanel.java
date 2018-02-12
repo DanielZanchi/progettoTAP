@@ -10,6 +10,7 @@ import java.util.Locale;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -51,64 +52,15 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 		outerPanel.setLayer(addItemPanel, 2);
 
 		textFields = new LinkedList<>();
+		
+		initLabelsTextFields();
 
 		// ADD COMPONENTS INSIDE PANEL
 		int addPanelY = addItemPanel.getY();
 		insets = 8;
 		int insetsBtwField = 23;
 
-		JLabel addItemTitleLabel = new JLabel("Item");
-		addItemTitleLabel.setFont(new Font("Lucida Grande", Font.BOLD, 20));
-		width = (int) addItemTitleLabel.getPreferredSize().getWidth();
-		height = (int) addItemTitleLabel.getPreferredSize().getHeight();
-		addItemTitleLabel.setBounds((addItemPanel.getWidth() / 2) - (width / 2), addPanelY - 10, width, height);
-		addItemPanel.add(addItemTitleLabel);
-
-		JLabel itemNameLabel = new JLabel("Item Name:");
-		width = (int) itemNameLabel.getPreferredSize().getWidth();
-		height = (int) itemNameLabel.getPreferredSize().getHeight();
-		itemNameLabel.setBounds((addItemPanel.getWidth() / 2) - (width / 2),
-				addItemTitleLabel.getY() + addItemTitleLabel.getHeight() + insetsBtwField, width, height);
-		addItemPanel.add(itemNameLabel);
-		itemNameTF = new JTextField();
-		width = 200;
-		itemNameTF.setName("invoiceName_TF");
-		itemNameTF.setHorizontalAlignment(JTextField.CENTER);
-		itemNameTF.setBounds((addItemPanel.getWidth() / 2) - (width / 2),
-				itemNameLabel.getY() + itemNameLabel.getHeight() + insets, width, 28);
-		addItemPanel.add(itemNameTF);
-
-		JLabel itemDescriptionLabel = new JLabel("Item Description:");
-		width = (int) itemDescriptionLabel.getPreferredSize().getWidth();
-		height = (int) itemDescriptionLabel.getPreferredSize().getHeight();
-		itemDescriptionLabel.setBounds((addItemPanel.getWidth() / 2) - (width / 2),
-				itemNameTF.getY() + itemNameTF.getHeight() + insetsBtwField, width, height);
-		addItemPanel.add(itemDescriptionLabel);
-		itemDescriptionTF = new JTextField();
-		width = 350;
-		itemDescriptionTF.setHorizontalAlignment(JTextField.CENTER);
-		itemDescriptionTF.setBounds((addItemPanel.getWidth() / 2) - (width / 2),
-				itemDescriptionLabel.getY() + itemDescriptionLabel.getHeight() + insets, width, 28);
-		itemDescriptionTF.setName("invoiceDescription_TF");
-		addItemPanel.add(itemDescriptionTF);
-
-		JLabel itemPriceLabel = new JLabel("Price (incl. VAT):");
-		width = (int) itemPriceLabel.getPreferredSize().getWidth();
-		height = (int) itemPriceLabel.getPreferredSize().getHeight();
-		itemPriceLabel.setBounds((addItemPanel.getWidth() / 2) - (width / 2),
-				itemDescriptionTF.getY() + itemDescriptionTF.getHeight() + insetsBtwField, width, height);
-		addItemPanel.add(itemPriceLabel);
-		NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.getDefault());
-		DecimalFormat decimalFormat = (DecimalFormat) numberFormat;
-		decimalFormat.setGroupingUsed(false);
-		itemPriceTF = new JFormattedTextField(decimalFormat);
-		itemPriceTF.setColumns(15);
-		width = 70;
-		itemPriceTF.setHorizontalAlignment(JTextField.CENTER);
-		itemPriceTF.setName("invoicePrice_TF");
-		itemPriceTF.setBounds((addItemPanel.getWidth() / 2) - (width / 2),
-				itemPriceLabel.getY() + itemPriceLabel.getHeight() + insets, width, 28);
-		addItemPanel.add(itemPriceTF);
+		
 
 		JButton cancelButton = new JButton();
 		cancelButton.setName("CancelButton");
@@ -176,6 +128,61 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 				}
 			});
 		}
+	}
+	
+	private void initLabelsTextFields() {
+		int addPanelY = addItemPanel.getY();
+		int insets = 8;
+		int insetsMiddle = 23;
+		
+		JLabel addItemTitleLabel = new JLabel("Item");
+		addItemTitleLabel.setFont(new Font("Lucida Grande", Font.BOLD, 20));
+		int width = (int) addItemTitleLabel.getPreferredSize().getWidth();
+		int height = (int) addItemTitleLabel.getPreferredSize().getHeight();
+		addItemTitleLabel.setBounds((addItemPanel.getWidth() / 2) - (width / 2), addPanelY - 10, width, height);
+		addItemPanel.add(addItemTitleLabel);
+
+		JLabel itemNameLabel = new JLabel("Item Name:");
+		setUpLabelInThePanel(itemNameLabel, 0, addItemTitleLabel);
+		
+		itemNameTF = new JTextField();
+		setUpTextFieldInThePanel(itemNameTF, 200, "invoiceName_TF", 0, insetsMiddle, itemNameLabel);
+		width = 200;
+
+		JLabel itemDescriptionLabel = new JLabel("Item Description:");
+		setUpLabelInThePanel(itemDescriptionLabel, 0, itemNameTF);
+		
+		itemDescriptionTF = new JTextField();
+		setUpTextFieldInThePanel(itemDescriptionTF, 350, "invoiceDescription_TF", 0, insetsMiddle, itemDescriptionLabel);
+
+		JLabel itemPriceLabel = new JLabel("Price (incl. VAT):");
+		setUpLabelInThePanel(itemPriceLabel, 0, itemDescriptionTF);
+		
+		NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.getDefault());
+		DecimalFormat decimalFormat = (DecimalFormat) numberFormat;
+		decimalFormat.setGroupingUsed(false);
+		itemPriceTF = new JFormattedTextField(decimalFormat);
+		itemPriceTF.setColumns(15);
+		width = 70;
+		itemPriceTF.setHorizontalAlignment(JTextField.CENTER);
+		itemPriceTF.setName("invoicePrice_TF");
+		itemPriceTF.setBounds((addItemPanel.getWidth() / 2) - (width / 2),
+				itemPriceLabel.getY() + itemPriceLabel.getHeight() + insets, width, 28);
+		addItemPanel.add(itemPriceTF);
+	}
+	
+	private void setUpLabelInThePanel(JLabel label, int insetsMiddle, JComponent relatedComponent) {
+		int width = (int) label.getPreferredSize().getWidth();
+		int height = (int) label.getPreferredSize().getHeight();
+		label.setBounds((addItemPanel.getWidth() / 2) - (width / 2)+insetsMiddle, relatedComponent.getY() + relatedComponent.getHeight() + 23, width, height);
+		addItemPanel.add(label);
+	}
+
+	private void setUpTextFieldInThePanel(JTextField textField, int width, String name, int insetsWidth, int insets, JLabel linkedLabel) {
+		textField.setName(name);
+		textField.setHorizontalAlignment(JTextField.CENTER);
+		textField.setBounds((addItemPanel.getWidth() / 2) - (width / 2)+insetsWidth, linkedLabel.getY() + linkedLabel.getHeight() + insets, width, 28);
+		addItemPanel.add(textField);
 	}
 
 	public boolean isSaving() {
