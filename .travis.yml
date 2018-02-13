@@ -16,7 +16,6 @@ services:
   - docker
 
 cache:
-  cocoapods: true
   directories:
   - $HOME/.m2
   - '$HOME/.sonar/cache'
