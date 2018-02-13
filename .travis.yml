@@ -24,7 +24,6 @@ install:
  - docker pull mongo
  
 script:
-- mvn clean package -Dorg.slf4j.simpleLogger.defaultLogLevel=debug
 - mvn -f pom.xml clean verify coveralls:report
 - mvn -f pom.xml verify -Pdocker-compose package sonar:sonar
 #- mvn clean install sonar:sonar -Dsonar.host.url=https:/sonarqube.com -Dsonar.login="77b4026d89a6e705fe586a12b1700d89b4e0c2e8"
