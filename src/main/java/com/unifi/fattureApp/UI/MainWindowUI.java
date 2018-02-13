@@ -107,7 +107,7 @@ public class MainWindowUI {
 		myCompanyPanel.add(editMyCompanyButton);
 		outerPanel.setLayer(editMyCompanyButton, 1);
 		editMyCompanyButton.addActionListener(e -> showGenericAddPanel(addCompanyPanel, false));
-		mongoUiCom.seteditCompanyButton(editMyCompanyButton);
+		mongoUiCom.setEditCompanyButton(editMyCompanyButton);
 
 		FormattedButton addMyCompanyButton = new FormattedButton("Add", "AddCompanyButton");
 		addMyCompanyButton.setBounds(editMyCompanyButton.getX() - innerInsets - buttonWidth,

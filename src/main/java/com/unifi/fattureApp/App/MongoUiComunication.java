@@ -245,7 +245,7 @@ public class MongoUiComunication {
 		editCompanyButton.setEnabled(true);
 	}
 
-	public void seteditCompanyButton(JButton editMyCompanyButton) {
+	public void setEditCompanyButton(JButton editMyCompanyButton) {
 		editCompanyButton = editMyCompanyButton;
 	}
 	
