@@ -11,6 +11,7 @@ import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.fixture.JButtonFixture;
 import org.assertj.swing.fixture.JPanelFixture;
 import org.assertj.swing.fixture.JTextComponentFixture;
+import org.bson.util.StringRangeSet;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -343,8 +344,63 @@ public class MyCompanyPanelUITest {
 	
 	
 	
+	@Test 
+	public void testEditButtonNameModified() {
+		checkTextfieldTextAfterCompanySaved("companyNameTextField", "edited");
+	}
+	
+	@Test 
+	public void testEditButtonVatModified() {
+		checkTextfieldTextAfterCompanySaved("companyVatTextField", "edited");
+	}
+	
+	@Test 
+	public void testEditButtonAddressModified() {
+		checkTextfieldTextAfterCompanySaved("companyAddressTextField", "edited");
+	}
+	
+	@Test 
+	public void testEditButtonCityModified() {
+		checkTextfieldTextAfterCompanySaved("companyCityTextField", "edited");
+	}
+	
+	@Test 
+	public void testEditButtonProvinceModified() {
+		checkTextfieldTextAfterCompanySaved("companyProvinceTextField", "edited");
+	}
+	
+	@Test 
+	public void testEditButtonZipModified() {
+		checkTextfieldTextAfterCompanySaved("companyZipTextField", "edited");
+	}
+	
+	@Test 
+	public void testEditButtonCountryModified() {
+		checkTextfieldTextAfterCompanySaved("companyCountryTextField", "edited");
+	}
+	
+	@Test 
+	public void testEditButtonPhoneModified() {
+		checkTextfieldTextAfterCompanySaved("companyPhoneTextField", "edited");
+	}
+	
+	@Test 
+	public void testEditButtonEmailModified() {
+		checkTextfieldTextAfterCompanySaved("companyEmailTextField", "edited");
+	}
+	
+	
 	
 	// Help methods
+	
+	private void checkTextfieldTextAfterCompanySaved(String textFieldName, String newText) {
+		initTextFieldsForEditButtonAssertions();
+		addCompany_Panel.textBox(textFieldName).setText(newText);
+		saveAdd_Button.click();
+		editCompany();
+		JTextComponentFixture companyTextField = addCompany_Panel.textBox(textFieldName);
+		companyTextField.text().compareTo(newText);
+	}
 
 	private void showAddCompanyPanel() {
 		addCompany_Button.click();

@@ -123,6 +123,32 @@ public class ItemInvoicePanelUITest {
 		invoiceDescription.text().compareTo("2");
 	}
 	
+	@Test 
+	public void testEditButtonNameModified() {
+		checkTextfieldTextAfterInvoiceSavedSaved("invoiceName_TF", "edited");
+	}
+	
+	@Test 
+	public void testEditButtonPriceModified() {
+		checkTextfieldTextAfterInvoiceSavedSaved("invoicePrice_TF", "edited");
+	}
+	
+	@Test 
+	public void testEditButtonDescriptionModified() {
+		checkTextfieldTextAfterInvoiceSavedSaved("invoiceDescription_TF", "edited");
+	}
+	
+	// Help methods
+	
+	private void checkTextfieldTextAfterInvoiceSavedSaved(String textFieldName, String newText) {
+		initTextFieldsForEditButtonAssertions();
+		addInvoice_Panel.textBox(textFieldName).setText(newText);
+		saveAdd_Button.click();
+		editInvoice();
+		JTextComponentFixture invoiceTextField = addInvoice_Panel.textBox(textFieldName);
+		invoiceTextField.text().compareTo(newText);
+	}
+	
 	// Help methods
 	
 	private void initTextFieldsForEditButtonAssertions() {

@@ -165,6 +165,64 @@ public class ClientPanelUITest {
 		clientEmail.text().compareTo("");
 	}
 	
+	@Test 
+	public void testEditButtonNameModified() {
+		checkTextfieldTextAfterClientSaved("clientName_TF", "edited");
+	}
+	
+	@Test 
+	public void testEditButtonVatModified() {
+		checkTextfieldTextAfterClientSaved("clientVat_TF", "edited");
+	}
+	
+	@Test 
+	public void testEditButtonAddressModified() {
+		checkTextfieldTextAfterClientSaved("clientAddress_TF", "edited");
+	}
+	
+	@Test 
+	public void testEditButtonCityModified() {
+		checkTextfieldTextAfterClientSaved("clientCity_TF", "edited");
+	}
+	
+	@Test 
+	public void testEditButtonProvinceModified() {
+		checkTextfieldTextAfterClientSaved("clientProvince_TF", "edited");
+	}
+	
+	@Test 
+	public void testEditButtonZipModified() {
+		checkTextfieldTextAfterClientSaved("clientZip_TF", "edited");
+	}
+	
+	@Test 
+	public void testEditButtonCountryModified() {
+		checkTextfieldTextAfterClientSaved("clientCountry_TF", "edited");
+	}
+	
+	@Test 
+	public void testEditButtonPhoneModified() {
+		checkTextfieldTextAfterClientSaved("clientPhone_TF", "edited");
+	}
+	
+	@Test 
+	public void testEditButtonEmailModified() {
+		checkTextfieldTextAfterClientSaved("clientEmail_TF", "edited");
+	}
+	
+	
+	
+	// Help methods
+	
+	private void checkTextfieldTextAfterClientSaved(String textFieldName, String newText) {
+		initTextFieldsForEditButtonAssertions();
+		addClient_Panel.textBox(textFieldName).setText(newText);
+		saveAdd_Button.click();
+		editClient();
+		JTextComponentFixture clientTextField = addClient_Panel.textBox(textFieldName);
+		clientTextField.text().compareTo(newText);
+	}
+	
 	private void editClient() {
 		editClient_Button.click();
 	}
