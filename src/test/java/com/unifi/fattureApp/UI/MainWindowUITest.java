@@ -19,9 +19,6 @@ public class MainWindowUITest {
 	private JButtonFixture addCompanyButton;
 	private JPanelFixture addCompanyPanel;
 
-	private JPanelFixture clientPanel;	
-	private JButtonFixture addClient_Button;
-
 	@Before
 	public void setUp() throws IOException {
 		//MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
@@ -30,7 +27,7 @@ public class MainWindowUITest {
 		window.show();
 
 		addCompanyButton = window.panel("CompanyPanel").button("AddCompanyButton");
-		addClient_Button = window.panel("ClientPanel").button("AddClientButton");
+		//addClient_Button = window.panel("ClientPanel").button("AddClientButton");
 	}
 
 	@After

@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.fixture.JButtonFixture;
 import org.assertj.swing.fixture.JPanelFixture;
+import org.assertj.swing.fixture.JTextComponentFixture;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +16,7 @@ public class ItemInvoicePanelUITest {
 	private JButtonFixture cancelAdd_Button;
 	private JButtonFixture saveAdd_Button;
 	private JButtonFixture addInvoice_Button;
+	private JButtonFixture editInvoice_Button;
 
 	@Before
 	public void setUp() throws IOException {
@@ -22,6 +24,7 @@ public class ItemInvoicePanelUITest {
 		window = new FrameFixture(frame.getMainFrame());
 		window.show();
 		addInvoice_Button = window.panel("InvoicePanel").button("addInvoiceButton");
+		editInvoice_Button = window.panel("InvoicePanel").button("editInvoiceButton");
 	}
 
 	@After
@@ -78,6 +81,61 @@ public class ItemInvoicePanelUITest {
 		getSaveButton();
 		setTextfieldsStrings("0", "1", "");
 		saveAdd_Button.requireDisabled();
+	}
+	
+	// edit button
+	
+	@Test 
+	public void testEditButtonActionAddPanelVisible() {
+		addInvoice_Button.click();
+		addInvoice_Panel = window.panel("AddInvoicePanel");
+		setTextfieldsStrings("0", "1", "2");
+		saveAdd_Button = addInvoice_Panel.button("SaveButton");
+		saveAdd_Button.click();
+		editInvoice();
+		addInvoice_Panel.requireVisible();
+	}
+	
+	@Test 
+	public void testEditButtonWithNoCompanySelected() {
+		editInvoice();
+		editInvoice_Button.requireDisabled();
+	}
+	
+	@Test 
+	public void testEditButtonNameTextField() {
+		initTextFieldsForEditButtonAssertions();
+		JTextComponentFixture invoiceName = addInvoice_Panel.textBox("invoiceName_TF");
+		invoiceName.text().compareTo("0");
+	}
+	
+	@Test 
+	public void testEditButtonPriceTextField() {
+		initTextFieldsForEditButtonAssertions();
+		JTextComponentFixture invoicePrice = addInvoice_Panel.textBox("invoicePrice_TF");
+		invoicePrice.text().compareTo("1");
+	}
+	
+	@Test 
+	public void testEditButtonDescriptionTextField() {
+		initTextFieldsForEditButtonAssertions();
+		JTextComponentFixture invoiceDescription = addInvoice_Panel.textBox("invoiceDescription_TF");
+		invoiceDescription.text().compareTo("2");
+	}
+	
+	// Help methods
+	
+	private void initTextFieldsForEditButtonAssertions() {
+		addInvoice_Button.click();
+		addInvoice_Panel = window.panel("AddInvoicePanel");
+		setTextfieldsStrings("0", "1", "2");
+		saveAdd_Button = addInvoice_Panel.button("SaveButton");
+		saveAdd_Button.click();
+		editInvoice();
+	}
+	
+	private void editInvoice() {
+		editInvoice_Button.click();
 	}
 
 	private void getSaveButton() {

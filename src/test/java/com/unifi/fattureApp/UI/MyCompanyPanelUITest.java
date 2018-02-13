@@ -22,15 +22,16 @@ public class MyCompanyPanelUITest {
 	private JButtonFixture addCompany_Button;
 	private JButtonFixture cancelAdd_Button;
 	private JButtonFixture saveAdd_Button;
+	private JButtonFixture editCompany_Button; 
 
 	@Before
 	public void setUp() throws IOException {
-		//MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
 		MainWindowUI frame = new MainWindowUI();
 		window = new FrameFixture(frame.getMainFrame());
 		window.show();
 		myCompany_Panel = window.panel("CompanyPanel");
 		addCompany_Button = window.panel("CompanyPanel").button("AddCompanyButton");
+		editCompany_Button = window.panel("CompanyPanel").button("EditCompanyButton");
 	}
 
 	@After
@@ -258,6 +259,92 @@ public class MyCompanyPanelUITest {
 		saveAdd_Button = addCompany_Panel.button("SaveButton");
 		saveAdd_Button.requireDisabled();
 	}
+	
+	//edit button
+	
+	@Test 
+	public void testEditButtonActionAddPanelVisible() {
+		showAddCompanyPanel();
+		setTextfieldsStrings("0", "1", "2", "3", "4", "", "", "", "");
+		saveAdd_Button = addCompany_Panel.button("SaveButton");
+		saveAdd_Button.click();
+		editCompany();
+		addCompany_Panel.requireVisible();
+	}
+	
+	@Test 
+	public void testEditButtonWithNoCompanySelected() {
+		editCompany();
+		editCompany_Button.requireDisabled();
+	}
+	
+	@Test 
+	public void testEditButtonNameTextField() {
+		initTextFieldsForEditButtonAssertions();
+		JTextComponentFixture companyName = addCompany_Panel.textBox("companyNameTextField");
+		companyName.text().compareTo("0");
+	}
+	
+	@Test 
+	public void testEditButtonVatCodeTextField() {
+		initTextFieldsForEditButtonAssertions();
+		JTextComponentFixture companyVat = addCompany_Panel.textBox("companyVatTextField");
+		companyVat.text().compareTo("1");
+	}
+	
+	@Test 
+	public void testEditButtonAddressTextField() {
+		initTextFieldsForEditButtonAssertions();
+		JTextComponentFixture companyAddress = addCompany_Panel.textBox("companyAddressTextField");
+		companyAddress.text().compareTo("2");
+	}
+	
+	@Test 
+	public void testEditButtonCityTextField() {
+		initTextFieldsForEditButtonAssertions();
+		JTextComponentFixture companyCity = addCompany_Panel.textBox("companyCityTextField");
+		companyCity.text().compareTo("3");
+	}
+	
+	@Test 
+	public void testEditButtonProvinceTextField() {
+		initTextFieldsForEditButtonAssertions();
+		JTextComponentFixture companyProvince = addCompany_Panel.textBox("companyProvinceTextField");
+		companyProvince.text().compareTo("4");
+	}
+	
+	@Test 
+	public void testEditButtonZipTextField() {
+		initTextFieldsForEditButtonAssertions();
+		JTextComponentFixture companyZip = addCompany_Panel.textBox("companyZipTextField");
+		companyZip.text().compareTo("5");
+	}
+	
+	@Test 
+	public void testEditButtonCountryTextField() {
+		initTextFieldsForEditButtonAssertions();
+		JTextComponentFixture companyCountry = addCompany_Panel.textBox("companyCountryTextField");
+		companyCountry.text().compareTo("6");
+	}
+	
+	@Test 
+	public void testEditButtonPhoneTextField() {
+		initTextFieldsForEditButtonAssertions();
+		JTextComponentFixture companyPhone = addCompany_Panel.textBox("companyPhoneTextField");
+		companyPhone.text().compareTo("7");
+	}
+	
+	@Test 
+	public void testEditButtonEmailTextField() {
+		initTextFieldsForEditButtonAssertions();
+		JTextComponentFixture companyEmail = addCompany_Panel.textBox("companyEmailTextField");
+		companyEmail.text().compareTo("");
+	}
+	
+	
+	
+	
+	// Help methods
 
 	private void showAddCompanyPanel() {
 		addCompany_Button.click();
@@ -268,6 +355,10 @@ public class MyCompanyPanelUITest {
 		showAddCompanyPanel();
 		saveAdd_Button = addCompany_Panel.button("SaveButton");
 		saveAdd_Button.click();
+	}
+	
+	private void editCompany() {
+		editCompany_Button.click();
 	}
 
 	private void cancelCompany(){
@@ -288,4 +379,13 @@ public class MyCompanyPanelUITest {
 		addCompany_Panel.textBox("companyPhoneTextField").setText(string8);
 		addCompany_Panel.textBox("companyEmailTextField").setText(string9);
 	}
+	
+	private void initTextFieldsForEditButtonAssertions() {
+		showAddCompanyPanel();
+		setTextfieldsStrings("0", "1", "2", "3", "4", "5", "6", "7", "");
+		saveAdd_Button = addCompany_Panel.button("SaveButton");
+		saveAdd_Button.click();
+		editCompany();
+	}
+	
 }
