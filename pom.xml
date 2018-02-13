@@ -347,7 +347,7 @@
 									</run>
 								</image>
 							</images>
-							<showLogs>true</showLogs>
+							<showLogs>false</showLogs>
 						</configuration>
 						<executions>
 							<execution>
