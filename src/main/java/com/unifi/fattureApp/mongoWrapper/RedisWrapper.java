@@ -109,13 +109,11 @@ public class RedisWrapper implements Database{
 
 	@Override
 	public void removeClientById(String id) {
-		// TODO Auto-generated method stub
-		
+		hashOps.delete(CLIENTKEY, id);
 	}
 
 	@Override
 	public void removeInvoiceById(String id) {
-		// TODO Auto-generated method stub
-		
+		hashOps.delete(INVOICEKEY, id);
 	}
 }
