@@ -26,5 +26,4 @@ public interface Database {
 	public void removeClientById(String id);
 	
 	public void removeInvoiceById(String id);
-	
 }

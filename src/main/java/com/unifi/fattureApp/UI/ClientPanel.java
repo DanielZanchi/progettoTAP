@@ -127,7 +127,6 @@ public class ClientPanel extends JPanel implements AddPanel {
 		}
 	}
 
-
 	private void initLabelsTextFields() {
 		int addPanelY = addClientPanel.getY();
 		int insets = 8;
@@ -135,7 +134,7 @@ public class ClientPanel extends JPanel implements AddPanel {
 
 		JLabel addClientTitleLabel = new JLabel("Client");
 		addClientTitleLabel.setFont(new Font("Lucida Grande", Font.BOLD, 20));
-		addClientTitleLabel.setBounds((int) ((addClientPanel.getWidth() / 2) - (addClientTitleLabel.getPreferredSize().getWidth() / 2)), addPanelY - 10, (int)addClientTitleLabel.getPreferredSize().getWidth(), (int)addClientTitleLabel.getPreferredSize().getHeight());
+		addClientTitleLabel.setBounds((int) (((double)addClientPanel.getWidth() / 2) - (addClientTitleLabel.getPreferredSize().getWidth() / 2)), addPanelY - 10, (int)addClientTitleLabel.getPreferredSize().getWidth(), (int)addClientTitleLabel.getPreferredSize().getHeight());
 		addClientPanel.add(addClientTitleLabel);
 
 		JLabel clientNameLabel = new JLabel("Client Name:");

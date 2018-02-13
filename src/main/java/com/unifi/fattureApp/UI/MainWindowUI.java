@@ -7,7 +7,6 @@ import java.awt.event.ItemEvent;
 import java.io.IOException;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -181,7 +180,7 @@ public class MainWindowUI {
 		clientLbl.setBounds((clientPanel.getWidth() / 2) - 26, innerInsets, 52, 16);
 		clientLbl.setFont(new Font(ARIAL, Font.BOLD, 16));
 		clientPanel.add(clientLbl);
-		
+
 		FormattedButton editClient = new FormattedButton("Edit", "editClientButton");
 		editClient.setEnabled(false);
 		editClient.setBounds(clientPanel.getWidth() - buttonWidth,

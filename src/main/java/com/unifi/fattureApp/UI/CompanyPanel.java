@@ -60,7 +60,7 @@ public class CompanyPanel extends JPanel implements AddPanel {
 		outerPanel.setLayer(addCompanyPanel, 2);
 
 		textFields = new LinkedList<>();
-		
+
 		initLabelsTextFields();
 
 		FormattedButton cancelButton = new FormattedButton("Cancel", "CancelButton");
@@ -142,7 +142,7 @@ public class CompanyPanel extends JPanel implements AddPanel {
 			});
 		}
 	}
-	
+
 	private void initLabelsTextFields() {
 		int addPanelY = addCompanyPanel.getY();
 		int insets = 8;
@@ -193,7 +193,7 @@ public class CompanyPanel extends JPanel implements AddPanel {
 
 		JLabel companyCountryLabel = new JLabel("Country:");
 		setUpLabelInThePanel(companyCountryLabel, insetsMiddle, companyProvinceTF);
-		
+
 		companyCountryTF = new JTextField();
 		setUpTextFieldInThePanel(companyCountryTF, 100, "companyCountryTextField", insetsMiddle, insets, companyCountryLabel);
 
@@ -205,19 +205,18 @@ public class CompanyPanel extends JPanel implements AddPanel {
 
 		JLabel companyEmailLabel = new JLabel("Email:");
 		setUpLabelInThePanel(companyEmailLabel, 0, companyPhoneTF);
-		
+
 		companyEmailTF = new JTextField();
 		setUpTextFieldInThePanel(companyEmailTF, 190, "companyEmailTextField", 0, insets, companyEmailLabel);
-		
 	}
-	
+
 	private void setUpLabelInThePanel(JLabel label, int insetsMiddle, JComponent relatedComponent) {
 		int width = (int) label.getPreferredSize().getWidth();
 		int height = (int) label.getPreferredSize().getHeight();
 		label.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2)+insetsMiddle, relatedComponent.getY() + relatedComponent.getHeight() + 23, width, height);
 		addCompanyPanel.add(label);
 	}
-	
+
 	private void setUpTextFieldInThePanel(JTextField textField, int width, String name, int insetsWidth, int insets, JLabel linkedLabel) {
 		textField.setName(name);
 		textField.setHorizontalAlignment(JTextField.CENTER);
