@@ -14,10 +14,13 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import org.apache.log4j.Logger;
+
 import com.unifi.fattureApp.App.MongoUiComunication;
 
 public class ClientPanel extends JPanel implements AddPanel {
 	private static final long serialVersionUID = -4964123340815964907L;
+	private static final Logger LOGGER = Logger.getLogger(ClientPanel.class);
 
 	private MongoUiComunication myMongoUiComunication;
 
@@ -77,17 +80,21 @@ public class ClientPanel extends JPanel implements AddPanel {
 						clientZipTF.getText(), clientCityTF.getText(), clientPhoneTF.getText(),
 						clientEmailTF.getText());
 			}else {
-				boolean saved = myMongoUiComunication.editClientFromDatabase(clientNameTF.getText(),
+				boolean saved=myMongoUiComunication.editClientFromDatabase(clientNameTF.getText(),
 						clientVatTF.getText(), clientAddressTF.getText(), clientCityTF.getText(),
 						clientProvinceTF.getText(), clientZipTF.getText(), clientCountryTF.getText(),
 						clientPhoneTF.getText(), clientEmailTF.getText());
+				if (saved) {
+					LOGGER.info(" Client modificata con successo");
+				} else {
+					LOGGER.error("Error: Client non modificata");
+				}
 			}
 			addClientPanel.setVisible(false);
 			resetTextFields();
 			mongoUiCom.updateClientsReferences();
 		});
 
-		// check if all required field aren't empty. if so activate the save button.
 		Component[] components = addClientPanel.getComponents();
 		for (Component component : components) {
 			if (component.getClass().equals(JTextField.class) && (!((JTextField) component).getName().equals("clientPhone_TF")

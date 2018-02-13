@@ -93,9 +93,9 @@ public class CompanyPanel extends JPanel implements AddPanel {
 						companyProvinceTF.getText(), companyZipTF.getText(), companyCountryTF.getText(),
 						companyPhoneTF.getText(), companyEmailTF.getText());
 				if (saved) {
-					LOGGER.info("Modificata con successo Yay");
+					LOGGER.info(" Company modificata con successo");
 				} else {
-					LOGGER.error("Error: non modificata!!!");
+					LOGGER.error("Error: Company non modificata");
 				}
 			}
 

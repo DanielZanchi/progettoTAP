@@ -18,10 +18,13 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import org.apache.log4j.Logger;
+
 import com.unifi.fattureApp.App.MongoUiComunication;
 
 public class ItemInvoicePanel extends JPanel implements AddPanel {
 	private static final long serialVersionUID = 8698651509983266694L;
+	private static final Logger LOGGER = Logger.getLogger(ItemInvoicePanel.class);
 
 	private JTextField itemDescriptionTF;
 	private JTextField itemNameTF;
@@ -73,13 +76,17 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 				mongoUiComunication.addInvoiceToDatabase(itemNameTF.getText(), itemDescriptionTF.getText(), itemPriceTF.getText());
 			}else {
 				boolean saved = mongoUiComunication.editInvoiceFromDatabase(itemNameTF.getText(), itemPriceTF.getText(), itemDescriptionTF.getText());
+				if (saved) {
+					LOGGER.info(" Invoice modificata con successo");
+				} else {
+					LOGGER.error("Error: Invoice non modificata");
+				}
 			}
 
 			addItemPanel.setVisible(false);
 			mongoUiComunication.updateInvoicesReferences();
 		});
 
-		// check if all required field aren't empty. if so activate the save button.
 		Component[] components = addItemPanel.getComponents();
 		for (Component component : components) {
 			if (component.getClass().equals(JTextField.class)) {
