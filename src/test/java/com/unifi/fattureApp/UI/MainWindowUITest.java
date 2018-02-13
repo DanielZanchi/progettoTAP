@@ -21,13 +21,11 @@ public class MainWindowUITest {
 
 	@Before
 	public void setUp() throws IOException {
-		//MainWindowUI frame = GuiActionRunner.execute(() -> new MainWindowUI());
 		MainWindowUI frame = new MainWindowUI();
 		window = new FrameFixture(frame.getMainFrame());
 		window.show();
 
 		addCompanyButton = window.panel("CompanyPanel").button("AddCompanyButton");
-		//addClient_Button = window.panel("ClientPanel").button("AddClientButton");
 	}
 
 	@After
