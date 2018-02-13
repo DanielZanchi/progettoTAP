@@ -21,6 +21,7 @@ cache:
   - '$HOME/.sonar/cache'
    
 install:
+ - travis_wait mvn install
  - docker pull mongo
  
 script:
