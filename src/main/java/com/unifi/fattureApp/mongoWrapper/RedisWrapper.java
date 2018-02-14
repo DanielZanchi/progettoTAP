@@ -1,9 +1,11 @@
 package com.unifi.fattureApp.mongoWrapper;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.HashOperations;
@@ -17,6 +19,8 @@ import com.unifi.fattureApp.App.Invoice;
 public class RedisWrapper implements Database{
 	private RedisTemplate<String, Object> redisTemplate;
 	private HashOperations<String, String, Object> hashOps;
+	@Autowired
+    private ClientRepository clientRepository;
 
 	private static final String CLIENTKEY = "client_key_redis"; 
 	private static final String COMPANYKEY = "company_key_redis"; 
@@ -30,7 +34,7 @@ public class RedisWrapper implements Database{
 	@Bean
 	private JedisConnectionFactory jedisConnectionFactory() {
 		JedisConnectionFactory jedisConFactory = new JedisConnectionFactory();
-		jedisConFactory.setHostName("localhost");
+		//jedisConFactory.setHostName("localhost");
 		jedisConFactory.setPort(6379);
 		return jedisConFactory;
 	}
@@ -44,12 +48,17 @@ public class RedisWrapper implements Database{
 
 	@Override
 	public List<Client> getAllClientsList() {
+		List<Client> clients = new ArrayList<>();
+		clientRepository.findAll().forEach(clients::add);
+		return clients;
+		/*
 		LinkedList<Client> clients = new LinkedList<>();
 		Iterator<String> iterator = hashOps.entries(CLIENTKEY).keySet().iterator();
 		while(iterator.hasNext()) {
 			clients.add((Client) hashOps.entries(CLIENTKEY).get(iterator.next()));
 		}
 		return clients;
+		*/
 	}
 
 	@Override
@@ -59,7 +68,8 @@ public class RedisWrapper implements Database{
 
 	@Override
 	public void saveClient(Client client) {
-		hashOps.put(CLIENTKEY, client.getId(), client);
+		clientRepository.save(client);
+		//hashOps.put(CLIENTKEY, client.getId(), client);
 	}
 
 	@Override
