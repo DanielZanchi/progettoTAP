@@ -9,11 +9,14 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
 import org.apache.log4j.Logger;
-
+import org.slf4j.LoggerFactory;
 
 import com.github.fakemongo.Fongo;
 import com.mongodb.MongoClient;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
+
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.LoggerContext;
 
 public class MongoUiComunication {
 	private static final Logger LOGGER = Logger.getLogger(MongoUiComunication.class);
@@ -65,6 +68,10 @@ public class MongoUiComunication {
 		if(testing) {
 			Fongo fongo = new Fongo("mongo server 1");
 			mongoClient = fongo.getMongo();
+			
+			LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
+			ch.qos.logback.classic.Logger rootLogger = loggerContext.getLogger("com.mongodb.FongoDBCollection");
+			rootLogger.setLevel(Level.OFF);
 		}else {
 			try {
 				mongoClient = new MongoClient(mongoHost, 27017);
