@@ -138,18 +138,4 @@ public class MongoUiComunicationTest {
 		myMongoUiCom.setCurrentSelectedInvoice(invoice);
 		assertEquals(true, myMongoUiCom.printSelected());
 	}
-
-	/*
-	@Test
-	public void setCompanyCounterTest() {
-		myMongoUiCom.setCompanyCounter(0);
-		assertEquals(0, myMongoUiCom.getCompanyCounter());
-	}
-
-	@Test
-	public void setCompanyCounterWrongValueTest() {
-		myMongoUiCom.setCompanyCounter(0);
-		assertEquals(1, myMongoUiCom.getCompanyCounter());
-	}
-	 */
 }

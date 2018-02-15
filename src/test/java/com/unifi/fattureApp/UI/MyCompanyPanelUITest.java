@@ -11,7 +11,6 @@ import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.fixture.JButtonFixture;
 import org.assertj.swing.fixture.JPanelFixture;
 import org.assertj.swing.fixture.JTextComponentFixture;
-import org.bson.util.StringRangeSet;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -260,9 +259,8 @@ public class MyCompanyPanelUITest {
 		saveAdd_Button = addCompany_Panel.button("SaveButton");
 		saveAdd_Button.requireDisabled();
 	}
-	
+
 	//edit button
-	
 	@Test 
 	public void testEditButtonActionAddPanelVisible() {
 		showAddCompanyPanel();
@@ -272,127 +270,122 @@ public class MyCompanyPanelUITest {
 		editCompany();
 		addCompany_Panel.requireVisible();
 	}
-	
+
 	@Test 
 	public void testEditButtonWithNoCompanySelected() {
 		editCompany();
 		editCompany_Button.requireDisabled();
 	}
-	
+
 	@Test 
 	public void testEditButtonNameTextField() {
 		initTextFieldsForEditButtonAssertions();
 		JTextComponentFixture companyName = addCompany_Panel.textBox("companyNameTextField");
 		companyName.text().compareTo("0");
 	}
-	
+
 	@Test 
 	public void testEditButtonVatCodeTextField() {
 		initTextFieldsForEditButtonAssertions();
 		JTextComponentFixture companyVat = addCompany_Panel.textBox("companyVatTextField");
 		companyVat.text().compareTo("1");
 	}
-	
+
 	@Test 
 	public void testEditButtonAddressTextField() {
 		initTextFieldsForEditButtonAssertions();
 		JTextComponentFixture companyAddress = addCompany_Panel.textBox("companyAddressTextField");
 		companyAddress.text().compareTo("2");
 	}
-	
+
 	@Test 
 	public void testEditButtonCityTextField() {
 		initTextFieldsForEditButtonAssertions();
 		JTextComponentFixture companyCity = addCompany_Panel.textBox("companyCityTextField");
 		companyCity.text().compareTo("3");
 	}
-	
+
 	@Test 
 	public void testEditButtonProvinceTextField() {
 		initTextFieldsForEditButtonAssertions();
 		JTextComponentFixture companyProvince = addCompany_Panel.textBox("companyProvinceTextField");
 		companyProvince.text().compareTo("4");
 	}
-	
+
 	@Test 
 	public void testEditButtonZipTextField() {
 		initTextFieldsForEditButtonAssertions();
 		JTextComponentFixture companyZip = addCompany_Panel.textBox("companyZipTextField");
 		companyZip.text().compareTo("5");
 	}
-	
+
 	@Test 
 	public void testEditButtonCountryTextField() {
 		initTextFieldsForEditButtonAssertions();
 		JTextComponentFixture companyCountry = addCompany_Panel.textBox("companyCountryTextField");
 		companyCountry.text().compareTo("6");
 	}
-	
+
 	@Test 
 	public void testEditButtonPhoneTextField() {
 		initTextFieldsForEditButtonAssertions();
 		JTextComponentFixture companyPhone = addCompany_Panel.textBox("companyPhoneTextField");
 		companyPhone.text().compareTo("7");
 	}
-	
+
 	@Test 
 	public void testEditButtonEmailTextField() {
 		initTextFieldsForEditButtonAssertions();
 		JTextComponentFixture companyEmail = addCompany_Panel.textBox("companyEmailTextField");
 		companyEmail.text().compareTo("");
 	}
-	
-	
-	
+
 	@Test 
 	public void testEditButtonNameModified() {
 		checkTextfieldTextAfterCompanySaved("companyNameTextField", "edited");
 	}
-	
+
 	@Test 
 	public void testEditButtonVatModified() {
 		checkTextfieldTextAfterCompanySaved("companyVatTextField", "edited");
 	}
-	
+
 	@Test 
 	public void testEditButtonAddressModified() {
 		checkTextfieldTextAfterCompanySaved("companyAddressTextField", "edited");
 	}
-	
+
 	@Test 
 	public void testEditButtonCityModified() {
 		checkTextfieldTextAfterCompanySaved("companyCityTextField", "edited");
 	}
-	
+
 	@Test 
 	public void testEditButtonProvinceModified() {
 		checkTextfieldTextAfterCompanySaved("companyProvinceTextField", "edited");
 	}
-	
+
 	@Test 
 	public void testEditButtonZipModified() {
 		checkTextfieldTextAfterCompanySaved("companyZipTextField", "edited");
 	}
-	
+
 	@Test 
 	public void testEditButtonCountryModified() {
 		checkTextfieldTextAfterCompanySaved("companyCountryTextField", "edited");
 	}
-	
+
 	@Test 
 	public void testEditButtonPhoneModified() {
 		checkTextfieldTextAfterCompanySaved("companyPhoneTextField", "edited");
 	}
-	
+
 	@Test 
 	public void testEditButtonEmailModified() {
 		checkTextfieldTextAfterCompanySaved("companyEmailTextField", "edited");
 	}
-	
-	
-	
+
 	// Help methods
-	
 	private void checkTextfieldTextAfterCompanySaved(String textFieldName, String newText) {
 		initTextFieldsForEditButtonAssertions();
 		addCompany_Panel.textBox(textFieldName).setText(newText);
@@ -412,7 +405,7 @@ public class MyCompanyPanelUITest {
 		saveAdd_Button = addCompany_Panel.button("SaveButton");
 		saveAdd_Button.click();
 	}
-	
+
 	private void editCompany() {
 		editCompany_Button.click();
 	}
@@ -435,7 +428,7 @@ public class MyCompanyPanelUITest {
 		addCompany_Panel.textBox("companyPhoneTextField").setText(string8);
 		addCompany_Panel.textBox("companyEmailTextField").setText(string9);
 	}
-	
+
 	private void initTextFieldsForEditButtonAssertions() {
 		showAddCompanyPanel();
 		setTextfieldsStrings("0", "1", "2", "3", "4", "5", "6", "7", "");
@@ -443,5 +436,4 @@ public class MyCompanyPanelUITest {
 		saveAdd_Button.click();
 		editCompany();
 	}
-	
 }

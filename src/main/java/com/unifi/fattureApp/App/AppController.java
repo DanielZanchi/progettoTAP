@@ -24,7 +24,7 @@ public class AppController {
 		database.saveClient(client);
 		return true;
 	}
-	
+
 	public boolean editClient(Client client) {
 		if (getClientId(client.getId()) == null)
 			return false;
@@ -32,7 +32,6 @@ public class AppController {
 		database.saveClient(client);
 		return true;
 	}
-	
 
 	//Company
 	public List<Company> getAllCompany() {
@@ -59,7 +58,6 @@ public class AppController {
 	}
 
 	//Invoice
-
 	public List<Invoice> getAllInvoices() {
 		return database.getAllInvoicesList();
 	}
@@ -75,7 +73,7 @@ public class AppController {
 		database.saveInvoice(invoice);
 		return true;
 	}	
-	
+
 	public boolean editInvoice(Invoice invoice) {
 		if (getInvoiceId(invoice.getId()) == null)
 			return false;

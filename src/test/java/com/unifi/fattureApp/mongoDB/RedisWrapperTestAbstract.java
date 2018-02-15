@@ -18,7 +18,6 @@ public abstract class RedisWrapperTestAbstract {
 	public abstract void stopRedis() throws UnknownHostException;
 	private TestHelperTool redisTestHelper;
 
-	
 	@Before
 	public void initDB() throws UnknownHostException {
 		createRedis();
@@ -27,7 +26,6 @@ public abstract class RedisWrapperTestAbstract {
 		redisTestHelper.usingRedis(redisDatabase);
 	}
 
-	
 	@Test
 	public void testGetAllClientsEmpty() {
 		assertTrue(redisDatabase.getAllClientsList().isEmpty());
@@ -47,6 +45,5 @@ public abstract class RedisWrapperTestAbstract {
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
-	}	
-	
+	}
 }

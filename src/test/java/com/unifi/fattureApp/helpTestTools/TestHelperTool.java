@@ -123,6 +123,21 @@ public class TestHelperTool {
 			redisDatabase.saveInvoice(new Invoice(id, name, price, description));
 		}		
 	}
+	
+	public void addTwoClient() {
+		addClient("1", "first", "firstFC", "firstCR", "firstCity", "firstProvince", "firstZip", "firstCountry", "firstPhone", "firstEmail");
+		addClient("2", "second", "secondFC", "secondCR", "secondCity", "secondProvince", "secondZip", "secondCountry", "secondPhone", "secondEmail");
+	}
+	
+	public void addTwoCompany() {
+		addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
+		addCompany("2", "nameC2", "vatCode2", "address2", "city2", "province2", "zipCode2", "country2", "phone2", "email2");
+	}
+	
+	public void addTwoInvoice() {
+		addInvoice("1", "nameI1", "100", "basic invoice type1");
+		addInvoice("2", "nameI2", "200", "basic invoice type2");
+	}
 
 	public boolean containsInvoice(String id, String name, String price, String description) {
 		if(usingMongo) {

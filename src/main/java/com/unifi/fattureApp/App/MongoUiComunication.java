@@ -40,16 +40,16 @@ public class MongoUiComunication {
 
 	public MongoUiComunication(boolean testing, String[] args, boolean usingMongodb) throws IOException {	
 		if(usingMongodb) {
-			settingUpMongodb(args,testing);
+			settingUpMongodb(args, testing);
 		}else {
 			setUpOtherdb(testing);
 		}
 
 		myCompanyController = new AppController(database);
 		editCompanyButton = new JButton();
-		editClientButton=new JButton();
-		editInvoiceButton=new JButton();
-		companyInfo=new JLabel();
+		editClientButton = new JButton();
+		editInvoiceButton = new JButton();
+		companyInfo = new JLabel();
 	}
 
 	private void setUpOtherdb(boolean testing) throws IOException {
@@ -60,7 +60,7 @@ public class MongoUiComunication {
 
 	}
 
-	private void settingUpMongodb(String[] args,boolean testing) {
+	private void settingUpMongodb(String[] args, boolean testing) {
 		if (args!=null && args.length > 0)
 			mongoHost = args[0];
 
@@ -68,7 +68,7 @@ public class MongoUiComunication {
 		if(testing) {
 			Fongo fongo = new Fongo("mongo server 1");
 			mongoClient = fongo.getMongo();
-			
+
 			LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
 			ch.qos.logback.classic.Logger rootLogger = loggerContext.getLogger("com.mongodb.FongoDBCollection");
 			rootLogger.setLevel(Level.OFF);
@@ -94,7 +94,7 @@ public class MongoUiComunication {
 		return myCompanyController.addClient(
 				new Client(currentId, name, fiscalCode, residence, city, province, zip, country, phone, email));
 	}
-	
+
 	public boolean editClientFromDatabase(String name, String vat, String address, String city, String province,
 			String zip, String country, String phone, String email) {
 		String currentId=String.valueOf(currentSelectedClient.getId());
@@ -119,7 +119,7 @@ public class MongoUiComunication {
 		String currentId = String.valueOf(this.getInvoicesCount() + 1);
 		return myCompanyController.addInvoice(new Invoice(currentId, name, price, description));
 	}
-	
+
 	public boolean editInvoiceFromDatabase(String name, String price, String description) {
 		String currentId=String.valueOf(currentSelectedInvoice.getId());
 		return myCompanyController.editInvoice(new Invoice(currentId, name, price, description));
@@ -164,7 +164,7 @@ public class MongoUiComunication {
 		return false;
 	}
 
-	
+
 
 	public Company getCurrentSelectedCompany() {
 		return currentSelectedCompany;
@@ -255,7 +255,7 @@ public class MongoUiComunication {
 	public void setEditCompanyButton(JButton editMyCompanyButton) {
 		editCompanyButton = editMyCompanyButton;
 	}
-	
+
 	public void enableEditClientButton() {
 		editClientButton.setEnabled(true);
 	}
@@ -263,7 +263,7 @@ public class MongoUiComunication {
 	public void seteditClientButton(JButton editClientButton) {
 		this.editClientButton = editClientButton;
 	}
-	
+
 	public void enableEditInvoiceButton() {
 		editInvoiceButton.setEnabled(true);
 	}
@@ -271,5 +271,5 @@ public class MongoUiComunication {
 	public void seteditInvoiceButton(JButton editInvoiceButton) {
 		this.editInvoiceButton = editInvoiceButton;
 	}
-	
+
 }
