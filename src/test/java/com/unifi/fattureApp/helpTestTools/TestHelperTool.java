@@ -1,5 +1,8 @@
 package com.unifi.fattureApp.helpTestTools;
 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.ClassPathResource;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -152,8 +155,10 @@ public class TestHelperTool {
 		}
 	}
 
-	public void usingRedis(RedisWrapper redisDatabase) {
+	public RedisWrapper usingRedis() {
 		usingMongo = false;
-		this.redisDatabase = redisDatabase;
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new ClassPathResource("spring-configuration.xml").getPath());
+		this.redisDatabase = (RedisWrapper)context.getBean("redisWrapper");
+		return redisDatabase;
 	}
 }

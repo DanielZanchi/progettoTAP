@@ -21,21 +21,20 @@ public abstract class RedisWrapperTestAbstract {
 	@Before
 	public void initDB() throws UnknownHostException {
 		createRedis();
-		redisDatabase = new RedisWrapper();
 		redisTestHelper = new TestHelperTool();
-		redisTestHelper.usingRedis(redisDatabase);
+		redisDatabase=redisTestHelper.usingRedis();
 	}
 
 	@Test
-	public void testGetAllClientsEmpty() {
-		assertTrue(redisDatabase.getAllClientsList().isEmpty());
+	public void testGetAllInvoicesEmpty() {
+		assertTrue(redisDatabase.getAllInvoicesList().isEmpty());
 	}
 
 	@Test
-	public void testGetAllClientsNotEmpty() {
-		redisTestHelper.addClient("1", "first", "firstFC", "firstCR", "firstCity", "firstProvince", "firstZip", "firstCountry", "firstPhone", "firstEmail");
-		redisTestHelper.addClient("2", "second", "secondFC", "secondCR", "secondCity", "secondProvince", "secondZip", "secondCountry", "secondPhone", "secondEmail");
-		assertEquals(2, redisDatabase.getAllClientsList().size());
+	public void testGetAllInvoicesNotEmpty() {
+		redisTestHelper.addInvoice("1", "first", "10", "description 1");
+		redisTestHelper.addInvoice("2", "second", "20", "description 2");
+		assertEquals(2, redisDatabase.getAllInvoicesList().size());
 	}
 
 	@After
