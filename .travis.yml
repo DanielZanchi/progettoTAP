@@ -22,6 +22,7 @@ cache:
    
 install:
  - docker pull mongo
+ - docker pull redis
  
 script:
 - mvn -f pom.xml clean verify coveralls:report
