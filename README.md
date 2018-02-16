@@ -12,6 +12,7 @@ We used the following tools:
  * Coveralls
  * Docker
  * MongoDB
+ * Redis
  
    
    
