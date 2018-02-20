@@ -55,55 +55,56 @@ public class Invoice implements Serializable {
 	public int hashCode(){
 		final int prime = 31;
 		int result = 1;
-
-		result = prime * result + ((price == null) ? 0 : price.hashCode());
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-
+		result = prime * result + ((getPrice() == null) ? 0 : getPrice().hashCode());
+		result = prime * result + ((getDescription() == null) ? 0 : getDescription().hashCode());
+		result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+		result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 
 		Invoice other = (Invoice) obj;
-		if (price != other.price)
+		if(!compareFieldsForEqualsMethod(getPrice(), other.getPrice())) {
 			return false;
-
-		if (description == null) {
-			if (other.description != null)
-				return false;
 		}
-		else if (!description.equals(other.description))
+		if(!compareFieldsForEqualsMethod(getDescription(), other.getDescription())) {
 			return false;
-
-		if (id == null) {
-			if (other.id != null)
-				return false;
 		}
-		else if (!id.equals(other.id))
+		if(!compareFieldsForEqualsMethod(getId(), other.getId())) {
 			return false;
-
-		if (name == null) {
-			if (other.name != null)
-				return false;
 		}
-		else if (!name.equals(other.name))
+		if(!compareFieldsForEqualsMethod(getName(), other.getName())) {
 			return false;
+		}
 		return true;
 	}
+	
+	private boolean compareFieldsForEqualsMethod(String field,String otherObjectField) {
+		if (field == null) {
+			if (otherObjectField != null) {
+				return false;
+			}
+		}
+		else if (!field.equals(otherObjectField)) {
+			return false;
+		}
+		return true;
+	}
+	
 
 	@Override
 	public String toString(){
-		return "Invoice [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + "]";
+		return "Invoice [id=" + getId() + ", name=" + getName() + ", description=" + getDescription() + ", price=" + getPrice() + "]";
 	}  
 }

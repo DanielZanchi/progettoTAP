@@ -17,69 +17,73 @@ import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.Invoice;
 
 public class RedisWrapper implements Database{
-	private RedisTemplate<String, Invoice> redisTemplate;
-	
-	private HashOperations<String, String, Object> hashOps;
-	
+	private RedisTemplate<String, Object> redisTemplate;
+		
 	private static final String CLIENTKEY = "client_key_redis"; 
 	private static final String COMPANYKEY = "company_key_redis"; 
 	private static final String INVOICEKEY = "invoice_key_redis"; 
 	
-	public RedisTemplate<String, Invoice> getRedisTemplate(){
+	public RedisTemplate<String, Object> getRedisTemplate(){
 	    return redisTemplate;
 	}
 	
-	public void setRedisTemplate(RedisTemplate<String, Invoice> redisTemplate){
+	public void setRedisTemplate(RedisTemplate<String, Object> redisTemplate){
 	    this.redisTemplate = redisTemplate;
 	}
 
-
-	@Override
-	public List<Client> getAllClientsList() {
-		List<Client> clients = new ArrayList<>();
-		return clients;
-		
-	}
-
+	// Client
 	@Override
 	public Client findClientById(String id) {
-		return (Client) hashOps.get(CLIENTKEY, id);
+		return (Client) redisTemplate.opsForHash().get(CLIENTKEY, id);
 	}
 
 	@Override
 	public void saveClient(Client client) {
+		redisTemplate.opsForHash().put(CLIENTKEY, client.getId(), client);
 	}
 
 	@Override
+	public List<Client> getAllClientsList() {
+		LinkedList<Client> clients = new LinkedList<>();
+		Iterator<Object> iterator = redisTemplate.opsForHash().entries(CLIENTKEY).keySet().iterator();
+		while(iterator.hasNext()) {
+			clients.add((Client) redisTemplate.opsForHash().entries(CLIENTKEY).get(iterator.next()));
+		}
+		return clients;
+		
+	}
+	
+	@Override
+	public void removeClientById(String id) {
+		redisTemplate.opsForHash().delete(CLIENTKEY, id);
+	}
+	
+	//Company
+
+	@Override
+	public Company findCompanyById(String id) {
+		return (Company) redisTemplate.opsForHash().get(COMPANYKEY, id);
+	}
+	
+	@Override
+	public void saveCompany(Company company) {
+		redisTemplate.opsForHash().put(COMPANYKEY, company.getId(), company);
+	}
+	
+	@Override
 	public List<Company> getAllCompaniesList() {
 		LinkedList<Company> companies = new LinkedList<>();
-		Iterator<String> iterator = hashOps.entries(COMPANYKEY).keySet().iterator();
+		Iterator<Object> iterator = redisTemplate.opsForHash().entries(COMPANYKEY).keySet().iterator();
 		while(iterator.hasNext()) {
-			companies.add((Company) hashOps.entries(COMPANYKEY).get(iterator.next()));
+			companies.add((Company) redisTemplate.opsForHash().entries(COMPANYKEY).get(iterator.next()));
 		}
 		return companies;
 	}
 
-	@Override
-	public Company findCompanyById(String id) {
-		return (Company) hashOps.get(COMPANYKEY, id);
-	}
-
-	@Override
-	public void saveCompany(Company company) {
-		hashOps.put(COMPANYKEY, company.getId(), company);
-	}
-
-	
 
 	@Override
 	public void removeCompanyById(String id) {
-		hashOps.delete(COMPANYKEY, id);
-	}
-
-	@Override
-	public void removeClientById(String id) {
-		hashOps.delete(CLIENTKEY, id);
+		redisTemplate.opsForHash().delete(COMPANYKEY, id);
 	}
 
 	//Invoice

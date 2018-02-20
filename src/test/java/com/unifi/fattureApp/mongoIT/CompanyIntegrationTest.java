@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.LoggerFactory;
 
 import com.github.fakemongo.Fongo;
 
@@ -21,6 +22,9 @@ import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.helpTestTools.TestHelperTool;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
+
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.LoggerContext;
 
 public class CompanyIntegrationTest {
 	private AppController companyController;
@@ -35,6 +39,10 @@ public class CompanyIntegrationTest {
 
 		Database database = new MongoWrapper(mongoClient);
 		companyController = new AppController(database);
+		
+		LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
+		ch.qos.logback.classic.Logger rootLogger = loggerContext.getLogger("com.mongodb.FongoDBCollection");
+		rootLogger.setLevel(Level.OFF);
 	}
 
 	private Client addTestClientToDB() {

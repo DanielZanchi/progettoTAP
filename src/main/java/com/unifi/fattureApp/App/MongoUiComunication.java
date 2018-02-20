@@ -56,9 +56,6 @@ public class MongoUiComunication {
 
 	}
 
-	private void setUpOtherdb() {
-
-	}
 
 	private void settingUpMongodb(String[] args, boolean testing) {
 		if (args!=null && args.length > 0)
