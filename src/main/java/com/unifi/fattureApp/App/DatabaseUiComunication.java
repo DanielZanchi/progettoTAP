@@ -22,8 +22,8 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
 import redis.embedded.RedisServer;
 
-public class MongoUiComunication {
-	private static final Logger LOGGER = Logger.getLogger(MongoUiComunication.class);
+public class DatabaseUiComunication {
+	private static final Logger LOGGER = Logger.getLogger(DatabaseUiComunication.class);
 	Database database;
 	String mongoHost = "localhost";
 	AppController myCompanyController;
@@ -42,7 +42,7 @@ public class MongoUiComunication {
 	private JButton editClientButton;
 	private JButton editInvoiceButton;
 
-	public MongoUiComunication(boolean testing, String[] args, boolean usingMongodb) throws IOException {	
+	public DatabaseUiComunication(boolean testing, String[] args, boolean usingMongodb) throws IOException {	
 		if(usingMongodb) {
 			settingUpMongodb(args, testing);
 		}else {

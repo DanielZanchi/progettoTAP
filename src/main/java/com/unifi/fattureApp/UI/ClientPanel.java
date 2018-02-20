@@ -16,13 +16,13 @@ import javax.swing.event.DocumentListener;
 
 import org.apache.log4j.Logger;
 
-import com.unifi.fattureApp.App.MongoUiComunication;
+import com.unifi.fattureApp.App.DatabaseUiComunication;
 
 public class ClientPanel extends JPanel implements AddPanel {
 	private static final long serialVersionUID = -4964123340815964907L;
 	private static final Logger LOGGER = Logger.getLogger(ClientPanel.class);
 
-	private MongoUiComunication myMongoUiComunication;
+	private DatabaseUiComunication myDatabaseUiComunication;
 
 	private JTextField clientNameTF;
 	private JTextField clientVatTF;
@@ -39,9 +39,9 @@ public class ClientPanel extends JPanel implements AddPanel {
 	private ClientPanel addClientPanel;
 	private boolean isSaving;
 
-	public ClientPanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight, MongoUiComunication mongoUiCom) {
+	public ClientPanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight, DatabaseUiComunication dbUiCom) {
 		addClientPanel = this;
-		myMongoUiComunication = mongoUiCom;
+		myDatabaseUiComunication = dbUiCom;
 
 		this.setVisible(false);
 
@@ -75,12 +75,12 @@ public class ClientPanel extends JPanel implements AddPanel {
 		saveButton.addActionListener(e -> {
 			// save company
 			if(addClientPanel.isSaving()) {
-				myMongoUiComunication.addClientToDatabase(clientNameTF.getText(), clientVatTF.getText(),
+				myDatabaseUiComunication.addClientToDatabase(clientNameTF.getText(), clientVatTF.getText(),
 						clientAddressTF.getText(), clientCityTF.getText(), clientProvinceTF.getText(),
 						clientZipTF.getText(), clientCityTF.getText(), clientPhoneTF.getText(),
 						clientEmailTF.getText());
 			}else {
-				boolean saved=myMongoUiComunication.editClientFromDatabase(clientNameTF.getText(),
+				boolean saved=myDatabaseUiComunication.editClientFromDatabase(clientNameTF.getText(),
 						clientVatTF.getText(), clientAddressTF.getText(), clientCityTF.getText(),
 						clientProvinceTF.getText(), clientZipTF.getText(), clientCountryTF.getText(),
 						clientPhoneTF.getText(), clientEmailTF.getText());
@@ -92,7 +92,7 @@ public class ClientPanel extends JPanel implements AddPanel {
 			}
 			addClientPanel.setVisible(false);
 			resetTextFields();
-			mongoUiCom.updateClientsReferences();
+			dbUiCom.updateClientsReferences();
 		});
 
 		Component[] components = addClientPanel.getComponents();
@@ -233,15 +233,15 @@ public class ClientPanel extends JPanel implements AddPanel {
 	public void setAddingMode(boolean isSaving) {
 		this.isSaving = isSaving;
 		if(!isSaving) {
-			clientNameTF.setText(myMongoUiComunication.getCurrentSelectedClient().getName());
-			clientVatTF.setText(myMongoUiComunication.getCurrentSelectedClient().getFiscalCode());
-			clientAddressTF.setText(myMongoUiComunication.getCurrentSelectedClient().getCityResidence());
-			clientCityTF.setText(myMongoUiComunication.getCurrentSelectedClient().getCity());
-			clientProvinceTF.setText(myMongoUiComunication.getCurrentSelectedClient().getProvince());
-			clientZipTF.setText(myMongoUiComunication.getCurrentSelectedClient().getZip());
-			clientCountryTF.setText(myMongoUiComunication.getCurrentSelectedClient().getCountry());
-			clientPhoneTF.setText(myMongoUiComunication.getCurrentSelectedClient().getPhone());
-			clientEmailTF.setText(myMongoUiComunication.getCurrentSelectedClient().getEmail());
+			clientNameTF.setText(myDatabaseUiComunication.getCurrentSelectedClient().getName());
+			clientVatTF.setText(myDatabaseUiComunication.getCurrentSelectedClient().getFiscalCode());
+			clientAddressTF.setText(myDatabaseUiComunication.getCurrentSelectedClient().getCityResidence());
+			clientCityTF.setText(myDatabaseUiComunication.getCurrentSelectedClient().getCity());
+			clientProvinceTF.setText(myDatabaseUiComunication.getCurrentSelectedClient().getProvince());
+			clientZipTF.setText(myDatabaseUiComunication.getCurrentSelectedClient().getZip());
+			clientCountryTF.setText(myDatabaseUiComunication.getCurrentSelectedClient().getCountry());
+			clientPhoneTF.setText(myDatabaseUiComunication.getCurrentSelectedClient().getPhone());
+			clientEmailTF.setText(myDatabaseUiComunication.getCurrentSelectedClient().getEmail());
 		}
 		this.setVisible(true);
 	}

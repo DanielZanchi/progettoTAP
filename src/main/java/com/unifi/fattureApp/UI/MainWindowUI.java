@@ -13,11 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-import com.unifi.fattureApp.App.MongoUiComunication;
+import com.unifi.fattureApp.App.DatabaseUiComunication;
 
 public class MainWindowUI {
 	// prova pull request...
-	private MongoUiComunication mongoUiCom;
+	private DatabaseUiComunication myDatabaseUiComunication;
 
 	private JFrame fattureAppFrame;
 	private JLayeredPane outerPanel;
@@ -39,13 +39,13 @@ public class MainWindowUI {
 	 * Launch the application.
 	 */
 
-	public MainWindowUI(MongoUiComunication mongoUiComm) {
-		mongoUiCom = mongoUiComm;
+	public MainWindowUI(DatabaseUiComunication dbUiComm) {
+		myDatabaseUiComunication = dbUiComm;
 		initialize();
 	}
 
 	public MainWindowUI() throws IOException {
-		mongoUiCom = new MongoUiComunication(true, null, true);
+		myDatabaseUiComunication = new DatabaseUiComunication(true, null, true);
 		initialize();
 	}
 
@@ -107,7 +107,7 @@ public class MainWindowUI {
 		myCompanyPanel.add(editMyCompanyButton);
 		outerPanel.setLayer(editMyCompanyButton, 1);
 		editMyCompanyButton.addActionListener(e -> showGenericAddPanel(addCompanyPanel, false));
-		mongoUiCom.setEditCompanyButton(editMyCompanyButton);
+		myDatabaseUiComunication.setEditCompanyButton(editMyCompanyButton);
 
 		FormattedButton addMyCompanyButton = new FormattedButton("Add", "AddCompanyButton");
 		addMyCompanyButton.setBounds(editMyCompanyButton.getX() - innerInsets - buttonWidth,
@@ -126,12 +126,12 @@ public class MainWindowUI {
 		myCompanyPanel.add(prevCompanyButton);
 		prevCompanyButton.addActionListener(e -> {
 			// go to previous company
-			if(mongoUiCom.getCompanyCounter()-1<0) {
+			if(myDatabaseUiComunication.getCompanyCounter()-1<0) {
 
 				//disabilitarlo?
 
 			}else {
-				mongoUiCom.setCompanyCounter(mongoUiCom.getCompanyCounter()-1);
+				myDatabaseUiComunication.setCompanyCounter(myDatabaseUiComunication.getCompanyCounter()-1);
 				editMyCompanyButton.setEnabled(true);
 			}
 		});
@@ -144,12 +144,12 @@ public class MainWindowUI {
 				w, h);
 		myCompanyPanel.add(nextCompanyButton);
 		nextCompanyButton.addActionListener(e -> {
-			if(mongoUiCom.getCompanyCounter()+1>mongoUiCom.getCompaniesCount()-1) {
+			if(myDatabaseUiComunication.getCompanyCounter()+1>myDatabaseUiComunication.getCompaniesCount()-1) {
 
 				//disabilitarlo?
 
 			}else {
-				mongoUiCom.setCompanyCounter(mongoUiCom.getCompanyCounter()+1);
+				myDatabaseUiComunication.setCompanyCounter(myDatabaseUiComunication.getCompanyCounter()+1);
 				editMyCompanyButton.setEnabled(true);
 			}
 		});
@@ -187,7 +187,7 @@ public class MainWindowUI {
 				(clientPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
 		editClient.addActionListener(e -> showGenericAddPanel(addClientPanel, false));
 		clientPanel.add(editClient);
-		mongoUiCom.seteditClientButton(editClient);
+		myDatabaseUiComunication.seteditClientButton(editClient);
 		outerPanel.setLayer(myCompanyPanel, 1);
 
 		JComboBox<String> clientListComboBox = new JComboBox<>();
@@ -197,7 +197,7 @@ public class MainWindowUI {
 		clientListComboBox.addItemListener(e -> {
 			if(e.getStateChange() == ItemEvent.SELECTED) {
 				editClient.setEnabled(true);
-				mongoUiCom.setCurrentSelectedClient(mongoUiCom.getSavedClients().get(clientListComboBox.getSelectedIndex()));
+				myDatabaseUiComunication.setCurrentSelectedClient(myDatabaseUiComunication.getSavedClients().get(clientListComboBox.getSelectedIndex()));
 			}
 		});
 
@@ -227,7 +227,7 @@ public class MainWindowUI {
 				(invoiceProvisionPanel.getHeight() / 2) - (buttonHeight / 2), buttonWidth, buttonHeight);
 		editInvoiceProvision.addActionListener(e -> showGenericAddPanel(addItemPanel, false));
 		invoiceProvisionPanel.add(editInvoiceProvision);
-		mongoUiCom.seteditInvoiceButton(editInvoiceProvision);
+		myDatabaseUiComunication.seteditInvoiceButton(editInvoiceProvision);
 
 		JComboBox<String> invoiceListcomboBox = new JComboBox<>();
 		invoiceListcomboBox.setName("invoicesComboBox");
@@ -235,7 +235,7 @@ public class MainWindowUI {
 		invoiceProvisionPanel.add(invoiceListcomboBox);
 		invoiceListcomboBox.addItemListener(e -> {
 			if(e.getStateChange() == ItemEvent.SELECTED) {
-				mongoUiCom.setCurrentSelectedInvoice(mongoUiCom.getSavedInvoices().get(invoiceListcomboBox.getSelectedIndex()));
+				myDatabaseUiComunication.setCurrentSelectedInvoice(myDatabaseUiComunication.getSavedInvoices().get(invoiceListcomboBox.getSelectedIndex()));
 				editInvoiceProvision.setEnabled(true);
 			}
 		});
@@ -257,7 +257,7 @@ public class MainWindowUI {
 		invoicePanel.add(createInvoiceButton);
 
 		// creare la fattura.
-		createInvoiceButton.addActionListener(e -> mongoUiCom.printSelected());
+		createInvoiceButton.addActionListener(e -> myDatabaseUiComunication.printSelected());
 
 		createAddRecordsPanels();
 		updateReferences(clientListComboBox, invoiceListcomboBox, myCompanyLabel);
@@ -267,17 +267,17 @@ public class MainWindowUI {
 	}
 
 	private void updateReferences(JComboBox<String> clientListComboBox, JComboBox<String> invoiceListcomboBox, JLabel companyInfo) {
-		mongoUiCom.setClientsList(clientListComboBox);
-		mongoUiCom.setInvoicesList(invoiceListcomboBox);
-		mongoUiCom.setCompanyInfo(companyInfo);
+		myDatabaseUiComunication.setClientsList(clientListComboBox);
+		myDatabaseUiComunication.setInvoicesList(invoiceListcomboBox);
+		myDatabaseUiComunication.setCompanyInfo(companyInfo);
 
-		mongoUiCom.updateAllReferences();
+		myDatabaseUiComunication.updateAllReferences();
 	}
 
 	private void createAddRecordsPanels() {
-		addCompanyPanel = new CompanyPanel(outerPanel, buttonWidth, buttonHeight, mongoUiCom);
-		addClientPanel = new ClientPanel(outerPanel, buttonWidth, buttonHeight, mongoUiCom);
-		addItemPanel = new ItemInvoicePanel(outerPanel, buttonWidth, buttonHeight, mongoUiCom);
+		addCompanyPanel = new CompanyPanel(outerPanel, buttonWidth, buttonHeight, myDatabaseUiComunication);
+		addClientPanel = new ClientPanel(outerPanel, buttonWidth, buttonHeight, myDatabaseUiComunication);
+		addItemPanel = new ItemInvoicePanel(outerPanel, buttonWidth, buttonHeight, myDatabaseUiComunication);
 	}
 
 	private void showGenericAddPanel(AddPanel panelToShow, boolean isSaving) {

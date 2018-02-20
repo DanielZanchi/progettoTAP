@@ -9,7 +9,7 @@ import com.unifi.fattureApp.UI.MainWindowUI;
 public class Main {
 	private static final Logger LOGGER = Logger.getLogger(Main.class);
 	public static void main(String[] args) throws IOException {
-		MongoUiComunication mongoUiComunication = new MongoUiComunication(false, args,true);
+		DatabaseUiComunication mongoUiComunication = new DatabaseUiComunication(false, args,true);
 		//MongoUiComunication mongoUiComunication = new MongoUiComunication(false, args,false);
 		
 		//Launch UI

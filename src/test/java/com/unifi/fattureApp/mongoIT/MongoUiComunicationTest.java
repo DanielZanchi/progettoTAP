@@ -10,15 +10,15 @@ import org.junit.Test;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Invoice;
-import com.unifi.fattureApp.App.MongoUiComunication;
+import com.unifi.fattureApp.App.DatabaseUiComunication;
 
 public class MongoUiComunicationTest {	
-	private MongoUiComunication myMongoUiCom;
+	private DatabaseUiComunication myDatabaseUiComunication;
 
 	@Before
 	public void setUp() throws IOException {
 		String args[] = null;
-		myMongoUiCom = new MongoUiComunication(true, args, true);
+		myDatabaseUiComunication = new DatabaseUiComunication(true, args, true);
 	}
 
 	@Test
@@ -27,115 +27,115 @@ public class MongoUiComunicationTest {
 	}
 
 	private void addTestClient() {
-		boolean added = myMongoUiCom.addClientToDatabase("name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
+		boolean added = myDatabaseUiComunication.addClientToDatabase("name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
 		assertEquals(true, added);
 	}
 
 	@Test
 	public void clientsCountWithNoClientsTest() {
-		assertEquals(0, myMongoUiCom.getClientsCount());
+		assertEquals(0, myDatabaseUiComunication.getClientsCount());
 	}
 
 	@Test
 	public void clientsCountWithOneClientTest() {
 		addTestClient();
-		assertEquals(1, myMongoUiCom.getClientsCount());
+		assertEquals(1, myDatabaseUiComunication.getClientsCount());
 	}
 
 	@Test
 	public void getListSizeOfClientsWithNoClients() {
-		assertEquals(0, myMongoUiCom.getSavedClients().size());
+		assertEquals(0, myDatabaseUiComunication.getSavedClients().size());
 	}
 
 	@Test
 	public void getListSizeOfClientsWithOneClient() {
 		addTestClient();
-		assertEquals(1, myMongoUiCom.getSavedClients().size());
+		assertEquals(1, myDatabaseUiComunication.getSavedClients().size());
 	}
 
 	@Test
 	public void getListOfClientsWithOneClientCheckName() {
 		addTestClient();
-		assertEquals("name", myMongoUiCom.getSavedClients().get(0).getName());
+		assertEquals("name", myDatabaseUiComunication.getSavedClients().get(0).getName());
 	}
 
 	@Test 
 	public void getCurrentSelectedClientWithNoClientSelected() {
-		assertEquals(null, myMongoUiCom.getCurrentSelectedClient());
+		assertEquals(null, myDatabaseUiComunication.getCurrentSelectedClient());
 	}
 
 	@Test 
 	public void getCurrentSelectedClientWithClientSelected() {
 		Client client = new Client("1","name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
-		myMongoUiCom.setCurrentSelectedClient(client);
-		assertEquals(myMongoUiCom.getCurrentSelectedClient(), client);
+		myDatabaseUiComunication.setCurrentSelectedClient(client);
+		assertEquals(myDatabaseUiComunication.getCurrentSelectedClient(), client);
 	}
 
 	@Test 
 	public void getCurrentSelectedClientWithClientSelectedNameTest() {
 		Client client = new Client("1","name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
-		myMongoUiCom.setCurrentSelectedClient(client);
-		assertEquals(myMongoUiCom.getCurrentSelectedClient().getName(), client.getName());
+		myDatabaseUiComunication.setCurrentSelectedClient(client);
+		assertEquals(myDatabaseUiComunication.getCurrentSelectedClient().getName(), client.getName());
 	}
 
 	//Company
 	@Test 
 	public void getCurrentSelectedCompanyWithNoCompanySelected() {
-		assertEquals(null, myMongoUiCom.getCurrentSelectedCompany());
+		assertEquals(null, myDatabaseUiComunication.getCurrentSelectedCompany());
 	}
 
 	@Test 
 	public void getCurrentSelectedCompanyWithCompanySelected() {
 		Company company = new Company("1", "nameComp", "vatCodeComp", "addressComp", "cityComp", "provinceComp", "zipCodeComp", "countryComp", "phoneComp", "emailComp");
-		myMongoUiCom.setCurrentSelectedCompany(company);
-		assertEquals(myMongoUiCom.getCurrentSelectedCompany(), company);
+		myDatabaseUiComunication.setCurrentSelectedCompany(company);
+		assertEquals(myDatabaseUiComunication.getCurrentSelectedCompany(), company);
 	}
 
 	@Test 
 	public void getCurrentSelectedCompanyWithCompanySelectedNameTest() {
 		Company company = new Company("1", "nameComp", "vatCodeComp", "addressComp", "cityComp", "provinceComp", "zipCodeComp", "countryComp", "phoneComp", "emailComp");
-		myMongoUiCom.setCurrentSelectedCompany(company);
-		assertEquals(myMongoUiCom.getCurrentSelectedCompany().getName(), company.getName());
+		myDatabaseUiComunication.setCurrentSelectedCompany(company);
+		assertEquals(myDatabaseUiComunication.getCurrentSelectedCompany().getName(), company.getName());
 	}
 
 	@Test (expected = NullPointerException.class)
 	public void editCompanyWhenNoCompanyInDBTest() {
-		myMongoUiCom.editCompanyFromDatabase("nameEdited", "vatCodeEdited", "addressEdited", "cityEdited", "provinceEdited", "zipCodeEdited", "countryEdited", "phoneEdited", "emailEdited");
+		myDatabaseUiComunication.editCompanyFromDatabase("nameEdited", "vatCodeEdited", "addressEdited", "cityEdited", "provinceEdited", "zipCodeEdited", "countryEdited", "phoneEdited", "emailEdited");
 	}
 
 	//Invoice
 	@Test 
 	public void getCurrentSelectedInvoiceWithNoInvoiceSelected() {
-		assertEquals(null, myMongoUiCom.getCurrentSelectedInvoice());
+		assertEquals(null, myDatabaseUiComunication.getCurrentSelectedInvoice());
 	}
 
 	@Test 
 	public void getCurrentSelectedInvoiceWithInvoiceSelected() {
 		Invoice invoice = new Invoice("1", "invoiceName", "15", "invoiceDescription");
-		myMongoUiCom.setCurrentSelectedInvoice(invoice);
-		assertEquals(myMongoUiCom.getCurrentSelectedInvoice(), invoice);
+		myDatabaseUiComunication.setCurrentSelectedInvoice(invoice);
+		assertEquals(myDatabaseUiComunication.getCurrentSelectedInvoice(), invoice);
 	}
 
 	@Test 
 	public void getCurrentSelectedInvoiceWithInvoiceSelectedNameTest() {
 		Invoice invoice = new Invoice("1", "invoiceName", "15", "invoiceDescription");
-		myMongoUiCom.setCurrentSelectedInvoice(invoice);
-		assertEquals(myMongoUiCom.getCurrentSelectedInvoice().getName(), invoice.getName());
+		myDatabaseUiComunication.setCurrentSelectedInvoice(invoice);
+		assertEquals(myDatabaseUiComunication.getCurrentSelectedInvoice().getName(), invoice.getName());
 	}
 
 	@Test 
 	public void printSelectedWithNoSelectedTest() {
-		assertEquals(false, myMongoUiCom.printSelected());
+		assertEquals(false, myDatabaseUiComunication.printSelected());
 	}
 
 	@Test 
 	public void printSelectedWithSelectedTest() {
 		Company company = new Company("1", "nameComp", "vatCodeComp", "addressComp", "cityComp", "provinceComp", "zipCodeComp", "countryComp", "phoneComp", "emailComp");
-		myMongoUiCom.setCurrentSelectedCompany(company);
+		myDatabaseUiComunication.setCurrentSelectedCompany(company);
 		Client client = new Client("1", "name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
-		myMongoUiCom.setCurrentSelectedClient(client);
+		myDatabaseUiComunication.setCurrentSelectedClient(client);
 		Invoice invoice = new Invoice("1", "invoiceName", "15", "invoiceDescription");
-		myMongoUiCom.setCurrentSelectedInvoice(invoice);
-		assertEquals(true, myMongoUiCom.printSelected());
+		myDatabaseUiComunication.setCurrentSelectedInvoice(invoice);
+		assertEquals(true, myDatabaseUiComunication.printSelected());
 	}
 }

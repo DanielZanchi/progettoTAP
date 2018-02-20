@@ -20,7 +20,7 @@ import javax.swing.event.DocumentListener;
 
 import org.apache.log4j.Logger;
 
-import com.unifi.fattureApp.App.MongoUiComunication;
+import com.unifi.fattureApp.App.DatabaseUiComunication;
 
 public class ItemInvoicePanel extends JPanel implements AddPanel {
 	private static final long serialVersionUID = 8698651509983266694L;
@@ -31,14 +31,14 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 	private JFormattedTextField itemPriceTF;
 
 	private LinkedList<JTextField> textFields;
-	private MongoUiComunication mongoUiComunication;
+	private DatabaseUiComunication databaseUiComunication;
 
 	private Color layerColor = new java.awt.Color(216, 245, 255);
 	private ItemInvoicePanel addItemPanel;
 	private boolean isSaving;
 
-	public ItemInvoicePanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight, MongoUiComunication mongoUiCom) {
-		this.mongoUiComunication = mongoUiCom;
+	public ItemInvoicePanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight, DatabaseUiComunication dbUiCom) {
+		this.databaseUiComunication = dbUiCom;
 		addItemPanel = this;
 		this.setVisible(false);
 
@@ -73,9 +73,9 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 		saveButton.addActionListener(e -> {
 			// save invoice
 			if(addItemPanel.isSaving()) {
-				mongoUiComunication.addInvoiceToDatabase(itemNameTF.getText(), itemDescriptionTF.getText(), itemPriceTF.getText());
+				databaseUiComunication.addInvoiceToDatabase(itemNameTF.getText(), itemDescriptionTF.getText(), itemPriceTF.getText());
 			}else {
-				boolean saved = mongoUiComunication.editInvoiceFromDatabase(itemNameTF.getText(), itemPriceTF.getText(), itemDescriptionTF.getText());
+				boolean saved = databaseUiComunication.editInvoiceFromDatabase(itemNameTF.getText(), itemPriceTF.getText(), itemDescriptionTF.getText());
 				if (saved) {
 					LOGGER.info(" Invoice modificata con successo");
 				} else {
@@ -84,7 +84,7 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 			}
 
 			addItemPanel.setVisible(false);
-			mongoUiComunication.updateInvoicesReferences();
+			databaseUiComunication.updateInvoicesReferences();
 		});
 
 		Component[] components = addItemPanel.getComponents();
@@ -187,9 +187,9 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 	public void setAddingMode(boolean isSaving) {
 		this.isSaving = isSaving;
 		if(!isSaving) {
-			itemNameTF.setText(mongoUiComunication.getCurrentSelectedInvoice().getName());
-			itemPriceTF.setText(mongoUiComunication.getCurrentSelectedInvoice().getPrice());
-			itemDescriptionTF.setText(mongoUiComunication.getCurrentSelectedInvoice().getDescription());
+			itemNameTF.setText(databaseUiComunication.getCurrentSelectedInvoice().getName());
+			itemPriceTF.setText(databaseUiComunication.getCurrentSelectedInvoice().getPrice());
+			itemDescriptionTF.setText(databaseUiComunication.getCurrentSelectedInvoice().getDescription());
 		}
 		this.setVisible(true);
 	}

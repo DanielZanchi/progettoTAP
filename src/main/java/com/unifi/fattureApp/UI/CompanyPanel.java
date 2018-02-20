@@ -16,14 +16,14 @@ import javax.swing.event.DocumentListener;
 
 import org.apache.log4j.Logger;
 
-import com.unifi.fattureApp.App.MongoUiComunication;
+import com.unifi.fattureApp.App.DatabaseUiComunication;
 
 public class CompanyPanel extends JPanel implements AddPanel {
 	private static final long serialVersionUID = 6387743798709513734L;
 
 	private static final Logger LOGGER = Logger.getLogger(CompanyPanel.class);
 
-	private MongoUiComunication myMongoUiComunication;
+	private DatabaseUiComunication myDatabaseUiComunication;
 
 	private JTextField companyNameTF;
 	private JTextField companyVatTF;
@@ -42,9 +42,9 @@ public class CompanyPanel extends JPanel implements AddPanel {
 
 	private boolean isSaving;
 
-	public CompanyPanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight, MongoUiComunication mongoUiCom) {
+	public CompanyPanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight, DatabaseUiComunication dbUiCom) {
 		addCompanyPanel = this;
-		myMongoUiComunication = mongoUiCom;
+		myDatabaseUiComunication = dbUiCom;
 
 		this.setVisible(false);
 
@@ -76,19 +76,19 @@ public class CompanyPanel extends JPanel implements AddPanel {
 		addCompanyPanel.add(saveButton);
 		saveButton.addActionListener(e -> {
 			if(addCompanyPanel.isSaving()) {
-				boolean saved = myMongoUiComunication.addCompanyToDatabase(companyNameTF.getText(),
+				boolean saved = myDatabaseUiComunication.addCompanyToDatabase(companyNameTF.getText(),
 						companyVatTF.getText(), companyAddressTF.getText(), companyCityTF.getText(),
 						companyProvinceTF.getText(), companyZipTF.getText(), companyCountryTF.getText(),
 						companyPhoneTF.getText(), companyEmailTF.getText());
 
 				if (saved) {
-					myMongoUiComunication.setCurrentSelectedCompany(myMongoUiComunication.getSavedCompanies().get(myMongoUiComunication.getSavedCompanies().size()-1));
-					myMongoUiComunication.enableEditCompanyButton();
+					myDatabaseUiComunication.setCurrentSelectedCompany(myDatabaseUiComunication.getSavedCompanies().get(myDatabaseUiComunication.getSavedCompanies().size()-1));
+					myDatabaseUiComunication.enableEditCompanyButton();
 				} else {
 					LOGGER.error("Error: Company was not saved!!!");
 				}
 			}else {
-				boolean saved = myMongoUiComunication.editCompanyFromDatabase(companyNameTF.getText(),
+				boolean saved = myDatabaseUiComunication.editCompanyFromDatabase(companyNameTF.getText(),
 						companyVatTF.getText(), companyAddressTF.getText(), companyCityTF.getText(),
 						companyProvinceTF.getText(), companyZipTF.getText(), companyCountryTF.getText(),
 						companyPhoneTF.getText(), companyEmailTF.getText());
@@ -101,7 +101,7 @@ public class CompanyPanel extends JPanel implements AddPanel {
 
 			addCompanyPanel.setVisible(false);
 			resetTextFields();
-			myMongoUiComunication.updateCompanyReference();
+			myDatabaseUiComunication.updateCompanyReference();
 		});
 
 		Component[] components = addCompanyPanel.getComponents();
@@ -244,15 +244,15 @@ public class CompanyPanel extends JPanel implements AddPanel {
 	public void setAddingMode(boolean isSaving) {
 		this.isSaving = isSaving;
 		if(!isSaving) {
-			companyNameTF.setText(myMongoUiComunication.getCurrentSelectedCompany().getName());
-			companyVatTF.setText(myMongoUiComunication.getCurrentSelectedCompany().getVatCode());
-			companyAddressTF.setText(myMongoUiComunication.getCurrentSelectedCompany().getAddress());
-			companyCityTF.setText(myMongoUiComunication.getCurrentSelectedCompany().getCity());
-			companyProvinceTF.setText(myMongoUiComunication.getCurrentSelectedCompany().getProvince());
-			companyZipTF.setText(myMongoUiComunication.getCurrentSelectedCompany().getZipCode());
-			companyCountryTF.setText(myMongoUiComunication.getCurrentSelectedCompany().getCountry());
-			companyPhoneTF.setText(myMongoUiComunication.getCurrentSelectedCompany().getPhone());
-			companyEmailTF.setText(myMongoUiComunication.getCurrentSelectedCompany().getEmail());
+			companyNameTF.setText(myDatabaseUiComunication.getCurrentSelectedCompany().getName());
+			companyVatTF.setText(myDatabaseUiComunication.getCurrentSelectedCompany().getVatCode());
+			companyAddressTF.setText(myDatabaseUiComunication.getCurrentSelectedCompany().getAddress());
+			companyCityTF.setText(myDatabaseUiComunication.getCurrentSelectedCompany().getCity());
+			companyProvinceTF.setText(myDatabaseUiComunication.getCurrentSelectedCompany().getProvince());
+			companyZipTF.setText(myDatabaseUiComunication.getCurrentSelectedCompany().getZipCode());
+			companyCountryTF.setText(myDatabaseUiComunication.getCurrentSelectedCompany().getCountry());
+			companyPhoneTF.setText(myDatabaseUiComunication.getCurrentSelectedCompany().getPhone());
+			companyEmailTF.setText(myDatabaseUiComunication.getCurrentSelectedCompany().getEmail());
 		}
 		this.setVisible(true);
 	}
