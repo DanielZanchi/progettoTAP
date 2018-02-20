@@ -10,7 +10,8 @@ public class Main {
 	private static final Logger LOGGER = Logger.getLogger(Main.class);
 	public static void main(String[] args) throws IOException {
 		MongoUiComunication mongoUiComunication = new MongoUiComunication(false, args,true);
-
+		//MongoUiComunication mongoUiComunication = new MongoUiComunication(false, args,false);
+		
 		//Launch UI
 		MainWindowUI mainWindowUI = null;
 		try {

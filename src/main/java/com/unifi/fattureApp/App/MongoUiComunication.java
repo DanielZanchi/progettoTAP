@@ -10,13 +10,17 @@ import javax.swing.JLabel;
 
 import org.apache.log4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 
 import com.github.fakemongo.Fongo;
 import com.mongodb.MongoClient;
 import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
+import com.unifi.fattureApp.mongoWrapper.RedisWrapper;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
+import redis.embedded.RedisServer;
 
 public class MongoUiComunication {
 	private static final Logger LOGGER = Logger.getLogger(MongoUiComunication.class);
@@ -53,7 +57,15 @@ public class MongoUiComunication {
 	}
 
 	private void setUpOtherdb(boolean testing) throws IOException {
-
+		RedisServer redisServer;
+		try {
+			redisServer = new RedisServer(6379);
+			redisServer.start();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new ClassPathResource("spring-configuration.xml").getPath());
+		database=(RedisWrapper)context.getBean("redisWrapper");
 	}
 
 
