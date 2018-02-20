@@ -57,6 +57,7 @@ public class MongoUiComunication {
 	}
 
 	private void setUpOtherdb(boolean testing) throws IOException {
+		/*
 		RedisServer redisServer;
 		try {
 			redisServer = new RedisServer(6379);
@@ -64,6 +65,7 @@ public class MongoUiComunication {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		*/
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new ClassPathResource("spring-configuration.xml").getPath());
 		database=(RedisWrapper)context.getBean("redisWrapper");
 	}
