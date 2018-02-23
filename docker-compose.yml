@@ -4,12 +4,13 @@ services:
   app:
     image: fatture-app
     links:
-      - "db:mongo-host"
-  db:
+      - "mongo:mongo-host"
+      - "redis:redis-host"
+  mongo:
     image: mongo
     ports:
       - "27017:27017"
   redis:
-  	image: "redis:alpine"
-  	ports:
-  	  - "6379"
+    image: redis
+    ports:
+      - "127.0.0.1:6379:6379"
