@@ -5,13 +5,13 @@ os:
  - linux
 jdk:
   - oraclejdk8
-  
+
 addons:
   sonarcloud:
     organization: "federicoguerri-github"
     token:
       secure: "77b4026d89a6e705fe586a12b1700d89b4e0c2e8"
-      
+
 services:
   - docker
 
@@ -19,15 +19,15 @@ cache:
   directories:
   - $HOME/.m2
   - '$HOME/.sonar/cache'
-   
+
 install:
  - docker pull mongo
  - docker pull redis
- 
+
 script:
-- mvn -f pom.xml clean verify coveralls:report
+# - mvn -f pom.xml clean verify coveralls:report
 - mvn -f pom.xml verify -Psecond-db coveralls:report
-- mvn -f pom.xml verify -Pdocker-compose package sonar:sonar
+# - mvn -f pom.xml verify -Pdocker-compose package sonar:sonar
 #- mvn clean install sonar:sonar -Dsonar.host.url=https:/sonarqube.com -Dsonar.login="77b4026d89a6e705fe586a12b1700d89b4e0c2e8"
 #- mvn sonar:sonar \
  # -Dsonar.organization=dani1993-github \
@@ -38,7 +38,7 @@ script:
 #  - DISPLAY=:99.0
 #before_install:
 #  - sh -e /etc/init.d/xvfb start
-  
+
 before_script:
 - "export DISPLAY=:99.0"
 - "sh -e /etc/init.d/xvfb start"
