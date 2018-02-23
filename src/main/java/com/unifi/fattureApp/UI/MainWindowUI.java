@@ -28,7 +28,7 @@ public class MainWindowUI {
 	private Color outerColor = new java.awt.Color(232, 246, 250);
 	private Color layer1Color = new java.awt.Color(226, 244, 252);
 
-	private Dimension windowDimension = new Dimension(500, 450);
+	private Dimension windowDimension = new Dimension(500, 700);
 	private AddPanel addCompanyPanel;
 	private AddPanel addClientPanel;
 	private AddPanel addItemPanel;

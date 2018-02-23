@@ -41,17 +41,13 @@ public class ClientPanelUITest {
 
 	@Test
 	public void testCancelButtonText() {
-		addClient_Button.click();
-		addClient_Panel = window.panel("AddClientPanel");
-		cancelAdd_Button = addClient_Panel.button("CancelButton");
+		cancelButton();
 		cancelAdd_Button.requireText("Cancel");
 	}
 
 	@Test
 	public void testCancelButtonAction() {
-		addClient_Button.click();
-		addClient_Panel = window.panel("AddClientPanel");
-		cancelAdd_Button = addClient_Panel.button("CancelButton");
+		cancelButton();
 		cancelAdd_Button.click();
 		addClient_Panel.requireNotVisible();
 	}
@@ -213,6 +209,12 @@ public class ClientPanelUITest {
 	
 	
 	// Help methods
+	
+	private void cancelButton() {
+		addClient_Button.click();
+		addClient_Panel = window.panel("AddClientPanel");
+		cancelAdd_Button = addClient_Panel.button("CancelButton");
+	}
 	
 	private void checkTextfieldTextAfterClientSaved(String textFieldName, String newText) {
 		initTextFieldsForEditButtonAssertions();
