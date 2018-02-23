@@ -38,6 +38,9 @@
 		<sonar.issue.ignore.multicriteria.e11.resourceKey>**/*.java</sonar.issue.ignore.multicriteria.e11.resourceKey>
 	</properties>
 
+
+
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
