@@ -179,8 +179,6 @@
 		
 		
 	</dependencies>
-
-
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -385,6 +383,46 @@
 										<!-- check that we can run our image, linked with the MongoDB image -->
 										<links>
 											<link>mongo:mongo-host</link>
+										</links>
+										<wait>
+											<!-- Wait for the output "School app terminates" for 10 seconds -->
+											<time>10000</time>
+											<log>Fatture-app terminates</log>
+										</wait>
+									</run>
+								</image>
+								<!-- Redis db -->
+								<image>
+									<alias>${project.artifactId}</alias>
+									<name>redis</name>
+									<run>
+										<ports>
+											<port>6379:6379</port>
+										</ports>
+									</run>
+								</image>
+								<image>
+									<!-- -->
+									<name>fatture-app</name>
+									<build>
+										<dockerFileDir>${project.basedir}/docker</dockerFileDir>
+										<args>
+											<fatjar>${project.artifactId}-${project.version}-all.jar</fatjar>
+										</args>
+										<assembly>
+											<inline>
+												<files>
+													<file>
+														<source>${project.build.directory}/${project.artifactId}-${project.version}-all.jar</source>
+													</file>
+												</files>
+											</inline>
+										</assembly>
+									</build>
+									<run>
+										<!-- check that we can run our image, linked with the RedisDB image -->
+										<links>
+											<link>redis:redis-host</link>
 										</links>
 										<wait>
 											<!-- Wait for the output "School app terminates" for 10 seconds -->
