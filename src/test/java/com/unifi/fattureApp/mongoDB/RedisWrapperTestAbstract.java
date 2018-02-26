@@ -28,7 +28,7 @@ public abstract class RedisWrapperTestAbstract {
 	public void initDB() throws UnknownHostException {
 		createRedis();
 		redisTestHelper = new TestHelperTool();
-		redisDatabase=redisTestHelper.usingRedis();
+		redisDatabase = redisTestHelper.usingRedis();
 	}
 
 	//Client

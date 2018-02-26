@@ -28,7 +28,7 @@ public class CompanyIntegrationRedis extends AbstractCompanyIntegration{
 		companyController = new AppController(database);
 		LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
 		loggerContext.stop();
-
+		mongoTestHelper.usingRedis();
 	}
 
 	@After

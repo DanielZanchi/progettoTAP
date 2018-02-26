@@ -22,12 +22,10 @@ public abstract class AbstractCompanyIntegration {
 	protected TestHelperTool mongoTestHelper;
 
 	public abstract void init();
-	
-	CompanyIntegrationRedis cr = new CompanyIntegrationRedis();
 
 	@Before
 	public void setUp() throws Exception {
-		cr.init();
+		init();
 	}
 
 	private Client addTestClientToDB() {
