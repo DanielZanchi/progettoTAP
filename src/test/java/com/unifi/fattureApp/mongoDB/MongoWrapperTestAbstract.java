@@ -45,7 +45,6 @@ public abstract class MongoWrapperTestAbstract {
 	@Test
 	public void testFindClientByIdNotFound() {
 		mongoTestHelper.addClient("1", "first", "firstFC", "firstCR", "firstCity", "firstProvince", "firstZip", "firstCountry", "firstPhone", "firstEmail");
-
 		assertNull(mongoDatabase.findClientById("2"));
 	}
 

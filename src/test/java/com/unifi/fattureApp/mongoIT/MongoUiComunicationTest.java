@@ -23,12 +23,11 @@ public class MongoUiComunicationTest {
 
 	@Test
 	public void addClientToDbTest() {
-		addTestClient();
+		assertEquals(true, addTestClient());
 	}
 
-	private void addTestClient() {
-		boolean added = myDatabaseUiComunication.addClientToDatabase("name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
-		assertEquals(true, added);
+	private boolean addTestClient() {
+		return myDatabaseUiComunication.addClientToDatabase("name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
 	}
 
 	@Test
@@ -66,15 +65,19 @@ public class MongoUiComunicationTest {
 
 	@Test 
 	public void getCurrentSelectedClientWithClientSelected() {
+		Client client = setTestClientToCurrentSelected();
+		assertEquals(myDatabaseUiComunication.getCurrentSelectedClient(), client);
+	}
+
+	private Client setTestClientToCurrentSelected() {
 		Client client = new Client("1","name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
 		myDatabaseUiComunication.setCurrentSelectedClient(client);
-		assertEquals(myDatabaseUiComunication.getCurrentSelectedClient(), client);
+		return client;
 	}
 
 	@Test 
 	public void getCurrentSelectedClientWithClientSelectedNameTest() {
-		Client client = new Client("1","name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
-		myDatabaseUiComunication.setCurrentSelectedClient(client);
+		Client client = setTestClientToCurrentSelected();
 		assertEquals(myDatabaseUiComunication.getCurrentSelectedClient().getName(), client.getName());
 	}
 
@@ -86,15 +89,19 @@ public class MongoUiComunicationTest {
 
 	@Test 
 	public void getCurrentSelectedCompanyWithCompanySelected() {
+		Company company = setTestCompanyToCurrentSelected();
+		assertEquals(myDatabaseUiComunication.getCurrentSelectedCompany(), company);
+	}
+
+	private Company setTestCompanyToCurrentSelected() {
 		Company company = new Company("1", "nameComp", "vatCodeComp", "addressComp", "cityComp", "provinceComp", "zipCodeComp", "countryComp", "phoneComp", "emailComp");
 		myDatabaseUiComunication.setCurrentSelectedCompany(company);
-		assertEquals(myDatabaseUiComunication.getCurrentSelectedCompany(), company);
+		return company;
 	}
 
 	@Test 
 	public void getCurrentSelectedCompanyWithCompanySelectedNameTest() {
-		Company company = new Company("1", "nameComp", "vatCodeComp", "addressComp", "cityComp", "provinceComp", "zipCodeComp", "countryComp", "phoneComp", "emailComp");
-		myDatabaseUiComunication.setCurrentSelectedCompany(company);
+		Company company = setTestCompanyToCurrentSelected();
 		assertEquals(myDatabaseUiComunication.getCurrentSelectedCompany().getName(), company.getName());
 	}
 
@@ -111,15 +118,19 @@ public class MongoUiComunicationTest {
 
 	@Test 
 	public void getCurrentSelectedInvoiceWithInvoiceSelected() {
+		Invoice invoice = setTestInvoiceToCurrentSelected();
+		assertEquals(myDatabaseUiComunication.getCurrentSelectedInvoice(), invoice);
+	}
+
+	private Invoice setTestInvoiceToCurrentSelected() {
 		Invoice invoice = new Invoice("1", "invoiceName", "15", "invoiceDescription");
 		myDatabaseUiComunication.setCurrentSelectedInvoice(invoice);
-		assertEquals(myDatabaseUiComunication.getCurrentSelectedInvoice(), invoice);
+		return invoice;
 	}
 
 	@Test 
 	public void getCurrentSelectedInvoiceWithInvoiceSelectedNameTest() {
-		Invoice invoice = new Invoice("1", "invoiceName", "15", "invoiceDescription");
-		myDatabaseUiComunication.setCurrentSelectedInvoice(invoice);
+		Invoice invoice = setTestInvoiceToCurrentSelected();
 		assertEquals(myDatabaseUiComunication.getCurrentSelectedInvoice().getName(), invoice.getName());
 	}
 
@@ -130,12 +141,9 @@ public class MongoUiComunicationTest {
 
 	@Test 
 	public void printSelectedWithSelectedTest() {
-		Company company = new Company("1", "nameComp", "vatCodeComp", "addressComp", "cityComp", "provinceComp", "zipCodeComp", "countryComp", "phoneComp", "emailComp");
-		myDatabaseUiComunication.setCurrentSelectedCompany(company);
-		Client client = new Client("1", "name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
-		myDatabaseUiComunication.setCurrentSelectedClient(client);
-		Invoice invoice = new Invoice("1", "invoiceName", "15", "invoiceDescription");
-		myDatabaseUiComunication.setCurrentSelectedInvoice(invoice);
+		Company company = setTestCompanyToCurrentSelected();
+		Client client = setTestClientToCurrentSelected();
+		Invoice invoice = setTestInvoiceToCurrentSelected();
 		assertEquals(true, myDatabaseUiComunication.printSelected());
 	}
 }
