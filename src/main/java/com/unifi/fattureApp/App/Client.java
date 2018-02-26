@@ -30,19 +30,19 @@ public class Client implements Serializable {
 		this.setPhone(phone);
 		this.setEmail(email);
 	}
-	
+
 	public String getId() {
 		return id;
 	}
-	
+
 	public void setId(String id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -110,9 +110,9 @@ public class Client implements Serializable {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	
-	
-	
+
+
+
 	@Override
 	public int hashCode(){
 		final int prime = 37;
@@ -174,7 +174,7 @@ public class Client implements Serializable {
 		}
 		return true;
 	}
-	
+
 	private boolean compareFieldsForEqualsMethod(String field,String otherObjectField) {
 		if (field == null) {
 			if (otherObjectField != null) {
