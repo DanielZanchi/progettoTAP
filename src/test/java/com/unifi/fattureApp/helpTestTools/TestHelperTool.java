@@ -1,7 +1,5 @@
 package com.unifi.fattureApp.helpTestTools;
 
-import org.apache.commons.logging.Log;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 
@@ -13,9 +11,6 @@ import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.mongoWrapper.RedisWrapper;
-
-import ch.qos.logback.classic.Level;
-import ch.qos.logback.classic.LoggerContext;
 
 public class TestHelperTool {
 	private DBCollection clients;
@@ -132,17 +127,17 @@ public class TestHelperTool {
 		}		
 	}
 	
-	public void addTwoClient() {
+	public void addTwoClients() {
 		addClient("1", "first", "firstFC", "firstCR", "firstCity", "firstProvince", "firstZip", "firstCountry", "firstPhone", "firstEmail");
 		addClient("2", "second", "secondFC", "secondCR", "secondCity", "secondProvince", "secondZip", "secondCountry", "secondPhone", "secondEmail");
 	}
 	
-	public void addTwoCompany() {
+	public void addTwoCompanies() {
 		addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
 		addCompany("2", "nameC2", "vatCode2", "address2", "city2", "province2", "zipCode2", "country2", "phone2", "email2");
 	}
 	
-	public void addTwoInvoice() {
+	public void addTwoInvoices() {
 		addInvoice("1", "nameI1", "100", "basic invoice type1");
 		addInvoice("2", "nameI2", "200", "basic invoice type2");
 	}

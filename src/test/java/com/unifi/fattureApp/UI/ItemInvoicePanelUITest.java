@@ -82,9 +82,8 @@ public class ItemInvoicePanelUITest {
 		setTextfieldsStrings("0", "1", "");
 		saveAdd_Button.requireDisabled();
 	}
-	
+
 	// edit button
-	
 	@Test 
 	public void testEditButtonActionAddPanelVisible() {
 		addInvoice_Button.click();
@@ -95,51 +94,50 @@ public class ItemInvoicePanelUITest {
 		editInvoice();
 		addInvoice_Panel.requireVisible();
 	}
-	
+
 	@Test 
 	public void testEditButtonWithNoCompanySelected() {
 		editInvoice();
 		editInvoice_Button.requireDisabled();
 	}
-	
+
 	@Test 
 	public void testEditButtonNameTextField() {
 		initTextFieldsForEditButtonAssertions();
 		JTextComponentFixture invoiceName = addInvoice_Panel.textBox("invoiceName_TF");
 		invoiceName.text().compareTo("0");
 	}
-	
+
 	@Test 
 	public void testEditButtonPriceTextField() {
 		initTextFieldsForEditButtonAssertions();
 		JTextComponentFixture invoicePrice = addInvoice_Panel.textBox("invoicePrice_TF");
 		invoicePrice.text().compareTo("1");
 	}
-	
+
 	@Test 
 	public void testEditButtonDescriptionTextField() {
 		initTextFieldsForEditButtonAssertions();
 		JTextComponentFixture invoiceDescription = addInvoice_Panel.textBox("invoiceDescription_TF");
 		invoiceDescription.text().compareTo("2");
 	}
-	
+
 	@Test 
 	public void testEditButtonNameModified() {
 		checkTextfieldTextAfterInvoiceSavedSaved("invoiceName_TF", "edited");
 	}
-	
+
 	@Test 
 	public void testEditButtonPriceModified() {
 		checkTextfieldTextAfterInvoiceSavedSaved("invoicePrice_TF", "edited");
 	}
-	
+
 	@Test 
 	public void testEditButtonDescriptionModified() {
 		checkTextfieldTextAfterInvoiceSavedSaved("invoiceDescription_TF", "edited");
 	}
-	
+
 	// Help methods
-	
 	private void checkTextfieldTextAfterInvoiceSavedSaved(String textFieldName, String newText) {
 		initTextFieldsForEditButtonAssertions();
 		addInvoice_Panel.textBox(textFieldName).setText(newText);
@@ -148,9 +146,7 @@ public class ItemInvoicePanelUITest {
 		JTextComponentFixture invoiceTextField = addInvoice_Panel.textBox(textFieldName);
 		invoiceTextField.text().compareTo(newText);
 	}
-	
-	// Help methods
-	
+
 	private void initTextFieldsForEditButtonAssertions() {
 		addInvoice_Button.click();
 		addInvoice_Panel = window.panel("AddInvoicePanel");
@@ -159,7 +155,7 @@ public class ItemInvoicePanelUITest {
 		saveAdd_Button.click();
 		editInvoice();
 	}
-	
+
 	private void editInvoice() {
 		editInvoice_Button.click();
 	}

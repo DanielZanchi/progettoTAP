@@ -89,7 +89,7 @@ public class Company extends User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	@Override
 	public int hashCode(){
 		final int prime = 23;
@@ -151,7 +151,7 @@ public class Company extends User {
 		}
 		return true;
 	}
-	
+
 	private boolean compareFieldsForEqualsMethod(String field,String otherObjectField) {
 		if (field == null) {
 			if (otherObjectField != null) {

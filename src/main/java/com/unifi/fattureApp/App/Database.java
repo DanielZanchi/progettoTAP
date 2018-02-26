@@ -22,8 +22,8 @@ public interface Database {
 	public void saveInvoice(Invoice invoice);
 
 	public void removeCompanyById(String id);
-	
+
 	public void removeClientById(String id);
-	
+
 	public void removeInvoiceById(String id);
 }

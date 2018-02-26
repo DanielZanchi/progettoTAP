@@ -15,7 +15,7 @@ public class Main {
 		}else {//mongo
 			mongoUiComunication = new DatabaseUiComunication(false, args,true);
 		}
-		
+
 		//Launch UI
 		MainWindowUI mainWindowUI = null;
 		try {

@@ -20,7 +20,6 @@ import com.unifi.fattureApp.mongoWrapper.RedisWrapper;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
-import redis.embedded.RedisServer;
 
 public class DatabaseUiComunication {
 	private static final Logger LOGGER = Logger.getLogger(DatabaseUiComunication.class);
@@ -165,8 +164,6 @@ public class DatabaseUiComunication {
 		return false;
 	}
 
-
-
 	public Company getCurrentSelectedCompany() {
 		return currentSelectedCompany;
 	}
@@ -272,5 +269,4 @@ public class DatabaseUiComunication {
 	public void seteditInvoiceButton(JButton editInvoiceButton) {
 		this.editInvoiceButton = editInvoiceButton;
 	}
-
 }

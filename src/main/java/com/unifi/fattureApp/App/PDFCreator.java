@@ -18,8 +18,6 @@ import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
-import com.unifi.fattureApp.App.Client;
-
 public class PDFCreator {
 	private Company selectedCompany;
 	private Client selectedClient;

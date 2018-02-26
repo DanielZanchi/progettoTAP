@@ -81,7 +81,6 @@ public class Invoice extends User {
 		return true;
 	}
 
-
 	@Override
 	public String toString(){
 		return "Invoice [id=" + getId() + ", name=" + getName() + ", description=" + getDescription() + ", price=" + getPrice() + "]";

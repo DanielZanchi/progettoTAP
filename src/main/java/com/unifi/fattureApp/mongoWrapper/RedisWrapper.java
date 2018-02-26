@@ -1,14 +1,9 @@
 package com.unifi.fattureApp.mongoWrapper;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import com.unifi.fattureApp.App.Client;
@@ -18,17 +13,17 @@ import com.unifi.fattureApp.App.Invoice;
 
 public class RedisWrapper implements Database{
 	private RedisTemplate<String, Object> redisTemplate;
-		
+
 	private static final String CLIENTKEY = "client_key_redis"; 
 	private static final String COMPANYKEY = "company_key_redis"; 
 	private static final String INVOICEKEY = "invoice_key_redis"; 
-	
+
 	public RedisTemplate<String, Object> getRedisTemplate(){
-	    return redisTemplate;
+		return redisTemplate;
 	}
-	
+
 	public void setRedisTemplate(RedisTemplate<String, Object> redisTemplate){
-	    this.redisTemplate = redisTemplate;
+		this.redisTemplate = redisTemplate;
 	}
 
 	// Client
@@ -50,26 +45,25 @@ public class RedisWrapper implements Database{
 			clients.add((Client) redisTemplate.opsForHash().entries(CLIENTKEY).get(iterator.next()));
 		}
 		return clients;
-		
+
 	}
-	
+
 	@Override
 	public void removeClientById(String id) {
 		redisTemplate.opsForHash().delete(CLIENTKEY, id);
 	}
-	
-	//Company
 
+	//Company
 	@Override
 	public Company findCompanyById(String id) {
 		return (Company) redisTemplate.opsForHash().get(COMPANYKEY, id);
 	}
-	
+
 	@Override
 	public void saveCompany(Company company) {
 		redisTemplate.opsForHash().put(COMPANYKEY, company.getId(), company);
 	}
-	
+
 	@Override
 	public List<Company> getAllCompaniesList() {
 		LinkedList<Company> companies = new LinkedList<>();
@@ -80,25 +74,22 @@ public class RedisWrapper implements Database{
 		return companies;
 	}
 
-
 	@Override
 	public void removeCompanyById(String id) {
 		redisTemplate.opsForHash().delete(COMPANYKEY, id);
 	}
 
 	//Invoice
-	
 	@Override
 	public Invoice findInvoiceById(String id) {
 		return (Invoice) redisTemplate.opsForHash().get(INVOICEKEY, id);
 	}
-	
-	
+
 	@Override
 	public void saveInvoice(Invoice invoice) {
 		redisTemplate.opsForHash().put(INVOICEKEY, invoice.getId(), invoice);
 	}
-	
+
 	@Override
 	public List<Invoice> getAllInvoicesList() {
 		LinkedList<Invoice> invoices = new LinkedList<>();
@@ -108,7 +99,7 @@ public class RedisWrapper implements Database{
 		}
 		return invoices;
 	}
-	
+
 	@Override
 	public void removeInvoiceById(String id) {
 		redisTemplate.opsForHash().delete(INVOICEKEY, id);

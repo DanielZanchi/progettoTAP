@@ -10,32 +10,24 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.LoggerFactory;
 
-import com.github.fakemongo.Fongo;
-
-import com.mongodb.MongoClient;
+import com.unifi.fattureApp.App.AppController;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
-import com.unifi.fattureApp.App.AppController;
-import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.helpTestTools.TestHelperTool;
-import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
-
-import ch.qos.logback.classic.Level;
-import ch.qos.logback.classic.LoggerContext;
 
 public abstract class AbstractCompanyIntegration {
 	protected AppController companyController;
 	protected TestHelperTool mongoTestHelper;
 
+	public abstract void init();
 	
-	public abstract void init ();
-	
+	CompanyIntegrationRedis cr = new CompanyIntegrationRedis();
+
 	@Before
 	public void setUp() throws Exception {
-		init();
+		cr.init();
 	}
 
 	private Client addTestClientToDB() {
@@ -417,7 +409,7 @@ public abstract class AbstractCompanyIntegration {
 		Invoice invoice = addTestInvoiceToDB();
 		assertNotEquals("wrongTestDescription", invoice.getDescription());
 	}	
-	
+
 	@Test
 	public void testEditInvoiceWhileNoInvoicesInDB() {
 		Invoice invoice = new Invoice("1", "testName", "testPrice", "testDescription");

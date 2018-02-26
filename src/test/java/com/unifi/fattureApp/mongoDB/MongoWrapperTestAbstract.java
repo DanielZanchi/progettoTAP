@@ -38,7 +38,7 @@ public abstract class MongoWrapperTestAbstract {
 
 	@Test
 	public void testGetAllClientsNotEmpty() {
-		mongoTestHelper.addTwoClient();
+		mongoTestHelper.addTwoClients();
 		assertEquals(2, mongoDatabase.getAllClientsList().size());
 	}
 
@@ -62,7 +62,7 @@ public abstract class MongoWrapperTestAbstract {
 
 	@Test
 	public void testFindClientByIdFound() {
-		mongoTestHelper.addTwoClient();
+		mongoTestHelper.addTwoClients();
 		Client findClientById = mongoDatabase.findClientById("2");
 		assertNotNull(findClientById);
 		assertEquals("2", findClientById.getId());
@@ -78,7 +78,7 @@ public abstract class MongoWrapperTestAbstract {
 
 	@Test 
 	public void testRemoveClientByIdFromDBWithMoreClients() {
-		mongoTestHelper.addTwoClient();
+		mongoTestHelper.addTwoClients();
 		mongoDatabase.removeClientById("2");
 		assertTrue(mongoTestHelper.containsClient("1", "first", "firstFC", "firstCR", "firstCity", "firstProvince", "firstZip", "firstCountry", "firstPhone", "firstEmail"));
 	}	
@@ -91,7 +91,7 @@ public abstract class MongoWrapperTestAbstract {
 
 	@Test
 	public void testGetAllCompaniesNotEmpty() {
-		mongoTestHelper.addTwoCompany();
+		mongoTestHelper.addTwoCompanies();
 		assertEquals(2, mongoDatabase.getAllCompaniesList().size());
 	}
 
@@ -109,7 +109,7 @@ public abstract class MongoWrapperTestAbstract {
 
 	@Test
 	public void testFindCompanyByIdFound() {
-		mongoTestHelper.addTwoCompany();
+		mongoTestHelper.addTwoCompanies();
 		Company findCompanyById = mongoDatabase.findCompanyById("2");
 		assertNotNull(findCompanyById);
 		assertEquals("2", findCompanyById.getId());
@@ -125,7 +125,7 @@ public abstract class MongoWrapperTestAbstract {
 
 	@Test 
 	public void testRemoveCompanyByIdFromDBWithMoreCompanies() {
-		mongoTestHelper.addTwoCompany();
+		mongoTestHelper.addTwoCompanies();
 		mongoDatabase.removeCompanyById("2");
 		assertTrue(mongoTestHelper.containsCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1"));
 	}	
@@ -138,7 +138,7 @@ public abstract class MongoWrapperTestAbstract {
 
 	@Test
 	public void testGetAllInvoicesNotEmpty() {
-		mongoTestHelper.addTwoInvoice();
+		mongoTestHelper.addTwoInvoices();
 		assertEquals(2, mongoDatabase.getAllInvoicesList().size());
 	}
 
@@ -156,7 +156,7 @@ public abstract class MongoWrapperTestAbstract {
 
 	@Test
 	public void testFindInvoiceByIdFound() {
-		mongoTestHelper.addTwoInvoice();
+		mongoTestHelper.addTwoInvoices();
 		Invoice findInvoiceById = mongoDatabase.findInvoiceById("2");
 		assertNotNull(findInvoiceById);
 		assertEquals("2", findInvoiceById.getId());
@@ -172,7 +172,7 @@ public abstract class MongoWrapperTestAbstract {
 
 	@Test 
 	public void testRemoveInvoiceByIdFromDBWithMoreInvoices() {
-		mongoTestHelper.addTwoInvoice();
+		mongoTestHelper.addTwoInvoices();
 		mongoDatabase.removeInvoiceById("2");
 		assertTrue(mongoTestHelper.containsInvoice("1", "nameI1", "100", "basic invoice type1"));
 	}	

@@ -31,10 +31,7 @@ public abstract class RedisWrapperTestAbstract {
 		redisDatabase=redisTestHelper.usingRedis();
 	}
 
-	
-	
-	//Client 
-	
+	//Client
 	@Test
 	public void testGetAllClientsEmpty() {
 		assertTrue(redisDatabase.getAllClientsList().isEmpty());
@@ -42,7 +39,7 @@ public abstract class RedisWrapperTestAbstract {
 
 	@Test
 	public void testGetAllClientsNotEmpty() {
-		redisTestHelper.addTwoClient();
+		redisTestHelper.addTwoClients();
 		assertEquals(2, redisDatabase.getAllClientsList().size());
 	}
 
@@ -67,7 +64,7 @@ public abstract class RedisWrapperTestAbstract {
 
 	@Test
 	public void testFindClientByIdFound() {
-		redisTestHelper.addTwoClient();
+		redisTestHelper.addTwoClients();
 		Client findClientById = redisDatabase.findClientById("2");
 		assertNotNull(findClientById);
 		assertEquals("2", findClientById.getId());
@@ -83,12 +80,11 @@ public abstract class RedisWrapperTestAbstract {
 
 	@Test 
 	public void testRemoveClientByIdFromDBWithMoreClients() {
-		redisTestHelper.addTwoClient();
+		redisTestHelper.addTwoClients();
 		redisDatabase.removeClientById("2");
 		assertTrue(redisTestHelper.containsClient("1", "first", "firstFC", "firstCR", "firstCity", "firstProvince", "firstZip", "firstCountry", "firstPhone", "firstEmail"));
 	}	
-	
-	
+
 	//Company
 	@Test
 	public void testGetAllCompaniesEmpty() {
@@ -97,7 +93,7 @@ public abstract class RedisWrapperTestAbstract {
 
 	@Test
 	public void testGetAllCompaniesNotEmpty() {
-		redisTestHelper.addTwoCompany();
+		redisTestHelper.addTwoCompanies();
 		assertEquals(2, redisDatabase.getAllCompaniesList().size());
 	}
 
@@ -115,7 +111,7 @@ public abstract class RedisWrapperTestAbstract {
 
 	@Test
 	public void testFindCompanyByIdFound() {
-		redisTestHelper.addTwoCompany();
+		redisTestHelper.addTwoCompanies();
 		Company findCompanyById = redisDatabase.findCompanyById("2");
 		assertNotNull(findCompanyById);
 		assertEquals("2", findCompanyById.getId());
@@ -131,13 +127,11 @@ public abstract class RedisWrapperTestAbstract {
 
 	@Test 
 	public void testRemoveCompanyByIdFromDBWithMoreCompanies() {
-		redisTestHelper.addTwoCompany();
+		redisTestHelper.addTwoCompanies();
 		redisDatabase.removeCompanyById("2");
 		assertTrue(redisTestHelper.containsCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1"));
 	}
-	
-	
-	
+
 	//Invoice
 	@Test
 	public void testGetAllInvoicesEmpty() {
@@ -146,7 +140,7 @@ public abstract class RedisWrapperTestAbstract {
 
 	@Test
 	public void testGetAllInvoicesNotEmpty() {
-		redisTestHelper.addTwoInvoice();
+		redisTestHelper.addTwoInvoices();
 		assertEquals(2, redisDatabase.getAllInvoicesList().size());
 	}
 
@@ -165,7 +159,7 @@ public abstract class RedisWrapperTestAbstract {
 
 	@Test
 	public void testFindInvoiceByIdFound() {
-		redisTestHelper.addTwoInvoice();
+		redisTestHelper.addTwoInvoices();
 		Invoice findInvoiceById = redisDatabase.findInvoiceById("2");
 		assertNotNull(findInvoiceById);
 		assertEquals("2", findInvoiceById.getId());
@@ -181,11 +175,10 @@ public abstract class RedisWrapperTestAbstract {
 
 	@Test 
 	public void testRemoveInvoiceByIdFromDBWithMoreInvoices() {
-		redisTestHelper.addTwoInvoice();
+		redisTestHelper.addTwoInvoices();
 		redisDatabase.removeInvoiceById("2");
 		assertTrue(redisTestHelper.containsInvoice("1", "nameI1", "100", "basic invoice type1"));
 	}
-	
 
 	@After
 	public void stopDBServer() {
