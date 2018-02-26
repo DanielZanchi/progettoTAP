@@ -27,7 +27,7 @@ import redis.embedded.RedisServer;
 
 public class CompanyIntegrationRedis extends AbstractCompanyIntegration{
 	
-	private RedisServer redisServer;
+	public RedisServer redisServer;
 	
 	@Override
 	public void init() {
