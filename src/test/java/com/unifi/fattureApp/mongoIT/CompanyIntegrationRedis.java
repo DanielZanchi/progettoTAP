@@ -12,7 +12,7 @@ import com.unifi.fattureApp.helpTestTools.TestHelperTool;
 import ch.qos.logback.classic.LoggerContext;
 import redis.embedded.RedisServer;
 
-public class CompanyIntegrationRedis extends AbstractCompanyIntegration{
+public class CompanyIntegrationRedis extends AbstractCompanyIntegration {
 	private RedisServer redisServer;
 
 	@Override
@@ -24,11 +24,10 @@ public class CompanyIntegrationRedis extends AbstractCompanyIntegration{
 			e.printStackTrace();
 		}
 		mongoTestHelper = new TestHelperTool();
-		Database database=mongoTestHelper.usingRedis();
+		Database database = mongoTestHelper.usingRedis();
 		companyController = new AppController(database);
 		LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
 		loggerContext.stop();
-		mongoTestHelper.usingRedis();
 	}
 
 	@After
