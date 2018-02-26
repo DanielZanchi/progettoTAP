@@ -1,11 +1,7 @@
 package com.unifi.fattureApp.App;
 
-import java.io.Serializable;
-
-public class Company implements Serializable {
+public class Company extends User {
 	private static final long serialVersionUID = 1614942661460585115L;
-	private String id;
-	private String name;
 	private String vatCode;
 	private String address;
 	private String city;
@@ -19,8 +15,7 @@ public class Company implements Serializable {
 	}
 
 	public Company(String id, String name, String vatCode, String address, String city, String province, String zipCode, String country, String phone, String email) {
-		this.setId(id);
-		this.setName(name);
+		super(id, name);
 		this.setVatCode(vatCode);
 		this.setAddress(address);
 		this.setCity(city);
@@ -29,22 +24,6 @@ public class Company implements Serializable {
 		this.setCountry(country);
 		this.setPhone(phone);
 		this.setEmail(email);
-	}
-	
-	public String getId() {
-		return id;
-	}
-	
-	public void setId(String id) {
-		this.id = id;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getVatCode() {

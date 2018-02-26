@@ -3,11 +3,13 @@ package com.unifi.fattureApp.App;
 import java.io.Serializable;
 
 public class User implements Serializable{
+	private static final long serialVersionUID = 5897984558305166044L;
 	private String id;
 	private String name;
 	
 	public User() {	
 	}
+	
 	public User(String id, String name) {
 		this.setId(id);
 		this.setName(name);

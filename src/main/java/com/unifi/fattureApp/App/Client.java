@@ -1,8 +1,6 @@
 package com.unifi.fattureApp.App;
 
-import java.io.Serializable;
-
-public class Client extends User implements Serializable {	
+public class Client extends User {	
 	private static final long serialVersionUID = 392147957593130325L;
 	private String fiscalCode;
 	private String cityResidence;
