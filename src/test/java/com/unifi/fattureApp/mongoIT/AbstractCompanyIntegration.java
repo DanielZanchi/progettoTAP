@@ -1,21 +1,23 @@
 package com.unifi.fattureApp.mongoIT;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
-import java.io.IOException;
-import java.net.UnknownHostException;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.LoggerFactory;
 
 import com.github.fakemongo.Fongo;
+
 import com.mongodb.MongoClient;
-import com.unifi.fattureApp.App.AppController;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
+import com.unifi.fattureApp.App.AppController;
 import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.helpTestTools.TestHelperTool;
@@ -23,31 +25,17 @@ import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
-import redis.embedded.RedisServer;
 
-public class CompanyIntegrationRedisTest {
+public abstract class AbstractCompanyIntegration {
+	protected AppController companyController;
+	protected TestHelperTool mongoTestHelper;
 
-	private AppController companyController;
-	private TestHelperTool mongoTestHelper;
-	private RedisServer redisServer;
-
+	
+	public abstract void init ();
+	
 	@Before
 	public void setUp() throws Exception {
-		
-		try {
-			redisServer = new RedisServer(6379);
-			redisServer.start();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		mongoTestHelper = new TestHelperTool();
-		Database database=mongoTestHelper.usingRedis();
-
-		companyController = new AppController(database);
-		
-		LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
-		loggerContext.stop();
-		
+		init();
 	}
 
 	private Client addTestClientToDB() {
@@ -453,10 +441,4 @@ public class CompanyIntegrationRedisTest {
 		companyController.editInvoice(invoice);
 		assertEquals("EditedName", companyController.getInvoiceId("1").getName());
 	}
-	
-	@After
-	public void stopDBServer() {
-		redisServer.stop();
-	}
-
 }
