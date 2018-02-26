@@ -2,10 +2,8 @@ package com.unifi.fattureApp.App;
 
 import java.io.Serializable;
 
-public class Client implements Serializable {	
+public class Client extends User implements Serializable {	
 	private static final long serialVersionUID = 392147957593130325L;
-	private String id;
-	private String name;
 	private String fiscalCode;
 	private String cityResidence;
 	private String city;
@@ -19,8 +17,7 @@ public class Client implements Serializable {
 	}
 
 	public Client(String id, String name, String fiscalCode, String cityResidence, String city, String province, String zip, String country, String phone, String email) {
-		this.setId(id);
-		this.setName(name);
+		super(id, name);
 		this.setFiscalCode(fiscalCode);
 		this.setCityResidence(cityResidence);
 		this.setCity(city);
@@ -29,22 +26,6 @@ public class Client implements Serializable {
 		this.setCountry(country);
 		this.setPhone(phone);
 		this.setEmail(email);
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getFiscalCode() {
@@ -110,8 +91,6 @@ public class Client implements Serializable {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-
-
 
 	@Override
 	public int hashCode(){
