@@ -20,6 +20,8 @@ public class RedisWrapperTests extends RedisWrapperTestAbstract{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
+		loggerContext.stop();
 	}
 
 	@Override

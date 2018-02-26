@@ -46,8 +46,8 @@ public class CompanyIntegrationRedisTest {
 		companyController = new AppController(database);
 		
 		LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
-		ch.qos.logback.classic.Logger rootLogger = loggerContext.getLogger("com.mongodb.FongoDBCollection");
-		rootLogger.setLevel(Level.OFF);
+		loggerContext.stop();
+		
 	}
 
 	private Client addTestClientToDB() {

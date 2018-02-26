@@ -1,5 +1,7 @@
 package com.unifi.fattureApp.helpTestTools;
 
+import org.apache.commons.logging.Log;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 
@@ -11,6 +13,9 @@ import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.mongoWrapper.RedisWrapper;
+
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.LoggerContext;
 
 public class TestHelperTool {
 	private DBCollection clients;
