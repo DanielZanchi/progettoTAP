@@ -1,18 +1,13 @@
 package com.unifi.fattureApp.UI;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
-import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 import org.apache.log4j.Logger;
 
@@ -55,7 +50,6 @@ public class ClientPanel extends PanelWithObligatoryTextFields implements AddPan
 		addClientPanel.setLayout(null);
 		outerPanel.setLayer(addClientPanel, 2);
 
-
 		initLabelsTextFields();
 
 		FormattedButton cancelButton = new FormattedButton("Cancel", "CancelButton");
@@ -92,51 +86,9 @@ public class ClientPanel extends PanelWithObligatoryTextFields implements AddPan
 			resetTextFields();
 			dbUiCom.updateClientsReferences();
 		});
-<<<<<<< HEAD
-		
+
 		String [] freeTextFields= {"clientPhone_TF","clientEmail_TF"};
 		super.setUpTextFields(addClientPanel.getComponents(),freeTextFields,saveButton);
-		
-=======
-
-		Component[] components = addClientPanel.getComponents();
-		for (Component component : components) {
-			if (component.getClass().equals(JTextField.class) && (!((JTextField) component).getName().equals("clientPhone_TF")
-					&& !((JTextField) component).getName().equals("clientEmail_TF"))) {
-				textFields.add((JTextField) component);
-			}
-		}
-
-		for (JTextField tf : textFields) {
-			tf.getDocument().addDocumentListener(new DocumentListener() {
-				@Override
-				public void insertUpdate(DocumentEvent e) {
-					changed();
-				}
-
-				@Override
-				public void removeUpdate(DocumentEvent e) {
-					changed();
-				}
-
-				@Override
-				public void changedUpdate(DocumentEvent e) {
-					//non ci entra
-				}
-
-				public void changed() {
-					boolean shouldActivate = true;
-					for (JTextField tf : textFields) {
-						if (tf.getText().equals("")) {
-							shouldActivate = false;
-							break;
-						}
-					}
-					saveButton.setEnabled(shouldActivate);
-				}
-			});
-		}
->>>>>>> branch 'master' of https://github.com/Danny182/progettoTAP.git
 	}
 
 	private void initLabelsTextFields() {

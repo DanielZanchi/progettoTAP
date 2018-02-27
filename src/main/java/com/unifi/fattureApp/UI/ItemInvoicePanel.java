@@ -1,11 +1,9 @@
 package com.unifi.fattureApp.UI;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.LinkedList;
 import java.util.Locale;
 
 import javax.swing.BorderFactory;
@@ -13,10 +11,7 @@ import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 import org.apache.log4j.Logger;
 
@@ -52,7 +47,6 @@ public class ItemInvoicePanel extends PanelWithObligatoryTextFields implements A
 		addItemPanel.setLayout(null);
 		outerPanel.setLayer(addItemPanel, 2);
 
-
 		initLabelsTextFields();
 
 		insets = 8;
@@ -85,7 +79,6 @@ public class ItemInvoicePanel extends PanelWithObligatoryTextFields implements A
 			databaseUiComunication.updateInvoicesReferences();
 		});
 
-		
 		String [] freeTextFields= {""};
 		super.setUpTextFields(addItemPanel.getComponents(),freeTextFields,saveButton);
 	}
