@@ -117,7 +117,7 @@ public class ClientPanel extends JPanel implements AddPanel {
 
 				@Override
 				public void changedUpdate(DocumentEvent e) {
-					changed();
+					//non ci entra
 				}
 
 				public void changed() {
