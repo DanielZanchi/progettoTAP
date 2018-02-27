@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.Before;
@@ -21,7 +22,7 @@ public abstract class AbstractCompanyIntegration {
 	protected AppController companyController;
 	protected TestHelperTool mongoTestHelper;
 
-	public abstract void init();
+	public abstract void init() throws IOException;
 
 	@Before
 	public void setUp() throws Exception {

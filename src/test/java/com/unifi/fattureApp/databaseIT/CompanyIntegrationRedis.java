@@ -16,13 +16,9 @@ public class CompanyIntegrationRedis extends AbstractCompanyIntegration {
 	private RedisServer redisServer;
 
 	@Override
-	public void init() {
-		try {
-			redisServer = new RedisServer(6379);
-			redisServer.start();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void init() throws IOException {
+		redisServer = new RedisServer(6379);
+		redisServer.start();
 		mongoTestHelper = new TestHelperTool();
 		Database database = mongoTestHelper.usingRedis();
 		companyController = new AppController(database);
