@@ -22,7 +22,7 @@ import org.apache.log4j.Logger;
 
 import com.unifi.fattureApp.App.DatabaseUiComunication;
 
-public class ItemInvoicePanel extends JPanel implements AddPanel {
+public class ItemInvoicePanel extends PanelWithObligatoryTextFields implements AddPanel {
 	private static final long serialVersionUID = 8698651509983266694L;
 	private static final Logger LOGGER = Logger.getLogger(ItemInvoicePanel.class);
 
@@ -30,7 +30,6 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 	private JTextField itemNameTF;
 	private JFormattedTextField itemPriceTF;
 
-	private LinkedList<JTextField> textFields;
 	private DatabaseUiComunication databaseUiComunication;
 
 	private Color layerColor = new java.awt.Color(216, 245, 255);
@@ -53,7 +52,6 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 		addItemPanel.setLayout(null);
 		outerPanel.setLayer(addItemPanel, 2);
 
-		textFields = new LinkedList<>();
 
 		initLabelsTextFields();
 
@@ -87,42 +85,9 @@ public class ItemInvoicePanel extends JPanel implements AddPanel {
 			databaseUiComunication.updateInvoicesReferences();
 		});
 
-		Component[] components = addItemPanel.getComponents();
-		for (Component component : components) {
-			if (component.getClass().equals(JTextField.class)) {
-				textFields.add((JTextField) component);
-			}
-		}
-
-		for (JTextField tf : textFields) {
-			tf.getDocument().addDocumentListener(new DocumentListener() {
-				@Override
-				public void insertUpdate(DocumentEvent e) {
-					changed();
-				}
-
-				@Override
-				public void removeUpdate(DocumentEvent e) {
-					changed();
-				}
-
-				@Override
-				public void changedUpdate(DocumentEvent e) {
-					changed();
-				}
-
-				public void changed() {
-					boolean shouldActivate = true;
-					for (JTextField tf : textFields) {
-						if (tf.getText().equals("")) {
-							shouldActivate = false;
-							break;
-						}
-					}
-					saveButton.setEnabled(shouldActivate);
-				}
-			});
-		}
+		
+		String [] freeTextFields= {""};
+		super.setUpTextFields(addItemPanel.getComponents(),freeTextFields,saveButton);
 	}
 
 	private void initLabelsTextFields() {

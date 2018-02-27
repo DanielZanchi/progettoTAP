@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
 
 import com.unifi.fattureApp.App.DatabaseUiComunication;
 
-public class ClientPanel extends JPanel implements AddPanel {
+public class ClientPanel extends PanelWithObligatoryTextFields implements AddPanel {
 	private static final long serialVersionUID = -4964123340815964907L;
 	private static final Logger LOGGER = Logger.getLogger(ClientPanel.class);
 
@@ -34,7 +34,6 @@ public class ClientPanel extends JPanel implements AddPanel {
 	private JTextField clientPhoneTF;
 	private JTextField clientEmailTF;
 
-	private LinkedList<JTextField> textFields;
 	private Color layerColor = new java.awt.Color(216, 245, 255);
 	private ClientPanel addClientPanel;
 	private boolean isSaving;
@@ -56,7 +55,6 @@ public class ClientPanel extends JPanel implements AddPanel {
 		addClientPanel.setLayout(null);
 		outerPanel.setLayer(addClientPanel, 2);
 
-		textFields = new LinkedList<>();
 
 		initLabelsTextFields();
 
@@ -94,44 +92,10 @@ public class ClientPanel extends JPanel implements AddPanel {
 			resetTextFields();
 			dbUiCom.updateClientsReferences();
 		});
-
-		Component[] components = addClientPanel.getComponents();
-		for (Component component : components) {
-			if (component.getClass().equals(JTextField.class) && (!((JTextField) component).getName().equals("clientPhone_TF")
-					&& !((JTextField) component).getName().equals("clientEmail_TF"))) {
-				textFields.add((JTextField) component);
-			}
-		}
-
-		for (JTextField tf : textFields) {
-			tf.getDocument().addDocumentListener(new DocumentListener() {
-				@Override
-				public void insertUpdate(DocumentEvent e) {
-					changed();
-				}
-
-				@Override
-				public void removeUpdate(DocumentEvent e) {
-					changed();
-				}
-
-				@Override
-				public void changedUpdate(DocumentEvent e) {
-					changed();
-				}
-
-				public void changed() {
-					boolean shouldActivate = true;
-					for (JTextField tf : textFields) {
-						if (tf.getText().equals("")) {
-							shouldActivate = false;
-							break;
-						}
-					}
-					saveButton.setEnabled(shouldActivate);
-				}
-			});
-		}
+		
+		String [] freeTextFields= {"clientPhone_TF","clientEmail_TF"};
+		super.setUpTextFields(addClientPanel.getComponents(),freeTextFields,saveButton);
+		
 	}
 
 	private void initLabelsTextFields() {

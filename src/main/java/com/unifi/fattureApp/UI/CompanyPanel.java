@@ -3,6 +3,7 @@ package com.unifi.fattureApp.UI;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Panel;
 import java.util.LinkedList;
 
 import javax.swing.BorderFactory;
@@ -18,7 +19,7 @@ import org.apache.log4j.Logger;
 
 import com.unifi.fattureApp.App.DatabaseUiComunication;
 
-public class CompanyPanel extends JPanel implements AddPanel {
+public class CompanyPanel extends PanelWithObligatoryTextFields implements AddPanel {
 	private static final long serialVersionUID = 6387743798709513734L;
 
 	private static final Logger LOGGER = Logger.getLogger(CompanyPanel.class);
@@ -36,7 +37,6 @@ public class CompanyPanel extends JPanel implements AddPanel {
 	private JTextField companyEmailTF;
 	private CompanyPanel addCompanyPanel;
 
-	private LinkedList<JTextField> textFields;
 
 	private Color layerColor = new java.awt.Color(216, 245, 255);
 
@@ -59,7 +59,7 @@ public class CompanyPanel extends JPanel implements AddPanel {
 		addCompanyPanel.setLayout(null);
 		outerPanel.setLayer(addCompanyPanel, 2);
 
-		textFields = new LinkedList<>();
+		
 
 		initLabelsTextFields();
 
@@ -104,43 +104,9 @@ public class CompanyPanel extends JPanel implements AddPanel {
 			myDatabaseUiComunication.updateCompanyReference();
 		});
 
-		Component[] components = addCompanyPanel.getComponents();
-		for (Component component : components) {
-			if (component.getClass().equals(JTextField.class) && !((JTextField) component).getName().equals("companyPhoneTextField")
-					&& !((JTextField) component).getName().equals("companyEmailTextField")) {
-				textFields.add((JTextField) component);
-			}
-		}
-
-		for (JTextField tf : textFields) {
-			tf.getDocument().addDocumentListener(new DocumentListener() {
-				@Override
-				public void insertUpdate(DocumentEvent e) {
-					changed();
-				}
-
-				@Override
-				public void removeUpdate(DocumentEvent e) {
-					changed();
-				}
-
-				@Override
-				public void changedUpdate(DocumentEvent e) {
-					changed();
-				}
-
-				public void changed() {
-					boolean shouldActivate = true;
-					for (JTextField tf : textFields) {
-						if (tf.getText().equals("")) {
-							shouldActivate = false;
-							break;
-						}
-					}
-					saveButton.setEnabled(shouldActivate);
-				}
-			});
-		}
+		String [] freeTextFields= {"companyPhoneTextField","companyEmailTextField"};
+		super.setUpTextFields(addCompanyPanel.getComponents(),freeTextFields,saveButton);
+		
 	}
 
 	private void initLabelsTextFields() {
