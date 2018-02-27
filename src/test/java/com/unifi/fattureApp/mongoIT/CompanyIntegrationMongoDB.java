@@ -1,7 +1,5 @@
 package com.unifi.fattureApp.mongoIT;
 
-import java.net.UnknownHostException;
-
 import org.slf4j.LoggerFactory;
 
 import com.github.fakemongo.Fongo;
@@ -23,12 +21,9 @@ public class CompanyIntegrationMongoDB extends AbstractCompanyIntegration {
 		mongoTestHelper = new TestHelperTool();
 		mongoTestHelper.setUpMongoClient(mongoClient);
 
-		Database database=null;
-		try {
-			database = new MongoWrapper(mongoClient);
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		}
+		Database database = null;
+		database = new MongoWrapper(mongoClient);
+		
 		companyController = new AppController(database);
 
 		LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();

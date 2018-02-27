@@ -85,7 +85,7 @@ public class PDFCreator {
 				+ selectedClient.getCity() + " - " + selectedClient.getZip() + " - " + selectedClient.getCityResidence()
 				+ " - " + selectedClient.getCountry() + "\n" + "Tel: " + selectedClient.getPhone() + " - "
 				+ selectedClient.getEmail();
-		textWidth = getTextWidth(fontSize, stringToPrint);
+//		textWidth = getTextWidth(fontSize, stringToPrint);
 
 		// new line when finds \n
 		ArrayList<String> lines = splitLines(stringToPrint, fontSize, sp);
@@ -214,8 +214,8 @@ public class PDFCreator {
 		df.setMinimumFractionDigits(2);
 		String stringToPrint = "Subtotal Ex. VAT:          €  "
 				+ df.format(Float.parseFloat(getPriceExcVAT(selectedInvoice.getPrice())));
-		float textWidth = getTextWidth(fontSize, stringToPrint);
-		float x = verticalRight(sp, textWidth);
+//		float textWidth = getTextWidth(fontSize, stringToPrint);
+//		float x = verticalRight(sp, textWidth);
 
 		cs.beginText();
 		cs.setFont(helveticaFont, fontSize);
@@ -245,7 +245,7 @@ public class PDFCreator {
 				+ selectedCompany.getAddress() + " - " + selectedCompany.getZipCode() + " - "
 				+ selectedCompany.getCity() + " - " + selectedCompany.getCountry() + "\n" + "Tel: "
 				+ selectedCompany.getPhone() + " - " + selectedCompany.getEmail();
-		float textWidth = getTextWidth(fontSize, stringToPrint);
+		float textWidth; // = getTextWidth(fontSize, stringToPrint);
 
 		// new line when finds \n
 		ArrayList<String> lines = splitLines(stringToPrint, fontSize, sp);
@@ -264,8 +264,8 @@ public class PDFCreator {
 	}
 
 	private ArrayList<String> splitLines(String stringToSplit, int fontSize, PDPage sp) {
-		PDRectangle mediabox = sp.getMediaBox();
-		float width = mediabox.getWidth() - 2 * margin;
+//		PDRectangle mediabox = sp.getMediaBox();
+//		float width = mediabox.getWidth() - 2 * margin;
 
 		ArrayList<String> lines = new ArrayList<>();
 
@@ -275,8 +275,8 @@ public class PDFCreator {
 				int spaceIndex = text.indexOf(' ', lastSpace + 1);
 				if (spaceIndex < 0)
 					spaceIndex = text.length();
-				String subString = text.substring(0, spaceIndex);
-				float size = getTextWidth(fontSize, subString);
+//				String subString = text.substring(0, spaceIndex);
+//				float size = getTextWidth(fontSize, subString);
 				if (spaceIndex == text.length()) {
 					lines.add(text);
 					text = "";

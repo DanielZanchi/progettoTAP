@@ -1,6 +1,5 @@
 package com.unifi.fattureApp.mongoWrapper;
 
-import java.net.UnknownHostException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -21,7 +20,7 @@ public class MongoWrapper implements Database{
 	private MongoCollection invoices;
 	private static final String ID = "{id: #}";
 
-	public MongoWrapper(MongoClient mc) throws UnknownHostException {
+	public MongoWrapper(MongoClient mc) {
 		DB db = mc.getDB("company");
 
 		Jongo jongo = new Jongo(db);
