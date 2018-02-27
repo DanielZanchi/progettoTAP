@@ -15,8 +15,8 @@ import org.springframework.core.io.ClassPathResource;
 
 import com.github.fakemongo.Fongo;
 import com.mongodb.MongoClient;
-import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
-import com.unifi.fattureApp.mongoWrapper.RedisWrapper;
+import com.unifi.fattureApp.wrappers.MongoWrapper;
+import com.unifi.fattureApp.wrappers.RedisWrapper;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;

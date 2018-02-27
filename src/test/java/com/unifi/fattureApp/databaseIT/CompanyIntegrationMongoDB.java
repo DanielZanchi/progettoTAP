@@ -1,4 +1,4 @@
-package com.unifi.fattureApp.mongoIT;
+package com.unifi.fattureApp.databaseIT;
 
 import org.slf4j.LoggerFactory;
 
@@ -7,7 +7,7 @@ import com.mongodb.MongoClient;
 import com.unifi.fattureApp.App.AppController;
 import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.helpTestTools.TestHelperTool;
-import com.unifi.fattureApp.mongoWrapper.MongoWrapper;
+import com.unifi.fattureApp.wrappers.MongoWrapper;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;

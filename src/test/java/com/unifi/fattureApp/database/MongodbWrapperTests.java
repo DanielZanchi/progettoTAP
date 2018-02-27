@@ -1,4 +1,4 @@
-package com.unifi.fattureApp.mongoDB;
+package com.unifi.fattureApp.database;
 
 import org.slf4j.LoggerFactory;
 

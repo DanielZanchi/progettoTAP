@@ -10,7 +10,7 @@ import com.mongodb.MongoClient;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Invoice;
-import com.unifi.fattureApp.mongoWrapper.RedisWrapper;
+import com.unifi.fattureApp.wrappers.RedisWrapper;
 
 public class TestHelperTool {
 	private DBCollection clients;

@@ -1,4 +1,4 @@
-package com.unifi.fattureApp.mongoDB;
+package com.unifi.fattureApp.database;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -16,7 +16,7 @@ import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.helpTestTools.TestHelperTool;
-import com.unifi.fattureApp.mongoWrapper.RedisWrapper;
+import com.unifi.fattureApp.wrappers.RedisWrapper;
 
 public abstract class RedisWrapperTestAbstract {
 	private RedisWrapper redisDatabase;

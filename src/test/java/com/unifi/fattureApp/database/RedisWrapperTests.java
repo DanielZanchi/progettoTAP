@@ -1,4 +1,4 @@
-package com.unifi.fattureApp.mongoDB;
+package com.unifi.fattureApp.database;
 
 import java.io.IOException;
 import java.net.UnknownHostException;

@@ -1,4 +1,4 @@
-package com.unifi.fattureApp.mongoIT;
+package com.unifi.fattureApp.databaseIT;
 
 import static org.junit.Assert.assertEquals;
 

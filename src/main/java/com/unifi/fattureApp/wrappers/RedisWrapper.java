@@ -1,4 +1,4 @@
-package com.unifi.fattureApp.mongoWrapper;
+package com.unifi.fattureApp.wrappers;
 
 import java.util.Iterator;
 import java.util.LinkedList;
