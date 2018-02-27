@@ -14,7 +14,6 @@ import java.util.Date;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
@@ -47,8 +46,8 @@ public class PDFCreator {
 		contentStream = this.billTo(contentStream, singlePage);
 		contentStream = this.invoiceNumber(contentStream, singlePage);
 		contentStream = this.invoiceContainer(contentStream, singlePage);
-		contentStream = this.invoiceDescription(contentStream, singlePage);
-		contentStream = this.invoiceTotal(contentStream, singlePage);
+		contentStream = this.invoiceDescription(contentStream);
+		contentStream = this.invoiceTotal(contentStream);
 		contentStream = this.footer(contentStream, singlePage);
 		contentStream.close(); // Stream must be closed before saving document.
 		document.save("Invoice.pdf");
@@ -74,8 +73,7 @@ public class PDFCreator {
 		cs.setFont(helveticaBoldFont, fontSize);
 		float y = 140;
 		cs.beginText();
-		float textWidth = getTextWidth(fontSize, stringToPrint);
-		cs.newLineAtOffset(verticalLeft(sp, textWidth), sp.getMediaBox().getHeight() - y);
+		cs.newLineAtOffset(verticalLeft(), sp.getMediaBox().getHeight() - y);
 		cs.showText(stringToPrint);
 		cs.endText();
 		fontSize = 9;
@@ -85,16 +83,14 @@ public class PDFCreator {
 				+ selectedClient.getCity() + " - " + selectedClient.getZip() + " - " + selectedClient.getCityResidence()
 				+ " - " + selectedClient.getCountry() + "\n" + "Tel: " + selectedClient.getPhone() + " - "
 				+ selectedClient.getEmail();
-//		textWidth = getTextWidth(fontSize, stringToPrint);
 
 		// new line when finds \n
-		ArrayList<String> lines = splitLines(stringToPrint, fontSize, sp);
+		ArrayList<String> lines = splitLines(stringToPrint);
 		cs.setFont(helveticaFont, fontSize);
 		y = 140 + leading;
 		for (String line : lines) {
 			cs.beginText();
-			textWidth = getTextWidth(fontSize, line);
-			cs.newLineAtOffset(verticalLeft(sp, textWidth), sp.getMediaBox().getHeight() - y);
+			cs.newLineAtOffset(verticalLeft(), sp.getMediaBox().getHeight() - y);
 			cs.showText(line);
 			cs.endText();
 			y = y + leading;
@@ -139,8 +135,7 @@ public class PDFCreator {
 		// container title
 		int fontSize = 18;
 		String stringToPrint = "INVOICE";
-		float textWidth = getTextWidth(fontSize, stringToPrint);
-		float x = verticalLeft(sp, textWidth);
+		float x = verticalLeft();
 		cs.beginText();
 		cs.setFont(helveticaBoldFont, fontSize);
 		cs.setNonStrokingColor(new Color(0, 51, 102));
@@ -150,7 +145,7 @@ public class PDFCreator {
 
 		// create a rectangle
 		float rectWidth = (sp.getMediaBox().getWidth() - (margin * 2));
-		x = verticalLeft(sp, rectWidth);
+		x = verticalLeft();
 		cs.addRect(x, 550, rectWidth, 20);
 		cs.fill();
 		cs.setNonStrokingColor(Color.BLACK);
@@ -158,8 +153,7 @@ public class PDFCreator {
 		// create table header
 		fontSize = 12;
 		stringToPrint = " #    Description";
-		textWidth = getTextWidth(fontSize, stringToPrint);
-		x = verticalLeft(sp, textWidth);
+		x = verticalLeft();
 
 		cs.beginText();
 		cs.setFont(helveticaBoldFont, fontSize);
@@ -180,15 +174,14 @@ public class PDFCreator {
 		return cs;
 	}
 
-	private PDPageContentStream invoiceDescription(PDPageContentStream cs, PDPage sp) throws IOException {
+	private PDPageContentStream invoiceDescription(PDPageContentStream cs) throws IOException {
 		// create table header
 		int fontSize = 11;
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
 		df.setMinimumFractionDigits(2);
 		String stringToPrint = " 1      " + selectedInvoice.getName() + " (" + selectedInvoice.getDescription() + ")";
-		float textWidth = getTextWidth(fontSize, stringToPrint);
-		float x = verticalLeft(sp, textWidth);
+		float x = verticalLeft();
 		cs.beginText();
 		cs.setFont(helveticaFont, fontSize);
 		cs.newLineAtOffset(x, 530);
@@ -206,7 +199,7 @@ public class PDFCreator {
 		return cs;
 	}
 
-	private PDPageContentStream invoiceTotal(PDPageContentStream cs, PDPage sp) throws IOException {
+	private PDPageContentStream invoiceTotal(PDPageContentStream cs) throws IOException {
 		// create table header
 		int fontSize = 11;
 		DecimalFormat df = new DecimalFormat();
@@ -214,8 +207,6 @@ public class PDFCreator {
 		df.setMinimumFractionDigits(2);
 		String stringToPrint = "Subtotal Ex. VAT:          €  "
 				+ df.format(Float.parseFloat(getPriceExcVAT(selectedInvoice.getPrice())));
-//		float textWidth = getTextWidth(fontSize, stringToPrint);
-//		float x = verticalRight(sp, textWidth);
 
 		cs.beginText();
 		cs.setFont(helveticaFont, fontSize);
@@ -245,10 +236,10 @@ public class PDFCreator {
 				+ selectedCompany.getAddress() + " - " + selectedCompany.getZipCode() + " - "
 				+ selectedCompany.getCity() + " - " + selectedCompany.getCountry() + "\n" + "Tel: "
 				+ selectedCompany.getPhone() + " - " + selectedCompany.getEmail();
-		float textWidth; // = getTextWidth(fontSize, stringToPrint);
+		float textWidth;
 
 		// new line when finds \n
-		ArrayList<String> lines = splitLines(stringToPrint, fontSize, sp);
+		ArrayList<String> lines = splitLines(stringToPrint);
 
 		cs.setFont(helveticaFont, fontSize);
 		float y = topInsets;
@@ -263,10 +254,7 @@ public class PDFCreator {
 		return cs;
 	}
 
-	private ArrayList<String> splitLines(String stringToSplit, int fontSize, PDPage sp) {
-//		PDRectangle mediabox = sp.getMediaBox();
-//		float width = mediabox.getWidth() - 2 * margin;
-
+	private ArrayList<String> splitLines(String stringToSplit) {
 		ArrayList<String> lines = new ArrayList<>();
 
 		for (String text : stringToSplit.split("\n")) {
@@ -275,8 +263,6 @@ public class PDFCreator {
 				int spaceIndex = text.indexOf(' ', lastSpace + 1);
 				if (spaceIndex < 0)
 					spaceIndex = text.length();
-//				String subString = text.substring(0, spaceIndex);
-//				float size = getTextWidth(fontSize, subString);
 				if (spaceIndex == text.length()) {
 					lines.add(text);
 					text = "";
@@ -292,7 +278,7 @@ public class PDFCreator {
 		return (sp.getMediaBox().getWidth() / 2 - textWidth / 2);
 	}
 
-	private float verticalLeft(PDPage sp, float textWidth) {
+	private float verticalLeft() {
 		return (margin);
 	}
 
