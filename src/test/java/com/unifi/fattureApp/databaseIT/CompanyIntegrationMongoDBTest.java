@@ -6,40 +6,42 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-import java.io.IOException;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.LoggerFactory;
 
+import com.github.fakemongo.Fongo;
+import com.mongodb.MongoClient;
 import com.unifi.fattureApp.App.AppController;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.helpTestTools.TestHelperTool;
+import com.unifi.fattureApp.wrappers.MongoWrapper;
 
+import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
-import redis.embedded.RedisServer;
 
-public class CompanyIntegrationRedis {
-	private RedisServer redisServer;
-
+public class CompanyIntegrationMongoDBTest  {
 	
-	public void init() throws IOException {
-		redisServer = new RedisServer(6379);
-		redisServer.start();
+	public void init() {
+		Fongo fongo = new Fongo("mongo server 1");
+		MongoClient mongoClient = fongo.getMongo();
+
 		mongoTestHelper = new TestHelperTool();
-		Database database = mongoTestHelper.usingRedis();
+		mongoTestHelper.setUpMongoClient(mongoClient);
+
+		Database database = null;
+		database = new MongoWrapper(mongoClient);
+		
 		companyController = new AppController(database);
+
 		LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
-		loggerContext.stop();
-	}
-	@After
-	public void stopDBServer() {
-		redisServer.stop();
+		ch.qos.logback.classic.Logger rootLogger = loggerContext.getLogger("com.mongodb.FongoDBCollection");
+		rootLogger.setLevel(Level.OFF);	
 	}
 	
 	private AppController companyController;
