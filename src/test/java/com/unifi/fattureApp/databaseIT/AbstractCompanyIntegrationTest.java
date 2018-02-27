@@ -18,7 +18,7 @@ import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.helpTestTools.TestHelperTool;
 
-public abstract class AbstractCompanyIntegration {
+public abstract class AbstractCompanyIntegrationTest {
 	protected AppController companyController;
 	protected TestHelperTool mongoTestHelper;
 

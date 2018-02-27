@@ -1,31 +1,18 @@
 package com.unifi.fattureApp.databaseIT;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-
-import java.util.List;
-
-import org.junit.Before;
-import org.junit.Test;
 import org.slf4j.LoggerFactory;
 
 import com.github.fakemongo.Fongo;
 import com.mongodb.MongoClient;
 import com.unifi.fattureApp.App.AppController;
-import com.unifi.fattureApp.App.Client;
-import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Database;
-import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.helpTestTools.TestHelperTool;
 import com.unifi.fattureApp.wrappers.MongoWrapper;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
 
-public class CompanyIntegrationMongoDBTest  {
+public class CompanyIntegrationMongoDBTest extends AbstractCompanyIntegrationTest {
 	
 	public void init() {
 		Fongo fongo = new Fongo("mongo server 1");
@@ -43,6 +30,8 @@ public class CompanyIntegrationMongoDBTest  {
 		ch.qos.logback.classic.Logger rootLogger = loggerContext.getLogger("com.mongodb.FongoDBCollection");
 		rootLogger.setLevel(Level.OFF);	
 	}
+	
+	/*
 	
 	private AppController companyController;
 	private TestHelperTool mongoTestHelper;
@@ -455,4 +444,5 @@ public class CompanyIntegrationMongoDBTest  {
 		companyController.editInvoice(invoice);
 		assertEquals("EditedName", companyController.getInvoiceId("1").getName());
 	}
+	*/
 }

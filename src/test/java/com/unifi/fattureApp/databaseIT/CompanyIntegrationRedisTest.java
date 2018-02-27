@@ -1,30 +1,18 @@
 package com.unifi.fattureApp.databaseIT;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-
 import java.io.IOException;
-import java.util.List;
 
 import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.slf4j.LoggerFactory;
 
 import com.unifi.fattureApp.App.AppController;
-import com.unifi.fattureApp.App.Client;
-import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Database;
-import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.helpTestTools.TestHelperTool;
 
 import ch.qos.logback.classic.LoggerContext;
 import redis.embedded.RedisServer;
 
-public class CompanyIntegrationRedisTest {
+public class CompanyIntegrationRedisTest extends AbstractCompanyIntegrationTest {
 	private RedisServer redisServer;
 
 	public void init() throws IOException {
@@ -36,11 +24,13 @@ public class CompanyIntegrationRedisTest {
 		LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
 		loggerContext.stop();
 	}
+	
 	@After
 	public void stopDBServer() {
 		redisServer.stop();
 	}
 	
+	/*
 	private AppController companyController;
 	private TestHelperTool mongoTestHelper;
 	@Before
@@ -452,4 +442,5 @@ public class CompanyIntegrationRedisTest {
 		companyController.editInvoice(invoice);
 		assertEquals("EditedName", companyController.getInvoiceId("1").getName());
 	}
+	*/
 }
