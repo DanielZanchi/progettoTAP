@@ -21,7 +21,7 @@ public abstract class AbstractCompanyIntegration {
 	protected AppController companyController;
 	protected TestHelperTool mongoTestHelper;
 
-	public abstract void init();
+	protected abstract void init();
 
 	@Before
 	public void setUp() throws Exception {
