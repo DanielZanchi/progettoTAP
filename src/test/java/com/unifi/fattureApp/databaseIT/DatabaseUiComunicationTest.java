@@ -2,6 +2,7 @@ package com.unifi.fattureApp.databaseIT;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.junit.Before;
@@ -12,7 +13,7 @@ import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.App.DatabaseUiComunication;
 
-public class MongoUiComunicationTest {	
+public class DatabaseUiComunicationTest {	
 	private DatabaseUiComunication myDatabaseUiComunication;
 
 	@Before
@@ -144,6 +145,10 @@ public class MongoUiComunicationTest {
 		Company company = setTestCompanyToCurrentSelected();
 		Client client = setTestClientToCurrentSelected();
 		Invoice invoice = setTestInvoiceToCurrentSelected();
-		assertEquals(true, myDatabaseUiComunication.printSelected());
+		boolean created=myDatabaseUiComunication.printSelected();
+		assertEquals(true, created);
+		if(created) {
+			new File("Invoice.pdf").delete();
+		}
 	}
 }

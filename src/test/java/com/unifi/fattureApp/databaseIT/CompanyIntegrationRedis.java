@@ -16,7 +16,7 @@ public class CompanyIntegrationRedis extends AbstractCompanyIntegration {
 	private RedisServer redisServer;
 
 	@Override
-	protected void init() {
+	public void init() {
 		try {
 			redisServer = new RedisServer(6379);
 			redisServer.start();

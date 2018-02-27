@@ -14,7 +14,7 @@ import ch.qos.logback.classic.LoggerContext;
 
 public class CompanyIntegrationMongoDB extends AbstractCompanyIntegration {
 	@Override
-	protected void init() {
+	public void init() {
 		Fongo fongo = new Fongo("mongo server 1");
 		MongoClient mongoClient = fongo.getMongo();
 
