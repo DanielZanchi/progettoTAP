@@ -28,6 +28,7 @@ public abstract class AbstractCompanyIntegration {
 	public void setUp() throws Exception {
 		init();
 	}
+	
 
 	private Client addTestClientToDB() {
 		mongoTestHelper.addClient("1", "test", "testFC", "testCR", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail");
