@@ -11,18 +11,14 @@ import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.Invoice;
 
-public class RedisWrapper implements Database{
+public class RedisWrapper implements Database {
 	private RedisTemplate<String, Object> redisTemplate;
 
 	private static final String CLIENTKEY = "client_key_redis"; 
 	private static final String COMPANYKEY = "company_key_redis"; 
 	private static final String INVOICEKEY = "invoice_key_redis"; 
 
-	public RedisTemplate<String, Object> getRedisTemplate(){
-		return redisTemplate;
-	}
-
-	public void setRedisTemplate(RedisTemplate<String, Object> redisTemplate){
+	public void setRedisTemplate(RedisTemplate<String, Object> redisTemplate) {
 		this.redisTemplate = redisTemplate;
 	}
 

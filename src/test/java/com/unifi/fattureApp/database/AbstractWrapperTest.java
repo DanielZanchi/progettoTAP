@@ -18,7 +18,6 @@ import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.helpTestTools.TestHelperTool;
 
 public abstract class AbstractWrapperTest {
-	
 	protected Database database;
 	public abstract void init() throws UnknownHostException;
 	protected TestHelperTool testHelper;

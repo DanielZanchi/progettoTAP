@@ -14,7 +14,7 @@ import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.App.Invoice;
 
-public class MongoWrapper implements Database{
+public class MongoWrapper implements Database {	
 	private MongoCollection clients;
 	private MongoCollection companies;
 	private MongoCollection invoices;

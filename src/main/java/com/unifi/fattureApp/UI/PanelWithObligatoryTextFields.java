@@ -9,16 +9,15 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 public class PanelWithObligatoryTextFields extends JPanel{
-
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 7883635384945697293L;
 	private LinkedList<JTextField> textFields;
-	
-	protected void setUpTextFields(Component[] components,String[] textFieldsNotObligatory,FormattedButton saveButton) {
+
+	protected void setUpTextFields(Component[] components,String[] textFieldsNotObligatory, FormattedButton saveButton) {
 		textFields = new LinkedList<>();
 		for (Component component : components) {
 			if (component.getClass().equals(JTextField.class)){
 				boolean sameName=false;
-				for(int i=0;i<textFieldsNotObligatory.length;i++) {
+				for(int i = 0; i<textFieldsNotObligatory.length; i++) {
 					if(((JTextField) component).getName().equals(textFieldsNotObligatory[i])) {
 						sameName=true;
 						break;
@@ -28,8 +27,8 @@ public class PanelWithObligatoryTextFields extends JPanel{
 					textFields.add((JTextField) component);
 				}
 			}
-			
 		}
+
 		for (JTextField tf : textFields) {
 			tf.getDocument().addDocumentListener(new DocumentListener() {
 				@Override
@@ -59,6 +58,5 @@ public class PanelWithObligatoryTextFields extends JPanel{
 				}
 			});
 		}
-	}
-	
+	}	
 }
