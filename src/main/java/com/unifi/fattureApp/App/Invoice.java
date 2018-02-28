@@ -38,8 +38,17 @@ public class Invoice extends User {
 
 	@Override
 	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
 		Invoice other = (Invoice) obj;
-		return (super.equals(obj) && compareFieldsForEqualsMethod(getPrice(), other.getPrice())&&compareFieldsForEqualsMethod(getDescription(), other.getDescription())&&compareFieldsForEqualsMethod(getId(), other.getId())&&
+		return (compareFieldsForEqualsMethod(getPrice(), other.getPrice())&&compareFieldsForEqualsMethod(getDescription(), other.getDescription())&&compareFieldsForEqualsMethod(getId(), other.getId())&&
 				compareFieldsForEqualsMethod(getName(), other.getName()));
 	}
 
