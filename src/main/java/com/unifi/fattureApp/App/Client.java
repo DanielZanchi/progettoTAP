@@ -92,7 +92,7 @@ public class Client extends User {
 
 	@Override
 	public int hashCode(){
-		primeNumber=37;
+		primeNumber=5;
 		return super.hashCode();
 	}
 

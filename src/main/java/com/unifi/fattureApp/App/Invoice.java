@@ -32,7 +32,7 @@ public class Invoice extends User {
 
 	@Override
 	public int hashCode(){
-		primeNumber=31;
+		primeNumber=7;
 		return super.hashCode();
 	}
 

@@ -5,8 +5,10 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.List;
 
 import org.junit.Before;
@@ -433,4 +435,47 @@ public abstract class AbstractCompanyIntegrationTest {
 		companyController.editInvoice(invoice);
 		assertEquals("EditedName", companyController.getInvoiceId("1").getName());
 	}
+	
+	
+	//User 
+	
+	@Test
+	public void testCompanyHashCodeForDifferentObjects() {
+		assertNotEquals(new Company("","","","","","","","", "", "").hashCode(),new Company().hashCode());
+	}
+	
+	@Test
+	public void testCompanyHashCodeForTheSameObject() {
+		Company company=addTestCompanyToDB();
+		assertEquals(company.hashCode(),company.hashCode());
+	}
+	
+	
+	@Test
+	public void testClientHashCodeForDifferentObjects() {
+		assertNotEquals(new Client("","","","","","","","", "", "").hashCode(),new Client().hashCode());
+	}
+	
+	@Test
+	public void testClientHashCodeForTheSameObject() {
+		Client client=addTestClientToDB();
+		assertEquals(client.hashCode(),client.hashCode());
+	}
+	
+	
+	@Test
+	public void testInvoiceHashCodeForDifferentObjects() {
+		assertNotEquals(new Invoice("","","","").hashCode(),new Invoice().hashCode());
+	}
+	
+	@Test
+	public void testInvoiceHashCodeForTheSameObject() {
+		Invoice invoice=addTestInvoiceToDB();
+		assertEquals(invoice.hashCode(),invoice.hashCode());
+	}
+	
+	
+	
+	
+	
 }
