@@ -127,9 +127,4 @@ public class Company extends User {
 		return true;
 	}
 
-	@Override
-	public String toString(){
-		return "Client [id=" + getId() + ", name=" + getName() + ", vatCode=" + getVatCode() + ", address=" + getAddress() +", city="+getCity()+", province="+getProvince()
-		+", zip="+getZipCode()+", country="+getCountry()+", phone="+getPhone()+", email="+getEmail()+ "]";
-	} 
 }

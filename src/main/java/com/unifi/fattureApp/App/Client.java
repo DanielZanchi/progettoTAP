@@ -127,9 +127,4 @@ public class Client extends User {
 		return true;
 	}
 
-	@Override
-	public String toString(){
-		return "Client [id=" + getId() + ", name=" + getName() + ", fiscalCode=" + getFiscalCode() + ", cityResidence=" + getCityResidence() +", city="+getCity()+", province="+getProvince()
-		+", zip="+getZip()+", country="+getCountry()+", phone="+getPhone()+", email="+getEmail()+ "]";
-	} 
 }
