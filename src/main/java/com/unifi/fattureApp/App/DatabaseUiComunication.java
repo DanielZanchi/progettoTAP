@@ -180,6 +180,7 @@ public class DatabaseUiComunication {
 
 	public void setCurrentSelectedInvoice(Invoice currentSelectedInvoice) {
 		this.currentSelectedInvoice = currentSelectedInvoice;
+		this.enableEditInvoiceButton();
 	}
 
 	public Client getCurrentSelectedClient() {
@@ -188,6 +189,7 @@ public class DatabaseUiComunication {
 
 	public void setCurrentSelectedClient(Client currentSelectedClient) {
 		this.currentSelectedClient = currentSelectedClient;
+		this.enableEditClientButton();
 	}
 
 	public void updateAllReferences() {

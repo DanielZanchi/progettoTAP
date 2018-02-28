@@ -186,7 +186,6 @@ public class MainWindowUI {
 		clientPanel.add(clientListComboBox);
 		clientListComboBox.addItemListener(e -> {
 			if(e.getStateChange() == ItemEvent.SELECTED) {
-				editClient.setEnabled(true);
 				myDatabaseUiComunication.setCurrentSelectedClient(myDatabaseUiComunication.getSavedClients().get(clientListComboBox.getSelectedIndex()));
 			}
 		});
@@ -226,7 +225,6 @@ public class MainWindowUI {
 		invoiceListcomboBox.addItemListener(e -> {
 			if(e.getStateChange() == ItemEvent.SELECTED) {
 				myDatabaseUiComunication.setCurrentSelectedInvoice(myDatabaseUiComunication.getSavedInvoices().get(invoiceListcomboBox.getSelectedIndex()));
-				editInvoiceProvision.setEnabled(true);
 			}
 		});
 
