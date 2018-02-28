@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.testcontainers.shaded.org.apache.http.conn.util.PublicSuffixList;
 
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
@@ -142,13 +143,16 @@ public class DatabaseUiComunicationTest {
 
 	@Test 
 	public void printSelectedWithSelectedTest() {
-		Company company = setTestCompanyToCurrentSelected();
-		Client client = setTestClientToCurrentSelected();
-		Invoice invoice = setTestInvoiceToCurrentSelected();
+		setTestCompanyToCurrentSelected();
+		setTestClientToCurrentSelected();
+		setTestInvoiceToCurrentSelected();
 		boolean created=myDatabaseUiComunication.printSelected();
 		assertEquals(true, created);
 		if(created) {
 			new File("Invoice.pdf").delete();
 		}
 	}
+	
+	
+	
 }
