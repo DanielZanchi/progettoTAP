@@ -92,19 +92,8 @@ public class Company extends User {
 
 	@Override
 	public int hashCode(){
-		final int prime = 23;
-		int result = 1;
-		result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-		result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-		result = prime * result + ((getVatCode() == null) ? 0 : getVatCode().hashCode());
-		result = prime * result + ((getAddress() == null) ? 0 : getAddress().hashCode());
-		result = prime * result + ((getCity() == null) ? 0 : getCity().hashCode());
-		result = prime * result + ((getProvince() == null) ? 0 : getProvince().hashCode());
-		result = prime * result + ((getZipCode() == null) ? 0 : getZipCode().hashCode());
-		result = prime * result + ((getCountry() == null) ? 0 : getCountry().hashCode());
-		result = prime * result + ((getPhone() == null) ? 0 : getPhone().hashCode());
-		result = prime * result + ((getEmail() == null) ? 0 : getEmail().hashCode());
-		return result;
+		primeNumber=23;
+		return super.hashCode();
 	}
 
 	@Override

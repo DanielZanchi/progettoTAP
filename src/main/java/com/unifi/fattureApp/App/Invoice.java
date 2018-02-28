@@ -32,13 +32,8 @@ public class Invoice extends User {
 
 	@Override
 	public int hashCode(){
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((getPrice() == null) ? 0 : getPrice().hashCode());
-		result = prime * result + ((getDescription() == null) ? 0 : getDescription().hashCode());
-		result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-		result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-		return result;
+		primeNumber=31;
+		return super.hashCode();
 	}
 
 	@Override

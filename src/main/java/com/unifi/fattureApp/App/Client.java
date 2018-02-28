@@ -92,19 +92,8 @@ public class Client extends User {
 
 	@Override
 	public int hashCode(){
-		final int prime = 37;
-		int result = 1;
-		result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-		result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-		result = prime * result + ((getFiscalCode() == null) ? 0 : getFiscalCode().hashCode());
-		result = prime * result + ((getCityResidence() == null) ? 0 : getCityResidence().hashCode());
-		result = prime * result + ((getCity() == null) ? 0 : getCity().hashCode());
-		result = prime * result + ((getProvince() == null) ? 0 : getProvince().hashCode());
-		result = prime * result + ((getZip() == null) ? 0 : getZip().hashCode());
-		result = prime * result + ((getCountry() == null) ? 0 : getCountry().hashCode());
-		result = prime * result + ((getPhone() == null) ? 0 : getPhone().hashCode());
-		result = prime * result + ((getEmail() == null) ? 0 : getEmail().hashCode());
-		return result;
+		primeNumber=37;
+		return super.hashCode();
 	}
 
 	@Override
