@@ -58,6 +58,7 @@ public class DatabaseUiComunication {
 	private void setUpOtherdb(boolean testing) {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new ClassPathResource("spring-configuration.xml").getPath());
 		database = (RedisWrapper)context.getBean("redisWrapper");
+		context.close();
 	}
 
 	private void settingUpMongodb(String[] args, boolean testing) {

@@ -159,6 +159,7 @@ public class TestHelperTool {
 		usingMongo = false;
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new ClassPathResource("spring-configuration.xml").getPath());
 		this.redisDatabase = (RedisWrapper)context.getBean("redisWrapper");
+		context.close();
 		return redisDatabase;
 	}
 }
