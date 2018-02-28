@@ -27,12 +27,12 @@ public class PDFCreator {
 
 	static final PDFont helveticaBoldFont = PDType1Font.HELVETICA_BOLD;
 	static final PDFont helveticaFont = PDType1Font.HELVETICA;
+	private PDPageContentStream contentStream;
 
 	public PDFCreator(Company company, Client client, Invoice invoice) throws IOException {
 		this.selectedCompany = company;
 		this.selectedClient = client;
 		this.selectedInvoice = invoice;
-
 		create();
 	}
 
@@ -41,41 +41,41 @@ public class PDFCreator {
 		final PDDocument document = new PDDocument();
 
 		document.addPage(singlePage);
-		PDPageContentStream contentStream = new PDPageContentStream(document, singlePage);
-		contentStream = this.companyName(contentStream, singlePage);
-		contentStream = this.billTo(contentStream, singlePage);
-		contentStream = this.invoiceNumber(contentStream, singlePage);
-		contentStream = this.invoiceContainer(contentStream, singlePage);
-		contentStream = this.invoiceDescription(contentStream);
-		contentStream = this.invoiceTotal(contentStream);
-		contentStream = this.footer(contentStream, singlePage);
+		contentStream = new PDPageContentStream(document, singlePage);
+		this.companyName( singlePage);
+		this.billTo( singlePage);
+		this.invoiceNumber(singlePage);
+		this.invoiceContainer( singlePage);
+		this.invoiceDescription();
+		this.invoiceTotal();
+		this.footer( singlePage);
 		contentStream.close(); // Stream must be closed before saving document.
 		document.save("Invoice.pdf");
 	}
 
-	private PDPageContentStream companyName(PDPageContentStream cs, PDPage sp) throws IOException {
+	private PDPageContentStream companyName( PDPage sp) throws IOException {
 		int fontSize = 18;
 		String stringToPrint = selectedCompany.getName();
 		stringToPrint = stringToPrint.toUpperCase();
 		float textWidth = getTextWidth(fontSize, stringToPrint);
-		cs.beginText();
-		cs.setFont(helveticaBoldFont, fontSize);
-		cs.newLineAtOffset(verticalCenter(sp, textWidth), sp.getMediaBox().getHeight() - topInsets);
-		cs.showText(stringToPrint);
-		cs.endText();
+		contentStream.beginText();
+		contentStream.setFont(helveticaBoldFont, fontSize);
+		contentStream.newLineAtOffset(verticalCenter(sp, textWidth), sp.getMediaBox().getHeight() - topInsets);
+		contentStream.showText(stringToPrint);
+		contentStream.endText();
 
-		return cs;
+		return contentStream;
 	}
 
-	private PDPageContentStream billTo(PDPageContentStream cs, PDPage sp) throws IOException {
+	private PDPageContentStream billTo( PDPage sp) throws IOException {
 		int fontSize = 10;
 		String stringToPrint = "Bill To:";
-		cs.setFont(helveticaBoldFont, fontSize);
+		contentStream.setFont(helveticaBoldFont, fontSize);
 		float y = 140;
-		cs.beginText();
-		cs.newLineAtOffset(verticalLeft(), sp.getMediaBox().getHeight() - y);
-		cs.showText(stringToPrint);
-		cs.endText();
+		contentStream.beginText();
+		contentStream.newLineAtOffset(verticalLeft(), sp.getMediaBox().getHeight() - y);
+		contentStream.showText(stringToPrint);
+		contentStream.endText();
 		fontSize = 9;
 		float leading = 1.5f * fontSize;
 
@@ -86,95 +86,95 @@ public class PDFCreator {
 
 		// new line when finds \n
 		ArrayList<String> lines = splitLines(stringToPrint);
-		cs.setFont(helveticaFont, fontSize);
+		contentStream.setFont(helveticaFont, fontSize);
 		y = 140 + leading;
 		for (String line : lines) {
-			cs.beginText();
-			cs.newLineAtOffset(verticalLeft(), sp.getMediaBox().getHeight() - y);
-			cs.showText(line);
-			cs.endText();
+			contentStream.beginText();
+			contentStream.newLineAtOffset(verticalLeft(), sp.getMediaBox().getHeight() - y);
+			contentStream.showText(line);
+			contentStream.endText();
 			y = y + leading;
 		}
-		return cs;
+		return contentStream;
 	}
 
-	private PDPageContentStream invoiceNumber(PDPageContentStream cs, PDPage sp) throws IOException {
+	private PDPageContentStream invoiceNumber( PDPage sp) throws IOException {
 		int fontSize = 10;
 		String stringToPrint = "Invoice #: ";
 		float textWidth = getTextWidth(fontSize, "invoice date: dd/MM/yyyy   ");
 		float leading = 1.5f * fontSize;
-		cs.beginText();
-		cs.setFont(helveticaBoldFont, fontSize);
-		cs.newLineAtOffset(verticalRight(sp, textWidth) - 2, sp.getMediaBox().getHeight() - 140);
-		cs.showText(stringToPrint);
+		contentStream.beginText();
+		contentStream.setFont(helveticaBoldFont, fontSize);
+		contentStream.newLineAtOffset(verticalRight(sp, textWidth) - 2, sp.getMediaBox().getHeight() - 140);
+		contentStream.showText(stringToPrint);
 
-		cs.setFont(helveticaFont, fontSize);
-		cs.newLineAtOffset(54, 0);
+		contentStream.setFont(helveticaFont, fontSize);
+		contentStream.newLineAtOffset(54, 0);
 		// invoice number here
-		cs.showText("1");
+		contentStream.showText("1");
 
 		stringToPrint = "Invoice date: ";
-		cs.setFont(helveticaBoldFont, fontSize);
-		cs.newLineAtOffset(-(textWidth / 2) + 6, -leading);
-		cs.showText(stringToPrint);
+		contentStream.setFont(helveticaBoldFont, fontSize);
+		contentStream.newLineAtOffset(-(textWidth / 2) + 6, -leading);
+		contentStream.showText(stringToPrint);
 
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = new java.util.Date();
 		String dateString = dateFormat.format(date);
 
 		stringToPrint = dateString;
-		cs.setFont(helveticaFont, fontSize);
-		cs.newLineAtOffset(getTextWidth(fontSize, "invoice date: ") + 8, 0);
-		cs.showText(stringToPrint);
+		contentStream.setFont(helveticaFont, fontSize);
+		contentStream.newLineAtOffset(getTextWidth(fontSize, "invoice date: ") + 8, 0);
+		contentStream.showText(stringToPrint);
 
-		cs.endText();
-		return cs;
+		contentStream.endText();
+		return contentStream;
 	}
 
-	private PDPageContentStream invoiceContainer(PDPageContentStream cs, PDPage sp) throws IOException {
+	private PDPageContentStream invoiceContainer( PDPage sp) throws IOException {
 		// container title
 		int fontSize = 18;
 		String stringToPrint = "INVOICE";
 		float x = verticalLeft();
-		cs.beginText();
-		cs.setFont(helveticaBoldFont, fontSize);
-		cs.setNonStrokingColor(new Color(0, 51, 102));
-		cs.newLineAtOffset(x, 578);
-		cs.showText(stringToPrint);
-		cs.endText();
+		contentStream.beginText();
+		contentStream.setFont(helveticaBoldFont, fontSize);
+		contentStream.setNonStrokingColor(new Color(0, 51, 102));
+		contentStream.newLineAtOffset(x, 578);
+		contentStream.showText(stringToPrint);
+		contentStream.endText();
 
 		// create a rectangle
 		float rectWidth = (sp.getMediaBox().getWidth() - (margin * 2));
 		x = verticalLeft();
-		cs.addRect(x, 550, rectWidth, 20);
-		cs.fill();
-		cs.setNonStrokingColor(Color.BLACK);
+		contentStream.addRect(x, 550, rectWidth, 20);
+		contentStream.fill();
+		contentStream.setNonStrokingColor(Color.BLACK);
 
 		// create table header
 		fontSize = 12;
 		stringToPrint = " #    Description";
 		x = verticalLeft();
 
-		cs.beginText();
-		cs.setFont(helveticaBoldFont, fontSize);
-		cs.setNonStrokingColor(Color.white);
-		cs.newLineAtOffset(x, 556);
-		cs.showText(stringToPrint);
+		contentStream.beginText();
+		contentStream.setFont(helveticaBoldFont, fontSize);
+		contentStream.setNonStrokingColor(Color.white);
+		contentStream.newLineAtOffset(x, 556);
+		contentStream.showText(stringToPrint);
 
 		stringToPrint = " Price (ex VAT)";
-		cs.newLineAtOffset(320, 0);
-		cs.showText(stringToPrint);
+		contentStream.newLineAtOffset(320, 0);
+		contentStream.showText(stringToPrint);
 
 		stringToPrint = " Total";
-		cs.newLineAtOffset(132, 0);
-		cs.showText(stringToPrint);
+		contentStream.newLineAtOffset(132, 0);
+		contentStream.showText(stringToPrint);
 
-		cs.setNonStrokingColor(Color.black);
-		cs.endText();
-		return cs;
+		contentStream.setNonStrokingColor(Color.black);
+		contentStream.endText();
+		return contentStream;
 	}
 
-	private PDPageContentStream invoiceDescription(PDPageContentStream cs) throws IOException {
+	private PDPageContentStream invoiceDescription() throws IOException {
 		// create table header
 		int fontSize = 11;
 		DecimalFormat df = new DecimalFormat();
@@ -182,24 +182,24 @@ public class PDFCreator {
 		df.setMinimumFractionDigits(2);
 		String stringToPrint = " 1      " + selectedInvoice.getName() + " (" + selectedInvoice.getDescription() + ")";
 		float x = verticalLeft();
-		cs.beginText();
-		cs.setFont(helveticaFont, fontSize);
-		cs.newLineAtOffset(x, 530);
-		cs.showText(stringToPrint);
+		contentStream.beginText();
+		contentStream.setFont(helveticaFont, fontSize);
+		contentStream.newLineAtOffset(x, 530);
+		contentStream.showText(stringToPrint);
 
 		stringToPrint = "  €  " + df.format(Float.parseFloat(getPriceExcVAT(selectedInvoice.getPrice())));
-		cs.newLineAtOffset(320, 0);
-		cs.showText(stringToPrint);
+		contentStream.newLineAtOffset(320, 0);
+		contentStream.showText(stringToPrint);
 
 		stringToPrint = "  €  " + df.format(Float.parseFloat(selectedInvoice.getPrice()));
-		cs.newLineAtOffset(126, 0);
-		cs.showText(stringToPrint);
+		contentStream.newLineAtOffset(126, 0);
+		contentStream.showText(stringToPrint);
 
-		cs.endText();
-		return cs;
+		contentStream.endText();
+		return contentStream;
 	}
 
-	private PDPageContentStream invoiceTotal(PDPageContentStream cs) throws IOException {
+	private PDPageContentStream invoiceTotal() throws IOException {
 		// create table header
 		int fontSize = 11;
 		DecimalFormat df = new DecimalFormat();
@@ -208,27 +208,27 @@ public class PDFCreator {
 		String stringToPrint = "Subtotal Ex. VAT:          €  "
 				+ df.format(Float.parseFloat(getPriceExcVAT(selectedInvoice.getPrice())));
 
-		cs.beginText();
-		cs.setFont(helveticaFont, fontSize);
-		cs.newLineAtOffset(390, 440);
-		cs.showText(stringToPrint);
+		contentStream.beginText();
+		contentStream.setFont(helveticaFont, fontSize);
+		contentStream.newLineAtOffset(390, 440);
+		contentStream.showText(stringToPrint);
 
 		double vat = Float.parseFloat(selectedInvoice.getPrice())
 				- Float.parseFloat(getPriceExcVAT(selectedInvoice.getPrice()));
 
 		stringToPrint = "Subtotal VAT:                €  " + df.format(vat);
-		cs.newLineAtOffset(0, -20);
-		cs.showText(stringToPrint);
+		contentStream.newLineAtOffset(0, -20);
+		contentStream.showText(stringToPrint);
 
 		stringToPrint = "Total due:                      €  " + df.format(Float.parseFloat(selectedInvoice.getPrice()));
-		cs.newLineAtOffset(0, -20);
-		cs.showText(stringToPrint);
+		contentStream.newLineAtOffset(0, -20);
+		contentStream.showText(stringToPrint);
 
-		cs.endText();
-		return cs;
+		contentStream.endText();
+		return contentStream;
 	}
 
-	private PDPageContentStream footer(PDPageContentStream cs, PDPage sp) throws IOException {
+	private PDPageContentStream footer( PDPage sp) throws IOException {
 		int fontSize = 9;
 		float leading = 1.5f * fontSize;
 
@@ -241,17 +241,17 @@ public class PDFCreator {
 		// new line when finds \n
 		ArrayList<String> lines = splitLines(stringToPrint);
 
-		cs.setFont(helveticaFont, fontSize);
+		contentStream.setFont(helveticaFont, fontSize);
 		float y = topInsets;
 		for (String line : lines) {
-			cs.beginText();
+			contentStream.beginText();
 			textWidth = getTextWidth(fontSize, line);
-			cs.newLineAtOffset(verticalCenter(sp, textWidth), y);
-			cs.showText(line);
-			cs.endText();
+			contentStream.newLineAtOffset(verticalCenter(sp, textWidth), y);
+			contentStream.showText(line);
+			contentStream.endText();
 			y = y - leading;
 		}
-		return cs;
+		return contentStream;
 	}
 
 	private ArrayList<String> splitLines(String stringToSplit) {
