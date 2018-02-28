@@ -126,13 +126,8 @@ public class MainWindowUI {
 		myCompanyPanel.add(prevCompanyButton);
 		prevCompanyButton.addActionListener(e -> {
 			// go to previous company
-			if(myDatabaseUiComunication.getCompanyCounter()-1<0) {
-
-				//disabilitarlo?
-
-			}else {
+			if(myDatabaseUiComunication.getCompanyCounter()-1>=0) {
 				myDatabaseUiComunication.setCompanyCounter(myDatabaseUiComunication.getCompanyCounter()-1);
-				editMyCompanyButton.setEnabled(true);
 			}
 		});
 
@@ -144,13 +139,8 @@ public class MainWindowUI {
 				w, h);
 		myCompanyPanel.add(nextCompanyButton);
 		nextCompanyButton.addActionListener(e -> {
-			if(myDatabaseUiComunication.getCompanyCounter()+1>myDatabaseUiComunication.getCompaniesCount()-1) {
-
-				//disabilitarlo?
-
-			}else {
+			if(myDatabaseUiComunication.getCompanyCounter()+1<=myDatabaseUiComunication.getCompaniesCount()-1) {
 				myDatabaseUiComunication.setCompanyCounter(myDatabaseUiComunication.getCompanyCounter()+1);
-				editMyCompanyButton.setEnabled(true);
 			}
 		});
 
