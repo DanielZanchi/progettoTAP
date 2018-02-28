@@ -9,13 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JTextField;
 
-import org.apache.log4j.Logger;
-
 import com.unifi.fattureApp.App.DatabaseUiComunication;
 
 public class ClientPanel extends PanelWithObligatoryTextFields implements AddPanel {
 	private static final long serialVersionUID = -4964123340815964907L;
-	private static final Logger LOGGER = Logger.getLogger(ClientPanel.class);
 
 	private DatabaseUiComunication myDatabaseUiComunication;
 
@@ -72,15 +69,10 @@ public class ClientPanel extends PanelWithObligatoryTextFields implements AddPan
 						clientZipTF.getText(), clientCityTF.getText(), clientPhoneTF.getText(),
 						clientEmailTF.getText());
 			}else {
-				boolean saved=myDatabaseUiComunication.editClientFromDatabase(clientNameTF.getText(),
+				myDatabaseUiComunication.editClientFromDatabase(clientNameTF.getText(),
 						clientVatTF.getText(), clientAddressTF.getText(), clientCityTF.getText(),
 						clientProvinceTF.getText(), clientZipTF.getText(), clientCountryTF.getText(),
 						clientPhoneTF.getText(), clientEmailTF.getText());
-				if (saved) {
-					LOGGER.info(" Client modificata con successo");
-				} else {
-					LOGGER.error("Error: Client non modificata");
-				}
 			}
 			addClientPanel.setVisible(false);
 			resetTextFields();

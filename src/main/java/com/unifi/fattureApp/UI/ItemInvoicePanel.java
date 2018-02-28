@@ -13,13 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JTextField;
 
-import org.apache.log4j.Logger;
-
 import com.unifi.fattureApp.App.DatabaseUiComunication;
 
 public class ItemInvoicePanel extends PanelWithObligatoryTextFields implements AddPanel {
 	private static final long serialVersionUID = 8698651509983266694L;
-	private static final Logger LOGGER = Logger.getLogger(ItemInvoicePanel.class);
 
 	private JTextField itemDescriptionTF;
 	private JTextField itemNameTF;
@@ -67,12 +64,7 @@ public class ItemInvoicePanel extends PanelWithObligatoryTextFields implements A
 			if(addItemPanel.isSaving()) {
 				databaseUiComunication.addInvoiceToDatabase(itemNameTF.getText(), itemDescriptionTF.getText(), itemPriceTF.getText());
 			}else {
-				boolean saved = databaseUiComunication.editInvoiceFromDatabase(itemNameTF.getText(), itemPriceTF.getText(), itemDescriptionTF.getText());
-				if (saved) {
-					LOGGER.info(" Invoice modificata con successo");
-				} else {
-					LOGGER.error("Error: Invoice non modificata");
-				}
+				databaseUiComunication.editInvoiceFromDatabase(itemNameTF.getText(), itemPriceTF.getText(), itemDescriptionTF.getText());
 			}
 
 			addItemPanel.setVisible(false);

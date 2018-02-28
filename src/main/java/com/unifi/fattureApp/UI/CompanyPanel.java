@@ -9,14 +9,11 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JTextField;
 
-import org.apache.log4j.Logger;
 
 import com.unifi.fattureApp.App.DatabaseUiComunication;
 
 public class CompanyPanel extends PanelWithObligatoryTextFields implements AddPanel {
 	private static final long serialVersionUID = 6387743798709513734L;
-
-	private static final Logger LOGGER = Logger.getLogger(CompanyPanel.class);
 
 	private DatabaseUiComunication myDatabaseUiComunication;
 
@@ -76,19 +73,12 @@ public class CompanyPanel extends PanelWithObligatoryTextFields implements AddPa
 				if (saved) {
 					myDatabaseUiComunication.setCurrentSelectedCompany(myDatabaseUiComunication.getSavedCompanies().get(myDatabaseUiComunication.getSavedCompanies().size()-1));
 					myDatabaseUiComunication.enableEditCompanyButton();
-				} else {
-					LOGGER.error("Error: Company was not saved!!!");
 				}
 			}else {
-				boolean saved = myDatabaseUiComunication.editCompanyFromDatabase(companyNameTF.getText(),
+				myDatabaseUiComunication.editCompanyFromDatabase(companyNameTF.getText(),
 						companyVatTF.getText(), companyAddressTF.getText(), companyCityTF.getText(),
 						companyProvinceTF.getText(), companyZipTF.getText(), companyCountryTF.getText(),
 						companyPhoneTF.getText(), companyEmailTF.getText());
-				if (saved) {
-					LOGGER.info(" Company modificata con successo");
-				} else {
-					LOGGER.error("Error: Company non modificata");
-				}
 			}
 
 			addCompanyPanel.setVisible(false);
