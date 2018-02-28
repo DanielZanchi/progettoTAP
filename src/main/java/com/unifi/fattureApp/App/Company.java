@@ -119,37 +119,11 @@ public class Company extends User {
 			return false;
 
 		Company other = (Company) obj;
-		if(!compareFieldsForEqualsMethod(getId(), other.getId())) {
-			return false;
-		}
-		if(!compareFieldsForEqualsMethod(getName(), other.getName())) {
-			return false;
-		}
-		if(!compareFieldsForEqualsMethod(getVatCode(), other.getVatCode())) {
-			return false;
-		}
-		if(!compareFieldsForEqualsMethod(getAddress(), other.getAddress())) {
-			return false;
-		}
-		if(!compareFieldsForEqualsMethod(getCity(), other.getCity())) {
-			return false;
-		}
-		if(!compareFieldsForEqualsMethod(getProvince(), other.getProvince())) {
-			return false;
-		}
-		if(!compareFieldsForEqualsMethod(getZipCode(), other.getZipCode())) {
-			return false;
-		}
-		if(!compareFieldsForEqualsMethod(getCountry(), other.getCountry())) {
-			return false;
-		}
-		if(!compareFieldsForEqualsMethod(getPhone(), other.getPhone())) {
-			return false;
-		}
-		if(!compareFieldsForEqualsMethod(getEmail(), other.getEmail())) {
-			return false;
-		}
-		return true;
+
+		return (compareFieldsForEqualsMethod(getId(), other.getId())&&compareFieldsForEqualsMethod(getName(), other.getName())&&compareFieldsForEqualsMethod(getVatCode(), other.getVatCode())&&
+				compareFieldsForEqualsMethod(getAddress(), other.getAddress())&&compareFieldsForEqualsMethod(getCity(), other.getCity())&&compareFieldsForEqualsMethod(getProvince(), other.getProvince())&&
+				compareFieldsForEqualsMethod(getZipCode(), other.getZipCode())&&compareFieldsForEqualsMethod(getCountry(), other.getCountry())&&compareFieldsForEqualsMethod(getPhone(), other.getPhone())&&
+				compareFieldsForEqualsMethod(getEmail(), other.getEmail()));
 	}
 
 	private boolean compareFieldsForEqualsMethod(String field,String otherObjectField) {

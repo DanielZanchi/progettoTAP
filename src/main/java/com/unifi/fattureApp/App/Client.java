@@ -119,43 +119,11 @@ public class Client extends User {
 			return false;
 
 		Client other = (Client) obj;
-		
+
 		return (compareFieldsForEqualsMethod(getId(), other.getId())&&compareFieldsForEqualsMethod(getName(), other.getName())&&compareFieldsForEqualsMethod(getFiscalCode(), other.getFiscalCode())&&
 				compareFieldsForEqualsMethod(getCityResidence(), other.getCityResidence())&&compareFieldsForEqualsMethod(getCity(), other.getCity())&&compareFieldsForEqualsMethod(getProvince(), other.getProvince())&&
 				compareFieldsForEqualsMethod(getZip(), other.getZip())&&compareFieldsForEqualsMethod(getCountry(), other.getCountry())&&compareFieldsForEqualsMethod(getPhone(), other.getPhone())&&
 				compareFieldsForEqualsMethod(getEmail(), other.getEmail()));
-		
-//		if(!compareFieldsForEqualsMethod(getId(), other.getId())) {
-//			return false;
-//		}
-//		if(!compareFieldsForEqualsMethod(getName(), other.getName())) {
-//			return false;
-//		}
-//		if(!compareFieldsForEqualsMethod(getFiscalCode(), other.getFiscalCode())) {
-//			return false;
-//		}
-//		if(!compareFieldsForEqualsMethod(getCityResidence(), other.getCityResidence())) {
-//			return false;
-//		}
-//		if(!compareFieldsForEqualsMethod(getCity(), other.getCity())) {
-//			return false;
-//		}
-//		if(!compareFieldsForEqualsMethod(getProvince(), other.getProvince())) {
-//			return false;
-//		}
-//		if(!compareFieldsForEqualsMethod(getZip(), other.getZip())) {
-//			return false;
-//		}
-//		if(!compareFieldsForEqualsMethod(getCountry(), other.getCountry())) {
-//			return false;
-//		}
-//		if(!compareFieldsForEqualsMethod(getPhone(), other.getPhone())) {
-//			return false;
-//		}
-//		if(!compareFieldsForEqualsMethod(getEmail(), other.getEmail())) {
-//			return false;
-//		}
-//		return true;
 	}
 
 	private boolean compareFieldsForEqualsMethod(String field,String otherObjectField) {

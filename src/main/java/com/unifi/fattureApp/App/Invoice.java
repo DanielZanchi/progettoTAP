@@ -54,19 +54,9 @@ public class Invoice extends User {
 		}
 
 		Invoice other = (Invoice) obj;
-		if(!compareFieldsForEqualsMethod(getPrice(), other.getPrice())) {
-			return false;
-		}
-		if(!compareFieldsForEqualsMethod(getDescription(), other.getDescription())) {
-			return false;
-		}
-		if(!compareFieldsForEqualsMethod(getId(), other.getId())) {
-			return false;
-		}
-		if(!compareFieldsForEqualsMethod(getName(), other.getName())) {
-			return false;
-		}
-		return true;
+
+		return (compareFieldsForEqualsMethod(getPrice(), other.getPrice())&&compareFieldsForEqualsMethod(getDescription(), other.getDescription())&&compareFieldsForEqualsMethod(getId(), other.getId())&&
+				compareFieldsForEqualsMethod(getName(), other.getName()));
 	}
 
 	private boolean compareFieldsForEqualsMethod(String field,String otherObjectField) {

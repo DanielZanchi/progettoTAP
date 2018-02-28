@@ -55,7 +55,7 @@ public class DatabaseUiComunication {
 		companyInfo = new JLabel();
 	}
 
-	private void setUpOtherdb(boolean testing) throws IOException {
+	private void setUpOtherdb(boolean testing) {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new ClassPathResource("spring-configuration.xml").getPath());
 		database = (RedisWrapper)context.getBean("redisWrapper");
 	}
