@@ -73,11 +73,13 @@ public class User implements Serializable{
 			return false;
 		}
 		
+		System.out.println();
+		
 		for(int i = 0; i<fields.length;i++) {
 			fields[i].setAccessible(true);
 			fields2[i].setAccessible(true);
 			try {
-				if(fields[i].get(this)!=fields2[i].get(this)) {
+				if(!fields[i].get(this).equals(fields2[i].get(this))) {
 					return false;
 				}
 			} catch (IllegalArgumentException | IllegalAccessException e) {
