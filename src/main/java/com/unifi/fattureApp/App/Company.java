@@ -92,7 +92,7 @@ public class Company extends User {
 
 	@Override
 	public int hashCode(){
-		primeNumber=3;
+		primeNumber = 3;
 		return super.hashCode();
 	}
 

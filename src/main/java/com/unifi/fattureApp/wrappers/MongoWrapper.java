@@ -50,7 +50,7 @@ public class MongoWrapper implements Database {
 
 	@Override
 	public void removeClientById(String id) {
-		clients.remove(ID,id);
+		clients.remove(ID, id);
 	}
 
 	//Company
@@ -98,6 +98,6 @@ public class MongoWrapper implements Database {
 
 	@Override
 	public void removeInvoiceById(String id) {
-		invoices.remove(ID,id);
+		invoices.remove(ID, id);
 	}
 }

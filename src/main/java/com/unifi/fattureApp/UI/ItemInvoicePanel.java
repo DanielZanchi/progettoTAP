@@ -66,13 +66,11 @@ public class ItemInvoicePanel extends PanelWithObligatoryTextFields implements A
 			}else {
 				databaseUiComunication.editInvoiceFromDatabase(itemNameTF.getText(), itemPriceTF.getText(), itemDescriptionTF.getText());
 			}
-
 			addItemPanel.setVisible(false);
 			databaseUiComunication.updateInvoicesReferences();
 		});
-
 		String [] freeTextFields= {""};
-		super.setUpTextFields(addItemPanel.getComponents(),freeTextFields,saveButton);
+		super.setUpTextFields(addItemPanel.getComponents(), freeTextFields, saveButton);
 	}
 
 	private void initLabelsTextFields() {

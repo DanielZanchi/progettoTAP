@@ -1,6 +1,5 @@
 package com.unifi.fattureApp.App;
 
-import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.List;
 
@@ -41,11 +40,11 @@ public class DatabaseUiComunication {
 	private JButton editClientButton;
 	private JButton editInvoiceButton;
 
-	public DatabaseUiComunication(boolean testing, String[] args, boolean usingMongodb) throws IOException {	
+	public DatabaseUiComunication(boolean testing, String[] args, boolean usingMongodb) {	
 		if(usingMongodb) {
 			settingUpMongodb(args, testing);
 		}else {
-			setUpOtherdb(testing);
+			setUpOtherdb();
 		}
 
 		myCompanyController = new AppController(database);
@@ -55,7 +54,7 @@ public class DatabaseUiComunication {
 		companyInfo = new JLabel();
 	}
 
-	private void setUpOtherdb(boolean testing) {
+	private void setUpOtherdb() {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new ClassPathResource("spring-configuration.xml").getPath());
 		database = (RedisWrapper)context.getBean("redisWrapper");
 		context.close();
@@ -98,7 +97,7 @@ public class DatabaseUiComunication {
 
 	public boolean editClientFromDatabase(String name, String vat, String address, String city, String province,
 			String zip, String country, String phone, String email) {
-		String currentId=String.valueOf(currentSelectedClient.getId());
+		String currentId = String.valueOf(currentSelectedClient.getId());
 		return myCompanyController.editClient(new Client(currentId, name, vat, address, city, province, zip, country, phone, email));
 	}
 
@@ -110,7 +109,7 @@ public class DatabaseUiComunication {
 
 	public boolean editCompanyFromDatabase(String name, String vat, String address, String city, String province,
 			String zip, String country, String phone, String email) {
-		String currentId=String.valueOf(currentSelectedCompany.getId());
+		String currentId = String.valueOf(currentSelectedCompany.getId());
 		boolean saved =  myCompanyController.editCompany(new Company(currentId, name, vat, address, city, province, zip, country, phone, email));
 		setCompanyCounter(getCompaniesCount()-1);
 		return saved;
@@ -122,7 +121,7 @@ public class DatabaseUiComunication {
 	}
 
 	public boolean editInvoiceFromDatabase(String name, String price, String description) {
-		String currentId=String.valueOf(currentSelectedInvoice.getId());
+		String currentId = String.valueOf(currentSelectedInvoice.getId());
 		return myCompanyController.editInvoice(new Invoice(currentId, name, price, description));
 	}
 
@@ -214,7 +213,7 @@ public class DatabaseUiComunication {
 
 	public void updateClientsReferences() {
 		clientsList.removeAllItems();
-		for (int i = 0; i < this.getSavedClients().size(); i++) {
+		for (int i = 0; i<this.getSavedClients().size(); i++) {
 			clientsList.addItem(this.getSavedClients().get(i).getName());
 		}
 		clientsList.setSelectedIndex(this.getSavedClients().size()-1);
@@ -222,7 +221,7 @@ public class DatabaseUiComunication {
 
 	public void updateInvoicesReferences() {
 		invoicesList.removeAllItems();
-		for (int i = 0; i < this.getSavedInvoices().size(); i++) {
+		for (int i = 0; i<this.getSavedInvoices().size(); i++) {
 			invoicesList.addItem(this.getSavedInvoices().get(i).getName());
 		}
 		invoicesList.setSelectedIndex(this.getSavedInvoices().size()-1);

@@ -18,13 +18,13 @@ public class CompanyIntegrationRedisTest extends AbstractCompanyIntegrationTest 
 	public void init() throws IOException {
 		redisServer = new RedisServer(6379);
 		redisServer.start();
-		mongoTestHelper = new TestHelperTool();
-		Database database = mongoTestHelper.usingRedis();
+		testHelper = new TestHelperTool();
+		Database database = testHelper.usingRedis();
 		companyController = new AppController(database);
 		LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
 		loggerContext.stop();
 	}
-	
+
 	@After
 	public void stopDBServer() {
 		redisServer.stop();

@@ -41,7 +41,6 @@ public class RedisWrapper implements Database {
 			clients.add((Client) redisTemplate.opsForHash().entries(CLIENTKEY).get(iterator.next()));
 		}
 		return clients;
-
 	}
 
 	@Override

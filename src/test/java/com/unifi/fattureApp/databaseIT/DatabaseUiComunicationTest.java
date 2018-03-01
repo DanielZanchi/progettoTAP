@@ -7,12 +7,11 @@ import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.testcontainers.shaded.org.apache.http.conn.util.PublicSuffixList;
 
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
-import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.App.DatabaseUiComunication;
+import com.unifi.fattureApp.App.Invoice;
 
 public class DatabaseUiComunicationTest {	
 	private DatabaseUiComunication myDatabaseUiComunication;
@@ -72,12 +71,12 @@ public class DatabaseUiComunicationTest {
 	}
 
 	private Client setTestClientToCurrentSelected() {
-		Client client = new Client("1","name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
+		Client client = new Client("1", "name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
 		myDatabaseUiComunication.setCurrentSelectedClient(client);
 		return client;
 	}
 
-	@Test 
+	@Test
 	public void getCurrentSelectedClientWithClientSelectedNameTest() {
 		Client client = setTestClientToCurrentSelected();
 		assertEquals(myDatabaseUiComunication.getCurrentSelectedClient().getName(), client.getName());
@@ -146,13 +145,10 @@ public class DatabaseUiComunicationTest {
 		setTestCompanyToCurrentSelected();
 		setTestClientToCurrentSelected();
 		setTestInvoiceToCurrentSelected();
-		boolean created=myDatabaseUiComunication.printSelected();
+		boolean created = myDatabaseUiComunication.printSelected();
 		assertEquals(true, created);
 		if(created) {
 			new File("Invoice.pdf").delete();
 		}
-	}
-	
-	
-	
+	}	
 }

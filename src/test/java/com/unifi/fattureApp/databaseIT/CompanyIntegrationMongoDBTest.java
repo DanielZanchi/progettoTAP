@@ -13,17 +13,16 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
 
 public class CompanyIntegrationMongoDBTest extends AbstractCompanyIntegrationTest {
-	
 	public void init() {
 		Fongo fongo = new Fongo("mongo server 1");
 		MongoClient mongoClient = fongo.getMongo();
 
-		mongoTestHelper = new TestHelperTool();
-		mongoTestHelper.setUpMongoClient(mongoClient);
+		testHelper = new TestHelperTool();
+		testHelper.setUpMongoClient(mongoClient);
 
 		Database database = null;
 		database = new MongoWrapper(mongoClient);
-		
+
 		companyController = new AppController(database);
 
 		LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
