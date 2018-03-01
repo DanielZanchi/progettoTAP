@@ -2,7 +2,6 @@ package com.unifi.fattureApp.App;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 
 public class User implements Serializable{
 	private static final long serialVersionUID = 5897984558305166044L;
@@ -51,6 +50,11 @@ public class User implements Serializable{
 		result=primeNumber*result+((getId()==null) ? 0:getId().hashCode());
 		result=primeNumber*result+((getName()==null) ? 0 : getName().hashCode());
 		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
 	}
 	
 }
