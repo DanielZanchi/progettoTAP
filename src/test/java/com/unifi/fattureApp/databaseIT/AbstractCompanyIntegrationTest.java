@@ -14,6 +14,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.mongodb.gridfs.CLI;
 import com.unifi.fattureApp.App.AppController;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
@@ -441,7 +442,7 @@ public abstract class AbstractCompanyIntegrationTest {
 	
 	@Test
 	public void testCompanyHashCodeForDifferentObjects() {
-		assertNotEquals(new Company("","","","","","","","", "", "").hashCode(),new Company().hashCode());
+		assertNotEquals(new Company("1","","","","","","","","","").hashCode(),new Company().hashCode());
 	}
 	
 	@Test
@@ -450,10 +451,20 @@ public abstract class AbstractCompanyIntegrationTest {
 		assertEquals(company.hashCode(),company.hashCode());
 	}
 	
+	@Test
+	public void testCompanyHashCodeForTheDifferentObjectWithDifferentFields() {
+		mongoTestHelper.addTwoCompanies();
+		Company company1=companyController.getCompanyId("1");
+		Company company2=companyController.getCompanyId("2");
+		assertNotEquals(company1.hashCode(),company2.hashCode());
+	}
+	
+	
+	
 	
 	@Test
 	public void testClientHashCodeForDifferentObjects() {
-		assertNotEquals(new Client("","","","","","","","", "", "").hashCode(),new Client().hashCode());
+		assertNotEquals(new Client("1","","","","","","","", "", "").hashCode(),new Client().hashCode());
 	}
 	
 	@Test
@@ -462,16 +473,34 @@ public abstract class AbstractCompanyIntegrationTest {
 		assertEquals(client.hashCode(),client.hashCode());
 	}
 	
+	@Test
+	public void testClientHashCodeForTheDifferentObjectWithDifferentFields() {
+		mongoTestHelper.addTwoClients();
+		Client client1=companyController.getClientId("1");
+		Client client2=companyController.getClientId("2");
+		assertNotEquals(client1.hashCode(),client2.hashCode());
+	}
+	
+	
+	
 	
 	@Test
 	public void testInvoiceHashCodeForDifferentObjects() {
-		assertNotEquals(new Invoice("","","","").hashCode(),new Invoice().hashCode());
+		assertNotEquals(new Invoice("1","","","").hashCode(),new Invoice().hashCode());
 	}
 	
 	@Test
 	public void testInvoiceHashCodeForTheSameObject() {
 		Invoice invoice=addTestInvoiceToDB();
 		assertEquals(invoice.hashCode(),invoice.hashCode());
+	}
+	
+	@Test
+	public void testInvoiceHashCodeForTheDifferentObjectWithDifferentFields() {
+		mongoTestHelper.addTwoInvoices();
+		Invoice invoice1=companyController.getInvoiceId("1");
+		Invoice invoice2=companyController.getInvoiceId("2");
+		assertNotEquals(invoice1.hashCode(),invoice2.hashCode());
 	}
 	
 	

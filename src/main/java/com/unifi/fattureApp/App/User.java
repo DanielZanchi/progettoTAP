@@ -2,11 +2,12 @@ package com.unifi.fattureApp.App;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 public class User implements Serializable{
 	private static final long serialVersionUID = 5897984558305166044L;
-	private String id;
-	private String name;
+	public String id;
+	public String name;
 	
 	protected int primeNumber=3;
 
@@ -36,12 +37,20 @@ public class User implements Serializable{
 	
 	@Override
 	public int hashCode() {
-		Field[] fields=this.getClass().getFields();
+		Field[] fields=this.getClass().getDeclaredFields();
 		int result = 1;
 		for(Field field : fields) {
-			result = primeNumber * result + ((field == null) ? 0 : field.hashCode());
+			field.setAccessible(true);
+			try {
+				result = primeNumber * result + ((field.get(this)== null) ? 0 : field.get(this).hashCode());
+			} catch (IllegalArgumentException | IllegalAccessException e) {
+				e.printStackTrace();
+			}
+			
 		}
-		return super.hashCode();
+		result=primeNumber*result+((getId()==null) ? 0:getId().hashCode());
+		result=primeNumber*result+((getName()==null) ? 0 : getName().hashCode());
+		return result;
 	}
 	
 }
