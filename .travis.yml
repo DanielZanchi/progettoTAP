@@ -25,6 +25,7 @@ install:
  - docker pull redis
 
 script:
+- sleep 2
 - mvn -f pom.xml clean verify
 - sleep 2
 - mvn -f pom.xml clean verify -Psecond-db
