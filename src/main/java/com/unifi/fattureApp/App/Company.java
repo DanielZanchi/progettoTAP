@@ -98,33 +98,6 @@ public class Company extends User {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		Company other = (Company) obj;
-
-		return ( compareFieldsForEqualsMethod(getId(), other.getId())&&compareFieldsForEqualsMethod(getName(), other.getName())&&compareFieldsForEqualsMethod(getVatCode(), other.getVatCode())&&
-				compareFieldsForEqualsMethod(getAddress(), other.getAddress())&&compareFieldsForEqualsMethod(getCity(), other.getCity())&&compareFieldsForEqualsMethod(getProvince(), other.getProvince())&&
-				compareFieldsForEqualsMethod(getZipCode(), other.getZipCode())&&compareFieldsForEqualsMethod(getCountry(), other.getCountry())&&compareFieldsForEqualsMethod(getPhone(), other.getPhone())&&
-				compareFieldsForEqualsMethod(getEmail(), other.getEmail()));
+		return super.equals(obj);
 	}
-
-	private boolean compareFieldsForEqualsMethod(String field,String otherObjectField) {
-		if (field == null) {
-			if (otherObjectField != null) {
-				return false;
-			}
-		}
-		else if (!field.equals(otherObjectField)) {
-			return false;
-		}
-		return true;
-	}
-
 }

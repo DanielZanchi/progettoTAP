@@ -56,6 +56,34 @@ public class User implements Serializable{
 	
 	@Override
 	public boolean equals(Object obj) {
-		return super.equals(obj);
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Field[] fields = this.getClass().getDeclaredFields();
+		Field[] fields2 = (this.getClass().cast(obj)).getClass().getDeclaredFields();
+		User user = (User)obj;
+		
+		if(user.getName()!=getName()||user.getId()!=getId()) {
+			return false;
+		}
+		
+		for(int i = 0; i<fields.length;i++) {
+			fields[i].setAccessible(true);
+			fields2[i].setAccessible(true);
+			try {
+				if(fields[i].get(this)!=fields2[i].get(this)) {
+					return false;
+				}
+			} catch (IllegalArgumentException | IllegalAccessException e) {
+				LOGGER.log(null, e);
+			}
+		}
+		return true;
 	}
 }
