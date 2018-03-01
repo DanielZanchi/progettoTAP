@@ -5,16 +5,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.fail;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.mongodb.gridfs.CLI;
 import com.unifi.fattureApp.App.AppController;
 import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
@@ -460,20 +457,6 @@ public abstract class AbstractCompanyIntegrationTest {
 		assertNotEquals(company1.hashCode(),company2.hashCode());
 	}
 	
-	// equals
-	@Test
-	public void testCompanyEqualsForDifferentObjectWithDifferentFields() {
-		mongoTestHelper.addTwoCompanies();
-		Company company1=companyController.getCompanyId("1");
-		Company company2=companyController.getCompanyId("2");
-		assertEquals(false,company1.equals(company2));
-	}
-	
-	@Test
-	public void testCompanyEqualsForSameObject() {
-		Company company=addTestCompanyToDB();
-		assertEquals(true,company.equals(company));
-	}
 	
 	
 	
@@ -498,20 +481,6 @@ public abstract class AbstractCompanyIntegrationTest {
 	}
 	
 	
-	// equals
-	@Test
-	public void testClientEqualsForDifferentObjectWithDifferentFields() {
-		mongoTestHelper.addTwoClients();
-		Client client1=companyController.getClientId("1");
-		Client client2=companyController.getClientId("2");
-		assertEquals(false,client1.equals(client2));
-	}
-
-	@Test
-	public void testClientEqualsForSameObject() {
-		Client client=addTestClientToDB();
-		assertEquals(true,client.equals(client));
-	}
 
 	
 	//hashcode
@@ -534,19 +503,81 @@ public abstract class AbstractCompanyIntegrationTest {
 		assertNotEquals(invoice1.hashCode(),invoice2.hashCode());
 	}
 	
-	// equals
+	// company equals
 	@Test
-	public void testInvoiceEqualsForDifferentObjectWithDifferentFields() {
+	public void testCompanyNotEqualsForDifferentObjectWithDifferentFields() {
+		mongoTestHelper.addTwoCompanies();
+		Company company1 = companyController.getCompanyId("1");
+		Company company2 = companyController.getCompanyId("2");
+		assertEquals(false, company1.equals(company2));
+	}
+
+	@Test
+	public void testCompanyEqualsForSameObject() {
+		Company company = addTestCompanyToDB();
+		assertEquals(true, company.equals(company));
+	}
+	
+	@Test
+	public void testCompanyEqualsForSameFields() {
+		Company company1 = new Company("1", "a", "b", "c", "d", "e", "f", "g", "h", "p");
+		Company company2 = new Company("1", "a", "b", "c", "d", "e", "f", "g", "h", "p");
+		
+		assertEquals(true, company1.equals(company2));
+	}
+	
+	@Test
+	public void testCompanyNull() {
+		Company nullCompany = null;
+		Company company = addTestCompanyToDB();
+		
+		assertEquals(false, company.equals(nullCompany));
+	}
+	
+	// client equals
+	@Test
+	public void testClientNotEqualsForDifferentObjectWithDifferentFields() {
+		mongoTestHelper.addTwoClients();
+		Client client1 = companyController.getClientId("1");
+		Client client2 = companyController.getClientId("2");
+		assertEquals(false, client1.equals(client2));
+	}
+	
+	@Test
+	public void testClientEqualsForSameObject() {
+		Client client = addTestClientToDB();
+		assertEquals(true, client.equals(client));
+	}
+	
+	@Test
+	public void testClientEqualsForSameFields() {
+		Client client1 = new Client("1", "a", "b", "c", "d", "e", "f", "g", "h", "p");
+		Client client2 = new Client("1", "a", "b", "c", "d", "e", "f", "g", "h", "p");
+		
+		assertEquals(true, client1.equals(client2));
+	}
+	
+	@Test
+	public void testClientNull() {
+		Client nullClient = null;
+		Client client = addTestClientToDB();
+		
+		assertEquals(false, client.equals(nullClient));
+	}
+	
+	// invoice equals
+	@Test
+	public void testInvoiceNotEqualsForDifferentObjectWithDifferentFields() {
 		mongoTestHelper.addTwoInvoices();
-		Invoice invoice1=companyController.getInvoiceId("1");
-		Invoice invoice2=companyController.getInvoiceId("2");
-		assertEquals(false,invoice1.equals(invoice2));
+		Invoice invoice1 = companyController.getInvoiceId("1");
+		Invoice invoice2 = companyController.getInvoiceId("2");
+		assertEquals(false, invoice1.equals(invoice2));
 	}
 
 	@Test
 	public void testInvoiceEqualsForSameObject() {
-		Invoice invoice=addTestInvoiceToDB();
-		assertEquals(true,invoice.equals(invoice));
+		Invoice invoice = addTestInvoiceToDB();
+		assertEquals(true, invoice.equals(invoice));
 	}
 	
 	@Test
@@ -565,6 +596,7 @@ public abstract class AbstractCompanyIntegrationTest {
 		assertEquals(false, invoice.equals(nullInvoice));
 	}
 	
+	// generic equals
 	@Test
 	public void testNotEqualsForDifferentObjects() {
 		Invoice invoice = addTestInvoiceToDB();
