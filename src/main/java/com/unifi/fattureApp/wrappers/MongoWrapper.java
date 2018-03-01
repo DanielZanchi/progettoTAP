@@ -47,7 +47,7 @@ public class MongoWrapper implements Database {
 	public void saveClient(Client client) {
 		clients.save(client);
 	}
-	
+
 	@Override
 	public void removeClientById(String id) {
 		clients.remove(ID,id);
@@ -95,7 +95,6 @@ public class MongoWrapper implements Database {
 	public void saveInvoice(Invoice invoice) {
 		invoices.save(invoice);
 	}
-
 
 	@Override
 	public void removeInvoiceById(String id) {

@@ -21,7 +21,7 @@ public class ItemInvoicePanel extends PanelWithObligatoryTextFields implements A
 	private JTextField itemDescriptionTF;
 	private JTextField itemNameTF;
 	private JFormattedTextField itemPriceTF;
-	
+
 	private DatabaseUiComunication databaseUiComunication;
 
 	private Color layerColor = new java.awt.Color(216, 245, 255);
