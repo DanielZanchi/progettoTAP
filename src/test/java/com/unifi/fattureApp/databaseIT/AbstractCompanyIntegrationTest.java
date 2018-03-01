@@ -549,6 +549,29 @@ public abstract class AbstractCompanyIntegrationTest {
 		assertEquals(true,invoice.equals(invoice));
 	}
 	
+	@Test
+	public void testInvoiceEqualsForSameFields() {
+		Invoice invoice1 = new Invoice("1", "a", "b", "c");
+		Invoice invoice2 = new Invoice("1", "a", "b", "c");
+		
+		assertEquals(true, invoice1.equals(invoice2));
+	}
+	
+	@Test
+	public void testInvoiceNull() {
+		Invoice nullInvoice = null;
+		Invoice invoice = addTestInvoiceToDB();
+		
+		assertEquals(false, invoice.equals(nullInvoice));
+	}
+	
+	@Test
+	public void testNotEqualsForDifferentObjects() {
+		Invoice invoice = addTestInvoiceToDB();
+		Company company = addTestCompanyToDB();
+		
+		assertEquals(false, invoice.equals(company));
+	}
 	
 	
 	
