@@ -505,10 +505,17 @@ public abstract class AbstractCompanyIntegrationTest {
 	
 	// company equals
 	@Test
-	public void testCompanyNotEqualsForDifferentObjectWithDifferentFields() {
+	public void testCompanyNotEqualsForDifferentObjectWithDifferentNameAndId() {
 		mongoTestHelper.addTwoCompanies();
 		Company company1 = companyController.getCompanyId("1");
 		Company company2 = companyController.getCompanyId("2");
+		assertEquals(false, company1.equals(company2));
+	}
+	
+	@Test
+	public void testCompanyNotEqualsForDifferentFields() {
+		Company company1 = new Company("1", "a", "b", "c", "d", "e", "f", "g", "ba", "be");
+		Company company2 = new Company("1", "a", "me", "tre", "qua", "se", "ue", "ug", "la", "te");
 		assertEquals(false, company1.equals(company2));
 	}
 
@@ -536,10 +543,17 @@ public abstract class AbstractCompanyIntegrationTest {
 	
 	// client equals
 	@Test
-	public void testClientNotEqualsForDifferentObjectWithDifferentFields() {
+	public void testClientNotEqualsForDifferentObjectWithDifferentNameAndId() {
 		mongoTestHelper.addTwoClients();
 		Client client1 = companyController.getClientId("1");
 		Client client2 = companyController.getClientId("2");
+		assertEquals(false, client1.equals(client2));
+	}
+	
+	@Test
+	public void testClientNotEqualsForDifferentFields() {
+		Client client1 = new Client("1", "a", "b", "c", "d", "e", "f", "g", "ba", "be");
+		Client client2 = new Client("1", "a", "me", "tre", "qua", "se", "ue", "ug", "la", "te");
 		assertEquals(false, client1.equals(client2));
 	}
 	
@@ -567,10 +581,17 @@ public abstract class AbstractCompanyIntegrationTest {
 	
 	// invoice equals
 	@Test
-	public void testInvoiceNotEqualsForDifferentObjectWithDifferentFields() {
+	public void testInvoiceNotEqualsForDifferentObjectWithDifferentNameAndId() {
 		mongoTestHelper.addTwoInvoices();
 		Invoice invoice1 = companyController.getInvoiceId("1");
 		Invoice invoice2 = companyController.getInvoiceId("2");
+		assertEquals(false, invoice1.equals(invoice2));
+	}
+	
+	@Test
+	public void testInvoiceNotEqualsForDifferentFields() {
+		Invoice invoice1 = new Invoice("1", "a", "b", "c");
+		Invoice invoice2 = new Invoice("1", "a", "d", "e");
 		assertEquals(false, invoice1.equals(invoice2));
 	}
 

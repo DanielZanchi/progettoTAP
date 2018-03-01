@@ -5,7 +5,7 @@ import java.lang.reflect.Field;
 
 import org.apache.log4j.Logger;
 
-public class User implements Serializable{
+public class User implements Serializable {
 	private static final long serialVersionUID = 5897984558305166044L;
 	private static final Logger LOGGER = Logger.getLogger(DatabaseUiComunication.class);
 	private String id;
