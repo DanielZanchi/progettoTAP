@@ -28,6 +28,11 @@ public abstract class AbstractDatabaseUiComunicationTest {
 	public void addClientToDbTest() {
 		assertEquals(true, addTestClient());
 	}
+	
+	@Test
+	public void test2() {
+		
+	}
 
 	@Test
 	public void clientsCountWithNoClientsTest() {
