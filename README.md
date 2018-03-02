@@ -8,12 +8,13 @@ The **app will create an _invoice_** in PDF format.
 It's built in *Java* using the *Eclipse* IDE. 
   
 We used the following tools: 
- * Maven
- * Travis  
- * Coveralls
- * Docker
- * MongoDB
- * Redis
+ * <a href="https://junit.org/junit4/">Junit</a>
+ * <a href="https://www.docker.com">Docker</a>
+ * <a href="https://www.mongodb.com">Mongo</a>
+ * <a href="https://redis.io">Redis</a>
+ * <a href="https://travis-ci.org/Danny182/progettoTAP">Travis</a>
+ 
+ 
  
    
    
