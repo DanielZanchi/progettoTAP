@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
@@ -21,7 +23,7 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
 
 public class DatabaseUiComunication {
-//	private static final Logger LOGGER = LogManager.getLogger(DatabaseUiComunication.class);
+	private static final Logger LOGGER = LogManager.getLogger(DatabaseUiComunication.class);
 	private Database database;
 	private String mongoHost = "localhost";
 	private AppController myCompanyController;
@@ -142,10 +144,14 @@ public class DatabaseUiComunication {
 		return myCompanyController.getAllInvoices();
 	}
 
-	public boolean printSelected() throws IOException {
-		if (currentSelectedClient != null && currentSelectedCompany != null && currentSelectedInvoice != null) {
-			new PDFCreator(currentSelectedCompany, currentSelectedClient, currentSelectedInvoice);
-			return true;
+	public boolean printSelected(){
+		try {
+			if (currentSelectedClient != null && currentSelectedCompany != null && currentSelectedInvoice != null) {
+				new PDFCreator(currentSelectedCompany, currentSelectedClient, currentSelectedInvoice);
+				return true;
+			}
+		} catch (IOException e) {
+			LOGGER.error(e);
 		}
 		return false;
 	}
