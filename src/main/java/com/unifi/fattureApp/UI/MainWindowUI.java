@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
-import java.io.IOException;
 import java.net.UnknownHostException;
 
 import javax.swing.BorderFactory;

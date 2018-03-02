@@ -148,7 +148,7 @@ public class DatabaseUiComunication {
 			try {
 				new PDFCreator(currentSelectedCompany, currentSelectedClient, currentSelectedInvoice);
 			} catch (IOException e) {
-				e.printStackTrace();
+				LOGGER.log(null, e);
 			}
 			return true;
 		}
