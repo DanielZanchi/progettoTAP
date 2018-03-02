@@ -231,7 +231,6 @@
 						<configuration>
 							<excludes>
 								<exclude>**/Main.*</exclude>
-								<exclude>JAVAC.CLASS</exclude>
 							</excludes>
 						</configuration>
 						<executions>
@@ -441,7 +440,6 @@
 						<configuration>
 							<excludes>
 								<exclude>**/Main.*</exclude>
-								<exclude>JAVAC.CLASS</exclude>
 							</excludes>
 						</configuration>
 						<executions>
