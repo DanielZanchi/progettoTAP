@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.io.IOException;
+import java.net.UnknownHostException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
@@ -44,12 +45,12 @@ public class MainWindowUI {
 		initialize();
 	}
 
-	public MainWindowUI() throws IOException {
+	public MainWindowUI() throws UnknownHostException  {
 		myDatabaseUiComunication = new DatabaseUiComunication(true, null, true);
 		initialize();
 	}
 
-	private void initialize() {
+	private void initialize(){
 		final JPanel myCompanyPanel;
 
 		fattureAppFrame = new JFrame();
@@ -247,6 +248,7 @@ public class MainWindowUI {
 		// creare la fattura.
 		createInvoiceButton.addActionListener(e -> myDatabaseUiComunication.printSelected());
 
+		
 		createAddRecordsPanels();
 		updateReferences(clientListComboBox, invoiceListcomboBox, myCompanyLabel);
 

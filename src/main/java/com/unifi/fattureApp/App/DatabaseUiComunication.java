@@ -1,5 +1,6 @@
 package com.unifi.fattureApp.App;
 
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.List;
 
@@ -142,9 +143,13 @@ public class DatabaseUiComunication {
 		return myCompanyController.getAllInvoices();
 	}
 
-	public boolean printSelected() throws Exception {
+	public boolean printSelected(){
 		if (currentSelectedClient != null && currentSelectedCompany != null && currentSelectedInvoice != null) {
-			new PDFCreator(currentSelectedCompany, currentSelectedClient, currentSelectedInvoice);
+			try {
+				new PDFCreator(currentSelectedCompany, currentSelectedClient, currentSelectedInvoice);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			return true;
 		}
 		return false;
