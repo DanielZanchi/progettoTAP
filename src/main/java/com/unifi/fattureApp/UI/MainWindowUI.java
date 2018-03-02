@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
+import java.io.IOException;
 import java.net.UnknownHostException;
 
 import javax.swing.BorderFactory;
@@ -13,11 +14,15 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import com.unifi.fattureApp.App.DatabaseUiComunication;
 
 public class MainWindowUI {
 	// prova pull request...
 	private DatabaseUiComunication myDatabaseUiComunication;
+	private static final Logger LOGGER = LogManager.getLogger(DatabaseUiComunication.class);
 
 	private JFrame fattureAppFrame;
 	private JLayeredPane outerPanel;
@@ -245,7 +250,13 @@ public class MainWindowUI {
 		invoicePanel.add(createInvoiceButton);
 
 		// creare la fattura.
-		createInvoiceButton.addActionListener(e -> myDatabaseUiComunication.printSelected());
+		createInvoiceButton.addActionListener(e -> {
+			try {
+				myDatabaseUiComunication.printSelected();
+			} catch (IOException e1) {
+				LOGGER.error(e1);
+			}
+		});
 
 
 		createAddRecordsPanels();

@@ -520,7 +520,7 @@ public abstract class AbstractCompanyIntegrationTest {
 		Company company2 = companyController.getCompanyId("2");
 		assertEquals(false, company1.equals(company2));
 	}
-
+	
 	@Test
 	public void testCompanyNotEqualsForDifferentFields() {
 		Company company1 = new Company("1", "a", "b", "c", "d", "e", "f", "g", "ba", "be");

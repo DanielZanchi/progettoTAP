@@ -159,7 +159,6 @@ public abstract class AbstractDatabaseUiComunicationTest {
 		return myDatabaseUiComunication.addCompanyToDatabase("name", "vatCode", "address", "city", "province", "zip", "country", "phone", "email");
 	}
 
-
 	//Invoice
 	@Test 
 	public void getCurrentSelectedInvoiceWithNoInvoiceSelected() {
@@ -236,5 +235,15 @@ public abstract class AbstractDatabaseUiComunicationTest {
 		if(created) {
 			new File("Invoice.pdf").delete();
 		}
-	}	
+	}
+	
+//	@Test
+//	public void printSelectedWithNullClient() throws IOException {
+//		Client client = null;
+//		myDatabaseUiComunication.setCurrentSelectedClient(client);
+//		System.out.println(myDatabaseUiComunication.getCurrentSelectedClient());
+//		setTestCompanyToCurrentSelected();
+//		setTestInvoiceToCurrentSelected();
+//		myDatabaseUiComunication.printSelected();
+//	}
 }
