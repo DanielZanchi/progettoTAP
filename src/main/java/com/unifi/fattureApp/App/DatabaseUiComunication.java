@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
+import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -22,7 +23,7 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
 
 public class DatabaseUiComunication {
-	private static final Logger LOGGER = Logger.getLogger(DatabaseUiComunication.class);
+	private static final Logger LOGGER = LogManager.getLogger(DatabaseUiComunication.class);
 	private Database database;
 	private String mongoHost = "localhost";
 	private AppController myCompanyController;
@@ -148,7 +149,7 @@ public class DatabaseUiComunication {
 			try {
 				new PDFCreator(currentSelectedCompany, currentSelectedClient, currentSelectedInvoice);
 			} catch (IOException e) {
-				LOGGER.log(null, e);
+				LOGGER.error(e);
 			}
 			return true;
 		}

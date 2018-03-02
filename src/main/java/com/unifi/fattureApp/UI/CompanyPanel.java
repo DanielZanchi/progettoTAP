@@ -28,7 +28,6 @@ public class CompanyPanel extends PanelWithObligatoryTextFields implements AddPa
 	private JTextField companyEmailTF;
 	private CompanyPanel addCompanyPanel;
 
-
 	private Color layerColor = new java.awt.Color(216, 245, 255);
 
 	private boolean isSaving;

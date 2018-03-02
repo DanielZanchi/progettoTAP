@@ -46,7 +46,7 @@ public class User implements Serializable {
 			try {
 				result = primeNumber * result + ((field.get(this)==null) ? 0 : field.get(this).hashCode());
 			} catch (IllegalArgumentException | IllegalAccessException e) {
-				LOGGER.log(null, e);
+				LOGGER.error(e);
 			}		
 		}
 		result = primeNumber*result+((getId()==null) ? 0 : getId().hashCode());
@@ -71,7 +71,7 @@ public class User implements Serializable {
 
 		if(user.getName()!=getName()||user.getId()!=getId()) {
 			return false;
-		}
+		}				
 
 		for(int i = 0; i<fields.length; i++) {
 			fields[i].setAccessible(true);
@@ -80,8 +80,8 @@ public class User implements Serializable {
 				if(!fields[i].get(this).equals(fields2[i].get(obj))) {
 					return false;
 				}
-			} catch (IllegalArgumentException | IllegalAccessException e) {
-				LOGGER.log(null, e);
+			} catch (Exception e) {
+				LOGGER.error(e);
 			}
 		}
 		return true;
