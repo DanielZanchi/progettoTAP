@@ -83,8 +83,8 @@ public class DatabaseUiComunication {
 		try {
 			database = new MongoWrapper(mongoClient);
 		} catch (Exception e) {
-			LOGGER.info("Error while connecting to mongoHost");
-			LOGGER.log(null, e);
+			LOGGER.info("Error while connecting to mongoHost"); // $COVERAGE-IGNORE$
+			LOGGER.log(null, e); // $COVERAGE-IGNORE$
 		}
 	}
 
