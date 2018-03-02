@@ -229,7 +229,13 @@
 						<artifactId>jacoco-maven-plugin</artifactId>
 						<version>0.7.7.201606060606</version>
 						<configuration>
+							<instrumentation>
+                        			<ignores>
+                             		<ignore>*equals</ignore>
+                        			</ignores>
+                        		</instrumentation>
 							<excludes>
+								<exclude>**/User.equals</exclude>
 								<exclude>**/Main.*</exclude>
 							</excludes>
 						</configuration>
