@@ -218,12 +218,12 @@ public abstract class AbstractDatabaseUiComunicationTest {
 	}
 
 	@Test 
-	public void printSelectedWithNoSelectedTest() {
+	public void printSelectedWithNoSelectedTest() throws Exception {
 		assertEquals(false, myDatabaseUiComunication.printSelected());
 	}
 
-	@Test 
-	public void printSelectedWithSelectedTest() {
+	@Test
+	public void printSelectedWithSelectedTest() throws Exception {
 		setTestCompanyToCurrentSelected();
 		setTestClientToCurrentSelected();
 		setTestInvoiceToCurrentSelected();

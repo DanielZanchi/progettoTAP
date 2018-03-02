@@ -142,13 +142,9 @@ public class DatabaseUiComunication {
 		return myCompanyController.getAllInvoices();
 	}
 
-	public boolean printSelected() {
+	public boolean printSelected() throws Exception {
 		if (currentSelectedClient != null && currentSelectedCompany != null && currentSelectedInvoice != null) {
-			try {
-				new PDFCreator(currentSelectedCompany, currentSelectedClient, currentSelectedInvoice);
-			} catch (Exception e) {
-				LOGGER.info("Error while creating pdf!");
-			}
+			new PDFCreator(currentSelectedCompany, currentSelectedClient, currentSelectedInvoice);
 			return true;
 		}
 		return false;

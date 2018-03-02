@@ -16,9 +16,8 @@ import ch.qos.logback.classic.LoggerContext;
 import redis.embedded.RedisServer;
 
 public class DatabaseUiComunicationRedisTest extends AbstractDatabaseUiComunicationTest{
-	
 	private RedisServer redisServer;
-	
+
 	@Override
 	public void setUpDatabase() throws UnknownHostException {
 		try {
@@ -32,12 +31,12 @@ public class DatabaseUiComunicationRedisTest extends AbstractDatabaseUiComunicat
 		String args[] = null;
 		myDatabaseUiComunication = new DatabaseUiComunication(true, args, false);
 	}
-	
+
 	@Test
 	public void testDatabaseIsInstanceOfRedisWrapper() {
 		assertEquals(RedisWrapper.class, myDatabaseUiComunication.getCurrentDatabaseClass());
 	}
-	
+
 	@After
 	public void stopRedis() {
 		redisServer.stop();
