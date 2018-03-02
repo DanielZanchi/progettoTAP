@@ -14,11 +14,10 @@ import com.unifi.fattureApp.App.DatabaseUiComunication;
 import com.unifi.fattureApp.App.Invoice;
 
 public abstract class AbstractDatabaseUiComunicationTest {
-	
 	protected DatabaseUiComunication myDatabaseUiComunication;
-	
+
 	public abstract void setUpDatabase() throws UnknownHostException;
-	
+
 	@Before
 	public void setUp() throws UnknownHostException {
 		setUpDatabase();
@@ -28,10 +27,10 @@ public abstract class AbstractDatabaseUiComunicationTest {
 	public void addClientToDbTest() {
 		assertEquals(true, addTestClient());
 	}
-	
+
 	@Test
 	public void test2() {
-		
+
 	}
 
 	@Test
@@ -61,7 +60,7 @@ public abstract class AbstractDatabaseUiComunicationTest {
 		addTestClient();
 		assertEquals("name", myDatabaseUiComunication.getSavedClients().get(0).getName());
 	}
-	
+
 
 	@Test 
 	public void testgetCurrentSelectedClientWithNoClientSelected() {
@@ -79,7 +78,7 @@ public abstract class AbstractDatabaseUiComunicationTest {
 		Client client = setTestClientToCurrentSelected();
 		assertEquals(myDatabaseUiComunication.getCurrentSelectedClient().getName(), client.getName());
 	}
-	
+
 	private boolean addTestClient() {
 		return myDatabaseUiComunication.addClientToDatabase("name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
 	}
@@ -89,12 +88,12 @@ public abstract class AbstractDatabaseUiComunicationTest {
 		myDatabaseUiComunication.setCurrentSelectedClient(client);
 		return client;
 	}
-	
-	
+
+
 	//Company
-	
-	
-	
+
+
+
 	@Test 
 	public void getCurrentSelectedCompanyWithNoCompanySelected() {
 		assertEquals(null, myDatabaseUiComunication.getCurrentSelectedCompany());
@@ -122,7 +121,7 @@ public abstract class AbstractDatabaseUiComunicationTest {
 	public void editCompanyWhenNoCompanyInDBTest() {
 		myDatabaseUiComunication.editCompanyFromDatabase("nameEdited", "vatCodeEdited", "addressEdited", "cityEdited", "provinceEdited", "zipCodeEdited", "countryEdited", "phoneEdited", "emailEdited");
 	}
-	
+
 	@Test
 	public void addCompanyToDbTest() {
 		assertEquals(true, addTestCompany());
@@ -159,8 +158,8 @@ public abstract class AbstractDatabaseUiComunicationTest {
 	private boolean addTestCompany() {
 		return myDatabaseUiComunication.addCompanyToDatabase("name", "vatCode", "address", "city", "province", "zip", "country", "phone", "email");
 	}
-	
-	
+
+
 	//Invoice
 	@Test 
 	public void getCurrentSelectedInvoiceWithNoInvoiceSelected() {
@@ -184,7 +183,7 @@ public abstract class AbstractDatabaseUiComunicationTest {
 		Invoice invoice = setTestInvoiceToCurrentSelected();
 		assertEquals(myDatabaseUiComunication.getCurrentSelectedInvoice().getName(), invoice.getName());
 	}
-	
+
 	@Test
 	public void addInvoiceToDbTest() {
 		assertEquals(true, addTestInvoice());

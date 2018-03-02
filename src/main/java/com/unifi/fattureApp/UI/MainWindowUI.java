@@ -247,7 +247,7 @@ public class MainWindowUI {
 		// creare la fattura.
 		createInvoiceButton.addActionListener(e -> myDatabaseUiComunication.printSelected());
 
-		
+
 		createAddRecordsPanels();
 		updateReferences(clientListComboBox, invoiceListcomboBox, myCompanyLabel);
 

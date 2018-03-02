@@ -14,9 +14,7 @@ import org.assertj.swing.fixture.JPanelFixture;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
-import com.mongodb.MongoTimeoutException;
 import com.unifi.fattureApp.App.DatabaseUiComunication;
 
 public class MainWindowUITest {
@@ -58,7 +56,7 @@ public class MainWindowUITest {
 		window.background().requireEqualTo(java.awt.Color.LIGHT_GRAY);
 	}
 
-	
+
 	@Test 
 	public void testNonTestConstructor() {
 		String [] args= {};
