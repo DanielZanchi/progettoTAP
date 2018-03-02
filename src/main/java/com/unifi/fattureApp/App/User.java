@@ -11,7 +11,7 @@ public class User implements Serializable {
 	private String id;
 	private String name;
 
-	protected int primeNumber=3;
+	protected int primeNumber = 3;
 
 	public User() {	
 	}

@@ -8,7 +8,6 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
 import org.apache.log4j.Logger;
-import org.junit.validator.PublicClassValidator;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
@@ -41,7 +40,7 @@ public class DatabaseUiComunication {
 	private JButton editClientButton;
 	private JButton editInvoiceButton;
 
-	public DatabaseUiComunication(boolean testing, String[] args, boolean usingMongodb) {	
+	public DatabaseUiComunication(boolean testing, String[] args, boolean usingMongodb) throws UnknownHostException {	
 		if(usingMongodb) {
 			settingUpMongodb(args, testing);
 		}else {
@@ -61,7 +60,7 @@ public class DatabaseUiComunication {
 		context.close();
 	}
 
-	private void settingUpMongodb(String[] args, boolean testing) {
+	private void settingUpMongodb(String[] args, boolean testing) throws UnknownHostException {
 		if (args!=null && args.length > 0)
 			mongoHost = args[0];
 
@@ -74,19 +73,9 @@ public class DatabaseUiComunication {
 			ch.qos.logback.classic.Logger rootLogger = loggerContext.getLogger("com.mongodb.FongoDBCollection");
 			rootLogger.setLevel(Level.OFF);
 		}else {
-			try {
-				mongoClient = new MongoClient(mongoHost, 27017);
-			} catch (UnknownHostException e) {
-				LOGGER.log(null, e);
-			}
+			mongoClient = new MongoClient(mongoHost, 27017);
 		}
-
-		try {
-			database = new MongoWrapper(mongoClient);
-		} catch (Exception e) {
-			LOGGER.info("Error while connecting to mongoHost"); // $COVERAGE-IGNORE$
-			LOGGER.log(null, e); // $COVERAGE-IGNORE$
-		}
+		database = new MongoWrapper(mongoClient);
 	}
 
 	public boolean addClientToDatabase(String name, String fiscalCode, String residence, String city, String province,
@@ -272,7 +261,7 @@ public class DatabaseUiComunication {
 	public void seteditInvoiceButton(JButton editInvoiceButton) {
 		this.editInvoiceButton = editInvoiceButton;
 	}
-	
+
 	public Class<? extends Database> getCurrentDatabaseClass() {
 		return database.getClass();
 	}
