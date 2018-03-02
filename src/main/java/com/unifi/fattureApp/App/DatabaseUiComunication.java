@@ -8,6 +8,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 
 import org.apache.log4j.Logger;
+import org.junit.validator.PublicClassValidator;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
@@ -22,9 +23,9 @@ import ch.qos.logback.classic.LoggerContext;
 
 public class DatabaseUiComunication {
 	private static final Logger LOGGER = Logger.getLogger(DatabaseUiComunication.class);
-	Database database;
-	String mongoHost = "localhost";
-	AppController myCompanyController;
+	private Database database;
+	private String mongoHost = "localhost";
+	private AppController myCompanyController;
 
 	private Company currentSelectedCompany;
 	private Client currentSelectedClient;
@@ -270,5 +271,9 @@ public class DatabaseUiComunication {
 
 	public void seteditInvoiceButton(JButton editInvoiceButton) {
 		this.editInvoiceButton = editInvoiceButton;
+	}
+	
+	public Class<? extends Database> getCurrentDatabaseClass() {
+		return database.getClass();
 	}
 }

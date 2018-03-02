@@ -3,7 +3,6 @@ package com.unifi.fattureApp.databaseIT;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,22 +12,20 @@ import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.DatabaseUiComunication;
 import com.unifi.fattureApp.App.Invoice;
 
-public class DatabaseUiComunicationTest {	
-	private DatabaseUiComunication myDatabaseUiComunication;
-
+public abstract class AbstractDatabaseUiComunicationTest {
+	
+	protected DatabaseUiComunication myDatabaseUiComunication;
+	
+	public abstract void  setUpDatabase();
+	
 	@Before
-	public void setUp() throws IOException {
-		String args[] = null;
-		myDatabaseUiComunication = new DatabaseUiComunication(true, args, true);
+	public void setUp() {
+		setUpDatabase();
 	}
 
 	@Test
 	public void addClientToDbTest() {
 		assertEquals(true, addTestClient());
-	}
-
-	private boolean addTestClient() {
-		return myDatabaseUiComunication.addClientToDatabase("name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
 	}
 
 	@Test
@@ -43,37 +40,32 @@ public class DatabaseUiComunicationTest {
 	}
 
 	@Test
-	public void getListSizeOfClientsWithNoClients() {
+	public void testgetListSizeOfClientsWithNoClients() {
 		assertEquals(0, myDatabaseUiComunication.getSavedClients().size());
 	}
 
 	@Test
-	public void getListSizeOfClientsWithOneClient() {
+	public void testgetListSizeOfClientsWithOneClient() {
 		addTestClient();
 		assertEquals(1, myDatabaseUiComunication.getSavedClients().size());
 	}
 
 	@Test
-	public void getListOfClientsWithOneClientCheckName() {
+	public void testgetListOfClientsWithOneClientCheckName() {
 		addTestClient();
 		assertEquals("name", myDatabaseUiComunication.getSavedClients().get(0).getName());
 	}
+	
 
 	@Test 
-	public void getCurrentSelectedClientWithNoClientSelected() {
+	public void testgetCurrentSelectedClientWithNoClientSelected() {
 		assertEquals(null, myDatabaseUiComunication.getCurrentSelectedClient());
 	}
 
 	@Test 
-	public void getCurrentSelectedClientWithClientSelected() {
+	public void testgetCurrentSelectedClientWithClientSelected() {
 		Client client = setTestClientToCurrentSelected();
 		assertEquals(myDatabaseUiComunication.getCurrentSelectedClient(), client);
-	}
-
-	private Client setTestClientToCurrentSelected() {
-		Client client = new Client("1", "name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
-		myDatabaseUiComunication.setCurrentSelectedClient(client);
-		return client;
 	}
 
 	@Test
@@ -81,8 +73,22 @@ public class DatabaseUiComunicationTest {
 		Client client = setTestClientToCurrentSelected();
 		assertEquals(myDatabaseUiComunication.getCurrentSelectedClient().getName(), client.getName());
 	}
+	
+	private boolean addTestClient() {
+		return myDatabaseUiComunication.addClientToDatabase("name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
+	}
 
+	private Client setTestClientToCurrentSelected() {
+		Client client = new Client("1", "name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
+		myDatabaseUiComunication.setCurrentSelectedClient(client);
+		return client;
+	}
+	
+	
 	//Company
+	
+	
+	
 	@Test 
 	public void getCurrentSelectedCompanyWithNoCompanySelected() {
 		assertEquals(null, myDatabaseUiComunication.getCurrentSelectedCompany());
@@ -110,7 +116,45 @@ public class DatabaseUiComunicationTest {
 	public void editCompanyWhenNoCompanyInDBTest() {
 		myDatabaseUiComunication.editCompanyFromDatabase("nameEdited", "vatCodeEdited", "addressEdited", "cityEdited", "provinceEdited", "zipCodeEdited", "countryEdited", "phoneEdited", "emailEdited");
 	}
+	
+	@Test
+	public void addCompanyToDbTest() {
+		assertEquals(true, addTestCompany());
+	}
 
+	@Test
+	public void companiesCountWithNoCompaniesTest() {
+		assertEquals(0, myDatabaseUiComunication.getCompaniesCount());
+	}
+
+	@Test
+	public void companiesCountWithOneCompanyTest() {
+		addTestCompany();
+		assertEquals(1, myDatabaseUiComunication.getCompaniesCount());
+	}
+
+	@Test
+	public void testgetListSizeOfCompaniesWithNoCompanies() {
+		assertEquals(0, myDatabaseUiComunication.getSavedCompanies().size());
+	}
+
+	@Test
+	public void testgetListSizeOfCompaniesWithOneCompany() {
+		addTestCompany();
+		assertEquals(1, myDatabaseUiComunication.getSavedCompanies().size());
+	}
+
+	@Test
+	public void testgetListOfCompaniesWithOneCompanyCheckName() {
+		addTestCompany();
+		assertEquals("name", myDatabaseUiComunication.getSavedCompanies().get(0).getName());
+	}
+
+	private boolean addTestCompany() {
+		return myDatabaseUiComunication.addCompanyToDatabase("name", "vatCode", "address", "city", "province", "zip", "country", "phone", "email");
+	}
+	
+	
 	//Invoice
 	@Test 
 	public void getCurrentSelectedInvoiceWithNoInvoiceSelected() {
@@ -133,6 +177,43 @@ public class DatabaseUiComunicationTest {
 	public void getCurrentSelectedInvoiceWithInvoiceSelectedNameTest() {
 		Invoice invoice = setTestInvoiceToCurrentSelected();
 		assertEquals(myDatabaseUiComunication.getCurrentSelectedInvoice().getName(), invoice.getName());
+	}
+	
+	@Test
+	public void addInvoiceToDbTest() {
+		assertEquals(true, addTestInvoice());
+	}
+
+	@Test
+	public void invoicesCountWithNoInvoicesTest() {
+		assertEquals(0, myDatabaseUiComunication.getInvoicesCount());
+	}
+
+	@Test
+	public void invoicesCountWithOneInvoiceTest() {
+		addTestInvoice();
+		assertEquals(1, myDatabaseUiComunication.getInvoicesCount());
+	}
+
+	@Test
+	public void testgetListSizeOfInvoicesWithNoInvoices() {
+		assertEquals(0, myDatabaseUiComunication.getSavedInvoices().size());
+	}
+
+	@Test
+	public void testgetListSizeOfInvoicesWithOneInvoice() {
+		addTestInvoice();
+		assertEquals(1, myDatabaseUiComunication.getSavedInvoices().size());
+	}
+
+	@Test
+	public void testgetListOfInvoicesWithOneInvoiceCheckName() {
+		addTestInvoice();
+		assertEquals("name", myDatabaseUiComunication.getSavedInvoices().get(0).getName());
+	}
+
+	private boolean addTestInvoice() {
+		return myDatabaseUiComunication.addInvoiceToDatabase("name", "description", "10");
 	}
 
 	@Test 
