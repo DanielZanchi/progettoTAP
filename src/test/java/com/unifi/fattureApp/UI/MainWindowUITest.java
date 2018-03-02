@@ -1,8 +1,10 @@
 package com.unifi.fattureApp.UI;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 
 import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.fixture.JButtonFixture;
@@ -12,6 +14,10 @@ import org.assertj.swing.fixture.JPanelFixture;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
+import com.mongodb.MongoTimeoutException;
+import com.unifi.fattureApp.App.DatabaseUiComunication;
 
 public class MainWindowUITest {
 	private FrameFixture window;
@@ -52,6 +58,16 @@ public class MainWindowUITest {
 		window.background().requireEqualTo(java.awt.Color.LIGHT_GRAY);
 	}
 
+	
+	@Test 
+	public void testNonTestConstructor() {
+		String [] args= {};
+		try {
+			MainWindowUI frame = new MainWindowUI(new DatabaseUiComunication(true, args, true));
+		} catch (UnknownHostException e) {
+			fail();
+		}
+	}
 	//Company panel
 	@Test
 	public void testAddButtonText() {
