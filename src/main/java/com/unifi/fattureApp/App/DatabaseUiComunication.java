@@ -82,7 +82,6 @@ public class DatabaseUiComunication {
 
 		try {
 			database = new MongoWrapper(mongoClient);
-		/* istanbul ignore next */
 		} catch (Exception e) {
 			LOGGER.info("Error while connecting to mongoHost");
 			LOGGER.log(null, e);
