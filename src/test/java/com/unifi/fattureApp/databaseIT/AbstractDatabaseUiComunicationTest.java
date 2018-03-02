@@ -3,6 +3,7 @@ package com.unifi.fattureApp.databaseIT;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.net.UnknownHostException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,10 +17,10 @@ public abstract class AbstractDatabaseUiComunicationTest {
 	
 	protected DatabaseUiComunication myDatabaseUiComunication;
 	
-	public abstract void  setUpDatabase();
+	public abstract void setUpDatabase() throws UnknownHostException;
 	
 	@Before
-	public void setUp() {
+	public void setUp() throws UnknownHostException {
 		setUpDatabase();
 	}
 

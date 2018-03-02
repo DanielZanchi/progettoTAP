@@ -3,6 +3,7 @@ package com.unifi.fattureApp.databaseIT;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 
 import org.junit.After;
 import org.junit.Test;
@@ -19,7 +20,7 @@ public class DatabaseUiComunicationRedisTest extends AbstractDatabaseUiComunicat
 	private RedisServer redisServer;
 	
 	@Override
-	public void setUpDatabase() {
+	public void setUpDatabase() throws UnknownHostException {
 		try {
 			redisServer = new RedisServer(6379);
 			redisServer.start();
