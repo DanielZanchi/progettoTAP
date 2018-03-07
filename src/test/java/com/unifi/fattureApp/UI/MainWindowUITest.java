@@ -27,7 +27,6 @@ public class MainWindowUITest {
 		MainWindowUI frame = new MainWindowUI();
 		window = new FrameFixture(frame.getMainFrame());
 		window.show();
-
 		addCompanyButton = window.panel("CompanyPanel").button("AddCompanyButton");
 	}
 
@@ -102,8 +101,7 @@ public class MainWindowUITest {
 	public void testPreviewCompanyButtonWithOneCompany() {
 		JButtonFixture previewButton = window.button("prevCompany_Button");
 		JLabelFixture companyInfoLabel = window.label("currentSelectedCompanyLabel");
-		addCompanyButton.click();
-		addCompanyPanel = window.panel("AddCompanyPanel");
+		showAddCompanyPanel();
 		setTextfieldsStrings("comp1", "vat1", "address1", "city1", "province1", "zip1", "country1", "phone1", "email1");
 		JButtonFixture saveAdd_Button = addCompanyPanel.button("SaveButton");
 		saveAdd_Button.click();
@@ -116,8 +114,7 @@ public class MainWindowUITest {
 		JButtonFixture previewButton = window.button("prevCompany_Button");
 		JButtonFixture nextButton = window.button("nextCompany_Button");
 		JLabelFixture companyInfoLabel=window.label("currentSelectedCompanyLabel");
-		addCompanyButton.click();
-		addCompanyPanel = window.panel("AddCompanyPanel");
+		showAddCompanyPanel();
 		JButtonFixture saveAdd_Button = addCompanyPanel.button("SaveButton");
 		setTextfieldsStrings("comp1", "vat1", "address1", "city1", "province1", "zip1", "country1", "phone1", "email1");
 		saveAdd_Button.click();
@@ -133,8 +130,7 @@ public class MainWindowUITest {
 	public void testNextCompanyButtonWithOneCompany() {
 		JButtonFixture nextButton = window.button("nextCompany_Button");
 		JLabelFixture companyInfoLabel=window.label("currentSelectedCompanyLabel");
-		addCompanyButton.click();
-		addCompanyPanel = window.panel("AddCompanyPanel");
+		showAddCompanyPanel();
 		setTextfieldsStrings("comp1", "vat1", "address1", "city1", "province1", "zip1", "country1", "phone1", "email1");
 		JButtonFixture saveAdd_Button = addCompanyPanel.button("SaveButton");
 		saveAdd_Button.click();
@@ -152,8 +148,7 @@ public class MainWindowUITest {
 	public void testNextCompanyButtonWithTwoCompanies() {
 		JButtonFixture nextButton = window.button("nextCompany_Button");
 		JLabelFixture companyInfoLabel=window.label("currentSelectedCompanyLabel");
-		addCompanyButton.click();
-		addCompanyPanel = window.panel("AddCompanyPanel");
+		showAddCompanyPanel();
 		JButtonFixture saveAdd_Button = addCompanyPanel.button("SaveButton");
 		setTextfieldsStrings("comp1", "vat1", "address1", "city1", "province1", "zip1", "country1", "phone1", "email1");
 		saveAdd_Button.click();
