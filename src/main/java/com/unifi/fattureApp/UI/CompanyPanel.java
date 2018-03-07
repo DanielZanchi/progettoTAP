@@ -30,12 +30,12 @@ public class CompanyPanel extends PanelWithObligatoryTextFields implements AddPa
 	private boolean isSaving;
 
 	public CompanyPanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight, DatabaseUiComunication dbUiCom) {
-		super("AddCompanyPanel",outerPanel,buttonWidth,buttonHeight);
+		super("AddCompanyPanel",outerPanel,buttonWidth,buttonHeight,0);
 		addCompanyPanel = this;
 		myDatabaseUiComunication = dbUiCom;
 
 		initLabelsTextFields();
-
+ 		
 		FormattedButton saveButton = new FormattedButton("Save", "SaveButton");
 		saveButton.setEnabled(false);
 		saveButton.setBounds((addCompanyPanel.getWidth() / 2) + 24,

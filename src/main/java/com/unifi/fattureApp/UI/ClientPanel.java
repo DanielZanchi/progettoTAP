@@ -28,12 +28,12 @@ public class ClientPanel extends PanelWithObligatoryTextFields implements AddPan
 	private boolean isSaving;
 
 	public ClientPanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight, DatabaseUiComunication dbUiCom) {
-		super("AddClientPanel",outerPanel,buttonWidth,buttonHeight);
+		super("AddClientPanel",outerPanel,buttonWidth,buttonHeight,0);
 		addClientPanel = this;
 		myDatabaseUiComunication = dbUiCom;
 
 		initLabelsTextFields();
-
+		
 		FormattedButton saveButton = new FormattedButton("Save", "SaveButton");
 		saveButton.setEnabled(false);
 		saveButton.setBounds((addClientPanel.getWidth() / 2) + 24,

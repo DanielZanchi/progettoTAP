@@ -26,12 +26,12 @@ public class ItemInvoicePanel extends PanelWithObligatoryTextFields implements A
 	private boolean isSaving;
 
 	public ItemInvoicePanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight, DatabaseUiComunication dbUiCom) {
-		super("AddInvoicePanel",outerPanel,buttonWidth,buttonHeight);
+		super("AddInvoicePanel",outerPanel,buttonWidth,buttonHeight,250);
 		this.databaseUiComunication = dbUiCom;
 		addItemPanel = this;
 
 		initLabelsTextFields();
-
+		
 		FormattedButton saveButton = new FormattedButton("Save", "SaveButton");
 		saveButton.setEnabled(false);
 		saveButton.setBounds((addItemPanel.getWidth() / 2) + 24,
