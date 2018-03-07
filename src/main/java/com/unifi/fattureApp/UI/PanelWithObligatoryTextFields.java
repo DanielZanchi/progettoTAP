@@ -15,7 +15,7 @@ public class PanelWithObligatoryTextFields extends JPanel{
 	private static final long serialVersionUID = 7883635384945697293L;
 	private LinkedList<JTextField> textFields;
 	private Color layerColor = new java.awt.Color(216, 245, 255);
-	//private int insets = 22;;
+	private int insets = 22;;
 	
 	public PanelWithObligatoryTextFields(String panelName,JLayeredPane outerPanel,int buttonWidth,int buttonHeight,int heightOffset) {
 		this.setBackground(layerColor);
@@ -23,7 +23,6 @@ public class PanelWithObligatoryTextFields extends JPanel{
 		this.setVisible(false);
 		this.setBorder(BorderFactory.createLineBorder(Color.white, 3));	
 		
-		int insets = 22;
 		int width = outerPanel.getWidth() - insets - insets;
 		int height = outerPanel.getHeight() - insets - insets-heightOffset;
 		this.setBounds(insets, insets, width, height);
