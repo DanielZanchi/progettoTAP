@@ -454,11 +454,11 @@ public abstract class AbstractCompanyIntegrationTest {
 		assertNotEquals(company1.hashCode(), company2.hashCode());
 	}
 	
-//	@Test
-//	public void testHashCodeCompanyWithNullFields() {
-//		Company company = new Company("1", "name", null, null, null, null, null, null, null, null);
-//		company.hashCode();
-//	}
+	@Test
+	public void testHashCodeCompanyWithNullFields() {
+		Company company = new Company("1", "name", null, null, null, null, null, null, null, null);
+		company.hashCode();
+	}
 
 	//client hashcode
 	@Test
@@ -480,11 +480,11 @@ public abstract class AbstractCompanyIntegrationTest {
 		assertNotEquals(client1.hashCode(), client2.hashCode());
 	}
 	
-//	@Test
-//	public void testHashCodeClientWithNullFields() {
-//		Client client = new Client("1", "name", null, null, null, null, null, null, null, null);
-//		client.hashCode();
-//	}
+	@Test
+	public void testHashCodeClientWithNullFields() {
+		Client client = new Client("1", "name", null, null, null, null, null, null, null, null);
+		client.hashCode();
+	}
 
 	//invoice hashcode
 	@Test
@@ -506,11 +506,11 @@ public abstract class AbstractCompanyIntegrationTest {
 		assertNotEquals(invoice1.hashCode(), invoice2.hashCode());
 	}
 	
-//	@Test
-//	public void testHashCodeInvoiceWithNullFields() {
-//		Invoice invoice = new Invoice("1", "name", null, null);
-//		invoice.hashCode();
-//	}
+	@Test
+	public void testHashCodeInvoiceWithNullFields() {
+		Invoice invoice = new Invoice("1", "name", null, null);
+		invoice.hashCode();
+	}
 
 	// company equals
 	@Test

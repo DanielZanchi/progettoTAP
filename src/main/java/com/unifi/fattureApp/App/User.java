@@ -43,11 +43,13 @@ public class User implements Serializable {
 		int result = 1;
 		for(Field field : fields) {
 			field.setAccessible(true);
+			int k = 0;
 			try {
-				result = primeNumber * result + ((field.get(this)==null) ? 0 : field.get(this).hashCode());
-			} catch (IllegalArgumentException | IllegalAccessException e) {
+				k = field.get(this).hashCode();
+			} catch (Exception e) {
 				LOGGER.error(e);
-			}		
+			}
+			result = primeNumber * result + k;
 		}
 		result = primeNumber*result+((getId()==null) ? 0 : getId().hashCode());
 		result = primeNumber*result+((getName()==null) ? 0 : getName().hashCode());
