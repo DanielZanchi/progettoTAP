@@ -1,12 +1,10 @@
 package com.unifi.fattureApp.UI;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
@@ -24,35 +22,15 @@ public class ItemInvoicePanel extends PanelWithObligatoryTextFields implements A
 
 	private DatabaseUiComunication databaseUiComunication;
 
-	private Color layerColor = new java.awt.Color(216, 245, 255);
 	private ItemInvoicePanel addItemPanel;
 	private boolean isSaving;
 
 	public ItemInvoicePanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight, DatabaseUiComunication dbUiCom) {
+		super("AddInvoicePanel",outerPanel,buttonWidth,buttonHeight);
 		this.databaseUiComunication = dbUiCom;
 		addItemPanel = this;
-		this.setVisible(false);
-
-		addItemPanel.setName("AddInvoicePanel");
-		addItemPanel.setBackground(layerColor);
-		addItemPanel.setBorder(BorderFactory.createLineBorder(Color.white, 3));
-		int insets = 22;
-		int width = outerPanel.getWidth() - insets - insets;
-		int height = outerPanel.getHeight() - (insets * 2) - 250;
-		addItemPanel.setBounds(insets, insets, width, height);
-		outerPanel.add(addItemPanel);
-		addItemPanel.setLayout(null);
-		outerPanel.setLayer(addItemPanel, 2);
 
 		initLabelsTextFields();
-
-		insets = 8;
-
-		FormattedButton cancelButton = new FormattedButton("Cancel", "CancelButton");
-		cancelButton.setBounds((addItemPanel.getWidth() / 2) - buttonWidth - 24,
-				addItemPanel.getHeight() - 20 - addItemPanel.getY(), buttonWidth, buttonHeight);
-		addItemPanel.add(cancelButton);
-		cancelButton.addActionListener(e -> addItemPanel.setVisible(false));
 
 		FormattedButton saveButton = new FormattedButton("Save", "SaveButton");
 		saveButton.setEnabled(false);
@@ -69,6 +47,7 @@ public class ItemInvoicePanel extends PanelWithObligatoryTextFields implements A
 			addItemPanel.setVisible(false);
 			databaseUiComunication.updateInvoicesReferences();
 		});
+		
 		String [] freeTextFields= {""};
 		super.setUpTextFields(addItemPanel.getComponents(), freeTextFields, saveButton);
 	}

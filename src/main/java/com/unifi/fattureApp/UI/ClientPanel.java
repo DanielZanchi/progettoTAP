@@ -1,9 +1,7 @@
 package com.unifi.fattureApp.UI;
 
-import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -26,34 +24,15 @@ public class ClientPanel extends PanelWithObligatoryTextFields implements AddPan
 	private JTextField clientPhoneTF;
 	private JTextField clientEmailTF;
 
-	private Color layerColor = new java.awt.Color(216, 245, 255);
 	private ClientPanel addClientPanel;
 	private boolean isSaving;
 
 	public ClientPanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight, DatabaseUiComunication dbUiCom) {
+		super("AddClientPanel",outerPanel,buttonWidth,buttonHeight);
 		addClientPanel = this;
 		myDatabaseUiComunication = dbUiCom;
 
-		this.setVisible(false);
-
-		addClientPanel.setName("AddClientPanel");
-		addClientPanel.setBackground(layerColor);
-		addClientPanel.setBorder(BorderFactory.createLineBorder(Color.white, 3));
-		int insets = 22;
-		int width = outerPanel.getWidth() - insets - insets;
-		int height = outerPanel.getHeight() - insets - insets;
-		addClientPanel.setBounds(insets, insets, width, height);
-		outerPanel.add(addClientPanel);
-		addClientPanel.setLayout(null);
-		outerPanel.setLayer(addClientPanel, 2);
-
 		initLabelsTextFields();
-
-		FormattedButton cancelButton = new FormattedButton("Cancel", "CancelButton");
-		cancelButton.setBounds((addClientPanel.getWidth() / 2) - buttonWidth - 24,
-				addClientPanel.getHeight() - 20 - addClientPanel.getY(), buttonWidth, buttonHeight);
-		addClientPanel.add(cancelButton);
-		cancelButton.addActionListener(e -> addClientPanel.setVisible(false));
 
 		FormattedButton saveButton = new FormattedButton("Save", "SaveButton");
 		saveButton.setEnabled(false);

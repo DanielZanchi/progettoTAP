@@ -35,10 +35,6 @@ public class MainWindowUI {
 
 	private static final String ARIAL = "Arial";
 
-	/**
-	 * Launch the application.
-	 */
-
 	public MainWindowUI(DatabaseUiComunication dbUiComm) {
 		myDatabaseUiComunication = dbUiComm;
 		initialize();
@@ -244,9 +240,7 @@ public class MainWindowUI {
 		createInvoiceButton.setBounds(invoicePanelWidth / 2 - (w / 2), invoicePanel.getHeight() - h - 8, w, h);
 		invoicePanel.add(createInvoiceButton);
 
-		// creare la fattura.
 		createInvoiceButton.addActionListener(e -> myDatabaseUiComunication.printSelected());
-
 
 		createAddRecordsPanels();
 		updateReferences(clientListComboBox, invoiceListcomboBox, myCompanyLabel);
@@ -259,7 +253,6 @@ public class MainWindowUI {
 		myDatabaseUiComunication.setClientsList(clientListComboBox);
 		myDatabaseUiComunication.setInvoicesList(invoiceListcomboBox);
 		myDatabaseUiComunication.setCompanyInfo(companyInfo);
-
 		myDatabaseUiComunication.updateAllReferences();
 	}
 

@@ -1,8 +1,11 @@
 package com.unifi.fattureApp.UI;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.util.LinkedList;
 
+import javax.swing.BorderFactory;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
@@ -11,6 +14,29 @@ import javax.swing.event.DocumentListener;
 public class PanelWithObligatoryTextFields extends JPanel{
 	private static final long serialVersionUID = 7883635384945697293L;
 	private LinkedList<JTextField> textFields;
+	private Color layerColor = new java.awt.Color(216, 245, 255);
+	private int insets = 22;;
+	
+	public PanelWithObligatoryTextFields(String panelName,JLayeredPane outerPanel,int buttonWidth,int buttonHeight) {
+		this.setBackground(layerColor);
+		this.setName(panelName);
+		this.setVisible(false);
+		this.setBorder(BorderFactory.createLineBorder(Color.white, 3));
+		
+		int width = outerPanel.getWidth() - insets - insets;
+		int height = outerPanel.getHeight() - (insets * 2) - 250;
+		this.setBounds(insets, insets, width, height);
+		
+		outerPanel.add(this);
+		this.setLayout(null);
+		outerPanel.setLayer(this, 2);
+		
+		FormattedButton cancelButton = new FormattedButton("Cancel", "CancelButton");
+		cancelButton.setBounds((this.getWidth() / 2) - buttonWidth - 24,
+				this.getHeight() - 20 - this.getY(), buttonWidth, buttonHeight);
+		this.add(cancelButton);
+		cancelButton.addActionListener(e ->	this.setVisible(false));
+	}
 
 	protected void setUpTextFields(Component[] components,String[] textFieldsNotObligatory, FormattedButton saveButton) {
 		textFields = new LinkedList<>();

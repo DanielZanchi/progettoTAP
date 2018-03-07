@@ -1,9 +1,7 @@
 package com.unifi.fattureApp.UI;
 
-import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -28,34 +26,15 @@ public class CompanyPanel extends PanelWithObligatoryTextFields implements AddPa
 	private JTextField companyEmailTF;
 	private CompanyPanel addCompanyPanel;
 
-	private Color layerColor = new java.awt.Color(216, 245, 255);
 
 	private boolean isSaving;
 
 	public CompanyPanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight, DatabaseUiComunication dbUiCom) {
+		super("AddCompanyPanel",outerPanel,buttonWidth,buttonHeight);
 		addCompanyPanel = this;
 		myDatabaseUiComunication = dbUiCom;
 
-		this.setVisible(false);
-
-		addCompanyPanel.setName("AddCompanyPanel");
-		addCompanyPanel.setBackground(layerColor);
-		addCompanyPanel.setBorder(BorderFactory.createLineBorder(Color.white, 3));
-		int insets = 22;
-		int width = outerPanel.getWidth() - insets - insets;
-		int height = outerPanel.getHeight() - insets - insets;
-		addCompanyPanel.setBounds(insets, insets, width, height);
-		outerPanel.add(addCompanyPanel);
-		addCompanyPanel.setLayout(null);
-		outerPanel.setLayer(addCompanyPanel, 2);
-
 		initLabelsTextFields();
-
-		FormattedButton cancelButton = new FormattedButton("Cancel", "CancelButton");
-		cancelButton.setBounds((addCompanyPanel.getWidth() / 2) - buttonWidth - 24,
-				addCompanyPanel.getHeight() - 20 - addCompanyPanel.getY(), buttonWidth, buttonHeight);
-		addCompanyPanel.add(cancelButton);
-		cancelButton.addActionListener(e ->	addCompanyPanel.setVisible(false));
 
 		FormattedButton saveButton = new FormattedButton("Save", "SaveButton");
 		saveButton.setEnabled(false);
@@ -79,7 +58,6 @@ public class CompanyPanel extends PanelWithObligatoryTextFields implements AddPa
 						companyProvinceTF.getText(), companyZipTF.getText(), companyCountryTF.getText(),
 						companyPhoneTF.getText(), companyEmailTF.getText());
 			}
-
 			addCompanyPanel.setVisible(false);
 			resetTextFields();
 			myDatabaseUiComunication.updateCompanyReference();
