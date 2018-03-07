@@ -11,11 +11,13 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import org.junit.Ignore;
+
 public class PanelWithObligatoryTextFields extends JPanel{
 	private static final long serialVersionUID = 7883635384945697293L;
 	private LinkedList<JTextField> textFields;
 	private Color layerColor = new java.awt.Color(216, 245, 255);
-	private int insets = 22;;
+	private int insets = 22;
 
 	public PanelWithObligatoryTextFields(String panelName,JLayeredPane outerPanel,int buttonWidth,int buttonHeight,int heightOffset) {
 		this.setBackground(layerColor);
@@ -68,6 +70,7 @@ public class PanelWithObligatoryTextFields extends JPanel{
 				}
 
 				@Override
+				@Ignore
 				public void changedUpdate(DocumentEvent e) {
 					changed();
 				}
