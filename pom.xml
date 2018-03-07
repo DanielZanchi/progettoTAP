@@ -28,7 +28,6 @@
 		<sonar.jacoco.itReportPath>${jacoco.data.it.file}</sonar.jacoco.itReportPath>
 
 		<sonar.coverage.exclusions>**/Main.*</sonar.coverage.exclusions>
-		<sonar.coverage.exclusions>**/PanelWithObligatoryTextFields.changedUpdate.java</sonar.coverage.exclusions>
 
 		<!-- For each rule to be ignore, add another eXX and two corresponding 
 			properties with eXX in the name as below -->
@@ -232,7 +231,6 @@
 						<configuration>
 							<excludes>
 								<exclude>**/Main.*</exclude>
-								<exclude>**/PanelWithObligatoryTextFields.changedUpdate.java</exclude>
 							</excludes>
 						</configuration>
 						<executions>
