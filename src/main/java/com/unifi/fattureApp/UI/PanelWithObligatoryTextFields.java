@@ -69,7 +69,7 @@ public class PanelWithObligatoryTextFields extends JPanel{
 
 				@Override
 				public void changedUpdate(DocumentEvent e) {
-					changed();
+					//Plain text components do not fire these events, so this block isn't covered
 				}
 
 				public void changed() {
