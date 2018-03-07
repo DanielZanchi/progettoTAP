@@ -3,6 +3,7 @@ package com.unifi.fattureApp.databaseIT;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.UnknownHostException;
 
 import org.junit.Before;
@@ -12,6 +13,7 @@ import com.unifi.fattureApp.App.Client;
 import com.unifi.fattureApp.App.Company;
 import com.unifi.fattureApp.App.DatabaseUiComunication;
 import com.unifi.fattureApp.App.Invoice;
+import com.unifi.fattureApp.App.PDFCreator;
 
 public abstract class AbstractDatabaseUiComunicationTest {
 	protected DatabaseUiComunication myDatabaseUiComunication;
@@ -237,13 +239,30 @@ public abstract class AbstractDatabaseUiComunicationTest {
 		}
 	}
 	
-//	@Test
-//	public void printSelectedWithNullClient() throws IOException {
-//		Client client = null;
-//		myDatabaseUiComunication.setCurrentSelectedClient(client);
-//		System.out.println(myDatabaseUiComunication.getCurrentSelectedClient());
-//		setTestCompanyToCurrentSelected();
-//		setTestInvoiceToCurrentSelected();
-//		myDatabaseUiComunication.printSelected();
-//	}
+	@Test (expected = Exception.class)
+	public void printSelectedWithNullClient() throws IOException {
+		Client client = null;
+		myDatabaseUiComunication.setCurrentSelectedClient(client);
+		Company company = setTestCompanyToCurrentSelected();
+		Invoice invoice = setTestInvoiceToCurrentSelected();
+		new PDFCreator(company, client, invoice);
+	}
+	
+	@Test (expected = Exception.class)
+	public void printSelectedWithNullCompany() throws IOException {
+		Company company = null;
+		myDatabaseUiComunication.setCurrentSelectedCompany(company);
+		Client client = setTestClientToCurrentSelected();
+		Invoice invoice = setTestInvoiceToCurrentSelected();
+		new PDFCreator(company, client, invoice);
+	}
+	
+	@Test (expected = Exception.class)
+	public void printSelectedWithNullInvoice() throws IOException {
+		Invoice invoice = null;
+		myDatabaseUiComunication.setCurrentSelectedInvoice(invoice);
+		Company company = setTestCompanyToCurrentSelected();
+		Client client = setTestClientToCurrentSelected();
+		new PDFCreator(company, client, invoice);
+	}
 }
