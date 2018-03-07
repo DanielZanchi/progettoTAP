@@ -11,8 +11,6 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import org.junit.Ignore;
-
 public class PanelWithObligatoryTextFields extends JPanel{
 	private static final long serialVersionUID = 7883635384945697293L;
 	private LinkedList<JTextField> textFields;
@@ -70,7 +68,6 @@ public class PanelWithObligatoryTextFields extends JPanel{
 				}
 
 				@Override
-				@Ignore
 				public void changedUpdate(DocumentEvent e) {
 					changed();
 				}
