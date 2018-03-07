@@ -231,6 +231,7 @@
 						<configuration>
 							<excludes>
 								<exclude>**/Main.*</exclude>
+								<exclude>**/PanelWithObligatoryTextField.*</exclude>
 							</excludes>
 						</configuration>
 						<executions>
