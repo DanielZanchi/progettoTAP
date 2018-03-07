@@ -20,7 +20,7 @@ public class DatabaseUiComunicationMongoTest extends AbstractDatabaseUiComunicat
 	public void testDatabaseIsInstanceOfMongoWrapper() {
 		assertEquals(MongoWrapper.class, myDatabaseUiComunication.getCurrentDatabaseClass());
 	}
-	
+
 	@Test
 	public void testMongoHostGivenAsParameter() throws UnknownHostException {
 		String [] args= {"testMongoHost"};

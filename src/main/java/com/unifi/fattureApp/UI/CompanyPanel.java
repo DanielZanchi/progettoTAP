@@ -35,7 +35,7 @@ public class CompanyPanel extends PanelWithObligatoryTextFields implements AddPa
 		myDatabaseUiComunication = dbUiCom;
 
 		initLabelsTextFields();
- 		
+
 		FormattedButton saveButton = new FormattedButton("Save", "SaveButton");
 		saveButton.setEnabled(false);
 		saveButton.setBounds((addCompanyPanel.getWidth() / 2) + 24,

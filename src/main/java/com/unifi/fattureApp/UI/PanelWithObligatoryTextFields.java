@@ -16,26 +16,26 @@ public class PanelWithObligatoryTextFields extends JPanel{
 	private LinkedList<JTextField> textFields;
 	private Color layerColor = new java.awt.Color(216, 245, 255);
 	private int insets = 22;;
-	
+
 	public PanelWithObligatoryTextFields(String panelName,JLayeredPane outerPanel,int buttonWidth,int buttonHeight,int heightOffset) {
 		this.setBackground(layerColor);
 		this.setName(panelName);
 		this.setVisible(false);
 		this.setBorder(BorderFactory.createLineBorder(Color.white, 3));	
-		
+
 		int width = outerPanel.getWidth() - insets - insets;
 		int height = outerPanel.getHeight() - insets - insets-heightOffset;
 		this.setBounds(insets, insets, width, height);
 		outerPanel.add(this);
 		this.setLayout(null);
 		outerPanel.setLayer(this, 2);
-		
+
 		FormattedButton cancelButton = new FormattedButton("Cancel", "CancelButton");
 		cancelButton.setBounds((this.getWidth() / 2) - buttonWidth - 24,
 				this.getHeight() - 20 - this.getY(), buttonWidth, buttonHeight);
 		this.add(cancelButton);
 		cancelButton.addActionListener(e ->	this.setVisible(false));
-		
+
 	}
 
 	protected void setUpTextFields(Component[] components,String[] textFieldsNotObligatory, FormattedButton saveButton) {
@@ -69,8 +69,7 @@ public class PanelWithObligatoryTextFields extends JPanel{
 
 				@Override
 				public void changedUpdate(DocumentEvent e) {
-					insertUpdate(e);
-					removeUpdate(e);
+					changed();
 				}
 
 				public void changed() {

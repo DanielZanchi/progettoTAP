@@ -55,7 +55,6 @@ public class MainWindowUITest {
 		window.background().requireEqualTo(java.awt.Color.LIGHT_GRAY);
 	}
 
-
 	@Test 
 	public void testNonTestConstructor() {
 		String [] args= {};
@@ -65,6 +64,7 @@ public class MainWindowUITest {
 			fail();
 		}
 	}
+
 	//Company panel
 	@Test
 	public void testAddButtonText() {

@@ -238,7 +238,7 @@ public abstract class AbstractDatabaseUiComunicationTest {
 			new File("Invoice.pdf").delete();
 		}
 	}
-	
+
 	@Test (expected = Exception.class)
 	public void printSelectedWithNullClient() throws IOException {
 		Client client = null;
@@ -247,7 +247,7 @@ public abstract class AbstractDatabaseUiComunicationTest {
 		Invoice invoice = setTestInvoiceToCurrentSelected();
 		new PDFCreator(company, client, invoice);
 	}
-	
+
 	@Test (expected = Exception.class)
 	public void printSelectedWithNullCompany() throws IOException {
 		Company company = null;
@@ -256,7 +256,7 @@ public abstract class AbstractDatabaseUiComunicationTest {
 		Invoice invoice = setTestInvoiceToCurrentSelected();
 		new PDFCreator(company, client, invoice);
 	}
-	
+
 	@Test (expected = Exception.class)
 	public void printSelectedWithNullInvoice() throws IOException {
 		Invoice invoice = null;

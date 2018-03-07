@@ -453,7 +453,7 @@ public abstract class AbstractCompanyIntegrationTest {
 		Company company2 = companyController.getCompanyId("2");
 		assertNotEquals(company1.hashCode(), company2.hashCode());
 	}
-	
+
 	@Test
 	public void testHashCodeCompanyWithNullFields() {
 		Company company = new Company("1", "name", null, null, null, null, null, null, null, null);
@@ -479,7 +479,7 @@ public abstract class AbstractCompanyIntegrationTest {
 		Client client2 = companyController.getClientId("2");
 		assertNotEquals(client1.hashCode(), client2.hashCode());
 	}
-	
+
 	@Test
 	public void testHashCodeClientWithNullFields() {
 		Client client = new Client("1", "name", null, null, null, null, null, null, null, null);
@@ -505,7 +505,7 @@ public abstract class AbstractCompanyIntegrationTest {
 		Invoice invoice2 = companyController.getInvoiceId("2");
 		assertNotEquals(invoice1.hashCode(), invoice2.hashCode());
 	}
-	
+
 	@Test
 	public void testHashCodeInvoiceWithNullFields() {
 		Invoice invoice = new Invoice("1", "name", null, null);
@@ -520,7 +520,7 @@ public abstract class AbstractCompanyIntegrationTest {
 		Company company2 = companyController.getCompanyId("2");
 		assertEquals(false, company1.equals(company2));
 	}
-	
+
 	@Test
 	public void testCompanyNotEqualsForDifferentFields() {
 		Company company1 = new Company("1", "a", "b", "c", "d", "e", "f", "g", "ba", "be");
@@ -549,7 +549,7 @@ public abstract class AbstractCompanyIntegrationTest {
 
 		assertEquals(false, company.equals(nullCompany));
 	}
-	
+
 	@Test
 	public void testCompaniesWithNullFields() {
 		Company company1 = new Company("1", "name", null, null, null, null, null, null, null, null);
@@ -594,7 +594,7 @@ public abstract class AbstractCompanyIntegrationTest {
 
 		assertEquals(false, client.equals(nullClient));
 	}
-	
+
 	@Test
 	public void testEqualsClientsWithNullFields() {
 		Client client1 = new Client("1", "name", null, null, null, null, null, null, null, null);
@@ -639,7 +639,7 @@ public abstract class AbstractCompanyIntegrationTest {
 
 		assertEquals(false, invoice.equals(nullInvoice));
 	}
-	
+
 	@Test
 	public void testEqualsInvoicesWithNullFields() {
 		Invoice invoice1 = new Invoice("1", "name", null, null);

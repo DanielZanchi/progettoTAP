@@ -33,7 +33,7 @@ public class ClientPanel extends PanelWithObligatoryTextFields implements AddPan
 		myDatabaseUiComunication = dbUiCom;
 
 		initLabelsTextFields();
-		
+
 		FormattedButton saveButton = new FormattedButton("Save", "SaveButton");
 		saveButton.setEnabled(false);
 		saveButton.setBounds((addClientPanel.getWidth() / 2) + 24,

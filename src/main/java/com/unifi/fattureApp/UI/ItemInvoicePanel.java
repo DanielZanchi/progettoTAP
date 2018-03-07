@@ -31,7 +31,7 @@ public class ItemInvoicePanel extends PanelWithObligatoryTextFields implements A
 		addItemPanel = this;
 
 		initLabelsTextFields();
-		
+
 		FormattedButton saveButton = new FormattedButton("Save", "SaveButton");
 		saveButton.setEnabled(false);
 		saveButton.setBounds((addItemPanel.getWidth() / 2) + 24,
@@ -47,7 +47,7 @@ public class ItemInvoicePanel extends PanelWithObligatoryTextFields implements A
 			addItemPanel.setVisible(false);
 			databaseUiComunication.updateInvoicesReferences();
 		});
-		
+
 		String [] freeTextFields= {""};
 		super.setUpTextFields(addItemPanel.getComponents(), freeTextFields, saveButton);
 	}
