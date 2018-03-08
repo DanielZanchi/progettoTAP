@@ -12,9 +12,14 @@ We used the following tools:
  * <a href="https://about.sonarcloud.io">SonarCloud</a> &nbsp;&nbsp;&nbsp;&nbsp;[![Quality Gate](https://sonarcloud.io/api/badges/gate?key=com.unifi:fatture)](https://sonarcloud.io/dashboard?id=com.unifi:fatture)
  
  * <a href="https://junit.org/junit4/">Junit</a>
- * <a href="https://www.docker.com">Docker</a>
- * <a href="https://www.mongodb.com">Mongo</a>
+ * <a href="https://www.docker.com">Docker</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[![Docker Build Status](https://img.shields.io/docker/build/jrottenberg/ffmpeg.svg)](https://github.com/Danny182/progettoTAP)
+
+ * <a href="https://www.mongodb.com">MongoDB</a>
  * <a href="https://redis.io">Redis</a>
+ * <a href="https://maven.apache.org/">Maven</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[![Maven Central](https://img.shields.io/maven-central/v/org.apache.maven/apache-maven.svg)](https://github.com/Danny182/progettoTAP)
+
  
  
  
