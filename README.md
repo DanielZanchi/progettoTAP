@@ -11,7 +11,7 @@ We used the following tools:
  * <a href="https://www.docker.com">Docker</a>
  * <a href="https://www.mongodb.com">Mongo</a>
  * <a href="https://redis.io">Redis</a>
- * <a href="https://travis-ci.org/Danny182/progettoTAP">Travis</a> [![Build Status](https://travis-ci.org/Danny182/progettoTAP.svg?branch=master)](https://travis-ci.org/Danny182/progettoTAP)
+ * <a href="https://travis-ci.org">Travis</a>     [![Build Status](https://travis-ci.org/Danny182/progettoTAP.svg?branch=master)](https://travis-ci.org/Danny182/progettoTAP)
  
  
  
