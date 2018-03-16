@@ -604,10 +604,17 @@ public abstract class AbstractCompanyIntegrationTest {
 
 	// invoice equals
 	@Test
-	public void testInvoiceNotEqualsForDifferentObjectWithDifferentNameAndId() {
+	public void testInvoiceNotEqualsForDifferentNameAndId() {
 		testHelper.addTwoInvoices();
 		Invoice invoice1 = companyController.getInvoiceId("1");
 		Invoice invoice2 = companyController.getInvoiceId("2");
+		assertEquals(false, invoice1.equals(invoice2));
+	}
+	
+	@Test
+	public void testInvoiceNotEqualsForDifferentNameButEqualsId() {
+		Invoice invoice1 = new Invoice("1", "a", "b", "c");
+		Invoice invoice2 = new Invoice("1", "b", "b", "c");
 		assertEquals(false, invoice1.equals(invoice2));
 	}
 
