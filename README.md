@@ -9,7 +9,7 @@ We used the following tools:
  
  * <a href="https://coveralls.io">Coveralls</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[![Coverage Status](https://coveralls.io/repos/github/Danny182/progettoTAP/badge.svg?branch=master)](https://coveralls.io/github/Danny182/progettoTAP?branch=master)
  
- * <a href="https://about.sonarcloud.io">SonarCloud</a> &nbsp;&nbsp;&nbsp;&nbsp;[![Quality Gate](https://sonarcloud.io/api/badges/gate?key=com.unifi:fatture)](https://sonarcloud.io/dashboard?id=com.unifi:fatture)
+ * <a href="https://about.sonarcloud.io">SonarCloud</a> &nbsp;&nbsp;&nbsp;&nbsp;[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=com.unifi%3Afatture&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.unifi:fatture)
  
  * <a href="https://junit.org/junit4/">Junit</a>
  * <a href="https://www.docker.com">Docker</a>
