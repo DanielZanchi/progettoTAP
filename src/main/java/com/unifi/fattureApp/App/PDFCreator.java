@@ -111,7 +111,7 @@ public class PDFCreator {
 		contentStream.setFont(helveticaFont, fontSize);
 		contentStream.newLineAtOffset(54, 0);
 		// invoice number here
-		contentStream.showText("1");
+		contentStream.showText(String.valueOf(selectedCompany.getCreatedInvoices()));
 
 		stringToPrint = "Invoice date: ";
 		contentStream.setFont(helveticaBoldFont, fontSize);

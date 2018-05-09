@@ -14,7 +14,7 @@ public class FakeDatabaseUiComunicationMongoTest extends AbstractDatabaseUiComun
 	@Override
 	public void setUpDatabase() throws UnknownHostException {
 		String args[] = null;
-		myDatabaseUiComunication = new RealDatabaseUiComunication(args, true);
+		myDatabaseUiComunication = new FakeDatabaseUiComunication(args, true);
 	}
 
 	@Test
@@ -25,6 +25,6 @@ public class FakeDatabaseUiComunicationMongoTest extends AbstractDatabaseUiComun
 	@Test
 	public void testMongoHostGivenAsParameter() throws UnknownHostException {
 		String [] args= {"testMongoHost"};
-		new FakeDatabaseUiComunication(args, true);
+		new RealDatabaseUiComunication(args, true);
 	}
 }

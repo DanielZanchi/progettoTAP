@@ -350,6 +350,27 @@ public abstract class AbstractCompanyIntegrationTest {
 		companyController.editCompany(company);
 		assertEquals("EditedName", companyController.getCompanyId("1").getName());
 	}
+	
+	@Test
+	public void testCompanyCreatedInvoicesDefaultValue() {
+		Company company = addTestCompanyToDB();
+		assertEquals(1, company.getCreatedInvoices());
+	}
+	
+	@Test
+	public void testCompanyCanIncrementCreatedInvoicesValue() {
+		Company company = addTestCompanyToDB();
+		company.updateCreatedInvoicesNumber();
+		assertEquals(2, company.getCreatedInvoices());
+	}
+	
+	@Test
+	public void testOnlySelectedCompanyIncrementsCreatedInvoicesValue() {
+		Company company = addTestCompanyToDB();
+		testHelper.addCompany("2", "nameC2", "vatCode2", "address2", "city2", "province2", "zipCode2", "country2", "phone2", "email2");
+		company.updateCreatedInvoicesNumber();
+		assertNotEquals(0, company.getCreatedInvoices());
+	}
 
 	//invoice
 	private Invoice addTestInvoiceToDB() {

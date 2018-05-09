@@ -10,6 +10,8 @@ public class Company extends User {
 	private String country;
 	private String phone;
 	private String email;
+	
+	private int createdInvoices=1;
 
 	public  Company() {
 	}
@@ -25,7 +27,15 @@ public class Company extends User {
 		this.setPhone(phone);
 		this.setEmail(email);
 	}
-
+	
+	public int getCreatedInvoices() {
+		return this.createdInvoices;
+	}
+	
+	public void updateCreatedInvoicesNumber() {
+		this.createdInvoices++;
+	}
+	
 	public String getVatCode() {
 		return vatCode;
 	}

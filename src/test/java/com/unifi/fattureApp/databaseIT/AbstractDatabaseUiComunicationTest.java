@@ -238,6 +238,26 @@ public abstract class AbstractDatabaseUiComunicationTest {
 			new File("Invoice.pdf").delete();
 		}
 	}
+	
+	@Test
+	public void afterPrintingCompanyCreatedInvoicesValueIncreasesTest() throws Exception {
+		Company company=setTestCompanyToCurrentSelected();
+		setTestClientToCurrentSelected();
+		setTestInvoiceToCurrentSelected();
+		boolean created = myDatabaseUiComunication.printSelected();
+		assertEquals(2, company.getCreatedInvoices());
+		if(created) {
+			new File("Invoice.pdf").delete();
+		}
+	}
+	
+	@Test
+	public void beforeCompanyCreatedInvoicesValueIsOneTest() throws Exception {
+		Company company=setTestCompanyToCurrentSelected();
+		setTestClientToCurrentSelected();
+		setTestInvoiceToCurrentSelected();
+		assertEquals(1, company.getCreatedInvoices());
+	}
 
 	@Test (expected = Exception.class)
 	public void printSelectedWithNullClient() throws IOException {

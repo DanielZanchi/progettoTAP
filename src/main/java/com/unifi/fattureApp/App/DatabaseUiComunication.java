@@ -123,6 +123,7 @@ public abstract class DatabaseUiComunication {
 	public boolean printSelected(){
 		try {
 			new PDFCreator(currentSelectedCompany, currentSelectedClient, currentSelectedInvoice);
+			currentSelectedCompany.updateCreatedInvoicesNumber();
 			return true;
 		}  catch (Exception e) {
 			LOGGER.error(e);
