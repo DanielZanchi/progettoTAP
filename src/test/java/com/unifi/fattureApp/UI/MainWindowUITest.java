@@ -15,7 +15,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.unifi.fattureApp.App.DatabaseUiComunication;
+import com.unifi.fattureApp.App.FakeDatabaseUiComunication;
 
 public class MainWindowUITest {
 	private FrameFixture window;
@@ -59,7 +59,7 @@ public class MainWindowUITest {
 	public void testNonTestConstructor() {
 		String [] args= {};
 		try {
-			MainWindowUI frame = new MainWindowUI(new DatabaseUiComunication(true, args, true));
+			MainWindowUI frame = new MainWindowUI(new FakeDatabaseUiComunication(args, true));
 		} catch (UnknownHostException e) {
 			fail();
 		}

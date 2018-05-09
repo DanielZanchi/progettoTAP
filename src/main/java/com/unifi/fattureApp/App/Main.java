@@ -11,9 +11,9 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		DatabaseUiComunication mongoUiComunication;
 		if(args.length>1) {//redis
-			mongoUiComunication = new DatabaseUiComunication(false, args, false);
+			mongoUiComunication = new RealDatabaseUiComunication(args, false);
 		}else {//mongo
-			mongoUiComunication = new DatabaseUiComunication(false, args, true);
+			mongoUiComunication = new RealDatabaseUiComunication(args, true);
 		}
 
 		//Launch UI

@@ -7,7 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JTextField;
 
-
 import com.unifi.fattureApp.App.DatabaseUiComunication;
 
 public class CompanyPanel extends PanelWithObligatoryTextFields implements AddPanel {

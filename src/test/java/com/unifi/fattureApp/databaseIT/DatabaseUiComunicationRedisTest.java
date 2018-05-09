@@ -9,7 +9,7 @@ import org.junit.After;
 import org.junit.Test;
 import org.slf4j.LoggerFactory;
 
-import com.unifi.fattureApp.App.DatabaseUiComunication;
+import com.unifi.fattureApp.App.RealDatabaseUiComunication;
 import com.unifi.fattureApp.wrappers.RedisWrapper;
 
 import ch.qos.logback.classic.LoggerContext;
@@ -29,7 +29,7 @@ public class DatabaseUiComunicationRedisTest extends AbstractDatabaseUiComunicat
 		LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
 		loggerContext.stop();
 		String args[] = null;
-		myDatabaseUiComunication = new DatabaseUiComunication(true, args, false);
+		myDatabaseUiComunication = new RealDatabaseUiComunication(args, false);
 	}
 
 	@Test

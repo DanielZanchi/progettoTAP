@@ -14,6 +14,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import com.unifi.fattureApp.App.DatabaseUiComunication;
+import com.unifi.fattureApp.App.FakeDatabaseUiComunication;
 
 public class MainWindowUI {
 	// prova pull request...
@@ -41,7 +42,7 @@ public class MainWindowUI {
 	}
 
 	public MainWindowUI() throws UnknownHostException  {
-		myDatabaseUiComunication = new DatabaseUiComunication(true, null, true);
+		myDatabaseUiComunication = new FakeDatabaseUiComunication(null, true);
 		initialize();
 	}
 

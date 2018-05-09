@@ -6,14 +6,14 @@ import java.net.UnknownHostException;
 
 import org.junit.Test;
 
-import com.unifi.fattureApp.App.DatabaseUiComunication;
+import com.unifi.fattureApp.App.FakeDatabaseUiComunication;
 import com.unifi.fattureApp.wrappers.MongoWrapper;
 
-public class DatabaseUiComunicationMongoTest extends AbstractDatabaseUiComunicationTest{	
+public class FakeDatabaseUiComunicationMongoTest extends AbstractDatabaseUiComunicationTest{	
 	@Override
 	public void setUpDatabase() throws UnknownHostException {
 		String args[] = null;
-		myDatabaseUiComunication = new DatabaseUiComunication(true, args, true);
+		myDatabaseUiComunication = new FakeDatabaseUiComunication(args, true);
 	}
 
 	@Test
@@ -24,6 +24,6 @@ public class DatabaseUiComunicationMongoTest extends AbstractDatabaseUiComunicat
 	@Test
 	public void testMongoHostGivenAsParameter() throws UnknownHostException {
 		String [] args= {"testMongoHost"};
-		new DatabaseUiComunication(false, args, true);
+		new FakeDatabaseUiComunication(args, true);
 	}
 }

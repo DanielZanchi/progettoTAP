@@ -60,7 +60,7 @@
 			<artifactId>fongo</artifactId>
 			<version>1.6.5</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>testcontainers</artifactId>
@@ -184,6 +184,7 @@
 					<artifactId>sonar-maven–plugin</artifactId>
 					<version>3.0.1</version>
 				</plugin>
+				
 			</plugins>
 		</pluginManagement>
 		<plugins>

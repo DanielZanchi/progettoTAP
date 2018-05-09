@@ -9,22 +9,15 @@ import javax.swing.JLabel;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 
-import com.github.fakemongo.Fongo;
-import com.mongodb.MongoClient;
-import com.unifi.fattureApp.wrappers.MongoWrapper;
 import com.unifi.fattureApp.wrappers.RedisWrapper;
 
-import ch.qos.logback.classic.Level;
-import ch.qos.logback.classic.LoggerContext;
-
-public class DatabaseUiComunication {
+public abstract class DatabaseUiComunication {
 	private static final Logger LOGGER = LogManager.getLogger(DatabaseUiComunication.class);
-	private Database database;
-	private String mongoHost = "localhost";
+	protected Database database;
+	protected String mongoHost = "localhost";
 	private AppController myCompanyController;
 
 	private Company currentSelectedCompany;
@@ -41,9 +34,9 @@ public class DatabaseUiComunication {
 	private JButton editClientButton;
 	private JButton editInvoiceButton;
 
-	public DatabaseUiComunication(boolean testing, String[] args, boolean usingMongodb) throws UnknownHostException {	
+	public DatabaseUiComunication(String[] args, boolean usingMongodb) throws UnknownHostException {	
 		if(usingMongodb) {
-			settingUpMongodb(args, testing);
+			settingUpMongodb(args);
 		}else {
 			setUpOtherdb();
 		}
@@ -61,23 +54,7 @@ public class DatabaseUiComunication {
 		context.close();
 	}
 
-	private void settingUpMongodb(String[] args, boolean testing) throws UnknownHostException {
-		if (args!=null && args.length > 0)
-			mongoHost = args[0];
-
-		MongoClient mongoClient = null;
-		if(testing) {
-			Fongo fongo = new Fongo("mongo server 1");
-			mongoClient = fongo.getMongo();
-
-			LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
-			ch.qos.logback.classic.Logger rootLogger = loggerContext.getLogger("com.mongodb.FongoDBCollection");
-			rootLogger.setLevel(Level.OFF);
-		}else {
-			mongoClient = new MongoClient(mongoHost, 27017);
-		}
-		database = new MongoWrapper(mongoClient);
-	}
+	abstract void settingUpMongodb(String[] args) throws UnknownHostException;
 
 	public boolean addClientToDatabase(String name, String fiscalCode, String residence, String city, String province,
 			String zip, String country, String phone, String email) {
