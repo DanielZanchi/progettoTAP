@@ -11,7 +11,7 @@ import com.unifi.fattureApp.helpTestTools.TestHelperTool;
 import ch.qos.logback.classic.LoggerContext;
 import redis.embedded.RedisServer;
 
-public class RedisWrapperTest extends AbstractWrapperTest{
+public class RedisWrapperTest extends AbstractWrapperTest {
 	private RedisServer redisServer;
 
 	@Override

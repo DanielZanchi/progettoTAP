@@ -1,8 +1,3 @@
-/**
- * May 20, 2017
- * @author Danny
- *
- */
 package com.unifi.fattureApp.UI;
 
 import java.io.IOException;

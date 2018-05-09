@@ -31,11 +31,6 @@ public abstract class AbstractDatabaseUiComunicationTest {
 	}
 
 	@Test
-	public void test2() {
-
-	}
-
-	@Test
 	public void clientsCountWithNoClientsTest() {
 		assertEquals(0, myDatabaseUiComunication.getClientsCount());
 	}
@@ -47,30 +42,29 @@ public abstract class AbstractDatabaseUiComunicationTest {
 	}
 
 	@Test
-	public void testgetListSizeOfClientsWithNoClients() {
+	public void testGetListSizeOfClientsWithNoClients() {
 		assertEquals(0, myDatabaseUiComunication.getSavedClients().size());
 	}
 
 	@Test
-	public void testgetListSizeOfClientsWithOneClient() {
+	public void testGetListSizeOfClientsWithOneClient() {
 		addTestClient();
 		assertEquals(1, myDatabaseUiComunication.getSavedClients().size());
 	}
 
 	@Test
-	public void testgetListOfClientsWithOneClientCheckName() {
+	public void testGetListOfClientsWithOneClientCheckName() {
 		addTestClient();
 		assertEquals("name", myDatabaseUiComunication.getSavedClients().get(0).getName());
 	}
 
-
 	@Test 
-	public void testgetCurrentSelectedClientWithNoClientSelected() {
+	public void testGetCurrentSelectedClientWithNoClientSelected() {
 		assertEquals(null, myDatabaseUiComunication.getCurrentSelectedClient());
 	}
 
 	@Test 
-	public void testgetCurrentSelectedClientWithClientSelected() {
+	public void testGetCurrentSelectedClientWithClientSelected() {
 		Client client = setTestClientToCurrentSelected();
 		assertEquals(myDatabaseUiComunication.getCurrentSelectedClient(), client);
 	}
@@ -91,11 +85,7 @@ public abstract class AbstractDatabaseUiComunicationTest {
 		return client;
 	}
 
-
 	//Company
-
-
-
 	@Test 
 	public void getCurrentSelectedCompanyWithNoCompanySelected() {
 		assertEquals(null, myDatabaseUiComunication.getCurrentSelectedCompany());
@@ -141,18 +131,18 @@ public abstract class AbstractDatabaseUiComunicationTest {
 	}
 
 	@Test
-	public void testgetListSizeOfCompaniesWithNoCompanies() {
+	public void testGetListSizeOfCompaniesWithNoCompanies() {
 		assertEquals(0, myDatabaseUiComunication.getSavedCompanies().size());
 	}
 
 	@Test
-	public void testgetListSizeOfCompaniesWithOneCompany() {
+	public void testGetListSizeOfCompaniesWithOneCompany() {
 		addTestCompany();
 		assertEquals(1, myDatabaseUiComunication.getSavedCompanies().size());
 	}
 
 	@Test
-	public void testgetListOfCompaniesWithOneCompanyCheckName() {
+	public void testGetListOfCompaniesWithOneCompanyCheckName() {
 		addTestCompany();
 		assertEquals("name", myDatabaseUiComunication.getSavedCompanies().get(0).getName());
 	}
@@ -202,18 +192,18 @@ public abstract class AbstractDatabaseUiComunicationTest {
 	}
 
 	@Test
-	public void testgetListSizeOfInvoicesWithNoInvoices() {
+	public void testGetListSizeOfInvoicesWithNoInvoices() {
 		assertEquals(0, myDatabaseUiComunication.getSavedInvoices().size());
 	}
 
 	@Test
-	public void testgetListSizeOfInvoicesWithOneInvoice() {
+	public void testGetListSizeOfInvoicesWithOneInvoice() {
 		addTestInvoice();
 		assertEquals(1, myDatabaseUiComunication.getSavedInvoices().size());
 	}
 
 	@Test
-	public void testgetListOfInvoicesWithOneInvoiceCheckName() {
+	public void testGetListOfInvoicesWithOneInvoiceCheckName() {
 		addTestInvoice();
 		assertEquals("name", myDatabaseUiComunication.getSavedInvoices().get(0).getName());
 	}
@@ -241,7 +231,7 @@ public abstract class AbstractDatabaseUiComunicationTest {
 	
 	@Test
 	public void afterPrintingCompanyCreatedInvoicesValueIncreasesTest() throws Exception {
-		Company company=setTestCompanyToCurrentSelected();
+		Company company = setTestCompanyToCurrentSelected();
 		setTestClientToCurrentSelected();
 		setTestInvoiceToCurrentSelected();
 		boolean created = myDatabaseUiComunication.printSelected();
@@ -253,7 +243,7 @@ public abstract class AbstractDatabaseUiComunicationTest {
 	
 	@Test
 	public void beforeCompanyCreatedInvoicesValueIsOneTest() throws Exception {
-		Company company=setTestCompanyToCurrentSelected();
+		Company company = setTestCompanyToCurrentSelected();
 		setTestClientToCurrentSelected();
 		setTestInvoiceToCurrentSelected();
 		assertEquals(1, company.getCreatedInvoices());

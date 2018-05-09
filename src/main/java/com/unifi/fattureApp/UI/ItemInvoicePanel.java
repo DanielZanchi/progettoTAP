@@ -26,7 +26,7 @@ public class ItemInvoicePanel extends PanelWithObligatoryTextFields implements A
 	private boolean isSaving;
 
 	public ItemInvoicePanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight, DatabaseUiComunication dbUiCom) {
-		super("AddInvoicePanel",outerPanel,buttonWidth,buttonHeight,250);
+		super("AddInvoicePanel", outerPanel, buttonWidth, buttonHeight, 250);
 		this.databaseUiComunication = dbUiCom;
 		addItemPanel = this;
 
@@ -48,7 +48,7 @@ public class ItemInvoicePanel extends PanelWithObligatoryTextFields implements A
 			databaseUiComunication.updateInvoicesReferences();
 		});
 
-		String [] freeTextFields= {""};
+		String[] freeTextFields = {""};
 		super.setUpTextFields(addItemPanel.getComponents(), freeTextFields, saveButton);
 	}
 
@@ -95,14 +95,14 @@ public class ItemInvoicePanel extends PanelWithObligatoryTextFields implements A
 	private void setUpLabelInThePanel(JLabel label, int insetsMiddle, JComponent relatedComponent) {
 		int width = (int) label.getPreferredSize().getWidth();
 		int height = (int) label.getPreferredSize().getHeight();
-		label.setBounds((addItemPanel.getWidth() / 2) - (width / 2)+insetsMiddle, relatedComponent.getY() + relatedComponent.getHeight() + 23, width, height);
+		label.setBounds((addItemPanel.getWidth() / 2) - (width / 2) + insetsMiddle, relatedComponent.getY() + relatedComponent.getHeight() + 23, width, height);
 		addItemPanel.add(label);
 	}
 
 	private void setUpTextFieldInThePanel(JTextField textField, int width, String name, int insetsWidth, int insets, JLabel linkedLabel) {
 		textField.setName(name);
 		textField.setHorizontalAlignment(JTextField.CENTER);
-		textField.setBounds((addItemPanel.getWidth() / 2) - (width / 2)+insetsWidth, linkedLabel.getY() + linkedLabel.getHeight() + insets, width, 28);
+		textField.setBounds((addItemPanel.getWidth() / 2) - (width / 2) + insetsWidth, linkedLabel.getY() + linkedLabel.getHeight() + insets, width, 28);
 		addItemPanel.add(textField);
 	}
 

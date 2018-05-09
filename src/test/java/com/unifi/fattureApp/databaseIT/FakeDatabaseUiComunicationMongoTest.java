@@ -10,7 +10,7 @@ import com.unifi.fattureApp.App.FakeDatabaseUiComunication;
 import com.unifi.fattureApp.App.RealDatabaseUiComunication;
 import com.unifi.fattureApp.wrappers.MongoWrapper;
 
-public class FakeDatabaseUiComunicationMongoTest extends AbstractDatabaseUiComunicationTest{	
+public class FakeDatabaseUiComunicationMongoTest extends AbstractDatabaseUiComunicationTest {	
 	@Override
 	public void setUpDatabase() throws UnknownHostException {
 		String args[] = null;
@@ -24,7 +24,7 @@ public class FakeDatabaseUiComunicationMongoTest extends AbstractDatabaseUiComun
 
 	@Test
 	public void testMongoHostGivenAsParameter() throws UnknownHostException {
-		String [] args= {"testMongoHost"};
+		String[] args = {"testMongoHost"};
 		new RealDatabaseUiComunication(args, true);
 	}
 }

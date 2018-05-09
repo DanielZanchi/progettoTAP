@@ -17,7 +17,7 @@ public class PanelWithObligatoryTextFields extends JPanel{
 	private Color layerColor = new java.awt.Color(216, 245, 255);
 	private int insets = 22;
 
-	public PanelWithObligatoryTextFields(String panelName,JLayeredPane outerPanel,int buttonWidth,int buttonHeight,int heightOffset) {
+	public PanelWithObligatoryTextFields(String panelName, JLayeredPane outerPanel, int buttonWidth, int buttonHeight, int heightOffset) {
 		this.setBackground(layerColor);
 		this.setName(panelName);
 		this.setVisible(false);
@@ -38,14 +38,14 @@ public class PanelWithObligatoryTextFields extends JPanel{
 
 	}
 
-	protected void setUpTextFields(Component[] components,String[] textFieldsNotObligatory, FormattedButton saveButton) {
+	protected void setUpTextFields(Component[] components, String[] textFieldsNotObligatory, FormattedButton saveButton) {
 		textFields = new LinkedList<>();
 		for (Component component : components) {
 			if (component.getClass().equals(JTextField.class)){
-				boolean sameName=false;
+				boolean sameName = false;
 				for(int i = 0; i<textFieldsNotObligatory.length; i++) {
 					if(((JTextField) component).getName().equals(textFieldsNotObligatory[i])) {
-						sameName=true;
+						sameName = true;
 						break;
 					}
 				}

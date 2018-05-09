@@ -29,7 +29,7 @@ public class CompanyPanel extends PanelWithObligatoryTextFields implements AddPa
 	private boolean isSaving;
 
 	public CompanyPanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight, DatabaseUiComunication dbUiCom) {
-		super("AddCompanyPanel",outerPanel,buttonWidth,buttonHeight,0);
+		super("AddCompanyPanel", outerPanel, buttonWidth, buttonHeight, 0);
 		addCompanyPanel = this;
 		myDatabaseUiComunication = dbUiCom;
 
@@ -48,7 +48,7 @@ public class CompanyPanel extends PanelWithObligatoryTextFields implements AddPa
 						companyPhoneTF.getText(), companyEmailTF.getText());
 
 				if (saved) {
-					myDatabaseUiComunication.setCurrentSelectedCompany(myDatabaseUiComunication.getSavedCompanies().get(myDatabaseUiComunication.getSavedCompanies().size()-1));
+					myDatabaseUiComunication.setCurrentSelectedCompany(myDatabaseUiComunication.getSavedCompanies().get(myDatabaseUiComunication.getSavedCompanies().size() - 1));
 					myDatabaseUiComunication.enableEditCompanyButton();
 				}
 			}else {
@@ -62,8 +62,8 @@ public class CompanyPanel extends PanelWithObligatoryTextFields implements AddPa
 			myDatabaseUiComunication.updateCompanyReference();
 		});
 
-		String [] freeTextFields= {"companyPhoneTextField","companyEmailTextField"};
-		super.setUpTextFields(addCompanyPanel.getComponents(),freeTextFields,saveButton);
+		String[] freeTextFields = {"companyPhoneTextField", "companyEmailTextField"};
+		super.setUpTextFields(addCompanyPanel.getComponents(), freeTextFields, saveButton);
 	}
 
 	private void initLabelsTextFields() {
@@ -136,7 +136,7 @@ public class CompanyPanel extends PanelWithObligatoryTextFields implements AddPa
 	private void setUpLabelInThePanel(JLabel label, int insetsMiddle, JComponent relatedComponent) {
 		int width = (int) label.getPreferredSize().getWidth();
 		int height = (int) label.getPreferredSize().getHeight();
-		label.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2)+insetsMiddle, relatedComponent.getY() + relatedComponent.getHeight() + 23, width, height);
+		label.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2) + insetsMiddle, relatedComponent.getY() + relatedComponent.getHeight() + 23, width, height);
 		addCompanyPanel.add(label);
 	}
 

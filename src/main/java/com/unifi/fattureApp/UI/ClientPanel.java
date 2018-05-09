@@ -28,7 +28,7 @@ public class ClientPanel extends PanelWithObligatoryTextFields implements AddPan
 	private boolean isSaving;
 
 	public ClientPanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight, DatabaseUiComunication dbUiCom) {
-		super("AddClientPanel",outerPanel,buttonWidth,buttonHeight,0);
+		super("AddClientPanel", outerPanel, buttonWidth, buttonHeight, 0);
 		addClientPanel = this;
 		myDatabaseUiComunication = dbUiCom;
 
@@ -58,8 +58,8 @@ public class ClientPanel extends PanelWithObligatoryTextFields implements AddPan
 			dbUiCom.updateClientsReferences();
 		});
 
-		String [] freeTextFields= {"clientPhone_TF","clientEmail_TF"};
-		super.setUpTextFields(addClientPanel.getComponents(),freeTextFields,saveButton);
+		String[] freeTextFields = {"clientPhone_TF", "clientEmail_TF"};
+		super.setUpTextFields(addClientPanel.getComponents(), freeTextFields, saveButton);
 	}
 
 	private void initLabelsTextFields() {

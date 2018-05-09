@@ -201,7 +201,7 @@ public abstract class AbstractCompanyIntegrationTest {
 	@Test
 	public void addTestCompanyToDBWhenCompanyAlreadyInDB() {
 		companyController.addCompany(new Company("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1"));
-		boolean added=companyController.addCompany(new Company("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1"));
+		boolean added = companyController.addCompany(new Company("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1"));
 		assertEquals(false, added);
 	}
 

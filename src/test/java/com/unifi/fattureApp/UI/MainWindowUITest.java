@@ -57,7 +57,7 @@ public class MainWindowUITest {
 
 	@Test 
 	public void testNonTestConstructor() {
-		String [] args= {};
+		String[] args = {};
 		try {
 			MainWindowUI frame = new MainWindowUI(new FakeDatabaseUiComunication(args, true));
 		} catch (UnknownHostException e) {
@@ -113,7 +113,7 @@ public class MainWindowUITest {
 	public void testPreviewCompanyButtonAfterNextButtonWithTwoCompanies() {
 		JButtonFixture previewButton = window.button("prevCompany_Button");
 		JButtonFixture nextButton = window.button("nextCompany_Button");
-		JLabelFixture companyInfoLabel=window.label("currentSelectedCompanyLabel");
+		JLabelFixture companyInfoLabel = window.label("currentSelectedCompanyLabel");
 		showAddCompanyPanel();
 		JButtonFixture saveAdd_Button = addCompanyPanel.button("SaveButton");
 		setTextfieldsStrings("comp1", "vat1", "address1", "city1", "province1", "zip1", "country1", "phone1", "email1");
@@ -129,7 +129,7 @@ public class MainWindowUITest {
 	@Test 
 	public void testNextCompanyButtonWithOneCompany() {
 		JButtonFixture nextButton = window.button("nextCompany_Button");
-		JLabelFixture companyInfoLabel=window.label("currentSelectedCompanyLabel");
+		JLabelFixture companyInfoLabel = window.label("currentSelectedCompanyLabel");
 		showAddCompanyPanel();
 		setTextfieldsStrings("comp1", "vat1", "address1", "city1", "province1", "zip1", "country1", "phone1", "email1");
 		JButtonFixture saveAdd_Button = addCompanyPanel.button("SaveButton");
@@ -147,7 +147,7 @@ public class MainWindowUITest {
 	@Test 
 	public void testNextCompanyButtonWithTwoCompanies() {
 		JButtonFixture nextButton = window.button("nextCompany_Button");
-		JLabelFixture companyInfoLabel=window.label("currentSelectedCompanyLabel");
+		JLabelFixture companyInfoLabel = window.label("currentSelectedCompanyLabel");
 		showAddCompanyPanel();
 		JButtonFixture saveAdd_Button = addCompanyPanel.button("SaveButton");
 		setTextfieldsStrings("comp1", "vat1", "address1", "city1", "province1", "zip1", "country1", "phone1", "email1");

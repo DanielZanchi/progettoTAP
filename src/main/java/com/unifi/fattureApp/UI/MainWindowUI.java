@@ -17,7 +17,6 @@ import com.unifi.fattureApp.App.DatabaseUiComunication;
 import com.unifi.fattureApp.App.FakeDatabaseUiComunication;
 
 public class MainWindowUI {
-	// prova pull request...
 	private DatabaseUiComunication myDatabaseUiComunication;
 
 	private JFrame fattureAppFrame;
