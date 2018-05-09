@@ -7,13 +7,14 @@ import java.net.UnknownHostException;
 import org.junit.Test;
 
 import com.unifi.fattureApp.App.FakeDatabaseUiComunication;
+import com.unifi.fattureApp.App.RealDatabaseUiComunication;
 import com.unifi.fattureApp.wrappers.MongoWrapper;
 
 public class FakeDatabaseUiComunicationMongoTest extends AbstractDatabaseUiComunicationTest{	
 	@Override
 	public void setUpDatabase() throws UnknownHostException {
 		String args[] = null;
-		myDatabaseUiComunication = new FakeDatabaseUiComunication(args, true);
+		myDatabaseUiComunication = new RealDatabaseUiComunication(args, true);
 	}
 
 	@Test
