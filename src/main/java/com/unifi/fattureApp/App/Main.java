@@ -10,9 +10,9 @@ public class Main {
 	private static final Logger LOGGER = Logger.getLogger(Main.class);
 	public static void main(String[] args) throws IOException {
 		DatabaseUiComunication mongoUiComunication;
-		if(args.length>1) {//redis
+		if(args.length==1 && args[0]=="redis") {//redis
 			mongoUiComunication = new RealDatabaseUiComunication(args, false);
-		}else {//mongo
+		} else {//mongo
 			mongoUiComunication = new RealDatabaseUiComunication(args, true);
 		}
 
