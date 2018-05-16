@@ -12,10 +12,10 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.unifi.fattureApp.App.AppController;
-import com.unifi.fattureApp.App.Client;
-import com.unifi.fattureApp.App.Company;
-import com.unifi.fattureApp.App.Invoice;
+import com.unifi.fattureApp.app.AppController;
+import com.unifi.fattureApp.app.Client;
+import com.unifi.fattureApp.app.Company;
+import com.unifi.fattureApp.app.Invoice;
 import com.unifi.fattureApp.helpTestTools.TestHelperTool;
 
 public abstract class AbstractCompanyIntegrationTest {

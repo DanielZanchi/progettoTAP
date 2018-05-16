@@ -6,8 +6,8 @@ import java.net.UnknownHostException;
 
 import org.junit.Test;
 
-import com.unifi.fattureApp.App.FakeDatabaseUiComunication;
-import com.unifi.fattureApp.App.RealDatabaseUiComunication;
+import com.unifi.fattureApp.app.FakeDatabaseUiComunication;
+import com.unifi.fattureApp.app.RealDatabaseUiComunication;
 import com.unifi.fattureApp.wrappers.MongoWrapper;
 
 public class FakeDatabaseUiComunicationMongoTest extends AbstractDatabaseUiComunicationTest {	

@@ -1,4 +1,4 @@
-package com.unifi.fattureApp.App;
+package com.unifi.fattureApp.app;
 
 public class Client extends User {	
 	private static final long serialVersionUID = 392147957593130325L;

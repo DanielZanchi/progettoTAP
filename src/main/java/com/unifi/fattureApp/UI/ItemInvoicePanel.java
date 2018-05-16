@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JTextField;
 
-import com.unifi.fattureApp.App.DatabaseUiComunication;
+import com.unifi.fattureApp.app.DatabaseUiComunication;
 
 public class ItemInvoicePanel extends PanelWithObligatoryTextFields implements AddPanel {
 	private static final long serialVersionUID = 8698651509983266694L;

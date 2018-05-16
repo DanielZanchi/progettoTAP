@@ -1,4 +1,4 @@
-package com.unifi.fattureApp.App;
+package com.unifi.fattureApp.app;
 
 import java.awt.Color;
 import java.awt.Font;

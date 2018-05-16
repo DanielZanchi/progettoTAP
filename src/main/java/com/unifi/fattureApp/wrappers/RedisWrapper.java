@@ -6,10 +6,10 @@ import java.util.List;
 
 import org.springframework.data.redis.core.RedisTemplate;
 
-import com.unifi.fattureApp.App.Client;
-import com.unifi.fattureApp.App.Company;
-import com.unifi.fattureApp.App.Database;
-import com.unifi.fattureApp.App.Invoice;
+import com.unifi.fattureApp.app.Client;
+import com.unifi.fattureApp.app.Company;
+import com.unifi.fattureApp.app.Database;
+import com.unifi.fattureApp.app.Invoice;
 
 public class RedisWrapper implements Database {
 	private RedisTemplate<String, Object> redisTemplate;
