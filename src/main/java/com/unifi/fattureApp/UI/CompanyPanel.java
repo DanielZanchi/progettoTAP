@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JTextField;
 
-import com.unifi.fattureApp.app.DatabaseUiComunication;
+import com.unifi.fattureApp.App.DatabaseUiComunication;
 
 public class CompanyPanel extends PanelWithObligatoryTextFields implements AddPanel {
 	private static final long serialVersionUID = 6387743798709513734L;

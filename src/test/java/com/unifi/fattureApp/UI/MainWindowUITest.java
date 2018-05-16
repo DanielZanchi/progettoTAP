@@ -15,7 +15,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.unifi.fattureApp.app.FakeDatabaseUiComunication;
+import com.unifi.fattureApp.App.FakeDatabaseUiComunication;
 
 public class MainWindowUITest {
 	private FrameFixture window;

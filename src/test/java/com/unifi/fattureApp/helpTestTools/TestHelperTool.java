@@ -7,9 +7,9 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
-import com.unifi.fattureApp.app.Client;
-import com.unifi.fattureApp.app.Company;
-import com.unifi.fattureApp.app.Invoice;
+import com.unifi.fattureApp.App.Client;
+import com.unifi.fattureApp.App.Company;
+import com.unifi.fattureApp.App.Invoice;
 import com.unifi.fattureApp.wrappers.RedisWrapper;
 
 public class TestHelperTool {

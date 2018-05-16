@@ -13,8 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-import com.unifi.fattureApp.app.DatabaseUiComunication;
-import com.unifi.fattureApp.app.FakeDatabaseUiComunication;
+import com.unifi.fattureApp.App.DatabaseUiComunication;
+import com.unifi.fattureApp.App.FakeDatabaseUiComunication;
 
 public class MainWindowUI {
 	private DatabaseUiComunication myDatabaseUiComunication;

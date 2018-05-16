@@ -4,8 +4,8 @@ import org.slf4j.LoggerFactory;
 
 import com.github.fakemongo.Fongo;
 import com.mongodb.MongoClient;
-import com.unifi.fattureApp.app.AppController;
-import com.unifi.fattureApp.app.Database;
+import com.unifi.fattureApp.App.AppController;
+import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.helpTestTools.TestHelperTool;
 import com.unifi.fattureApp.wrappers.MongoWrapper;
 

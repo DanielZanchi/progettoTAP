@@ -5,8 +5,8 @@ import java.io.IOException;
 import org.junit.After;
 import org.slf4j.LoggerFactory;
 
-import com.unifi.fattureApp.app.AppController;
-import com.unifi.fattureApp.app.Database;
+import com.unifi.fattureApp.App.AppController;
+import com.unifi.fattureApp.App.Database;
 import com.unifi.fattureApp.helpTestTools.TestHelperTool;
 
 import ch.qos.logback.classic.LoggerContext;
