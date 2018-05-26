@@ -167,6 +167,7 @@
 	<build>
 		<resources>
 			<resource>
+			<!-- We have to include spring-configuration.xml -->
 				<filtering>false</filtering>
 				<directory>resources</directory>
 				<includes>
@@ -281,6 +282,7 @@
 							<argLine>${surefireArgLine}</argLine>
 						</configuration>
 					</plugin>
+					<!-- Used to create a single jar with all dependencies -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-shade-plugin</artifactId>
@@ -304,6 +306,7 @@
 							</execution>
 						</executions>
 					</plugin>
+					<!-- Used to build a (runnable) fatjar with dipendencies -->
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>exec-maven-plugin</artifactId>
@@ -342,6 +345,7 @@
 							</execution>
 						</executions>
 					</plugin>
+					<!-- Docker container for mongo-project  -->
 					<plugin>
 						<groupId>io.fabric8</groupId>
 						<artifactId>docker-maven-plugin</artifactId>
@@ -358,7 +362,6 @@
 									</run>
 								</image>
 								<image>
-									<!-- -->
 									<name>fatture-app</name>
 									<build>
 										<dockerFileDir>${project.basedir}/docker</dockerFileDir>
@@ -376,12 +379,12 @@
 										</assembly>
 									</build>
 									<run>
-										<!-- check that we can run our image, linked with the MongoDB image -->
+										<!-- Links the project-image with the mongo image -->
 										<links>
 											<link>mongo:mongo-host</link>
 										</links>
 										<wait>
-											<!-- Wait for the output "Fatture-app terminates" for 10 seconds -->
+											<!-- Wait for the output "Fatture-app terminates" -->
 											<time>10000</time>
 											<log>Fatture-app terminates</log>
 										</wait>
@@ -551,6 +554,7 @@
 							</execution>
 						</executions>
 					</plugin>
+					<!-- Docker container for redis-project  -->
 					<plugin>
 						<groupId>io.fabric8</groupId>
 						<artifactId>docker-maven-plugin</artifactId>
@@ -567,7 +571,6 @@
 									</run>
 								</image>
 								<image>
-									<!-- -->
 									<name>fatture-app</name>
 									<build>
 										<dockerFileDir>${project.basedir}/docker</dockerFileDir>
@@ -585,11 +588,12 @@
 										</assembly>
 									</build>
 									<run>
+									<!-- Links the project-image with the mongo image -->
 										<links>
 											<link>redis:redis-host</link>
 										</links>
 										<wait>
-											<!-- Wait for the output "Fatture-app terminates" for 10 seconds -->
+											<!-- Wait for the output "Fatture-app terminates" -->
 											<time>10000</time>
 											<log>Fatture-app terminates</log>
 										</wait>
@@ -627,8 +631,7 @@
 		</profile>
 
 		<profile>
-			<!-- This assumes that the Docker image for our app has already been built. 
-				That is, the standard profile has already been executed. -->
+			<!-- Will be run after fatture-app's image has been built -->
 			<id>docker-compose</id>
 			<activation>
 				<activeByDefault>false</activeByDefault>
@@ -652,7 +655,7 @@
 									</external>
 									<run>
 										<wait>
-											<!-- Wait for the output "Fatture-app terminates" for 10 seconds -->
+											<!-- Wait for the output "Fatture-app terminates" -->
 											<time>10000</time>
 											<log>Fatture-app terminates</log>
 										</wait>
@@ -667,8 +670,6 @@
 								<phase>verify</phase>
 								<goals>
 									<goal>start</goal>
-									<!-- Stop the container(s) even if the wait condition failed. Otherwise 
-										the background servers will be still running. -->
 									<goal>stop</goal>
 								</goals>
 							</execution>
