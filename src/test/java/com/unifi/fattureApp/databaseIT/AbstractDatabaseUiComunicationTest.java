@@ -228,7 +228,7 @@ public abstract class AbstractDatabaseUiComunicationTest {
 			new File("Invoice.pdf").delete();
 		}
 	}
-	
+
 	@Test
 	public void afterPrintingCompanyCreatedInvoicesValueIncreasesTest() throws Exception {
 		Company company = setTestCompanyToCurrentSelected();
@@ -240,7 +240,7 @@ public abstract class AbstractDatabaseUiComunicationTest {
 			new File("Invoice.pdf").delete();
 		}
 	}
-	
+
 	@Test
 	public void beforeCompanyCreatedInvoicesValueIsOneTest() throws Exception {
 		Company company = setTestCompanyToCurrentSelected();

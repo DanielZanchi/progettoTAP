@@ -32,5 +32,4 @@ public class DatabaseUiComunicationMongoTest extends AbstractDatabaseUiComunicat
 	public void testDatabaseIsInstanceOfMongoWrapper() {
 		assertEquals(MongoWrapper.class, myDatabaseUiComunication.getCurrentDatabaseClass());
 	}
-
 }

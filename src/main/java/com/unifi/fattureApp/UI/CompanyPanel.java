@@ -25,7 +25,6 @@ public class CompanyPanel extends PanelWithObligatoryTextFields implements AddPa
 	private JTextField companyEmailTF;
 	private CompanyPanel addCompanyPanel;
 
-
 	private boolean isSaving;
 
 	public CompanyPanel(JLayeredPane outerPanel, int buttonWidth, int buttonHeight, DatabaseUiComunication dbUiCom) {

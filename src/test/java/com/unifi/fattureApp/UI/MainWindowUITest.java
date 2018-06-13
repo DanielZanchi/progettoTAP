@@ -13,7 +13,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MainWindowUITest  extends MainWindowUsingFongo{
+public class MainWindowUITest  extends MainWindowUsingFongo {
 	private FrameFixture window;
 	private JButtonFixture addCompanyButton;
 	private JPanelFixture addCompanyPanel;

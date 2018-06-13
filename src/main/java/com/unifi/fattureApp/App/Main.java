@@ -16,15 +16,15 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		DatabaseUiComunication mongoUiComunication;
 		String mongoHost = "localhost";
-		
+
 		if(args.length==1 && args[0].equals("redis")) {//redis
 			ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new ClassPathResource("spring-configuration.xml").getPath());
 			Database database = (RedisWrapper)context.getBean("redisWrapper");
 			context.close();
 			mongoUiComunication = new DatabaseUiComunication(database);
-	
+
 		} else {//mongo
-			if (args!=null && args.length > 0) {
+			if (args.length > 0) {
 				mongoHost = args[0];			
 			}
 			MongoClient mongoClient = new MongoClient(mongoHost, 27017);

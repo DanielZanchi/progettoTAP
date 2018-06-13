@@ -12,9 +12,8 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
 
 public class MainWindowUsingFongo {
-	
 	protected MainWindowUI frame;
-	
+
 	public void init() {
 		Fongo fongo = new Fongo("mongo server 1");
 		MongoClient mongoClient = fongo.getMongo();
