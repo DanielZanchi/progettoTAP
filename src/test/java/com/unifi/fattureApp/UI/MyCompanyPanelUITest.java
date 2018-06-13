@@ -10,7 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MyCompanyPanelUITest {
+public class MyCompanyPanelUITest extends MainWindowUsingFongo{
 	private FrameFixture window;
 	private JPanelFixture myCompany_Panel;
 	private JPanelFixture addCompany_Panel;
@@ -21,7 +21,7 @@ public class MyCompanyPanelUITest {
 
 	@Before
 	public void setUp() throws IOException {
-		MainWindowUI frame = new MainWindowUI();
+		super.init();
 		window = new FrameFixture(frame.getMainFrame());
 		window.show();
 		myCompany_Panel = window.panel("CompanyPanel");

@@ -10,7 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ItemInvoicePanelUITest {
+public class ItemInvoicePanelUITest extends MainWindowUsingFongo{
 	private FrameFixture window;
 	private JPanelFixture addInvoice_Panel;
 	private JButtonFixture cancelAdd_Button;
@@ -20,7 +20,7 @@ public class ItemInvoicePanelUITest {
 
 	@Before
 	public void setUp() throws IOException {
-		MainWindowUI frame = new MainWindowUI();
+		super.init();
 		window = new FrameFixture(frame.getMainFrame());
 		window.show();
 		addInvoice_Button = window.panel("InvoicePanel").button("addInvoiceButton");

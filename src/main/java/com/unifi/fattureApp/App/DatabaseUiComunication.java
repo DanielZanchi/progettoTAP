@@ -1,6 +1,5 @@
 package com.unifi.fattureApp.App;
 
-import java.net.UnknownHostException;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -9,17 +8,11 @@ import javax.swing.JLabel;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.io.ClassPathResource;
 
-import com.unifi.fattureApp.wrappers.RedisWrapper;
-
-public abstract class DatabaseUiComunication {
+public class DatabaseUiComunication {
 	private static final Logger LOGGER = LogManager.getLogger(DatabaseUiComunication.class);
-	protected Database database;
-	protected String mongoHost = "localhost";
-	private AppController myCompanyController;
-
+	private AppController myAppController;
+	private Database database;
 	private Company currentSelectedCompany;
 	private Client currentSelectedClient;
 	private Invoice currentSelectedInvoice;
@@ -34,90 +27,78 @@ public abstract class DatabaseUiComunication {
 	private JButton editClientButton;
 	private JButton editInvoiceButton;
 
-	public DatabaseUiComunication(String[] args, boolean usingMongodb) throws UnknownHostException {	
-		if(usingMongodb) {
-			settingUpMongodb(args);
-		}else {
-			setUpOtherdb();
-		}
-
-		myCompanyController = new AppController(database);
+	public DatabaseUiComunication(Database database) {
+		this.database=database;
+		myAppController = new AppController(database);
 		editCompanyButton = new JButton();
 		editClientButton = new JButton();
 		editInvoiceButton = new JButton();
 		companyInfo = new JLabel();
 	}
 
-	private void setUpOtherdb() {
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new ClassPathResource("spring-configuration.xml").getPath());
-		database = (RedisWrapper)context.getBean("redisWrapper");
-		context.close();
-	}
-
-	abstract void settingUpMongodb(String[] args) throws UnknownHostException;
 
 	public boolean addClientToDatabase(String name, String fiscalCode, String residence, String city, String province,
 			String zip, String country, String phone, String email) {
 		String currentId = String.valueOf(this.getClientsCount() + 1);
-		return myCompanyController.addClient(
+		return myAppController.addClient(
 				new Client(currentId, name, fiscalCode, residence, city, province, zip, country, phone, email));
 	}
 
 	public boolean editClientFromDatabase(String name, String vat, String address, String city, String province,
 			String zip, String country, String phone, String email) {
 		String currentId = String.valueOf(currentSelectedClient.getId());
-		return myCompanyController.editClient(new Client(currentId, name, vat, address, city, province, zip, country, phone, email));
+		return myAppController.editClient(new Client(currentId, name, vat, address, city, province, zip, country, phone, email));
 	}
 
 	public boolean addCompanyToDatabase(String name, String vat, String address, String city, String province,
 			String zip, String country, String phone, String email) {
 		String currentId = String.valueOf(this.getCompaniesCount() +1);
-		return myCompanyController.addCompany(new Company(currentId, name, vat, address, city, province, zip, country, phone, email));
+		return myAppController.addCompany(new Company(currentId, name, vat, address, city, province, zip, country, phone, email));
 	}
 
 	public boolean editCompanyFromDatabase(String name, String vat, String address, String city, String province,
 			String zip, String country, String phone, String email) {
 		String currentId = String.valueOf(currentSelectedCompany.getId());
-		boolean saved =  myCompanyController.editCompany(new Company(currentId, name, vat, address, city, province, zip, country, phone, email));
+		boolean saved =  myAppController.editCompany(new Company(currentId, name, vat, address, city, province, zip, country, phone, email));
 		setCompanyCounter(getCompaniesCount()-1);
 		return saved;
 	}
 
 	public boolean addInvoiceToDatabase(String name, String description, String price) {
 		String currentId = String.valueOf(this.getInvoicesCount() + 1);
-		return myCompanyController.addInvoice(new Invoice(currentId, name, price, description));
+		return myAppController.addInvoice(new Invoice(currentId, name, price, description));
 	}
 
 	public boolean editInvoiceFromDatabase(String name, String price, String description) {
 		String currentId = String.valueOf(currentSelectedInvoice.getId());
-		return myCompanyController.editInvoice(new Invoice(currentId, name, price, description));
+		return myAppController.editInvoice(new Invoice(currentId, name, price, description));
 	}
 
 	public int getCompaniesCount() {
-		List<Company> companies = myCompanyController.getAllCompany();
+		List<Company> companies = myAppController.getAllCompany();
 		return companies.size();
 	}
 
 	public int getClientsCount() {
-		List<Client> clients = myCompanyController.getAllClients();
+		List<Client> clients = myAppController.getAllClients();
 		return clients.size();
 	}
 
 	public int getInvoicesCount() {
-		List<Invoice> invoices = myCompanyController.getAllInvoices();
+		List<Invoice> invoices = myAppController.getAllInvoices();
 		return invoices.size();
 	}
 
 	public List<Company> getSavedCompanies() {
-		return myCompanyController.getAllCompany();
+		return myAppController.getAllCompany();
 	}
 
 	public List<Client> getSavedClients() {
-		return myCompanyController.getAllClients();
+		return myAppController.getAllClients();
 	}
 
 	public List<Invoice> getSavedInvoices() {
-		return myCompanyController.getAllInvoices();
+		return myAppController.getAllInvoices();
 	}
 
 	public boolean printSelected(){

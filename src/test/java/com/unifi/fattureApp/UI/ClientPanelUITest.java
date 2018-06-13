@@ -10,7 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ClientPanelUITest {
+public class ClientPanelUITest extends MainWindowUsingFongo{
 	private FrameFixture window;
 	private JPanelFixture addClient_Panel;
 	private JButtonFixture cancelAdd_Button;
@@ -20,7 +20,7 @@ public class ClientPanelUITest {
 
 	@Before
 	public void setUp() throws IOException {
-		MainWindowUI frame = new MainWindowUI();
+		super.init();
 		window = new FrameFixture(frame.getMainFrame());
 		window.show();
 		addClient_Button = window.panel("ClientPanel").button("AddClientButton");

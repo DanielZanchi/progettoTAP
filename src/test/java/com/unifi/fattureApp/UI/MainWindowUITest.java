@@ -1,10 +1,8 @@
 package com.unifi.fattureApp.UI;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import java.io.IOException;
-import java.net.UnknownHostException;
 
 import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.fixture.JButtonFixture;
@@ -15,16 +13,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.unifi.fattureApp.App.FakeDatabaseUiComunication;
-
-public class MainWindowUITest {
+public class MainWindowUITest  extends MainWindowUsingFongo{
 	private FrameFixture window;
 	private JButtonFixture addCompanyButton;
 	private JPanelFixture addCompanyPanel;
 
 	@Before
 	public void setUp() throws IOException {
-		MainWindowUI frame = new MainWindowUI();
+		super.init();
 		window = new FrameFixture(frame.getMainFrame());
 		window.show();
 		addCompanyButton = window.panel("CompanyPanel").button("AddCompanyButton");
@@ -55,15 +51,6 @@ public class MainWindowUITest {
 		window.background().requireEqualTo(java.awt.Color.LIGHT_GRAY);
 	}
 
-	@Test 
-	public void testNonTestConstructor() {
-		String[] args = {};
-		try {
-			MainWindowUI frame = new MainWindowUI(new FakeDatabaseUiComunication(args, true));
-		} catch (UnknownHostException e) {
-			fail();
-		}
-	}
 
 	//Company panel
 	@Test

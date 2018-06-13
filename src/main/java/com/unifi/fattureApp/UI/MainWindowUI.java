@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
-import java.net.UnknownHostException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
@@ -14,7 +13,6 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import com.unifi.fattureApp.App.DatabaseUiComunication;
-import com.unifi.fattureApp.App.FakeDatabaseUiComunication;
 
 public class MainWindowUI {
 	private DatabaseUiComunication myDatabaseUiComunication;
@@ -37,11 +35,6 @@ public class MainWindowUI {
 
 	public MainWindowUI(DatabaseUiComunication dbUiComm) {
 		myDatabaseUiComunication = dbUiComm;
-		initialize();
-	}
-
-	public MainWindowUI() throws UnknownHostException  {
-		myDatabaseUiComunication = new FakeDatabaseUiComunication(null, true);
 		initialize();
 	}
 
