@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-public abstract class PanelWithObligatoryTextFields extends JPanel{
+public abstract class PanelWithObligatoryTextFields extends JPanel {
 	private static final long serialVersionUID = 7883635384945697293L;
 	private LinkedList<JTextField> textFields;
 	private Color layerColor = new java.awt.Color(216, 245, 255);
