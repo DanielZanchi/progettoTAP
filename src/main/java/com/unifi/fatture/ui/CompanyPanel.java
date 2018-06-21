@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 
 import com.unifi.fatture.app.DatabaseUiComunication;
 
-public class CompanyPanel extends PanelWithObligatoryTextFields implements AddPanel {
+public class CompanyPanel extends PanelWithObligatoryTextFields {
 	private static final long serialVersionUID = 6387743798709513734L;
 
 	private transient DatabaseUiComunication myDatabaseUiComunication;

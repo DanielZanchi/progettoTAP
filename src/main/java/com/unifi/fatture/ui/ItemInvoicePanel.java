@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 
 import com.unifi.fatture.app.DatabaseUiComunication;
 
-public class ItemInvoicePanel extends PanelWithObligatoryTextFields implements AddPanel {
+public class ItemInvoicePanel extends PanelWithObligatoryTextFields {
 	private static final long serialVersionUID = 8698651509983266694L;
 
 	private JTextField itemDescriptionTF;

@@ -27,9 +27,9 @@ public class MainWindowUI {
 	private Color layer1Color = new java.awt.Color(226, 244, 252);
 
 	private Dimension windowDimension = new Dimension(500, 700);
-	private AddPanel addCompanyPanel;
-	private AddPanel addClientPanel;
-	private AddPanel addItemPanel;
+	private PanelWithObligatoryTextFields addCompanyPanel;
+	private PanelWithObligatoryTextFields addClientPanel;
+	private PanelWithObligatoryTextFields addItemPanel;
 
 	private static final String ARIAL = "Arial";
 
@@ -255,7 +255,7 @@ public class MainWindowUI {
 		addItemPanel = new ItemInvoicePanel(outerPanel, buttonWidth, buttonHeight, myDatabaseUiComunication);
 	}
 
-	private void showGenericAddPanel(AddPanel panelToShow, boolean isSaving) {
+	private void showGenericAddPanel(PanelWithObligatoryTextFields panelToShow, boolean isSaving) {
 		panelToShow.setAddingMode(isSaving);
 	}
 

@@ -11,11 +11,12 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-public class PanelWithObligatoryTextFields extends JPanel{
+public abstract class PanelWithObligatoryTextFields extends JPanel{
 	private static final long serialVersionUID = 7883635384945697293L;
 	private LinkedList<JTextField> textFields;
 	private Color layerColor = new java.awt.Color(216, 245, 255);
 	private int insets = 22;
+	public abstract void setAddingMode(boolean isSaving);
 
 	public PanelWithObligatoryTextFields(String panelName, JLayeredPane outerPanel, int buttonWidth, int buttonHeight, int heightOffset) {
 		this.setBackground(layerColor);
@@ -29,6 +30,7 @@ public class PanelWithObligatoryTextFields extends JPanel{
 		outerPanel.add(this);
 		this.setLayout(null);
 		outerPanel.setLayer(this, 2);
+		
 
 		FormattedButton cancelButton = new FormattedButton("Cancel", "CancelButton");
 		cancelButton.setBounds((this.getWidth() / 2) - buttonWidth - 24,

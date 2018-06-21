@@ -24,5 +24,4 @@ public class MainWindowUsingFongo {
 		Database database = new MongoWrapper(mongoClient);
 		frame = new MainWindowUI(new DatabaseUiComunication(database));
 	}
-
 }
