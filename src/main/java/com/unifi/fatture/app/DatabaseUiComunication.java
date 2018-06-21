@@ -28,7 +28,7 @@ public class DatabaseUiComunication {
 	private JButton editInvoiceButton;
 
 	public DatabaseUiComunication(Database database) {
-		this.database=database;
+		this.database = database;
 		myAppController = new AppController(database);
 		editCompanyButton = new JButton();
 		editClientButton = new JButton();

@@ -20,7 +20,7 @@ public class ItemInvoicePanel extends PanelWithObligatoryTextFields implements A
 	private JTextField itemNameTF;
 	private JFormattedTextField itemPriceTF;
 
-	private DatabaseUiComunication databaseUiComunication;
+	private transient DatabaseUiComunication databaseUiComunication;
 
 	private ItemInvoicePanel addItemPanel;
 	private boolean isSaving;

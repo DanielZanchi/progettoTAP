@@ -12,7 +12,7 @@ import com.unifi.fatture.app.DatabaseUiComunication;
 public class CompanyPanel extends PanelWithObligatoryTextFields implements AddPanel {
 	private static final long serialVersionUID = 6387743798709513734L;
 
-	private DatabaseUiComunication myDatabaseUiComunication;
+	private transient DatabaseUiComunication myDatabaseUiComunication;
 
 	private JTextField companyNameTF;
 	private JTextField companyVatTF;

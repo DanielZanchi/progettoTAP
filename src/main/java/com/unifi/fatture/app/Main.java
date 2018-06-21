@@ -36,6 +36,7 @@ public class Main {
 		MainWindowUI mainWindowUI = null;
 		try {
 			mainWindowUI = new MainWindowUI(mongoUiComunication);
+			mainWindowUI.toString();
 		}catch (Exception e) {
 			LOGGER.info("In docker container, gui not running");
 		}		
