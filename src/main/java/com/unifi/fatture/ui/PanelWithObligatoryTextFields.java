@@ -30,7 +30,7 @@ public abstract class PanelWithObligatoryTextFields extends JPanel {
 		outerPanel.add(this);
 		this.setLayout(null);
 		outerPanel.setLayer(this, 2);
-		
+
 
 		FormattedButton cancelButton = new FormattedButton("Cancel", "CancelButton");
 		cancelButton.setBounds((this.getWidth() / 2) - buttonWidth - 24,
@@ -40,10 +40,9 @@ public abstract class PanelWithObligatoryTextFields extends JPanel {
 
 	}
 
-	protected void setUpTextFields(Component[] components, String[] textFieldsNotObligatory, FormattedButton saveButton) {
-		textFields = new LinkedList<>();
+	private void addComponent(Component[] components, String[] textFieldsNotObligatory) {
 		for (Component component : components) {
-			if (component.getClass().equals(JTextField.class)){
+			if (component.getClass().equals(JTextField.class)) {
 				boolean sameName = false;
 				for(int i = 0; i<textFieldsNotObligatory.length; i++) {
 					if(((JTextField) component).getName().equals(textFieldsNotObligatory[i])) {
@@ -56,6 +55,12 @@ public abstract class PanelWithObligatoryTextFields extends JPanel {
 				}
 			}
 		}
+	}
+	
+	protected void setUpTextFields(Component[] components, String[] textFieldsNotObligatory, FormattedButton saveButton) {
+		textFields = new LinkedList<>();
+		
+		addComponent(components, textFieldsNotObligatory);
 
 		for (JTextField tf : textFields) {
 			tf.getDocument().addDocumentListener(new DocumentListener() {
