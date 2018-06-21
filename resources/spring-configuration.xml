@@ -16,7 +16,7 @@
 	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
 			p:connection-factory-ref="jedisConnFactory" />
 			
-	<bean id="redisWrapper" class="com.unifi.fattureApp.wrappers.RedisWrapper">
+	<bean id="redisWrapper" class="com.unifi.fatture.wrappers.RedisWrapper">
 		<property name="redisTemplate" ref="redisTemplate" />	
 	</bean>
 

@@ -299,7 +299,7 @@
 									<transformers>
 										<transformer
 											implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-											<mainClass>com.unifi.fattureApp.App.Main</mainClass>
+											<mainClass>com.unifi.fatture.app.Main</mainClass>
 										</transformer>
 									</transformers>
 								</configuration>
@@ -509,7 +509,7 @@
 									<transformers>
 										<transformer
 											implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-											<mainClass>com.unifi.fattureApp.App.Main</mainClass>
+											<mainClass>com.unifi.fatture.app.Main</mainClass>
 										</transformer>
 									</transformers>
 								</configuration>
