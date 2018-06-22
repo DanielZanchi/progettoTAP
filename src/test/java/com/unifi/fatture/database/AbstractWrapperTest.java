@@ -93,14 +93,16 @@ public abstract class AbstractWrapperTest {
 
 	@Test
 	public void testFindCompanyByIdNotFound() {
-		testHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
+		testHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "zipCode1", "country1", "phone1", "email1");
 		assertNull(database.findCompanyById("2"));
 	}
 
 	@Test
 	public void testCompanyIsSaved() {
-		database.saveCompany(new Company("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1"));
-		assertTrue(testHelper.containsCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1"));
+		Company company=new Company("1", "nameC1", "vatCode1", "address1", "city1", "zipCode1", "country1");
+		company.setExtraParameters("phone1", "email1");
+		database.saveCompany(company);
+		assertTrue(testHelper.containsCompany("1", "nameC1", "vatCode1", "address1", "city1", "zipCode1", "country1", "phone1", "email1"));
 	}
 
 	@Test
@@ -114,7 +116,7 @@ public abstract class AbstractWrapperTest {
 
 	@Test 
 	public void testRemoveCompanyByIdFromDB() {
-		testHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
+		testHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "zipCode1", "country1", "phone1", "email1");
 		database.removeCompanyById("1");
 		assertEquals(0, database.getAllCompaniesList().size());
 	}
@@ -123,7 +125,7 @@ public abstract class AbstractWrapperTest {
 	public void testRemoveCompanyByIdFromDBWithMoreCompanies() {
 		testHelper.addTwoCompanies();
 		database.removeCompanyById("2");
-		assertTrue(testHelper.containsCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1"));
+		assertTrue(testHelper.containsCompany("1", "nameC1", "vatCode1", "address1", "city1", "zipCode1", "country1", "phone1", "email1"));
 	}	
 
 	//Invoice

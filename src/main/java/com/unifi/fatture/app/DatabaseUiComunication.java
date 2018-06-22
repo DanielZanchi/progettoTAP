@@ -50,16 +50,20 @@ public class DatabaseUiComunication {
 		return myAppController.editClient(new Client(currentId, name, vat, address, city, province, zip, country, phone, email));
 	}
 
-	public boolean addCompanyToDatabase(String name, String vat, String address, String city, String province,
+	public boolean addCompanyToDatabase(String name, String vat, String address, String city,
 			String zip, String country, String phone, String email) {
 		String currentId = String.valueOf(this.getCompaniesCount() +1);
-		return myAppController.addCompany(new Company(currentId, name, vat, address, city, province, zip, country, phone, email));
+		Company company=new Company(currentId, name, vat, address, city, zip, country);
+		company.setExtraParameters(phone, email);
+		return myAppController.addCompany(company);
 	}
 
-	public boolean editCompanyFromDatabase(String name, String vat, String address, String city, String province,
+	public boolean editCompanyFromDatabase(String name, String vat, String address, String city,
 			String zip, String country, String phone, String email) {
 		String currentId = String.valueOf(currentSelectedCompany.getId());
-		boolean saved =  myAppController.editCompany(new Company(currentId, name, vat, address, city, province, zip, country, phone, email));
+		Company company=new Company(currentId, name, vat, address, city, zip, country);
+		company.setExtraParameters(phone, email);
+		boolean saved =  myAppController.editCompany(company);
 		setCompanyCounter(getCompaniesCount()-1);
 		return saved;
 	}

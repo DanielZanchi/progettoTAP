@@ -89,7 +89,7 @@ public class MainWindowUITest  extends MainWindowUsingFongo {
 		JButtonFixture previewButton = window.button("prevCompany_Button");
 		JLabelFixture companyInfoLabel = window.label("currentSelectedCompanyLabel");
 		showAddCompanyPanel();
-		setTextfieldsStrings("comp1", "vat1", "address1", "city1", "province1", "zip1", "country1", "phone1", "email1");
+		setTextfieldsStrings("comp1", "vat1", "address1", "city1", "zip1", "country1", "phone1", "email1");
 		JButtonFixture saveAdd_Button = addCompanyPanel.button("SaveButton");
 		saveAdd_Button.click();
 		previewButton.click();
@@ -103,10 +103,10 @@ public class MainWindowUITest  extends MainWindowUsingFongo {
 		JLabelFixture companyInfoLabel = window.label("currentSelectedCompanyLabel");
 		showAddCompanyPanel();
 		JButtonFixture saveAdd_Button = addCompanyPanel.button("SaveButton");
-		setTextfieldsStrings("comp1", "vat1", "address1", "city1", "province1", "zip1", "country1", "phone1", "email1");
+		setTextfieldsStrings("comp1", "vat1", "address1", "city1", "zip1", "country1", "phone1", "email1");
 		saveAdd_Button.click();
 		addCompanyButton.click();
-		setTextfieldsStrings("comp2", "vat2", "address2", "city2", "province2", "zip2", "country2", "phone2", "email2");
+		setTextfieldsStrings("comp2", "vat2", "address2", "city2", "zip2", "country2", "phone2", "email2");
 		saveAdd_Button.click();
 		nextButton.click();
 		previewButton.click();
@@ -118,7 +118,7 @@ public class MainWindowUITest  extends MainWindowUsingFongo {
 		JButtonFixture nextButton = window.button("nextCompany_Button");
 		JLabelFixture companyInfoLabel = window.label("currentSelectedCompanyLabel");
 		showAddCompanyPanel();
-		setTextfieldsStrings("comp1", "vat1", "address1", "city1", "province1", "zip1", "country1", "phone1", "email1");
+		setTextfieldsStrings("comp1", "vat1", "address1", "city1", "zip1", "country1", "phone1", "email1");
 		JButtonFixture saveAdd_Button = addCompanyPanel.button("SaveButton");
 		saveAdd_Button.click();
 		nextButton.click();
@@ -137,22 +137,21 @@ public class MainWindowUITest  extends MainWindowUsingFongo {
 		JLabelFixture companyInfoLabel = window.label("currentSelectedCompanyLabel");
 		showAddCompanyPanel();
 		JButtonFixture saveAdd_Button = addCompanyPanel.button("SaveButton");
-		setTextfieldsStrings("comp1", "vat1", "address1", "city1", "province1", "zip1", "country1", "phone1", "email1");
+		setTextfieldsStrings("comp1", "vat1", "address1", "city1", "zip1", "country1", "phone1", "email1");
 		saveAdd_Button.click();
 		addCompanyButton.click();
-		setTextfieldsStrings("comp2", "vat2", "address2", "city2", "province2", "zip2", "country2", "phone2", "email2");
+		setTextfieldsStrings("comp2", "vat2", "address2", "city2", "zip2", "country2", "phone2", "email2");
 		saveAdd_Button.click();
 		nextButton.click();
 		companyInfoLabel.requireText("comp2");
 	}
 
-	private void setTextfieldsStrings(String string1, String string2, String string3, String string4, String string5,
+	private void setTextfieldsStrings(String string1, String string2, String string3, String string4,
 			String string6, String string7, String string8, String string9) {
 		addCompanyPanel.textBox("companyNameTextField").setText(string1);
 		addCompanyPanel.textBox("companyVatTextField").setText(string2);
 		addCompanyPanel.textBox("companyAddressTextField").setText(string3);
 		addCompanyPanel.textBox("companyCityTextField").setText(string4);
-		addCompanyPanel.textBox("companyProvinceTextField").setText(string5);
 		addCompanyPanel.textBox("companyZipTextField").setText(string6);
 		addCompanyPanel.textBox("companyCountryTextField").setText(string7);
 		addCompanyPanel.textBox("companyPhoneTextField").setText(string8);

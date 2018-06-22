@@ -74,7 +74,7 @@ public class TestHelperTool {
 	}
 
 	public void addCompany(String id, String name, String vatCode,
-			String address, String city, String province, String zipCode, String country, String phone, String email) {
+			String address, String city, String zipCode, String country, String phone, String email) {
 		if(usingMongo) {
 			BasicDBObject document = new BasicDBObject();
 			document.put("id", id);
@@ -82,7 +82,6 @@ public class TestHelperTool {
 			document.put("vatCode", vatCode);
 			document.put("address", address);
 			document.put("city", city);
-			document.put("province", province);
 			document.put("zipCode", zipCode);
 			document.put("country", country);
 			document.put("phone", phone);
@@ -90,12 +89,14 @@ public class TestHelperTool {
 
 			companies.insert(document);
 		}else {
-			redisDatabase.saveCompany(new Company(id, name, vatCode, address, city, province, zipCode, country, phone, email));
+			Company company=new Company(id, name, vatCode, address, city, zipCode, country);
+			company.setExtraParameters(phone, email);
+			redisDatabase.saveCompany(company);
 		}
 	}
 
 	public boolean containsCompany(String id, String name, String vatCode,
-			String address, String city, String province, String zipCode, String country, String phone, String email) {
+			String address, String city, String zipCode, String country, String phone, String email) {
 		if(usingMongo) {
 			BasicDBObject query = new BasicDBObject();
 			query.put("id", id);
@@ -103,7 +104,6 @@ public class TestHelperTool {
 			query.put("vatCode", vatCode);
 			query.put("address", address);
 			query.put("city", city);
-			query.put("province", province);
 			query.put("zipCode", zipCode);
 			query.put("country", country);
 			query.put("phone", phone);
@@ -133,8 +133,8 @@ public class TestHelperTool {
 	}
 
 	public void addTwoCompanies() {
-		addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
-		addCompany("2", "nameC2", "vatCode2", "address2", "city2", "province2", "zipCode2", "country2", "phone2", "email2");
+		addCompany("1", "nameC1", "vatCode1", "address1", "city1", "zipCode1", "country1", "phone1", "email1");
+		addCompany("2", "nameC2", "vatCode2", "address2", "city2", "zipCode2", "country2", "phone2", "email2");
 	}
 
 	public void addTwoInvoices() {

@@ -98,7 +98,8 @@ public abstract class AbstractDatabaseUiComunicationTest {
 	}
 
 	private Company setTestCompanyToCurrentSelected() {
-		Company company = new Company("1", "nameComp", "vatCodeComp", "addressComp", "cityComp", "provinceComp", "zipCodeComp", "countryComp", "phoneComp", "emailComp");
+		Company company = new Company("1", "nameComp", "vatCodeComp", "addressComp", "cityComp", "zipCodeComp", "countryComp");
+		company.setExtraParameters("phoneComp", "emailComp");
 		myDatabaseUiComunication.setCurrentSelectedCompany(company);
 		return company;
 	}
@@ -111,7 +112,7 @@ public abstract class AbstractDatabaseUiComunicationTest {
 
 	@Test (expected = NullPointerException.class)
 	public void editCompanyWhenNoCompanyInDBTest() {
-		myDatabaseUiComunication.editCompanyFromDatabase("nameEdited", "vatCodeEdited", "addressEdited", "cityEdited", "provinceEdited", "zipCodeEdited", "countryEdited", "phoneEdited", "emailEdited");
+		myDatabaseUiComunication.editCompanyFromDatabase("nameEdited", "vatCodeEdited", "addressEdited", "cityEdited", "zipCodeEdited", "countryEdited", "phoneEdited", "emailEdited");
 	}
 
 	@Test
@@ -148,7 +149,7 @@ public abstract class AbstractDatabaseUiComunicationTest {
 	}
 
 	private boolean addTestCompany() {
-		return myDatabaseUiComunication.addCompanyToDatabase("name", "vatCode", "address", "city", "province", "zip", "country", "phone", "email");
+		return myDatabaseUiComunication.addCompanyToDatabase("name", "vatCode", "address", "city", "zip", "country", "phone", "email");
 	}
 
 	//Invoice

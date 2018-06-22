@@ -150,23 +150,6 @@ public class MyCompanyPanelUITest extends MainWindowUsingFongo{
 		companyCity.text().isEmpty();
 	}
 
-	@Test
-	public void testSaveResetProvinceTextField() {
-		saveCompany();
-
-		showAddCompanyPanel();
-		JTextComponentFixture companyProvince = addCompany_Panel.textBox("companyProvinceTextField");
-		companyProvince.text().isEmpty();
-	}
-
-	@Test
-	public void testCancelResetProvinceTextField() {
-		cancelCompany();
-
-		showAddCompanyPanel();
-		JTextComponentFixture companyProvince = addCompany_Panel.textBox("companyProvinceTextField");
-		companyProvince.text().isEmpty();
-	}
 
 	@Test
 	public void testSaveResetZipTextField() {
@@ -243,7 +226,7 @@ public class MyCompanyPanelUITest extends MainWindowUsingFongo{
 	@Test
 	public void testSaveButtonWithInputsAction() {
 		showAddCompanyPanel();
-		setTextfieldsStrings("0", "1", "2", "3", "4", "5", "6", "", "");
+		setTextfieldsStrings("0", "1", "2", "4", "5", "6", "", "");
 		saveCompany();
 		addCompany_Panel.requireNotVisible();
 	}
@@ -251,7 +234,7 @@ public class MyCompanyPanelUITest extends MainWindowUsingFongo{
 	@Test
 	public void testSaveButtonWithWrongInputsAction() {
 		showAddCompanyPanel();
-		setTextfieldsStrings("0", "1", "2", "3", "4", "", "", "", "");
+		setTextfieldsStrings("0", "1", "2", "4", "", "", "", "");
 		saveAdd_Button = addCompany_Panel.button("SaveButton");
 		saveAdd_Button.requireDisabled();
 	}
@@ -260,7 +243,7 @@ public class MyCompanyPanelUITest extends MainWindowUsingFongo{
 	@Test 
 	public void testEditButtonActionAddPanelVisible() {
 		showAddCompanyPanel();
-		setTextfieldsStrings("0", "1", "2", "3", "4", "", "", "", "");
+		setTextfieldsStrings("0", "1", "2", "4", "", "", "", "");
 		saveAdd_Button = addCompany_Panel.button("SaveButton");
 		saveAdd_Button.click();
 		editCompany();
@@ -301,12 +284,6 @@ public class MyCompanyPanelUITest extends MainWindowUsingFongo{
 		companyCity.text().compareTo("3");
 	}
 
-	@Test 
-	public void testEditButtonProvinceTextField() {
-		initTextFieldsForEditButtonAssertions();
-		JTextComponentFixture companyProvince = addCompany_Panel.textBox("companyProvinceTextField");
-		companyProvince.text().compareTo("4");
-	}
 
 	@Test 
 	public void testEditButtonZipTextField() {
@@ -356,10 +333,6 @@ public class MyCompanyPanelUITest extends MainWindowUsingFongo{
 		checkTextfieldTextAfterCompanySaved("companyCityTextField", "edited");
 	}
 
-	@Test 
-	public void testEditButtonProvinceModified() {
-		checkTextfieldTextAfterCompanySaved("companyProvinceTextField", "edited");
-	}
 
 	@Test 
 	public void testEditButtonZipModified() {
@@ -412,13 +385,12 @@ public class MyCompanyPanelUITest extends MainWindowUsingFongo{
 		cancelAdd_Button.click();
 	}
 
-	private void setTextfieldsStrings(String string1, String string2, String string3, String string4, String string5,
+	private void setTextfieldsStrings(String string1, String string2, String string3, String string4,
 			String string6, String string7, String string8, String string9) {
 		addCompany_Panel.textBox("companyNameTextField").setText(string1);
 		addCompany_Panel.textBox("companyVatTextField").setText(string2);
 		addCompany_Panel.textBox("companyAddressTextField").setText(string3);
 		addCompany_Panel.textBox("companyCityTextField").setText(string4);
-		addCompany_Panel.textBox("companyProvinceTextField").setText(string5);
 		addCompany_Panel.textBox("companyZipTextField").setText(string6);
 		addCompany_Panel.textBox("companyCountryTextField").setText(string7);
 		addCompany_Panel.textBox("companyPhoneTextField").setText(string8);
@@ -427,7 +399,7 @@ public class MyCompanyPanelUITest extends MainWindowUsingFongo{
 
 	private void initTextFieldsForEditButtonAssertions() {
 		showAddCompanyPanel();
-		setTextfieldsStrings("0", "1", "2", "3", "4", "5", "6", "7", "");
+		setTextfieldsStrings("0", "1", "2", "4", "5", "6", "7", "");
 		saveAdd_Button = addCompany_Panel.button("SaveButton");
 		saveAdd_Button.click();
 		editCompany();

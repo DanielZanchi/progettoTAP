@@ -18,7 +18,6 @@ public class CompanyPanel extends PanelWithObligatoryTextFields {
 	private JTextField companyVatTF;
 	private JTextField companyAddressTF;
 	private JTextField companyCityTF;
-	private JTextField companyProvinceTF;
 	private JTextField companyZipTF;
 	private JTextField companyCountryTF;
 	private JTextField companyPhoneTF;
@@ -43,7 +42,7 @@ public class CompanyPanel extends PanelWithObligatoryTextFields {
 			if(addCompanyPanel.isSaving()) {
 				boolean saved = myDatabaseUiComunication.addCompanyToDatabase(companyNameTF.getText(),
 						companyVatTF.getText(), companyAddressTF.getText(), companyCityTF.getText(),
-						companyProvinceTF.getText(), companyZipTF.getText(), companyCountryTF.getText(),
+					    companyZipTF.getText(), companyCountryTF.getText(),
 						companyPhoneTF.getText(), companyEmailTF.getText());
 
 				if (saved) {
@@ -53,7 +52,7 @@ public class CompanyPanel extends PanelWithObligatoryTextFields {
 			}else {
 				myDatabaseUiComunication.editCompanyFromDatabase(companyNameTF.getText(),
 						companyVatTF.getText(), companyAddressTF.getText(), companyCityTF.getText(),
-						companyProvinceTF.getText(), companyZipTF.getText(), companyCountryTF.getText(),
+						companyZipTF.getText(), companyCountryTF.getText(),
 						companyPhoneTF.getText(), companyEmailTF.getText());
 			}
 			addCompanyPanel.setVisible(false);
@@ -96,25 +95,20 @@ public class CompanyPanel extends PanelWithObligatoryTextFields {
 		setUpTextFieldInThePanel(companyAddressTF, 300, "companyAddressTextField", 0, insets, companyAddressLabel);
 
 		JLabel companyCityLabel = new JLabel("City:");
-		setUpLabelInThePanel(companyCityLabel, - insetsMiddle, companyAddressTF);
+		setUpLabelInThePanel(companyCityLabel, 0, companyAddressTF);
 
 		companyCityTF = new JTextField();
-		setUpTextFieldInThePanel(companyCityTF, 130, "companyCityTextField", -insetsMiddle, insets, companyCityLabel);
+		setUpTextFieldInThePanel(companyCityTF, 300, "companyCityTextField", 0, insets, companyCityLabel);
 
-		JLabel companyProvinceLabel = new JLabel("Province:");
-		setUpLabelInThePanel(companyProvinceLabel, insetsMiddle, companyAddressTF);
-
-		companyProvinceTF = new JTextField();
-		setUpTextFieldInThePanel(companyProvinceTF, 130, "companyProvinceTextField", insetsMiddle, insets, companyProvinceLabel);
 
 		JLabel companyZipLabel = new JLabel("ZIP Code:");
-		setUpLabelInThePanel(companyZipLabel, -insetsMiddle, companyProvinceTF);
+		setUpLabelInThePanel(companyZipLabel, -insetsMiddle, companyCityTF);
 
 		companyZipTF = new JTextField();
 		setUpTextFieldInThePanel(companyZipTF, 80, "companyZipTextField", -insetsMiddle, insets, companyZipLabel);
 
 		JLabel companyCountryLabel = new JLabel("Country:");
-		setUpLabelInThePanel(companyCountryLabel, insetsMiddle, companyProvinceTF);
+		setUpLabelInThePanel(companyCountryLabel, insetsMiddle, companyCityTF);
 
 		companyCountryTF = new JTextField();
 		setUpTextFieldInThePanel(companyCountryTF, 100, "companyCountryTextField", insetsMiddle, insets, companyCountryLabel);
@@ -151,7 +145,6 @@ public class CompanyPanel extends PanelWithObligatoryTextFields {
 		companyVatTF.setText("");
 		companyAddressTF.setText("");
 		companyCityTF.setText("");
-		companyProvinceTF.setText("");
 		companyZipTF.setText("");
 		companyCountryTF.setText("");
 		companyPhoneTF.setText("");
@@ -170,7 +163,6 @@ public class CompanyPanel extends PanelWithObligatoryTextFields {
 			companyVatTF.setText(myDatabaseUiComunication.getCurrentSelectedCompany().getVatCode());
 			companyAddressTF.setText(myDatabaseUiComunication.getCurrentSelectedCompany().getAddress());
 			companyCityTF.setText(myDatabaseUiComunication.getCurrentSelectedCompany().getCity());
-			companyProvinceTF.setText(myDatabaseUiComunication.getCurrentSelectedCompany().getProvince());
 			companyZipTF.setText(myDatabaseUiComunication.getCurrentSelectedCompany().getZipCode());
 			companyCountryTF.setText(myDatabaseUiComunication.getCurrentSelectedCompany().getCountry());
 			companyPhoneTF.setText(myDatabaseUiComunication.getCurrentSelectedCompany().getPhone());

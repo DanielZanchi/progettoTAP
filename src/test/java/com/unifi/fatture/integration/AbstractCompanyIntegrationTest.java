@@ -192,7 +192,7 @@ public abstract class AbstractCompanyIntegrationTest {
 
 	//company	
 	private Company addTestCompanyToDB() {
-		testHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
+		testHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "zipCode1", "country1", "phone1", "email1");
 		Company company = companyController.getCompanyId("1");
 		assertNotNull(company);
 		return company;
@@ -200,8 +200,12 @@ public abstract class AbstractCompanyIntegrationTest {
 
 	@Test
 	public void addTestCompanyToDBWhenCompanyAlreadyInDB() {
-		companyController.addCompany(new Company("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1"));
-		boolean added = companyController.addCompany(new Company("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1"));
+		Company company=new Company("1", "nameC1", "vatCode1", "address1", "city1", "zipCode1", "country1");
+		company.setExtraParameters( "phone1", "email1");
+		companyController.addCompany(company);
+		company=new Company("1", "nameC1", "vatCode1", "address1", "city1", "zipCode1", "country1");
+		company.setExtraParameters( "phone1", "email1");
+		boolean added = companyController.addCompany(company);
 		assertEquals(false, added);
 	}
 
@@ -213,14 +217,14 @@ public abstract class AbstractCompanyIntegrationTest {
 
 	@Test
 	public void testGetAllCompaniesWhenThereIsOneCompany() {
-		testHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
+		testHelper.addCompany("1", "nameC1", "vatCode1", "address1", "city1", "zipCode1", "country1", "phone1", "email1");
 		List<Company> allCompanies = companyController.getAllCompany();
 		assertEquals(1, allCompanies.size());	
 	}
 
 	@Test
 	public void testGetCompanyByIdWhenCompanyIsNotThere() {
-		testHelper.addCompany("1", "testName", "testVat", "testAddress", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail");
+		testHelper.addCompany("1", "testName", "testVat", "testAddress", "testCity", "testZip", "testCountry", "testPhone", "testEmail");
 		Company company = companyController.getCompanyId("2");
 		assertNull(company);
 	}
@@ -267,17 +271,6 @@ public abstract class AbstractCompanyIntegrationTest {
 		assertNotEquals("wrongAddress", company.getAddress());
 	}
 
-	@Test
-	public void testGetCompanyByIdWithRightProvince() {
-		Company company = addTestCompanyToDB();
-		assertEquals("province1", company.getProvince());
-	}
-
-	@Test
-	public void testGetCompanyByIdWithWrongProvince() {
-		Company company = addTestCompanyToDB();
-		assertNotEquals("wrongProvince", company.getProvince());
-	}
 
 	@Test
 	public void testGetCompanyByIdWithRightZipCode() {
@@ -329,7 +322,8 @@ public abstract class AbstractCompanyIntegrationTest {
 
 	@Test
 	public void testEditCompanyWhileNoCompaniesInDB() {
-		Company company = new Company("1", "nameC1", "vatCode1", "address1", "city1", "province1", "zipCode1", "country1", "phone1", "email1");
+		Company company = new Company("1", "nameC1", "vatCode1", "address1", "city1", "zipCode1", "country1");
+		company.setExtraParameters( "phone1", "email1");
 		boolean edited = companyController.editCompany(company);
 		assertFalse(edited);
 	}
@@ -345,7 +339,7 @@ public abstract class AbstractCompanyIntegrationTest {
 	@Test
 	public void testEditCompanyNameWithTwoCompaniesInDb() {
 		Company company = addTestCompanyToDB();
-		testHelper.addCompany("2", "nameC2", "vatCode2", "address2", "city2", "province2", "zipCode2", "country2", "phone2", "email2");
+		testHelper.addCompany("2", "nameC2", "vatCode2", "address2", "city2", "zipCode2", "country2", "phone2", "email2");
 		company.setName("EditedName");
 		companyController.editCompany(company);
 		assertEquals("EditedName", companyController.getCompanyId("1").getName());
@@ -367,7 +361,7 @@ public abstract class AbstractCompanyIntegrationTest {
 	@Test
 	public void testOnlySelectedCompanyIncrementsCreatedInvoicesValue() {
 		Company company = addTestCompanyToDB();
-		testHelper.addCompany("2", "nameC2", "vatCode2", "address2", "city2", "province2", "zipCode2", "country2", "phone2", "email2");
+		testHelper.addCompany("2", "nameC2", "vatCode2", "address2", "city2", "zipCode2", "country2", "phone2", "email2");
 		company.updateCreatedInvoicesNumber();
 		assertNotEquals(0, company.getCreatedInvoices());
 	}
@@ -458,7 +452,9 @@ public abstract class AbstractCompanyIntegrationTest {
 	//company hashcode
 	@Test
 	public void testCompanyHashCodeForDifferentObjects() {
-		assertNotEquals(new Company("1", "", "", "", "", "", "", "", "", "").hashCode(),new Company().hashCode());
+		Company company = new Company("1", "", "", "", "", "", "");
+		company.setExtraParameters( "", "");
+		assertNotEquals(company.hashCode(),new Company().hashCode());
 	}
 
 	@Test
@@ -477,7 +473,8 @@ public abstract class AbstractCompanyIntegrationTest {
 
 	@Test
 	public void testHashCodeCompanyWithNullFields() {
-		Company company = new Company("1", "name", null, null, null, null, null, null, null, null);
+		Company company = new Company("1", "name", null, null, null, null, null);
+		company.setExtraParameters(null, null);
 		company.hashCode();
 	}
 
@@ -544,8 +541,12 @@ public abstract class AbstractCompanyIntegrationTest {
 
 	@Test
 	public void testCompanyNotEqualsForDifferentFields() {
-		Company company1 = new Company("1", "a", "b", "c", "d", "e", "f", "g", "ba", "be");
-		Company company2 = new Company("1", "a", "me", "tre", "qua", "se", "ue", "ug", "la", "te");
+		Company company1 = new Company("1", "nameC1", "vatCode1", "address1", "city1", "zipCode1", "country1");
+		company1.setExtraParameters( "phone1", "email1");
+		Company company2 = new Company("1", "nameC1", "vatCode2", "address2", "city2", "zipCode2", "country2");
+		company2.setExtraParameters( "phone2", "email2");
+		//Company company1 = new Company("1", "a", "b", "c", "e", "f", "g", "ba", "be");
+		//Company company2 = new Company("1", "a", "me", "tre", "se", "ue", "ug", "la", "te");
 		assertEquals(false, company1.equals(company2));
 	}
 
@@ -557,8 +558,10 @@ public abstract class AbstractCompanyIntegrationTest {
 
 	@Test
 	public void testCompanyEqualsForSameFields() {
-		Company company1 = new Company("1", "a", "b", "c", "d", "e", "f", "g", "h", "p");
-		Company company2 = new Company("1", "a", "b", "c", "d", "e", "f", "g", "h", "p");
+		Company company1 = new Company("1", "nameC1", "vatCode1", "address1", "city1", "zipCode1", "country1");
+		company1.setExtraParameters( "phone1", "email1");
+		Company company2 = new Company("1", "nameC1", "vatCode1", "address1", "city1", "zipCode1", "country1");
+		company2.setExtraParameters( "phone1", "email1");
 
 		assertEquals(true, company1.equals(company2));
 	}
@@ -573,8 +576,10 @@ public abstract class AbstractCompanyIntegrationTest {
 
 	@Test
 	public void testCompaniesWithNullFields() {
-		Company company1 = new Company("1", "name", null, null, null, null, null, null, null, null);
-		Company company2 = new Company("1", "name", null, null, null, null, null, null, null, null);
+		Company company1 = new Company("1", "name", null, null, null, null, null);
+		company1.setExtraParameters( null,null);
+		Company company2 = new Company("1", "name", null, null, null, null, null);
+		company2.setExtraParameters( null,null);
 		company1.equals(company2);
 	}
 

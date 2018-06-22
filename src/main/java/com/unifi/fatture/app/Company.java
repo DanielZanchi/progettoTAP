@@ -5,7 +5,6 @@ public class Company extends User {
 	private String vatCode;
 	private String address;
 	private String city;
-	private String province;
 	private String zipCode;
 	private String country;
 	private String phone;
@@ -16,14 +15,16 @@ public class Company extends User {
 	public  Company() {
 	}
 
-	public Company(String id, String name, String vatCode, String address, String city, String province, String zipCode, String country, String phone, String email) {
+	public Company(String id, String name, String vatCode, String address, String city, String zipCode, String country) {
 		super(id, name);
 		this.setVatCode(vatCode);
 		this.setAddress(address);
 		this.setCity(city);
-		this.setProvince(province);
 		this.setZipCode(zipCode);
 		this.setCountry(country);
+	}
+
+	public void setExtraParameters(String phone, String email) {
 		this.setPhone(phone);
 		this.setEmail(email);
 	}
@@ -60,13 +61,6 @@ public class Company extends User {
 		this.city = city;
 	}
 
-	public String getProvince() {
-		return province;
-	}
-
-	public void setProvince(String province) {
-		this.province = province;
-	}
 
 	public String getZipCode() {
 		return zipCode;
