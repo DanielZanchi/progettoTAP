@@ -39,14 +39,14 @@ public class DatabaseUiComunication {
 	public boolean addClientToDatabase(String name, String fiscalCode, AddClientToDatabaseParameter addressInformation, String phone,
 			String email) {
 		String currentId = String.valueOf(this.getClientsCount() + 1);
-		Client client = new Client(currentId, name, fiscalCode, addressInformation.residence, addressInformation.city, addressInformation.zip, addressInformation.country);
+		Client client = new Client(currentId, name, fiscalCode, addressInformation.getResidence(), addressInformation.getCity(), addressInformation.getZip(), addressInformation.getCountry());
 		client.setExtraParameters(phone, email);
 		return myAppController.addClient(client);
 	}
 
 	public boolean editClientFromDatabase(String name, String fiscalCode, AddClientToDatabaseParameter addressInformation, String phone, String email) {
 		String currentId = String.valueOf(currentSelectedClient.getId());
-		Client client = new Client(currentId, name, fiscalCode, addressInformation.residence, addressInformation.city, addressInformation.zip, addressInformation.country);
+		Client client = new Client(currentId, name, fiscalCode, addressInformation.getResidence(), addressInformation.getCity(), addressInformation.getZip(), addressInformation.getCountry());
 		client.setExtraParameters(phone, email);
 		return myAppController.editClient(client);
 	}
@@ -54,14 +54,14 @@ public class DatabaseUiComunication {
 	public boolean addCompanyToDatabase(String name, String vat, AddCompanyToDatabaseParameter addressInformation, String phone,
 			String email) {
 		String currentId = String.valueOf(this.getCompaniesCount() +1);
-		Company company = new Company(currentId, name, vat, addressInformation.address, addressInformation.city, addressInformation.zip, addressInformation.country);
+		Company company = new Company(currentId, name, vat, addressInformation.getAddress(), addressInformation.getCity(), addressInformation.getZip(), addressInformation.getCountry());
 		company.setExtraParameters(phone, email);
 		return myAppController.addCompany(company);
 	}
 
 	public boolean editCompanyFromDatabase(String name, String vat, AddCompanyToDatabaseParameter addressInformation, String phone, String email) {
 		String currentId = String.valueOf(currentSelectedCompany.getId());
-		Company company = new Company(currentId, name, vat, addressInformation.address, addressInformation.city, addressInformation.zip, addressInformation.country);
+		Company company = new Company(currentId, name, vat, addressInformation.getAddress(), addressInformation.getCity(), addressInformation.getZip(), addressInformation.getCountry());
 		company.setExtraParameters(phone, email);
 		boolean saved =  myAppController.editCompany(company);
 		setCompanyCounter(getCompaniesCount()-1);
