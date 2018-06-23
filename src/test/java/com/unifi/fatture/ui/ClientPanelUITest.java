@@ -67,7 +67,7 @@ public class ClientPanelUITest extends MainWindowUsingFongo{
 	@Test
 	public void testSaveButtonWithInputsAction() {
 		getSaveButton();
-		setTextfieldsStrings("0", "1", "2", "3", "4", "5", "6", "", "");
+		setTextfieldsStrings("0", "1", "2", "3", "4", "6", "", "");
 		saveAdd_Button.click();
 		addClient_Panel.requireNotVisible();
 	}
@@ -75,7 +75,7 @@ public class ClientPanelUITest extends MainWindowUsingFongo{
 	@Test
 	public void testSaveButtonWithWrongInputsAction() {
 		getSaveButton();
-		setTextfieldsStrings("0", "1", "2", "3", "4", "5", "", "", "");
+		setTextfieldsStrings("0", "1", "2", "3", "4", "", "", "");
 		saveAdd_Button.requireDisabled();
 	}
 
@@ -84,7 +84,7 @@ public class ClientPanelUITest extends MainWindowUsingFongo{
 	public void testEditButtonActionAddPanelVisible() {
 		addClient_Button.click();
 		addClient_Panel = window.panel("AddClientPanel");
-		setTextfieldsStrings("0", "1", "2", "3", "4", "", "", "", "");
+		setTextfieldsStrings("0", "1", "2", "3", "4", "", "", "");
 		saveAdd_Button = addClient_Panel.button("SaveButton");
 		saveAdd_Button.click();
 		editClient();
@@ -125,12 +125,6 @@ public class ClientPanelUITest extends MainWindowUsingFongo{
 		clientCity.text().compareTo("3");
 	}
 
-	@Test 
-	public void testEditButtonProvinceTextField() {
-		initTextFieldsForEditButtonAssertions();
-		JTextComponentFixture clientProvince = addClient_Panel.textBox("clientProvince_TF");
-		clientProvince.text().compareTo("4");
-	}
 
 	@Test 
 	public void testEditButtonZipTextField() {
@@ -180,10 +174,6 @@ public class ClientPanelUITest extends MainWindowUsingFongo{
 		checkTextfieldTextAfterClientSaved("clientCity_TF", "edited");
 	}
 
-	@Test 
-	public void testEditButtonProvinceModified() {
-		checkTextfieldTextAfterClientSaved("clientProvince_TF", "edited");
-	}
 
 	@Test 
 	public void testEditButtonZipModified() {
@@ -231,13 +221,12 @@ public class ClientPanelUITest extends MainWindowUsingFongo{
 		saveAdd_Button = addClient_Panel.button("SaveButton");
 	}
 
-	private void setTextfieldsStrings(String string1, String string2, String string3, String string4, String string5,
+	private void setTextfieldsStrings(String string1, String string2, String string3, String string4,
 			String string6, String string7, String string8, String string9) {
 		addClient_Panel.textBox("clientName_TF").setText(string1);
 		addClient_Panel.textBox("clientVat_TF").setText(string2);
 		addClient_Panel.textBox("clientAddress_TF").setText(string3);
 		addClient_Panel.textBox("clientCity_TF").setText(string4);
-		addClient_Panel.textBox("clientProvince_TF").setText(string5);
 		addClient_Panel.textBox("clientZip_TF").setText(string6);
 		addClient_Panel.textBox("clientCountry_TF").setText(string7);
 		addClient_Panel.textBox("clientPhone_TF").setText(string8);
@@ -247,7 +236,7 @@ public class ClientPanelUITest extends MainWindowUsingFongo{
 	private void initTextFieldsForEditButtonAssertions() {
 		addClient_Button.click();
 		addClient_Panel = window.panel("AddClientPanel");
-		setTextfieldsStrings("0", "1", "2", "3", "4", "5", "6", "7", "");
+		setTextfieldsStrings("0", "1", "2", "3", "4", "6", "7", "");
 		saveAdd_Button = addClient_Panel.button("SaveButton");
 		saveAdd_Button.click();
 		editClient();

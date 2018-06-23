@@ -31,7 +31,7 @@ public abstract class AbstractCompanyIntegrationTest {
 
 	//client
 	private Client addTestClientToDB() {
-		testHelper.addClient("1", "test", "testFC", "testCR", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail");
+		testHelper.addClient("1", "test", "testFC", "testCR", "testCity", "testZip", "testCountry", "testPhone", "testEmail");
 		Client client = companyController.getClientId("1");
 		assertNotNull(client);
 		return client;
@@ -39,8 +39,12 @@ public abstract class AbstractCompanyIntegrationTest {
 
 	@Test
 	public void addTestClientToDBWhenClientAlreadyInDB() {
-		companyController.addClient(new Client("1", "test", "testFC", "testCR", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail"));
-		boolean added = companyController.addClient(new Client("1", "test", "testFC", "testCR", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail"));
+		Client client=new Client("1", "test", "testFC", "testCR", "testCity", "testZip", "testCountry");
+		client.setExtraParameters("testPhone", "testEmail");
+		companyController.addClient(client);
+		client=new Client("1", "test", "testFC", "testCR", "testCity", "testZip", "testCountry");
+		client.setExtraParameters("testPhone", "testEmail");
+		boolean added = companyController.addClient(client);
 		assertEquals(false, added);
 	}
 
@@ -52,14 +56,14 @@ public abstract class AbstractCompanyIntegrationTest {
 
 	@Test
 	public void testGetAllClientsWhenThereIsOneClient() {
-		testHelper.addClient("1", "test", "testFC", "testCR", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail");
+		testHelper.addClient("1", "test", "testFC", "testCR", "testCity", "testZip", "testCountry", "testPhone", "testEmail");
 		List<Client> allClients = companyController.getAllClients();
 		assertEquals(1, allClients.size());	
 	}
 
 	@Test
 	public void testGetClientByIdWhenClientIsNotThere() {
-		testHelper.addClient("1", "test", "testFC", "testCR", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail");
+		testHelper.addClient("1", "test", "testFC", "testCR", "testCity", "testZip", "testCountry", "testPhone", "testEmail");
 		Client client = companyController.getClientId("2");
 		assertNull(client);
 	}
@@ -130,17 +134,6 @@ public abstract class AbstractCompanyIntegrationTest {
 		assertNotEquals("wrongTestCity", client.getCity());
 	}
 
-	@Test
-	public void testGetClientByIdWithRightProvince() {
-		Client client = addTestClientToDB();
-		assertEquals("testProvince", client.getProvince());
-	}
-
-	@Test
-	public void testGetClientByIdWithWrongProvince() {
-		Client client = addTestClientToDB();
-		assertNotEquals("wrongTestProvince", client.getProvince());
-	}
 
 	@Test
 	public void testGetClientByIdWithRightZip() {
@@ -168,7 +161,8 @@ public abstract class AbstractCompanyIntegrationTest {
 
 	@Test
 	public void testEditClientWhileNoClientsInDB() {
-		Client client = new Client("1", "test", "testFC", "testCR", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail");
+		Client client=new Client("1", "test", "testFC", "testCR", "testCity", "testZip", "testCountry");
+		client.setExtraParameters("testPhone", "testEmail");
 		boolean edited = companyController.editClient(client);
 		assertFalse(edited);
 	}
@@ -184,7 +178,7 @@ public abstract class AbstractCompanyIntegrationTest {
 	@Test
 	public void testEditClientNameWithTwoClientsInDb() {
 		Client client = addTestClientToDB();
-		testHelper.addClient("2", "test2", "testFC2", "testCR2", "testCity2", "testProvince2", "testZip2", "testCountry2", "testPhone2", "testEmail2");
+		testHelper.addClient("2", "test2", "testFC2", "testCR2", "testCity2", "testZip2", "testCountry2", "testPhone2", "testEmail2");
 		client.setName("EditedName");
 		companyController.editClient(client);
 		assertEquals("EditedName", companyController.getClientId("1").getName());
@@ -481,7 +475,9 @@ public abstract class AbstractCompanyIntegrationTest {
 	//client hashcode
 	@Test
 	public void testClientHashCodeForDifferentObjects() {
-		assertNotEquals(new Client("1", "", "", "", "", "", "", "", "", "").hashCode(),new Client().hashCode());
+		Client client=new Client("1", "", "", "", "", "", "");
+		client.setExtraParameters("", "");
+		assertNotEquals(client.hashCode(),new Client().hashCode());
 	}
 
 	@Test
@@ -500,7 +496,8 @@ public abstract class AbstractCompanyIntegrationTest {
 
 	@Test
 	public void testHashCodeClientWithNullFields() {
-		Client client = new Client("1", "name", null, null, null, null, null, null, null, null);
+		Client client = new Client("1", "name", null, null, null, null, null);
+		client.setExtraParameters(null, null);
 		client.hashCode();
 	}
 
@@ -594,8 +591,10 @@ public abstract class AbstractCompanyIntegrationTest {
 
 	@Test
 	public void testClientNotEqualsForDifferentFields() {
-		Client client1 = new Client("1", "a", "b", "c", "d", "e", "f", "g", "ba", "be");		
-		Client client2 = new Client("1", "a", "me", "tre", "qua", "se", "ue", "ug", "la", "te");		
+		Client client1 = new Client("1", "a", "b", "c", "d", "f", "g");
+		client1.setExtraParameters("ba", "be");
+		Client client2 = new Client("1", "a", "me", "tre", "qua", "ue", "ug");	
+		client1.setExtraParameters("la", "te");
 		assertEquals(false, client1.equals(client2));
 	}
 
@@ -607,9 +606,10 @@ public abstract class AbstractCompanyIntegrationTest {
 
 	@Test
 	public void testClientEqualsForSameFields() {
-		Client client1 = new Client("1", "a", "b", "c", "d", "e", "f", "g", "h", "p");
-		Client client2 = new Client("1", "a", "b", "c", "d", "e", "f", "g", "h", "p");
-
+		Client client1 = new Client("1", "a", "b", "c", "d", "f", "g");
+		client1.setExtraParameters("h", "p");
+		Client client2 = new Client("1", "a", "b", "c", "d", "f", "g");
+		client2.setExtraParameters("h", "p");
 		assertEquals(true, client1.equals(client2));
 	}
 
@@ -623,8 +623,10 @@ public abstract class AbstractCompanyIntegrationTest {
 
 	@Test
 	public void testEqualsClientsWithNullFields() {
-		Client client1 = new Client("1", "name", null, null, null, null, null, null, null, null);
-		Client client2 = new Client("1", "name", null, null, null, null, null, null, null, null);
+		Client client1 = new Client("1", "name", null, null, null, null, null);
+		client1.setExtraParameters(null, null);
+		Client client2 = new Client("1", "name", null, null, null, null, null);
+		client1.setExtraParameters(null, null);
 		client1.equals(client2);
 	}
 

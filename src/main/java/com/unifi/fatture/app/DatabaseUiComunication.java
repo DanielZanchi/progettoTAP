@@ -37,17 +37,20 @@ public class DatabaseUiComunication {
 	}
 
 
-	public boolean addClientToDatabase(String name, String fiscalCode, String residence, String city, String province,
+	public boolean addClientToDatabase(String name, String fiscalCode, String residence, String city,
 			String zip, String country, String phone, String email) {
 		String currentId = String.valueOf(this.getClientsCount() + 1);
-		return myAppController.addClient(
-				new Client(currentId, name, fiscalCode, residence, city, province, zip, country, phone, email));
+		Client client=new Client(currentId, name, fiscalCode, residence, city, zip, country);
+		client.setExtraParameters(phone, email);
+		return myAppController.addClient(client);
 	}
 
-	public boolean editClientFromDatabase(String name, String vat, String address, String city, String province,
+	public boolean editClientFromDatabase(String name, String fiscalCode, String residence, String city,
 			String zip, String country, String phone, String email) {
 		String currentId = String.valueOf(currentSelectedClient.getId());
-		return myAppController.editClient(new Client(currentId, name, vat, address, city, province, zip, country, phone, email));
+		Client client=new Client(currentId, name, fiscalCode, residence, city, zip, country);
+		client.setExtraParameters(phone, email);
+		return myAppController.editClient(client);
 	}
 
 	public boolean addCompanyToDatabase(String name, String vat, String address, String city,

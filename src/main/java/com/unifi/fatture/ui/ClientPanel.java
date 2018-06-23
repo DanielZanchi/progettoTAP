@@ -18,7 +18,6 @@ public class ClientPanel extends PanelWithObligatoryTextFields {
 	private JTextField clientVatTF;
 	private JTextField clientAddressTF;
 	private JTextField clientCityTF;
-	private JTextField clientProvinceTF;
 	private JTextField clientZipTF;
 	private JTextField clientCountryTF;
 	private JTextField clientPhoneTF;
@@ -44,13 +43,13 @@ public class ClientPanel extends PanelWithObligatoryTextFields {
 			// save company
 			if(addClientPanel.isSaving()) {
 				myDatabaseUiComunication.addClientToDatabase(clientNameTF.getText(), clientVatTF.getText(),
-						clientAddressTF.getText(), clientCityTF.getText(), clientProvinceTF.getText(),
+						clientAddressTF.getText(), clientCityTF.getText(),
 						clientZipTF.getText(), clientCityTF.getText(), clientPhoneTF.getText(),
 						clientEmailTF.getText());
 			}else {
 				myDatabaseUiComunication.editClientFromDatabase(clientNameTF.getText(),
 						clientVatTF.getText(), clientAddressTF.getText(), clientCityTF.getText(),
-						clientProvinceTF.getText(), clientZipTF.getText(), clientCountryTF.getText(),
+						clientZipTF.getText(), clientCountryTF.getText(),
 						clientPhoneTF.getText(), clientEmailTF.getText());
 			}
 			addClientPanel.setVisible(false);
@@ -84,32 +83,32 @@ public class ClientPanel extends PanelWithObligatoryTextFields {
 		clientVatTF = new JTextField();
 		setUpTextFieldInThePanel(clientVatTF, 200, "clientVat_TF", 0, insets, clientVatLabel);
 
+		
+		
 		JLabel clientAddressLabel = new JLabel("Address:");
 		setUpLabelInThePanel(clientAddressLabel, 0, clientVatTF);
 
 		clientAddressTF = new JTextField();
 		setUpTextFieldInThePanel(clientAddressTF, 300, "clientAddress_TF", 0, insets, clientAddressLabel);
 
+		
+		
 		JLabel clientCityLabel = new JLabel("City:");
-		setUpLabelInThePanel(clientCityLabel, - insetsMiddle, clientAddressTF);
+		setUpLabelInThePanel(clientCityLabel, 0, clientAddressTF);
 
 		clientCityTF = new JTextField();
-		setUpTextFieldInThePanel(clientCityTF, 130, "clientCity_TF", - insetsMiddle, insets, clientCityLabel);
+		setUpTextFieldInThePanel(clientCityTF, 300, "clientCity_TF", 0, insets, clientCityLabel);
 
-		JLabel clientProvinceLabel = new JLabel("Province:");
-		setUpLabelInThePanel(clientProvinceLabel, insetsMiddle, clientAddressTF);
-
-		clientProvinceTF = new JTextField();
-		setUpTextFieldInThePanel(clientProvinceTF, 130, "clientProvince_TF", insetsMiddle, insets, clientProvinceLabel);
-
+		
+		
 		JLabel clientZipLabel = new JLabel("ZIP Code:");
-		setUpLabelInThePanel(clientZipLabel, -insetsMiddle, clientProvinceTF);
+		setUpLabelInThePanel(clientZipLabel, -insetsMiddle, clientCityTF);
 
 		clientZipTF = new JTextField();
 		setUpTextFieldInThePanel(clientZipTF, 80, "clientZip_TF", - insetsMiddle, insets, clientZipLabel);
 
 		JLabel clientCountryLabel = new JLabel("Country:");
-		setUpLabelInThePanel(clientCountryLabel, insetsMiddle, clientProvinceTF);
+		setUpLabelInThePanel(clientCountryLabel, insetsMiddle, clientCityTF);
 
 		clientCountryTF = new JTextField();
 		setUpTextFieldInThePanel(clientCountryTF, 100, "clientCountry_TF",  insetsMiddle, insets, clientCountryLabel);
@@ -146,7 +145,6 @@ public class ClientPanel extends PanelWithObligatoryTextFields {
 		clientVatTF.setText("");
 		clientAddressTF.setText("");
 		clientCityTF.setText("");
-		clientProvinceTF.setText("");
 		clientZipTF.setText("");
 		clientCountryTF.setText("");
 		clientPhoneTF.setText("");
@@ -165,7 +163,6 @@ public class ClientPanel extends PanelWithObligatoryTextFields {
 			clientVatTF.setText(myDatabaseUiComunication.getCurrentSelectedClient().getFiscalCode());
 			clientAddressTF.setText(myDatabaseUiComunication.getCurrentSelectedClient().getCityResidence());
 			clientCityTF.setText(myDatabaseUiComunication.getCurrentSelectedClient().getCity());
-			clientProvinceTF.setText(myDatabaseUiComunication.getCurrentSelectedClient().getProvince());
 			clientZipTF.setText(myDatabaseUiComunication.getCurrentSelectedClient().getZip());
 			clientCountryTF.setText(myDatabaseUiComunication.getCurrentSelectedClient().getCountry());
 			clientPhoneTF.setText(myDatabaseUiComunication.getCurrentSelectedClient().getPhone());

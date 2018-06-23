@@ -76,11 +76,12 @@ public abstract class AbstractDatabaseUiComunicationTest {
 	}
 
 	private boolean addTestClient() {
-		return myDatabaseUiComunication.addClientToDatabase("name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
+		return myDatabaseUiComunication.addClientToDatabase("name", "fiscalCode", "residence", "city", "zip", "country", "phone", "email");
 	}
 
 	private Client setTestClientToCurrentSelected() {
-		Client client = new Client("1", "name", "fiscalCode", "residence", "city", "province", "zip", "country", "phone", "email");
+		Client client = new Client("1", "name", "fiscalCode", "residence", "city", "zip", "country");
+		client.setExtraParameters("phone", "email");
 		myDatabaseUiComunication.setCurrentSelectedClient(client);
 		return client;
 	}

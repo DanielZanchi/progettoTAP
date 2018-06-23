@@ -33,7 +33,7 @@ public class TestHelperTool {
 		invoices = db.getCollection("invoices");
 	}
 
-	public void addClient(String id, String name, String fiscalCode, String cityResidence, String city, String province, String zip, String country, String phone, String email/*, String birthDay*/) {
+	public void addClient(String id, String name, String fiscalCode, String cityResidence, String city, String zip, String country, String phone, String email/*, String birthDay*/) {
 		if(usingMongo) {
 			BasicDBObject document = new BasicDBObject();
 			document.put("id", id);
@@ -41,7 +41,6 @@ public class TestHelperTool {
 			document.put("fiscalCode", fiscalCode);
 			document.put("cityResidence", cityResidence);
 			document.put("city", city);
-			document.put("province", province);
 			document.put("zip", zip);
 			document.put("country", country);
 			document.put("phone", phone);
@@ -49,11 +48,13 @@ public class TestHelperTool {
 
 			clients.insert(document);
 		}else {
-			redisDatabase.saveClient(new Client(id, name, fiscalCode, cityResidence, city, province, zip, country, phone, email));
+			Client client=new Client(id, name, fiscalCode, cityResidence, city, zip, country);
+			client.setExtraParameters(phone, email);
+			redisDatabase.saveClient(client);
 		}
 	}
 
-	public boolean containsClient(String id, String name, String fiscalCode, String cityResidence, String city, String province, String zip, String country, String phone, String email/*, String birthDay*/) {
+	public boolean containsClient(String id, String name, String fiscalCode, String cityResidence, String city, String zip, String country, String phone, String email/*, String birthDay*/) {
 		if(usingMongo) {
 			BasicDBObject query = new BasicDBObject();
 			query.put("id", id);
@@ -61,7 +62,6 @@ public class TestHelperTool {
 			query.put("fiscalCode", fiscalCode);
 			query.put("cityResidence", cityResidence);
 			query.put("city", city);
-			query.put("province", province);
 			query.put("zip", zip);
 			query.put("country", country);
 			query.put("phone", phone);
@@ -128,8 +128,8 @@ public class TestHelperTool {
 	}
 
 	public void addTwoClients() {
-		addClient("1", "first", "firstFC", "firstCR", "firstCity", "firstProvince", "firstZip", "firstCountry", "firstPhone", "firstEmail");
-		addClient("2", "second", "secondFC", "secondCR", "secondCity", "secondProvince", "secondZip", "secondCountry", "secondPhone", "secondEmail");
+		addClient("1", "first", "firstFC", "firstCR", "firstCity", "firstZip", "firstCountry", "firstPhone", "firstEmail");
+		addClient("2", "second", "secondFC", "secondCR", "secondCity", "secondZip", "secondCountry", "secondPhone", "secondEmail");
 	}
 
 	public void addTwoCompanies() {

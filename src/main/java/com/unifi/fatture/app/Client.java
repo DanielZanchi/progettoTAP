@@ -5,7 +5,6 @@ public class Client extends User {
 	private String fiscalCode;
 	private String cityResidence;
 	private String city;
-	private String province;
 	private String zip;
 	private String country;
 	private String phone;
@@ -14,14 +13,16 @@ public class Client extends User {
 	public Client() {
 	}
 
-	public Client(String id, String name, String fiscalCode, String cityResidence, String city, String province, String zip, String country, String phone, String email) {
+	public Client(String id, String name, String fiscalCode, String cityResidence, String city, String zip, String country) {
 		super(id, name);
 		this.setFiscalCode(fiscalCode);
 		this.setCityResidence(cityResidence);
 		this.setCity(city);
-		this.setProvince(province);
 		this.setZip(zip);
 		this.setCountry(country);
+	}
+
+	public void setExtraParameters(String phone, String email) {
 		this.setPhone(phone);
 		this.setEmail(email);
 	}
@@ -66,13 +67,6 @@ public class Client extends User {
 		this.city = city;
 	}
 
-	public String getProvince() {
-		return province;
-	}
-
-	public void setProvince(String province) {
-		this.province = province;
-	}
 
 	public String getZip() {
 		return zip;

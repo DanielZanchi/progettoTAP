@@ -40,20 +40,24 @@ public abstract class AbstractWrapperTest {
 
 	@Test
 	public void testFindClientByIdNotFound() {
-		testHelper.addClient("1", "first", "firstFC", "firstCR", "firstCity", "firstProvince", "firstZip", "firstCountry", "firstPhone", "firstEmail");
+		testHelper.addClient("1", "first", "firstFC", "firstCR", "firstCity", "firstZip", "firstCountry", "firstPhone", "firstEmail");
 		assertNull(database.findClientById("2"));
 	}
 
 	@Test
 	public void testClientIsSaved() {
-		database.saveClient(new Client("1", "test", "testFC", "testCR", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail"));
-		assertTrue(testHelper.containsClient("1", "test", "testFC", "testCR", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail"));
+		Client client=new Client("1", "test", "testFC", "testCR", "testCity", "testZip", "testCountry");
+		client.setExtraParameters( "testPhone", "testEmail");
+		database.saveClient(client);
+		assertTrue(testHelper.containsClient("1", "test", "testFC", "testCR", "testCity", "testZip", "testCountry", "testPhone", "testEmail"));
 	}
 
 	@Test
 	public void testClientIsNotSaved() {
-		database.saveClient(new Client("1", "test", "testFC", "testCR", "testCity", "testProvince", "testZip", "testCountry", "testPhone", "testEmail"));
-		assertFalse(testHelper.containsClient("2", "test2", "testFC2", "testCR2", "testCity2", "testProvince2", "testZip2", "testCountry2", "testPhone2", "testEmail2"));
+		Client client=new Client("1", "test", "testFC", "testCR", "testCity", "testZip", "testCountry");
+		client.setExtraParameters( "testPhone", "testEmail");
+		database.saveClient(client);
+		assertFalse(testHelper.containsClient("2", "test2", "testFC2", "testCR2", "testCity2", "testZip2", "testCountry2", "testPhone2", "testEmail2"));
 	}
 
 	@Test
@@ -67,7 +71,7 @@ public abstract class AbstractWrapperTest {
 
 	@Test 
 	public void testRemoveClientByIdFromDB() {
-		testHelper.addClient("1", "first", "firstFC", "firstCR", "firstCity", "firstProvince", "firstZip", "firstCountry", "firstPhone", "firstEmail");
+		testHelper.addClient("1", "first", "firstFC", "firstCR", "firstCity", "firstZip", "firstCountry", "firstPhone", "firstEmail");
 		database.removeClientById("1");
 		assertEquals(0, database.getAllClientsList().size());
 	}
@@ -76,7 +80,7 @@ public abstract class AbstractWrapperTest {
 	public void testRemoveClientByIdFromDBWithMoreClients() {
 		testHelper.addTwoClients();
 		database.removeClientById("2");
-		assertTrue(testHelper.containsClient("1", "first", "firstFC", "firstCR", "firstCity", "firstProvince", "firstZip", "firstCountry", "firstPhone", "firstEmail"));
+		assertTrue(testHelper.containsClient("1", "first", "firstFC", "firstCR", "firstCity", "firstZip", "firstCountry", "firstPhone", "firstEmail"));
 	}	
 
 	//Company
