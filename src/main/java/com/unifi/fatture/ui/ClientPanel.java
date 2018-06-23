@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JTextField;
 
+import com.unifi.fatture.app.AddClientToDatabaseParameter;
 import com.unifi.fatture.app.DatabaseUiComunication;
 
 public class ClientPanel extends PanelWithObligatoryTextFields {
@@ -43,13 +44,11 @@ public class ClientPanel extends PanelWithObligatoryTextFields {
 			// save company
 			if(addClientPanel.isSaving()) {
 				myDatabaseUiComunication.addClientToDatabase(clientNameTF.getText(), clientVatTF.getText(),
-						clientAddressTF.getText(), clientCityTF.getText(),
-						clientZipTF.getText(), clientCityTF.getText(), clientPhoneTF.getText(),
+						new AddClientToDatabaseParameter(clientAddressTF.getText(), clientCityTF.getText(), clientZipTF.getText(), clientCityTF.getText()), clientPhoneTF.getText(),
 						clientEmailTF.getText());
 			}else {
 				myDatabaseUiComunication.editClientFromDatabase(clientNameTF.getText(),
-						clientVatTF.getText(), clientAddressTF.getText(), clientCityTF.getText(),
-						clientZipTF.getText(), clientCountryTF.getText(),
+						clientVatTF.getText(), new AddClientToDatabaseParameter(clientAddressTF.getText(), clientCityTF.getText(), clientZipTF.getText(), clientCityTF.getText()),
 						clientPhoneTF.getText(), clientEmailTF.getText());
 			}
 			addClientPanel.setVisible(false);

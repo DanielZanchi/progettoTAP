@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JTextField;
 
+import com.unifi.fatture.app.AddCompanyToDatabaseParameter;
 import com.unifi.fatture.app.DatabaseUiComunication;
 
 public class CompanyPanel extends PanelWithObligatoryTextFields {
@@ -41,9 +42,8 @@ public class CompanyPanel extends PanelWithObligatoryTextFields {
 		saveButton.addActionListener(e -> {
 			if(addCompanyPanel.isSaving()) {
 				boolean saved = myDatabaseUiComunication.addCompanyToDatabase(companyNameTF.getText(),
-						companyVatTF.getText(), companyAddressTF.getText(), companyCityTF.getText(),
-					    companyZipTF.getText(), companyCountryTF.getText(),
-						companyPhoneTF.getText(), companyEmailTF.getText());
+						companyVatTF.getText(), new AddCompanyToDatabaseParameter(companyAddressTF.getText(), companyCityTF.getText(), companyZipTF.getText(), companyCountryTF.getText()), companyPhoneTF.getText(),
+					    companyEmailTF.getText());
 
 				if (saved) {
 					myDatabaseUiComunication.setCurrentSelectedCompany(myDatabaseUiComunication.getSavedCompanies().get(myDatabaseUiComunication.getSavedCompanies().size() - 1));
@@ -51,8 +51,7 @@ public class CompanyPanel extends PanelWithObligatoryTextFields {
 				}
 			}else {
 				myDatabaseUiComunication.editCompanyFromDatabase(companyNameTF.getText(),
-						companyVatTF.getText(), companyAddressTF.getText(), companyCityTF.getText(),
-						companyZipTF.getText(), companyCountryTF.getText(),
+						companyVatTF.getText(), new AddCompanyToDatabaseParameter(companyAddressTF.getText(), companyCityTF.getText(), companyZipTF.getText(), companyCountryTF.getText()),
 						companyPhoneTF.getText(), companyEmailTF.getText());
 			}
 			addCompanyPanel.setVisible(false);

@@ -9,6 +9,8 @@ import java.net.UnknownHostException;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.unifi.fatture.app.AddClientToDatabaseParameter;
+import com.unifi.fatture.app.AddCompanyToDatabaseParameter;
 import com.unifi.fatture.app.Client;
 import com.unifi.fatture.app.Company;
 import com.unifi.fatture.app.DatabaseUiComunication;
@@ -76,7 +78,7 @@ public abstract class AbstractDatabaseUiComunicationTest {
 	}
 
 	private boolean addTestClient() {
-		return myDatabaseUiComunication.addClientToDatabase("name", "fiscalCode", "residence", "city", "zip", "country", "phone", "email");
+		return myDatabaseUiComunication.addClientToDatabase("name", "fiscalCode", new AddClientToDatabaseParameter("residence", "city", "zip", "country"), "phone", "email");
 	}
 
 	private Client setTestClientToCurrentSelected() {
@@ -113,7 +115,7 @@ public abstract class AbstractDatabaseUiComunicationTest {
 
 	@Test (expected = NullPointerException.class)
 	public void editCompanyWhenNoCompanyInDBTest() {
-		myDatabaseUiComunication.editCompanyFromDatabase("nameEdited", "vatCodeEdited", "addressEdited", "cityEdited", "zipCodeEdited", "countryEdited", "phoneEdited", "emailEdited");
+		myDatabaseUiComunication.editCompanyFromDatabase("nameEdited", "vatCodeEdited",  new AddCompanyToDatabaseParameter("addressEdited", "cityEdited", "zipCodeEdited", "countryEdited"), "phoneEdited", "emailEdited");
 	}
 
 	@Test
@@ -150,7 +152,7 @@ public abstract class AbstractDatabaseUiComunicationTest {
 	}
 
 	private boolean addTestCompany() {
-		return myDatabaseUiComunication.addCompanyToDatabase("name", "vatCode", "address", "city", "zip", "country", "phone", "email");
+		return myDatabaseUiComunication.addCompanyToDatabase("name", "vatCode", new AddCompanyToDatabaseParameter("address", "city", "zip", "country"), "phone", "email");
 	}
 
 	//Invoice
