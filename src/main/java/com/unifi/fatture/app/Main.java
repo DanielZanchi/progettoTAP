@@ -2,6 +2,7 @@ package com.unifi.fatture.app;
 
 import java.io.IOException;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
@@ -16,6 +17,7 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		DatabaseUiComunication mongoUiComunication;
 		String mongoHost = "localhost";
+		BasicConfigurator.configure();
 
 		if(args.length==1 && args[0].equals("redis")) {//redis
 			ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new ClassPathResource("spring-configuration.xml").getPath());
@@ -39,7 +41,7 @@ public class Main {
 			mainWindowUI.toString();
 		}catch (Exception e) {
 			LOGGER.info("In docker container, gui not running");
-		}		
-		System.out.println("Fatture-app terminates");
+		}
+		LOGGER.info("Fatture-app terminates");
 	}
 }
