@@ -67,7 +67,6 @@ public abstract class PanelWithObligatoryTextFields extends JPanel {
 				@Override
 				public void insertUpdate(DocumentEvent e) {
 					changed();
-					changedUpdate(e);
 				}
 
 				@Override

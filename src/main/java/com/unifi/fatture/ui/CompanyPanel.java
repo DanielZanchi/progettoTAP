@@ -40,18 +40,19 @@ public class CompanyPanel extends PanelWithObligatoryTextFields {
 				addCompanyPanel.getHeight() - 20 - addCompanyPanel.getY(), buttonWidth, buttonHeight);
 		addCompanyPanel.add(saveButton);
 		saveButton.addActionListener(e -> {
-			if(addCompanyPanel.isSaving()) {
-				boolean saved = myDatabaseUiComunication.addCompanyToDatabase(companyNameTF.getText(),
-						companyVatTF.getText(), new AddCompanyToDatabaseParameter(companyAddressTF.getText(), companyCityTF.getText(), companyZipTF.getText(), companyCountryTF.getText()), companyPhoneTF.getText(),
-					    companyEmailTF.getText());
+			if (addCompanyPanel.isSaving()) {
+				myDatabaseUiComunication.addCompanyToDatabase(companyNameTF.getText(), companyVatTF.getText(),
+						new AddCompanyToDatabaseParameter(companyAddressTF.getText(), companyCityTF.getText(),
+								companyZipTF.getText(), companyCountryTF.getText()),
+						companyPhoneTF.getText(), companyEmailTF.getText());
 
-				if (saved) {
-					myDatabaseUiComunication.setCurrentSelectedCompany(myDatabaseUiComunication.getSavedCompanies().get(myDatabaseUiComunication.getSavedCompanies().size() - 1));
-					myDatabaseUiComunication.enableEditCompanyButton();
-				}
-			}else {
-				myDatabaseUiComunication.editCompanyFromDatabase(companyNameTF.getText(),
-						companyVatTF.getText(), new AddCompanyToDatabaseParameter(companyAddressTF.getText(), companyCityTF.getText(), companyZipTF.getText(), companyCountryTF.getText()),
+				myDatabaseUiComunication.setCurrentSelectedCompany(myDatabaseUiComunication.getSavedCompanies()
+						.get(myDatabaseUiComunication.getSavedCompanies().size() - 1));
+				myDatabaseUiComunication.enableEditCompanyButton();
+			} else {
+				myDatabaseUiComunication.editCompanyFromDatabase(companyNameTF.getText(), companyVatTF.getText(),
+						new AddCompanyToDatabaseParameter(companyAddressTF.getText(), companyCityTF.getText(),
+								companyZipTF.getText(), companyCountryTF.getText()),
 						companyPhoneTF.getText(), companyEmailTF.getText());
 			}
 			addCompanyPanel.setVisible(false);
@@ -59,7 +60,7 @@ public class CompanyPanel extends PanelWithObligatoryTextFields {
 			myDatabaseUiComunication.updateCompanyReference();
 		});
 
-		String[] freeTextFields = {"companyPhoneTextField", "companyEmailTextField"};
+		String[] freeTextFields = { "companyPhoneTextField", "companyEmailTextField" };
 		super.setUpTextFields(addCompanyPanel.getComponents(), freeTextFields, saveButton);
 	}
 
@@ -99,7 +100,6 @@ public class CompanyPanel extends PanelWithObligatoryTextFields {
 		companyCityTF = new JTextField();
 		setUpTextFieldInThePanel(companyCityTF, 300, "companyCityTextField", 0, insets, companyCityLabel);
 
-
 		JLabel companyZipLabel = new JLabel("ZIP Code:");
 		setUpLabelInThePanel(companyZipLabel, -insetsMiddle, companyCityTF);
 
@@ -110,7 +110,8 @@ public class CompanyPanel extends PanelWithObligatoryTextFields {
 		setUpLabelInThePanel(companyCountryLabel, insetsMiddle, companyCityTF);
 
 		companyCountryTF = new JTextField();
-		setUpTextFieldInThePanel(companyCountryTF, 100, "companyCountryTextField", insetsMiddle, insets, companyCountryLabel);
+		setUpTextFieldInThePanel(companyCountryTF, 100, "companyCountryTextField", insetsMiddle, insets,
+				companyCountryLabel);
 
 		JLabel companyPhoneLabel = new JLabel("Phone:");
 		setUpLabelInThePanel(companyPhoneLabel, 0, companyCountryTF);
@@ -128,14 +129,17 @@ public class CompanyPanel extends PanelWithObligatoryTextFields {
 	private void setUpLabelInThePanel(JLabel label, int insetsMiddle, JComponent relatedComponent) {
 		int width = (int) label.getPreferredSize().getWidth();
 		int height = (int) label.getPreferredSize().getHeight();
-		label.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2) + insetsMiddle, relatedComponent.getY() + relatedComponent.getHeight() + 23, width, height);
+		label.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2) + insetsMiddle,
+				relatedComponent.getY() + relatedComponent.getHeight() + 23, width, height);
 		addCompanyPanel.add(label);
 	}
 
-	private void setUpTextFieldInThePanel(JTextField textField, int width, String name, int insetsWidth, int insets, JLabel linkedLabel) {
+	private void setUpTextFieldInThePanel(JTextField textField, int width, String name, int insetsWidth, int insets,
+			JLabel linkedLabel) {
 		textField.setName(name);
 		textField.setHorizontalAlignment(JTextField.CENTER);
-		textField.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2)+insetsWidth, linkedLabel.getY() + linkedLabel.getHeight() + insets, width, 28);
+		textField.setBounds((addCompanyPanel.getWidth() / 2) - (width / 2) + insetsWidth,
+				linkedLabel.getY() + linkedLabel.getHeight() + insets, width, 28);
 		addCompanyPanel.add(textField);
 	}
 
@@ -157,7 +161,7 @@ public class CompanyPanel extends PanelWithObligatoryTextFields {
 	@Override
 	public void setAddingMode(boolean isSaving) {
 		this.isSaving = isSaving;
-		if(!isSaving) {
+		if (!isSaving) {
 			companyNameTF.setText(myDatabaseUiComunication.getCurrentSelectedCompany().getName());
 			companyVatTF.setText(myDatabaseUiComunication.getCurrentSelectedCompany().getVatCode());
 			companyAddressTF.setText(myDatabaseUiComunication.getCurrentSelectedCompany().getAddress());
