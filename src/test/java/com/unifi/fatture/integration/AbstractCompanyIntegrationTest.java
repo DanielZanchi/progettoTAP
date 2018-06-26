@@ -542,8 +542,6 @@ public abstract class AbstractCompanyIntegrationTest {
 		company1.setExtraParameters( "phone1", "email1");
 		Company company2 = new Company("1", "nameC1", "vatCode2", "address2", "city2", "zipCode2", "country2");
 		company2.setExtraParameters( "phone2", "email2");
-		//Company company1 = new Company("1", "a", "b", "c", "e", "f", "g", "ba", "be");
-		//Company company2 = new Company("1", "a", "me", "tre", "se", "ue", "ug", "la", "te");
 		assertEquals(false, company1.equals(company2));
 	}
 
@@ -679,7 +677,7 @@ public abstract class AbstractCompanyIntegrationTest {
 	public void testEqualsInvoicesWithNullFields() {
 		Invoice invoice1 = new Invoice("1", "name", null, null);
 		Invoice invoice2 = new Invoice("1", "name", null, null);
-		invoice1.equals(invoice2);
+		assertEquals(true, invoice1.equals(invoice2));
 	}
 
 	// generic equals
@@ -689,5 +687,21 @@ public abstract class AbstractCompanyIntegrationTest {
 		Company company = addTestCompanyToDB();
 
 		assertEquals(false, invoice.equals(company));
+	}	
+	
+	@Test
+	public void testNotEqualsIfDifferentName() {
+		Invoice invoice1 = new Invoice("1", "name1", null, null);
+		Invoice invoice2 = new Invoice("1", "name2", null, null);
+
+		assertEquals(false, invoice1.equals(invoice2));
+	}	
+	
+	@Test
+	public void testNotEqualsIfDifferentId() {
+		Invoice invoice1 = new Invoice("1", "name", null, null);
+		Invoice invoice2 = new Invoice("2", "name", null, null);
+
+		assertEquals(false, invoice1.equals(invoice2));
 	}	
 }
