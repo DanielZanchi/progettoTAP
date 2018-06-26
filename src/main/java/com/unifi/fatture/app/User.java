@@ -73,19 +73,19 @@ public class User implements Serializable {
 
 		if(user.getName()!=getName()||user.getId()!=getId()) {
 			return false;
-		}				
-
-		for(int i = 0; i<fields.length; i++) {
-			fields[i].setAccessible(true);
-			fields2[i].setAccessible(true);
-			try {
-				if(!fields[i].get(this).equals(fields2[i].get(obj))) {
-					return false;
+		}else {				
+			for(int i = 0; i<fields.length; i++) {
+				fields[i].setAccessible(true);
+				fields2[i].setAccessible(true);
+				try {
+					if(!fields[i].get(this).equals(fields2[i].get(obj))) {
+						return false;
+					}
+				} catch (Exception e) {
+					LOGGER.error(e);
 				}
-			} catch (Exception e) {
-				LOGGER.error(e);
 			}
+			return true;
 		}
-		return true;
 	}
 }

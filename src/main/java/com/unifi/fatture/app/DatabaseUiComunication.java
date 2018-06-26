@@ -150,17 +150,10 @@ public class DatabaseUiComunication {
 	}
 
 	public void updateCompanyReference() {
-		if (companyInfo.getText().equals("My Company")) {
-			if (!this.getSavedCompanies().isEmpty()) {
-				companyInfo.setText(this.getSavedCompanies().get(0).getName());
-				this.setCurrentSelectedCompany(this.getSavedCompanies().get(0));
-			}
-		} else {
-			if (!this.getSavedCompanies().isEmpty()) {
+		if (!this.getSavedCompanies().isEmpty()) {
 				companyInfo.setText(this.getSavedCompanies().get(companyCounter).getName());
 				this.setCurrentSelectedCompany(this.getSavedCompanies().get(companyCounter));
 			}
-		}
 	}
 
 	public void updateClientsReferences() {
