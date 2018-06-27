@@ -1,19 +1,18 @@
 package com.unifi.fatture.ui;
 
-import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 public class ObligatoryTextFieldListener implements DocumentListener{
-	
-	private LinkedList<JTextField> textFields;
+	private List<JTextField> textFields;
 	private FormattedButton saveButton;
 	
-	public ObligatoryTextFieldListener(LinkedList<JTextField> textFields, FormattedButton saveButton ) {
-		this.textFields=textFields;
-		this.saveButton=saveButton;
+	public ObligatoryTextFieldListener(List<JTextField> textFields, FormattedButton saveButton ) {
+		this.textFields = textFields;
+		this.saveButton = saveButton;
 	}
 
 	@Override
@@ -41,5 +40,4 @@ public class ObligatoryTextFieldListener implements DocumentListener{
 		}
 		saveButton.setEnabled(shouldActivate);
 	}
-
 }

@@ -8,8 +8,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 public abstract class PanelWithObligatoryTextFields extends JPanel {
 	private static final long serialVersionUID = 7883635384945697293L;
