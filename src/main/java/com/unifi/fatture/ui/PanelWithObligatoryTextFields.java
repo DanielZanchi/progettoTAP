@@ -63,33 +63,7 @@ public abstract class PanelWithObligatoryTextFields extends JPanel {
 		addComponent(components, textFieldsNotObligatory);
 
 		for (JTextField tf : textFields) {
-			tf.getDocument().addDocumentListener(new DocumentListener() {
-				@Override
-				public void insertUpdate(DocumentEvent e) {
-					changed();
-				}
-
-				@Override
-				public void removeUpdate(DocumentEvent e) {
-					changed();
-				}
-
-				@Override
-				public void changedUpdate(DocumentEvent e) {
-					//Plain text components do not fire these events, so this block isn't covered
-				}
-
-				public void changed() {
-					boolean shouldActivate = true;
-					for (JTextField tf : textFields) {
-						if (tf.getText().equals("")) {
-							shouldActivate = false;
-							break;
-						}
-					}
-					saveButton.setEnabled(shouldActivate);
-				}
-			});
+			tf.getDocument().addDocumentListener(new ObligatoryTextFieldListener(textFields,saveButton));
 		}
 	}	
 }
