@@ -28,9 +28,8 @@
 		<sonar.jacoco.reportPath>${jacoco.data.file}</sonar.jacoco.reportPath>
 		<sonar.jacoco.itReportPath>${jacoco.data.it.file}</sonar.jacoco.itReportPath>
 
-		<sonar.coverage.exclusions>**/Main.*</sonar.coverage.exclusions>
-		<sonar.coverage.exclusions>**/ObligatoryTextFieldListener.*</sonar.coverage.exclusions>
-
+		<sonar.coverage.exclusions>**/Main.*, **/ObligatoryTextFieldListener.*</sonar.coverage.exclusions>
+		
 		<!-- For each rule to be ignore, add another eXX and two corresponding 
 			properties with eXX in the name as below -->
 		<sonar.issue.ignore.multicriteria>e11</sonar.issue.ignore.multicriteria>
